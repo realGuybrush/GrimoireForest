@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Camera_Movement : MonoBehaviour
 {
     private readonly float xEdge = 10000;
     private readonly float yEdge = 10000;
+    public int VerticalCameraOffsetFromPlayer;
+
     private Vector3 cameraStart;
 
     public Transform player;
@@ -15,7 +17,7 @@ public class Camera_Movement : MonoBehaviour
     {
         //WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
         cameraStart = transform.position;
-        var playerPosition = player.position;
+        var playerPosition = player.position + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
         transform.position = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + cameraStart.z);
         //background.position = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.0f);
         //background.parent = this.transform;
@@ -27,7 +29,7 @@ public class Camera_Movement : MonoBehaviour
     {
         //fix this, so that camera won't look past scene edges, after worldmanager scene loading and features are fixed
         //z changing is removed to make perspective flooring
-        var playerPosition = player.position;
+        var playerPosition = player.position + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
         var new_position = new Vector3();
         if (playerPosition.x <= xEdge && playerPosition.x >= -xEdge)
             new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
@@ -44,7 +46,7 @@ public class Camera_Movement : MonoBehaviour
     public void UpdateCoords()
     {
         //CalculateEdges();
-        var playerPosition = player.position;
+        var playerPosition = player.position + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
         var new_position = new Vector3();
         if (playerPosition.x <= xEdge && playerPosition.x >= -xEdge)
             new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
