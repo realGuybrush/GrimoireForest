@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class Camera_Movement : MonoBehaviour
 {
-    private readonly float xEdge = 10000;
-    private readonly float yEdge = 10000;
-    public int VerticalCameraOffsetFromPlayer;
+    public float xEdge = 5.0f;
+    public float yEdge = 5.0f;
+    public float xOffset = 0.0f;
+    public float yOffset = 4.0f;
+    public bool sceneReloaded = true;
+    //public int VerticalCameraOffsetFromPlayer;
 
     private Vector3 cameraStart;
 
@@ -17,7 +20,7 @@ public class Camera_Movement : MonoBehaviour
     {
         //WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
         cameraStart = transform.position;
-        var playerPosition = player.position + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
+        var playerPosition = player.position;// + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
         transform.position = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + cameraStart.z);
         //background.position = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.0f);
         //background.parent = this.transform;
@@ -29,35 +32,63 @@ public class Camera_Movement : MonoBehaviour
     {
         //fix this, so that camera won't look past scene edges, after worldmanager scene loading and features are fixed
         //z changing is removed to make perspective flooring
-        var playerPosition = player.position + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
-        var new_position = new Vector3();
-        if (playerPosition.x <= xEdge && playerPosition.x >= -xEdge)
-            new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
+        if (sceneReloaded)
+        {
+            sceneReloaded = false;
+            SetCameraPosition();
+        }
         else
-            new_position = new Vector3(transform.position.x, new_position.y, new_position.z);
-        if (playerPosition.y <= yEdge && playerPosition.y >= -yEdge)
-            new_position = new Vector3(new_position.x, playerPosition.y, new_position.z);
-        else
-            new_position = new Vector3(new_position.x, transform.position.y, new_position.z);
-        transform.position = new Vector3(new_position.x, new_position.y, playerPosition.z + cameraStart.z);
+        {
+            var playerPosition = player.position;// + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
+            var new_position = new Vector3();
+            if ((playerPosition.x <= (xEdge + xOffset)) && (playerPosition.x >= (-xEdge + xOffset)))
+                new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
+            else
+                new_position = new Vector3(transform.position.x, new_position.y, new_position.z);
+            if ((playerPosition.y <= (yEdge + yOffset)) && (playerPosition.y >= (-yEdge + yOffset)))
+                new_position = new Vector3(new_position.x, playerPosition.y, new_position.z);
+            else
+                new_position = new Vector3(new_position.x, transform.position.y, new_position.z);
+            transform.position = new Vector3(new_position.x, new_position.y, playerPosition.z + cameraStart.z);
+        }
         //background.position = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.0f);
     }
 
-    public void UpdateCoords()
+    public void SetCameraPosition()
     {
-        //CalculateEdges();
-        var playerPosition = player.position + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
+        var playerPosition = player.position;
         var new_position = new Vector3();
-        if (playerPosition.x <= xEdge && playerPosition.x >= -xEdge)
-            new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
+        if (playerPosition.x <= (xEdge + xOffset))
+        {
+            if (playerPosition.x >= (-xEdge + xOffset))
+            {
+                new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
+            }
+            else
+            {
+                new_position = new Vector3(-xEdge + xOffset, new_position.y, new_position.z);
+            }
+        }
         else
-            new_position = new Vector3(Mathf.Sign(playerPosition.x) * xEdge, new_position.y, new_position.z);
-        if (playerPosition.y <= yEdge && playerPosition.y >= -yEdge)
-            new_position = new Vector3(new_position.x, playerPosition.y, new_position.z);
+        {
+            new_position = new Vector3(xEdge + xOffset, new_position.y, new_position.z);
+        }
+        if (playerPosition.y <= (yEdge + yOffset))
+        {
+            if (playerPosition.y >= (-yEdge + yOffset))
+            {
+                new_position = new Vector3(new_position.x, playerPosition.y, new_position.z);
+            }
+            else
+            {
+                new_position = new Vector3(new_position.x, -yEdge + yOffset, new_position.z);
+            }
+        }
         else
-            new_position = new Vector3(new_position.x, Mathf.Sign(playerPosition.y) * yEdge, new_position.z);
+        {
+            new_position = new Vector3(new_position.x, yEdge + yOffset, new_position.z);
+        }
         transform.position = new Vector3(new_position.x, new_position.y, playerPosition.z + cameraStart.z);
-        //background.position = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.0f);
     }
 
     /*void CalculateEdges()
