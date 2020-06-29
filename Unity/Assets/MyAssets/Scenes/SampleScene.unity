@@ -531,7 +531,7 @@ MonoBehaviour:
   xEdge: 50
   yEdge: 6
   xOffset: 0
-  yOffset: 12
+  yOffset: 8
   sceneReloaded: 1
   player: {fileID: 844623475}
 --- !u!20 &519420031
@@ -561,7 +561,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13.698035
+  orthographic size: 10.228818
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -585,7 +585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.3, z: -10}
+  m_LocalPosition: {x: 0, y: 2.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2105174654}
@@ -624,6 +624,28 @@ Transform:
   m_Father: {fileID: 1600380948}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &802041289 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2413705139145912754, guid: 433760c8e51f98c4a822f83b419ccda4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1946899941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &802041290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 802041289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48a8fa6377f61e4e96b2f433929d182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420028}
+  movementCoefficient: -0.6
+  tileWidth: 25
+  tileOffset: 0
 --- !u!4 &844623475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1727102159747781699, guid: d8af707107606674a9f045a8cd19b283,
@@ -956,6 +978,11 @@ PrefabInstance:
       propertyPath: tileWidth
       value: 150
       objectReference: {fileID: 0}
+    - target: {fileID: 5167701361350881407, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
+        type: 3}
+      propertyPath: movementCoefficient
+      value: -0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7897858228010572308, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1030,11 +1057,20 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 2057528933, guid: 9dfce94a6d3d16b4492b3189a8d9be36, type: 3}
+      propertyPath: movementCoefficient
+      value: -0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
+        type: 3}
+      propertyPath: movementCoefficient
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768748, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
       propertyPath: m_Name
@@ -1308,6 +1344,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420028}
+    - target: {fileID: 8721058188467773101, guid: f9db5021d6d65424a8f39a2a233482d7,
+        type: 3}
+      propertyPath: movementCoefficient
+      value: -0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9db5021d6d65424a8f39a2a233482d7, type: 3}
 --- !u!4 &1386620413 stripped
@@ -1417,6 +1458,28 @@ Transform:
   m_Father: {fileID: 1600380948}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1679722955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1025419535609089113, guid: d43b5c7100d5d7b47b0a1b45c815c2fa,
+    type: 3}
+  m_PrefabInstance: {fileID: 1959882429}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1679722956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1679722955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48a8fa6377f61e4e96b2f433929d182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 519420028}
+  movementCoefficient: -1
+  tileWidth: 25
+  tileOffset: 0
 --- !u!1 &1809269500
 GameObject:
   m_ObjectHideFlags: 0
