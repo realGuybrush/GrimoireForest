@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  movementCoefficient: -0.25
+  movementCoefficient: 0.1
   tileWidth: 150
   tileOffset: 0
 --- !u!1 &1085876181624174357

@@ -624,28 +624,6 @@ Transform:
   m_Father: {fileID: 1600380948}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &802041289 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2413705139145912754, guid: 433760c8e51f98c4a822f83b419ccda4,
-    type: 3}
-  m_PrefabInstance: {fileID: 1946899941}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &802041290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 802041289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f48a8fa6377f61e4e96b2f433929d182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420028}
-  movementCoefficient: -0.6
-  tileWidth: 25
-  tileOffset: 0
 --- !u!4 &844623475 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1727102159747781699, guid: d8af707107606674a9f045a8cd19b283,
@@ -981,7 +959,7 @@ PrefabInstance:
     - target: {fileID: 5167701361350881407, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
       propertyPath: movementCoefficient
-      value: -0.3
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7897858228010572308, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
@@ -1059,7 +1037,7 @@ PrefabInstance:
       objectReference: {fileID: 519420028}
     - target: {fileID: 2057528933, guid: 9dfce94a6d3d16b4492b3189a8d9be36, type: 3}
       propertyPath: movementCoefficient
-      value: -0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
@@ -1069,7 +1047,7 @@ PrefabInstance:
     - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
       propertyPath: movementCoefficient
-      value: -0.2
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768748, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
@@ -1344,11 +1322,6 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 519420028}
-    - target: {fileID: 8721058188467773101, guid: f9db5021d6d65424a8f39a2a233482d7,
-        type: 3}
-      propertyPath: movementCoefficient
-      value: -0.3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9db5021d6d65424a8f39a2a233482d7, type: 3}
 --- !u!4 &1386620413 stripped
@@ -1458,28 +1431,6 @@ Transform:
   m_Father: {fileID: 1600380948}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1679722955 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1025419535609089113, guid: d43b5c7100d5d7b47b0a1b45c815c2fa,
-    type: 3}
-  m_PrefabInstance: {fileID: 1959882429}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1679722956
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1679722955}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f48a8fa6377f61e4e96b2f433929d182, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 519420028}
-  movementCoefficient: -1
-  tileWidth: 25
-  tileOffset: 0
 --- !u!1 &1809269500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,11 +1705,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ForestBG1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1025419535609089113, guid: d43b5c7100d5d7b47b0a1b45c815c2fa,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d43b5c7100d5d7b47b0a1b45c815c2fa, type: 3}
