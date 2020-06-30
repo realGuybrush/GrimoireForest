@@ -1,12 +1,34 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Item : MonoBehaviour
 {
     private ContactPoint2D grabPoint1;
     private ContactPoint2D grabPoint2;
-    private Characteristics itemValues;
-
+    public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
+    public ItemCharacteristics itemValues;
     private Collider2D thisCollider;
     //onCollision
     // search for hp script and extract hp.
+    void Start()
+    {
+        thisCollider = this.gameObject.GetComponent<Collider2D>();
+        //instead of this, items values should be loaded by worldmanager
+        itemValues = new ItemCharacteristics();
+        itemValues.type = "Gun";
+        itemValues.atk1 = "Atk2";
+        itemValues.atk2 = "Atk7";
+        itemValues.kick = "Atk4";
+        itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (this.transform.parent == null)
+        {
+            if (collision.gameObject.GetComponent<PlayerControls>() != null)
+            {
+                collision.gameObject.GetComponent<PlayerControls>().PickableItem = this.gameObject;
+            }
+        }
+    }
 }

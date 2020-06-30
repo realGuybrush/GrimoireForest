@@ -1,8 +1,27 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerControls : BasicMovement
 {
+    public GameObject Gun;
+    public GameObject Sword;
+    public GameObject Spear;
+    public GameObject Arrow;
+    public GameObject Rod;
+
+    public GameObject MagicArtefact;
+    public GameObject Bow;
+
+    public GameObject Weapon;
+    public GameObject PickableItem = null;
     private int crawlTimer;
+
+    public GameObject Hip;
+    public GameObject Back;
+    public GameObject leftArm;
+    public GameObject leftHand;
+    public GameObject rightArm;
+    public GameObject rightHand;
+
 
     // Use this for initialization
     private void Start()
@@ -32,12 +51,17 @@ public class PlayerControls : BasicMovement
         CheckFlip();
         CheckClimbInput();
         CheckAtkInput();
+        CheckPickUpInput();
         BasicCheckMidAir();
         BasicCheckHold();
         //BasicCheckRoll();
         //CheckDirections();
         if (crawlTimer > 0)
             crawlTimer--;
+        //if (Weapon != null)
+        //{
+            //Weapon.transform.position = Weapon.GetComponent<Item>().positionOnHand+this.transform.position;
+        //}
     }
 
     private void PlayerCheckMove()
@@ -143,6 +167,18 @@ public class PlayerControls : BasicMovement
         }
     }
 
+    public void CheckPickUpInput()
+    {
+        if (PickableItem != null)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                SetWeapon(PickableItem);
+                PickableItem = null;
+            }
+        }
+    }
+
     public void CheckCrawlInput()
     {
         /*if(Input.GetKeyDown(KeyCode.C) || Input.GetKey(KeyCode.C))
@@ -184,38 +220,108 @@ public class PlayerControls : BasicMovement
         }
     }
 
+    public void SetWeapon(GameObject weapon)
+    {
+        Weapon = weapon;
+        //Weapon.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        switch (Weapon.GetComponent<Item>().itemValues.type)
+        {
+            case "Gun":
+                Weapon.transform.SetParent(Gun.transform);
+                break;
+            case "Sword":
+                Weapon.transform.SetParent(Sword.transform);
+                break;
+            case "Spear":
+                Weapon.transform.SetParent(Spear.transform);
+                break;
+            case "Arrow":
+                Weapon.transform.SetParent(Arrow.transform);
+                break;
+            case "Rod":
+                Weapon.transform.SetParent(Rod.transform);
+                break;
+            case "MagicArtefact":
+                Weapon.transform.SetParent(MagicArtefact.transform);
+                break;
+            case "Bow":
+                Weapon.transform.SetParent(Bow.transform);
+                break;
+            default:
+                break;
+        }
+        //Weapon.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        //it doesn't work correctly without magic numbers; get to the bottom of this, and exclude magic number later
+        Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;// + this.transform.position;// - new Vector3(0.0f, 1.9f, 0.0f);
+        //Weapon.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
+        //float sumRotation = Hip.transform.localRotation.z + Back.transform.localRotation.z + leftArm.transform.localRotation.z + leftHand.transform.localRotation.z;
+        //Weapon.transform.localRotation = new Quaternion(0.0f, 0.0f, 360.0f - sumRotation, 0.0f);
+    }
+    public string GetAttackType(int attackIndex)
+    {
+        switch (attackIndex)
+        {
+            case 1:
+                return Weapon.GetComponent<Item>().itemValues.atk1;
+            case 2:
+                return Weapon.GetComponent<Item>().itemValues.atk2;
+            case 3:
+                return Weapon.GetComponent<Item>().itemValues.kick;
+            default:
+                break;
+        }
+        return "";
+    }
     public void CheckAtkInput()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Weapon != null)
         {
-            BasicAtk1(true, "Atk2");
-        }
+            if (Input.GetButtonDown("Fire1"))
+            {
+                BasicAtk1(true, GetAttackType(1));
+            }
 
-        if (Input.GetButtonUp("Fire1"))
-        {
-            BasicAtk1(false, "Atk2");
-        }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                BasicAtk1(false, GetAttackType(1));
+            }
 
-        if (Input.GetButtonDown("Fire2"))
-        {
-            BasicAtk1(true, "Atk5");
-            //thisHealth.AddBuff(-1, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-        }
+            if (Input.GetButtonDown("Fire2"))
+            {
+                BasicAtk1(true, GetAttackType(2));
+                //thisHealth.AddBuff(-1, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            }
 
-        if (Input.GetButtonUp("Fire2"))
-        {
-            BasicAtk1(false, "Atk5");
+            if (Input.GetButtonUp("Fire2"))
+            {
+                BasicAtk1(false, GetAttackType(2));
+            }
         }
-
-        if (Input.GetButtonDown("Fire3"))
+        if (Weapon != null)
         {
-            BasicAtk1(true, "Atk4");
-            //thisHealth.AddBuff(-1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            if (Input.GetButtonDown("Fire3"))
+            {
+                BasicAtk1(true, GetAttackType(3));
+                //thisHealth.AddBuff(-1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            }
+
+            if (Input.GetButtonUp("Fire3"))
+            {
+                BasicAtk1(false, GetAttackType(3));
+            }
         }
-
-        if (Input.GetButtonUp("Fire3"))
+        else
         {
-            BasicAtk1(false, "Atk4");
+            if (Input.GetButtonDown("Fire3"))
+            {
+                BasicAtk1(true, "Atk4");
+                //thisHealth.AddBuff(-1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+            }
+
+            if (Input.GetButtonUp("Fire3"))
+            {
+                BasicAtk1(false, "Atk4");
+            }
         }
     }
 
