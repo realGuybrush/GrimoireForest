@@ -21,11 +21,15 @@ public class PlayerControls : BasicMovement
     public GameObject leftHand;
     public GameObject rightArm;
     public GameObject rightHand;
+    private float turnAngleLeft;
+    private float turnAngleRight;
 
 
     // Use this for initialization
     private void Start()
     {
+        turnAngleLeft = Hip.transform.localEulerAngles.z + Back.transform.localEulerAngles.z + leftArm.transform.localEulerAngles.z + leftHand.transform.localEulerAngles.z;
+        turnAngleRight = Hip.transform.localEulerAngles.z + Back.transform.localEulerAngles.z + rightArm.transform.localEulerAngles.z + rightHand.transform.localEulerAngles.z;
         thisObject = gameObject.GetComponent<Rigidbody2D>();
         thisHealth = thisObject.GetComponent<Health>();
         anim.a = GetComponent<Animator>();
@@ -255,7 +259,7 @@ public class PlayerControls : BasicMovement
         Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;// + this.transform.position;// - new Vector3(0.0f, 1.9f, 0.0f);
         //Weapon.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
         //float sumRotation = Hip.transform.localRotation.z + Back.transform.localRotation.z + leftArm.transform.localRotation.z + leftHand.transform.localRotation.z;
-        //Weapon.transform.localRotation = new Quaternion(0.0f, 0.0f, 360.0f - sumRotation, 0.0f);
+        Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
     }
     public string GetAttackType(int attackIndex)
     {
