@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class ItemCharacteristics
 {
+    public int number = 0;
     public string type = "";
     public string atk1 = "Atk1";
     public string atk2 = "Atk2";
     public string kick = "Atk3";
+    public int maxStack = 64;
     private Buff atk1Buff = new Buff();
     private Buff atk2Buff = new Buff();
     private Buff atk3Buff = new Buff();

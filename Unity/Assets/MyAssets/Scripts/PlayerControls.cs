@@ -24,6 +24,8 @@ public class PlayerControls : BasicMovement
     private float turnAngleLeft;
     private float turnAngleRight;
 
+    public Inventory inventory =new Inventory();
+
 
     // Use this for initialization
     private void Start()
@@ -177,8 +179,10 @@ public class PlayerControls : BasicMovement
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                SetWeapon(PickableItem);
-                PickableItem = null;
+                if (PickUp(PickableItem))
+                {
+                    PickableItem = null;
+                }
             }
         }
     }
@@ -224,42 +228,75 @@ public class PlayerControls : BasicMovement
         }
     }
 
-    public void SetWeapon(GameObject weapon)
+    public bool PickUp(GameObject item)
     {
-        Weapon = weapon;
+        Item I = item.GetComponent<Item>();
+        if (I == null)
+            return false;
+        if (Weapon == null)
+        {
+            if (SetWeapon(item))
+            {
+                return true;
+            }
+            else
+            {
+                if (inventory.Add1(I))
+                {
+                    GameObject.Destroy(item);
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            if (inventory.Add1(I))
+            {
+                GameObject.Destroy(item);
+                return true;
+            }
+        }
+        return false;
+    }
+    public bool SetWeapon(GameObject weapon)
+    {
         //Weapon.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-        switch (Weapon.GetComponent<Item>().itemValues.type)
+        switch (weapon.GetComponent<Item>().itemValues.type)
         {
             case "Gun":
+                Weapon = weapon;
                 Weapon.transform.SetParent(Gun.transform);
                 break;
             case "Sword":
+                Weapon = weapon;
                 Weapon.transform.SetParent(Sword.transform);
                 break;
             case "Spear":
+                Weapon = weapon;
                 Weapon.transform.SetParent(Spear.transform);
                 break;
             case "Arrow":
+                Weapon = weapon;
                 Weapon.transform.SetParent(Arrow.transform);
                 break;
             case "Rod":
+                Weapon = weapon;
                 Weapon.transform.SetParent(Rod.transform);
                 break;
             case "MagicArtefact":
+                Weapon = weapon;
                 Weapon.transform.SetParent(MagicArtefact.transform);
                 break;
             case "Bow":
+                Weapon = weapon;
                 Weapon.transform.SetParent(Bow.transform);
                 break;
             default:
-                break;
+                return false;
         }
-        //Weapon.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-        //it doesn't work correctly without magic numbers; get to the bottom of this, and exclude magic number later
-        Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;// + this.transform.position;// - new Vector3(0.0f, 1.9f, 0.0f);
-        //Weapon.transform.localRotation = new Quaternion(0.0f, 0.0f, 0.0f, 0.0f);
-        //float sumRotation = Hip.transform.localRotation.z + Back.transform.localRotation.z + leftArm.transform.localRotation.z + leftHand.transform.localRotation.z;
+        Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
         Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
+        return true;
     }
     public string GetAttackType(int attackIndex)
     {

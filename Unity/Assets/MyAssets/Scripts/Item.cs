@@ -14,10 +14,12 @@ public class Item : MonoBehaviour
         thisCollider = this.gameObject.GetComponent<Collider2D>();
         //instead of this, items values should be loaded by worldmanager
         itemValues = new ItemCharacteristics();
+        itemValues.number = 0;
         itemValues.type = "Gun";
         itemValues.atk1 = "Atk2";
         itemValues.atk2 = "Atk7";
         itemValues.kick = "Atk4";
+        itemValues.maxStack = 2;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
     }
 
