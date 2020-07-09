@@ -32,6 +32,9 @@ public class PlayerControls : BasicMovement
     public GameObject rightHand;
     private float turnAngleLeft;
     private float turnAngleRight;
+    private int weaponSlotNumber = 0;
+    private int spellSlotNumber = 0;
+    private bool inMenu = true;
 
     public Inventory inventory = new Inventory();
     public Inventory munitions = new Inventory();
@@ -63,18 +66,22 @@ public class PlayerControls : BasicMovement
     // Update is called once per frame
     private void Update()
     {
-        PlayerCheckMove();
-        CheckLand();
-        CheckJumpInput();
-        wall.UpdateHold();
-        ledge.UpdateHold();
-        move.crawl.UpdateRoll(anim.a.GetBool("Roll"));
-        CheckFlip();
-        CheckClimbInput();
-        CheckAtkInput();
-        CheckPickUpInput();
-        BasicCheckMidAir();
-        BasicCheckHold();
+        CheckWeaponSpell();
+        if(!inMenu)
+        {
+            PlayerCheckMove();
+            CheckLand();
+            CheckJumpInput();
+            wall.UpdateHold();
+            ledge.UpdateHold();
+            move.crawl.UpdateRoll(anim.a.GetBool("Roll"));
+            CheckFlip();
+            CheckClimbInput();
+            CheckAtkInput();
+            CheckPickUpInput();
+            BasicCheckMidAir();
+            BasicCheckHold();
+        }
         CheckInventoryInput();
         //BasicCheckRoll();
         //CheckDirections();
@@ -84,6 +91,27 @@ public class PlayerControls : BasicMovement
         //{
         //Weapon.transform.position = Weapon.GetComponent<Item>().positionOnHand+this.transform.position;
         //}
+    }
+
+    private void CheckWeaponSpell()
+    {
+        if ((Weapon != null) && (munitions.Items[6 + weaponSlotNumber] == -1))
+        {
+            RemoveWeapon();
+        }
+        else
+        {
+            if ((Weapon != null) && (Weapon.GetComponent<Item>().itemValues.number != munitions.Items[weaponSlotNumber+6]))
+            {
+                RemoveWeapon();
+            }
+            if ((Weapon == null) && (munitions.Items[weaponSlotNumber+6] != -1))
+            {
+                GameObject G = Instantiate(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[munitions.Items[weaponSlotNumber + 6]]);
+                G.GetComponent<Item>().Start2();
+                SetWeapon(G, false);
+            }
+        }
     }
 
     private void PlayerCheckMove()
@@ -193,6 +221,7 @@ public class PlayerControls : BasicMovement
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            inMenu = !inMenu;
             Menus.SetActive(!Menus.activeSelf);
             GameObject I = GameObject.Find("Inventory");
             if (I != null)
@@ -273,6 +302,14 @@ public class PlayerControls : BasicMovement
     {
         if (item.Count == 0)
             return false;
+        //absolutely needed: without it item[0] will sometimes be null after picking up previous item, and won't be deleted for soe reason
+        //if you simply put item.RemoveAt(0) after deletion of item, however, two items will be removed from List! magic
+        if (item[0] == null)
+        {
+            item.RemoveAt(0);
+            if (item.Count == 0)
+                return false;
+        }
         Item I = item[0].GetComponent<Item>();
         if (I == null)
             return false;
@@ -280,7 +317,7 @@ public class PlayerControls : BasicMovement
         {
             if (SetMunitions(item[0]))
             {
-                item.RemoveAt(0);
+                GameObject.Destroy(item[0]);
                 return true;
             }
             else
@@ -334,7 +371,7 @@ public class PlayerControls : BasicMovement
         //Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
         return true;
     }
-    public bool SetWeapon(GameObject weapon)
+    public bool SetWeapon(GameObject weapon, bool pickingup = true)
     {
         int i;
         for (i = 6; i < 11; i++)
@@ -347,52 +384,110 @@ public class PlayerControls : BasicMovement
         if (i == 11)
         {
             return false;
-        }    
-        switch (weapon.GetComponent<Item>().itemValues.type)
-        {
-            case "Gun":
-                Weapon = weapon;
-                Weapon.transform.SetParent(Gun.transform);
-                break;
-            case "Sword":
-                Weapon = weapon;
-                Weapon.transform.SetParent(Sword.transform);
-                break;
-            case "Spear":
-                Weapon = weapon;
-                Weapon.transform.SetParent(Spear.transform);
-                break;
-            case "Arrow":
-                Weapon = weapon;
-                Weapon.transform.SetParent(Arrow.transform);
-                break;
-            case "Rod":
-                Weapon = weapon;
-                Weapon.transform.SetParent(Rod.transform);
-                break;
-            case "MagicArtefact":
-                Weapon = weapon;
-                Weapon.transform.SetParent(MagicArtefact.transform);
-                break;
-            case "Bow":
-                Weapon = weapon;
-                Weapon.transform.SetParent(Bow.transform);
-                break;
-            default:
-                return false;
         }
-        for (i = 6; i < 11; i++)
+        if (Weapon == null)
         {
-            if (munitions.Items[i] == -1)
+            switch (weapon.GetComponent<Item>().itemValues.type)
             {
-                munitions.Items[i] = Weapon.GetComponent<Item>().itemValues.number;
-                munitions.stacks[i] = 1;
-                break;
+                case "Gun":
+                    Weapon = weapon;
+                    Weapon.transform.SetParent(Gun.transform);
+                    break;
+                case "Sword":
+                    Weapon = weapon;
+                    Weapon.transform.SetParent(Sword.transform);
+                    break;
+                case "Spear":
+                    Weapon = weapon;
+                    Weapon.transform.SetParent(Spear.transform);
+                    break;
+                case "Arrow":
+                    Weapon = weapon;
+                    Weapon.transform.SetParent(Arrow.transform);
+                    break;
+                case "Rod":
+                    Weapon = weapon;
+                    Weapon.transform.SetParent(Rod.transform);
+                    break;
+                case "MagicArtefact":
+                    Weapon = weapon;
+                    Weapon.transform.SetParent(MagicArtefact.transform);
+                    break;
+                case "Bow":
+                    Weapon = weapon;
+                    Weapon.transform.SetParent(Bow.transform);
+                    break;
+                default:
+                    return false;
+            }
+        }
+        if (pickingup)
+        {
+            for (i = 6; i < 11; i++)
+            {
+                if (munitions.Items[i] == -1)
+                {
+                    munitions.Items[i] = Weapon.GetComponent<Item>().itemValues.number;
+                    munitions.stacks[i] = 1;
+                    break;
+                }
             }
         }
         Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
         Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
         return true;
+    }
+    public void RemoveWeapon()
+    {
+
+        switch (Weapon.GetComponent<Item>().itemValues.type)
+        {
+            case "Gun":
+                foreach (Transform child in Gun.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+                break;
+            case "Sword":
+                foreach (Transform child in Sword.transform)
+                {
+                    Destroy(child);
+                }
+                break;
+            case "Spear":
+                foreach (Transform child in Spear.transform)
+                {
+                    Destroy(child);
+                }
+                break;
+            case "Arrow":
+                foreach (Transform child in Arrow.transform)
+                {
+                    Destroy(child);
+                }
+                break;
+            case "Rod":
+                foreach (Transform child in Rod.transform)
+                {
+                    Destroy(child);
+                }
+                break;
+            case "MagicArtefact":
+                foreach (Transform child in MagicArtefact.transform)
+                {
+                    Destroy(child);
+                }
+                break;
+            case "Bow":
+                foreach (Transform child in Bow.transform)
+                {
+                    Destroy(child);
+                }
+                break;
+            default:
+                break;
+        }
+        Weapon = null;
     }
     public string GetAttackType(int attackIndex)
     {

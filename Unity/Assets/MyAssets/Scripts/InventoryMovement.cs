@@ -131,14 +131,15 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (playerInventory.Items[i] >= 0)
                     {
-                        itemDepiction[i].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[playerInventory.Items[i]].GetComponent<SpriteRenderer>().sprite;
+                        itemDepiction[i].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[playerInventory.Items[i]].GetComponent<Item>().InventoryImage;//.GetComponent<SpriteRenderer>().sprite;
                         itemDepiction[i].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 255.0f);
-                        itemDepiction[i].GetComponent<UnityEngine.UI.Image>().SetNativeSize();
+                        /*itemDepiction[i].GetComponent<UnityEngine.UI.Image>().SetNativeSize();
                         Rect R = itemDepiction[i].GetComponent<UnityEngine.UI.Image>().rectTransform.rect;
                         float shrinkCoeff = (R.width < R.height) ? (R.height / 30) : (R.width / 30);
                         R.width /= shrinkCoeff;
                         R.height /= shrinkCoeff; 
                         itemDepiction[i].GetComponent<UnityEngine.UI.Image>().rectTransform.sizeDelta = new Vector2(R.width, R.height);//shrink it
+                        //and that's how we did shrinking in my days*/
                     }
                 }
             }
@@ -155,14 +156,8 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (otherInventory.Items[i] >= 0)
                     {
-                        SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[otherInventory.Items[i]].GetComponent<SpriteRenderer>().sprite;
+                        SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[otherInventory.Items[i]].GetComponent<Item>().InventoryImage;
                         SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 255.0f);
-                        SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().SetNativeSize();
-                        Rect R = SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().rectTransform.rect;
-                        float shrinkCoeff = (R.width < R.height) ? (R.height / 30) : (R.width / 30);
-                        R.width /= shrinkCoeff;
-                        R.height /= shrinkCoeff;
-                        SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().rectTransform.sizeDelta = new Vector2(R.width, R.height);//shrink it
                     }
                 }
             }
@@ -312,15 +307,18 @@ public class InventoryMovement : MonoBehaviour
                 }
                 else
                 {
-                    WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
-                    Vector3 v = GameObject.Find("Player").transform.position;
-                    WM.Drop(otherInventory.Items[clicked], otherInventory.stacks[clicked], v);
-                    otherInventory.Items[clicked] = -1;
-                    otherInventory.stacks[clicked] = 0;
-                    SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().sprite = null;
-                    SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
-                    SecondaryMenuItems[clicked].transform.position = SecondaryMenuLocations[clicked];
-                    clicked = -1;
+                    if (clicked != -1)
+                    {
+                        WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+                        Vector3 v = GameObject.Find("Player").transform.position;
+                        WM.Drop(otherInventory.Items[clicked], otherInventory.stacks[clicked], v);
+                        otherInventory.Items[clicked] = -1;
+                        otherInventory.stacks[clicked] = 0;
+                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().sprite = null;
+                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
+                        SecondaryMenuItems[clicked].transform.position = SecondaryMenuLocations[clicked];
+                        clicked = -1;
+                    }
                 }
             }
         }
