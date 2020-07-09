@@ -25,6 +25,7 @@ public class PlayerControls : BasicMovement
     private float turnAngleRight;
 
     public Inventory inventory =new Inventory();
+    public GameObject Menus;
 
 
     // Use this for initialization
@@ -60,6 +61,7 @@ public class PlayerControls : BasicMovement
         CheckPickUpInput();
         BasicCheckMidAir();
         BasicCheckHold();
+        CheckInventoryInput();
         //BasicCheckRoll();
         //CheckDirections();
         if (crawlTimer > 0)
@@ -171,6 +173,21 @@ public class PlayerControls : BasicMovement
             anim.SetVar("Run", false);
             move.run.UnRun();
         }
+    }
+
+    public void CheckInventoryInput()
+    {
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+            Menus.SetActive(!Menus.activeSelf);
+            GameObject I = GameObject.Find("Inventory");
+            if (I != null)
+            {
+                I.GetComponent<InventoryMovement>().SetInv(inventory);
+                I.GetComponent<InventoryMovement>().UploadToHUD();
+            }
+            //I.GetComponent<InventoryMovement>().ShowHide();
+            }
     }
 
     public void CheckPickUpInput()

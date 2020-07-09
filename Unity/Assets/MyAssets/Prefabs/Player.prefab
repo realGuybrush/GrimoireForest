@@ -310,6 +310,7 @@ MonoBehaviour:
   leftHand: {fileID: 1727102160664299065}
   rightArm: {fileID: 1727102160949159405}
   rightHand: {fileID: 1727102160881243837}
+  Menus: {fileID: 0}
 --- !u!50 &1727102159747781703
 Rigidbody2D:
   serializedVersion: 4

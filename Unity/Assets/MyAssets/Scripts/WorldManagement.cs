@@ -43,4 +43,12 @@ public class WorldManagement : MonoBehaviour
 		//if(Pass != null)
 			//Enter();
 	}
+
+    public void Drop(int itemNumber, int itemCount, Vector3 coordinates)
+    {
+        for (int i = 0; i < itemCount; i++)
+        {
+            GameObject.Instantiate(ItemPrefabs[itemNumber], coordinates, new Quaternion());
+        }
+    }
 }

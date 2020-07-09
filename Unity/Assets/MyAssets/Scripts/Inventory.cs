@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Inventory 
 {
-    public int maxAmount = 10;
-    public int width = 10;
+    public int maxAmount = 18;
 	public List<int> Items = new List<int>();
     public List<int> stacks = new List<int>();
     public bool Add1(Item newItem)
