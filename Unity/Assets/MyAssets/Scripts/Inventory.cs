@@ -7,25 +7,25 @@ public class Inventory
     public int maxAmount = 18;
 	public List<int> Items = new List<int>();
     public List<int> stacks = new List<int>();
+    public void Start()
+    {
+        for (int i = Items.Count; i < maxAmount; i++)
+        {
+            Items.Add(-1);
+            stacks.Add(0);
+        }
+    }
     public bool Add1(Item newItem)
     {
         for (int i = 0; i < maxAmount; i++)
         {
-            if (i >= Items.Count)
+            if ((Items[i] == newItem.itemValues.number) || (Items[i] == -1))
             {
-                Items.Add(newItem.itemValues.number);
-                stacks.Add(1);
-                return true;
-            }
-            else
-            {
-                if (Items[i] == newItem.itemValues.number)
+                Items[i] = newItem.itemValues.number;
+                if (stacks[i] < newItem.itemValues.maxStack)
                 {
-                    if (stacks[i] < newItem.itemValues.maxStack)
-                    {
-                        stacks[i]++;
-                        return true;
-                    }
+                    stacks[i]++;
+                    return true;
                 }
             }
         }

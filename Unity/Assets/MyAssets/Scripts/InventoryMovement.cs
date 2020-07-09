@@ -19,9 +19,20 @@ public class InventoryMovement : MonoBehaviour
     List<GameObject> itemDepiction = new List<GameObject>();
     int clicked = -1;
     public GameObject itemInInvPrefab;
+    float MenuOffsetX;
+    float MenuOffsetY;
 
+    private void Start()
+    {
+        MenuOffsetX = GameObject.Find("Menus").transform.position.x;
+        MenuOffsetY = GameObject.Find("Menus").transform.position.y;
+    }
     private void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Clicked(Input.mousePosition.x, Input.mousePosition.y);
+        }
         if (clicked > -1)
         {
             if (itemDepiction.Count > clicked)
@@ -43,10 +54,6 @@ public class InventoryMovement : MonoBehaviour
         {
             B.transform.position = new Vector3(B.transform.position.x, B.transform.position.y - 10000.0f, B.transform.position.z);
         }
-    }
-    public void OnMouseDown()
-    {
-        Clicked(Input.mousePosition.x, Input.mousePosition.y);
     }
 
     public void SetInv(Inventory PI)//, Inventory OI, List<GameObject> WL
@@ -119,18 +126,21 @@ public class InventoryMovement : MonoBehaviour
     }
     private int CalculateButtonNumberByCoordinates(float X, float Y)
     {
-        if ((X >= (-gridWidth / 2)) && (X <= (gridWidth / 2)) && (Y >= (-gridHeight / 2)) && (Y <= (gridHeight / 2)))
+        if ((X-xOffset >= (-gridWidth / 2)) && (X-xOffset <= (gridWidth / 2)) && (Y >= (-gridHeight / 2)) && (Y <= (gridHeight / 2)))
         {
-            return (int)((X+(gridWidth/2)%(gridWidth/width))+ (Y + (gridHeight / 2) % (gridHeight / height))*width);
+            return ((int)((X-xOffset+(gridWidth/2))/(gridWidth/width))- ((int)((Y - (gridHeight / 2)) / (gridHeight / height)))*width);
         }
         return -1;
     }
     public void Clicked(float X, float Y)
     {
-        int clicked2 = CalculateButtonNumberByCoordinates(X, Y);
-        if (clicked == -1)
+        int clicked2 = CalculateButtonNumberByCoordinates(X - MenuOffsetX, Y - MenuOffsetY);
+        if ((clicked == -1)&&(clicked2 != -1))
         {
-            clicked = clicked2;
+            if (playerInventory.Items[clicked2] != -1)
+            {
+                clicked = clicked2;
+            }
         }
         else
         {
@@ -142,6 +152,10 @@ public class InventoryMovement : MonoBehaviour
                 x = playerInventory.stacks[clicked];
                 playerInventory.stacks[clicked] = playerInventory.stacks[clicked2];
                 playerInventory.stacks[clicked2] = x;
+                GameObject x2 = itemDepiction[clicked];
+                itemDepiction[clicked] = itemDepiction[clicked2];
+                itemDepiction[clicked2] = x2;
+                clicked = -1;
             }
             else
             {
@@ -152,6 +166,7 @@ public class InventoryMovement : MonoBehaviour
                 playerInventory.stacks[clicked] = 0;
                 itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().sprite = null;
                 itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
+                clicked = -1;
             }
         }
     }

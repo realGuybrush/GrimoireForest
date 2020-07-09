@@ -44,6 +44,7 @@ public class PlayerControls : BasicMovement
         wall = new BasicLand(thisObject, jump, climb, 0, false);
         step = new BasicLand(thisObject, jump, climb, 0, false);
         climb.SetThisObject(thisObject);
+        inventory.Start();
     }
 
     // Update is called once per frame
