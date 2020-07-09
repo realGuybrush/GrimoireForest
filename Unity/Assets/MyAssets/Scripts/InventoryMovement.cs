@@ -21,6 +21,7 @@ public class InventoryMovement : MonoBehaviour
     public GameObject itemInInvPrefab;
     float MenuOffsetX;
     float MenuOffsetY;
+    Vector3 clickedPrevLocation;
 
     private void Start()
     {
@@ -44,16 +45,12 @@ public class InventoryMovement : MonoBehaviour
 
     public void ShowHide()
     {
-        GameObject B = GameObject.Find("Book");
+        if (clicked >= 0)
+        {
+            itemDepiction[clicked].transform.position = clickedPrevLocation;
+            clicked = -1;
+        }
         UploadToHUD();
-        if (B.transform.position.y < 10000)
-        {
-            B.transform.position = new Vector3(B.transform.position.x, B.transform.position.y + 10000.0f, B.transform.position.z);
-        }
-        else
-        {
-            B.transform.position = new Vector3(B.transform.position.x, B.transform.position.y - 10000.0f, B.transform.position.z);
-        }
     }
 
     public void SetInv(Inventory PI)//, Inventory OI, List<GameObject> WL
@@ -140,6 +137,7 @@ public class InventoryMovement : MonoBehaviour
             if (playerInventory.Items[clicked2] != -1)
             {
                 clicked = clicked2;
+                clickedPrevLocation = itemDepiction[clicked].transform.position;
             }
         }
         else

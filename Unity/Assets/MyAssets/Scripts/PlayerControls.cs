@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControls : BasicMovement
@@ -12,7 +14,7 @@ public class PlayerControls : BasicMovement
     public GameObject Bow;
 
     public GameObject Weapon;
-    public GameObject PickableItem = null;
+    public List<GameObject> PickableItem;
     private int crawlTimer;
 
     public GameObject Hip;
@@ -24,7 +26,7 @@ public class PlayerControls : BasicMovement
     private float turnAngleLeft;
     private float turnAngleRight;
 
-    public Inventory inventory =new Inventory();
+    public Inventory inventory = new Inventory();
     public GameObject Menus;
 
 
@@ -45,6 +47,7 @@ public class PlayerControls : BasicMovement
         step = new BasicLand(thisObject, jump, climb, 0, false);
         climb.SetThisObject(thisObject);
         inventory.Start();
+        PickableItem = new List<GameObject>();
     }
 
     // Update is called once per frame
@@ -69,7 +72,7 @@ public class PlayerControls : BasicMovement
             crawlTimer--;
         //if (Weapon != null)
         //{
-            //Weapon.transform.position = Weapon.GetComponent<Item>().positionOnHand+this.transform.position;
+        //Weapon.transform.position = Weapon.GetComponent<Item>().positionOnHand+this.transform.position;
         //}
     }
 
@@ -178,29 +181,26 @@ public class PlayerControls : BasicMovement
 
     public void CheckInventoryInput()
     {
-            if (Input.GetKeyDown(KeyCode.I))
-            {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
             Menus.SetActive(!Menus.activeSelf);
             GameObject I = GameObject.Find("Inventory");
             if (I != null)
             {
                 I.GetComponent<InventoryMovement>().SetInv(inventory);
-                I.GetComponent<InventoryMovement>().UploadToHUD();
+                I.GetComponent<InventoryMovement>().ShowHide();
             }
             //I.GetComponent<InventoryMovement>().ShowHide();
-            }
+        }
     }
 
     public void CheckPickUpInput()
     {
-        if (PickableItem != null)
+        if (PickableItem.Count != 0)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                if (PickUp(PickableItem))
-                {
-                    PickableItem = null;
-                }
+                PickUp(PickableItem);
             }
         }
     }
@@ -246,22 +246,38 @@ public class PlayerControls : BasicMovement
         }
     }
 
-    public bool PickUp(GameObject item)
+    public void IncludePickable(GameObject newP)
     {
-        Item I = item.GetComponent<Item>();
+        PickableItem.Add(newP);
+    }
+
+    public void ExcludePickable(GameObject ExcP)
+    {
+        if (PickableItem.Contains(ExcP))
+        {
+            PickableItem.Remove(ExcP);
+        }
+    }
+
+    public bool PickUp(List<GameObject> item)
+    {
+        if (item.Count == 0)
+            return false;
+        Item I = item[0].GetComponent<Item>();
         if (I == null)
             return false;
         if (Weapon == null)
         {
-            if (SetWeapon(item))
+            if (SetWeapon(item[0]))
             {
+                item.RemoveAt(0);
                 return true;
             }
             else
             {
                 if (inventory.Add1(I))
                 {
-                    GameObject.Destroy(item);
+                    GameObject.Destroy(item[0]);
                     return true;
                 }
             }
@@ -270,7 +286,7 @@ public class PlayerControls : BasicMovement
         {
             if (inventory.Add1(I))
             {
-                GameObject.Destroy(item);
+                GameObject.Destroy(item[0]);
                 return true;
             }
         }

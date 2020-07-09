@@ -29,7 +29,18 @@ public class Item : MonoBehaviour
         {
             if (collision.gameObject.GetComponent<PlayerControls>() != null)
             {
-                collision.gameObject.GetComponent<PlayerControls>().PickableItem = this.gameObject;
+                collision.gameObject.GetComponent<PlayerControls>().IncludePickable(this.gameObject);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (this.transform.parent == null)
+        {
+            if (collision.gameObject.GetComponent<PlayerControls>() != null)
+            {
+                collision.gameObject.GetComponent<PlayerControls>().ExcludePickable(this.gameObject);
             }
         }
     }
