@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerControls : BasicMovement
 {
+    //maybe remove variety of weapons and simplify this shit?
     public GameObject Gun;
     public GameObject Sword;
     public GameObject Spear;
@@ -13,6 +14,12 @@ public class PlayerControls : BasicMovement
     public GameObject MagicArtefact;
     public GameObject Bow;
 
+    public GameObject Helmet;
+    public GameObject Armor;
+    public GameObject Pants;
+    public GameObject Boots;
+    public GameObject Gloves;
+    public GameObject Shield;
     public GameObject Weapon;
     public List<GameObject> PickableItem;
     private int crawlTimer;
@@ -27,6 +34,7 @@ public class PlayerControls : BasicMovement
     private float turnAngleRight;
 
     public Inventory inventory = new Inventory();
+    public Inventory munitions = new Inventory();
     public GameObject Menus;
 
 
@@ -47,6 +55,8 @@ public class PlayerControls : BasicMovement
         step = new BasicLand(thisObject, jump, climb, 0, false);
         climb.SetThisObject(thisObject);
         inventory.Start();
+        munitions.maxAmount = 11;
+        munitions.Start();
         PickableItem = new List<GameObject>();
     }
 
@@ -187,7 +197,7 @@ public class PlayerControls : BasicMovement
             GameObject I = GameObject.Find("Inventory");
             if (I != null)
             {
-                I.GetComponent<InventoryMovement>().SetInv(inventory);
+                I.GetComponent<InventoryMovement>().SetInv(inventory, munitions);
                 I.GetComponent<InventoryMovement>().ShowHide();
             }
             //I.GetComponent<InventoryMovement>().ShowHide();
@@ -266,9 +276,9 @@ public class PlayerControls : BasicMovement
         Item I = item[0].GetComponent<Item>();
         if (I == null)
             return false;
-        if (Weapon == null)
+        if (munitions.Items.Contains(-1))
         {
-            if (SetWeapon(item[0]))
+            if (SetMunitions(item[0]))
             {
                 item.RemoveAt(0);
                 return true;
@@ -292,9 +302,52 @@ public class PlayerControls : BasicMovement
         }
         return false;
     }
+    public bool SetMunitions(GameObject munition)
+    {
+        //think this through later
+        switch (munition.GetComponent<Item>().itemValues.type)
+        {
+            case "Helmet":
+                Helmet = munition;
+                Helmet.transform.SetParent(Gun.transform);
+                break;
+            case "Armor":
+                Armor = munition;
+                Armor.transform.SetParent(Sword.transform);
+                break;
+            case "Pants":
+                Weapon = munition;
+                Weapon.transform.SetParent(Spear.transform);
+                break;
+            case "Boots":
+                Weapon = munition;
+                Weapon.transform.SetParent(Arrow.transform);
+                break;
+            case "Gloves":
+                Weapon = munition;
+                Weapon.transform.SetParent(Rod.transform);
+                break;
+            default:
+                return SetWeapon(munition);
+        }
+        //Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
+        //Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
+        return true;
+    }
     public bool SetWeapon(GameObject weapon)
     {
-        //Weapon.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        int i;
+        for (i = 6; i < 11; i++)
+        {
+            if (munitions.Items[i] == -1)
+            {
+                break;
+            }
+        }
+        if (i == 11)
+        {
+            return false;
+        }    
         switch (weapon.GetComponent<Item>().itemValues.type)
         {
             case "Gun":
@@ -327,6 +380,15 @@ public class PlayerControls : BasicMovement
                 break;
             default:
                 return false;
+        }
+        for (i = 6; i < 11; i++)
+        {
+            if (munitions.Items[i] == -1)
+            {
+                munitions.Items[i] = Weapon.GetComponent<Item>().itemValues.number;
+                munitions.stacks[i] = 1;
+                break;
+            }
         }
         Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
         Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
