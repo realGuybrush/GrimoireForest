@@ -14,8 +14,7 @@ public class InventoryMovement : MonoBehaviour
     public float gridWidth = 150;
     public float gridHeight = 240;
     public float xOffset = 0.0f;
-    List<float> buttonX = new List<float>();
-    List<float> buttonY = new List<float>();
+    List<Vector3> PrimaryMenuLocations = new List<Vector3>();
     List<GameObject> itemDepiction = new List<GameObject>();
     int clicked = -1;
     public GameObject itemInInvPrefab;
@@ -99,8 +98,7 @@ public class InventoryMovement : MonoBehaviour
         posY = gridHeight / 2 - (gridHeight / height) / 2;
         buttonWidth = gridWidth / width;
         buttonHeight = gridHeight / height;
-        buttonX = new List<float>();
-        buttonY = new List<float>();
+        PrimaryMenuLocations = new List<Vector3>();
         for (int i = 0; i < itemDepiction.Count; i++)
         {
             GameObject.Destroy(itemDepiction[i]);
@@ -109,10 +107,9 @@ public class InventoryMovement : MonoBehaviour
         int I = (playerInventory.maxAmount > (width * height)) ? (width * height) : playerInventory.maxAmount;
         for (int i = 0; i < I; i++)
         {
-            buttonX.Add(posX + buttonWidth * (i % width));
-            buttonY.Add(posY - buttonHeight * (int)(i / width));
+            PrimaryMenuLocations.Add(new Vector3(posX + buttonWidth * (i % width), posY - buttonHeight * (int)(i / width), 0.0f));
             itemDepiction.Add(Instantiate(itemInInvPrefab, transform));
-            itemDepiction[i].transform.position = transform.position + new Vector3(buttonX[i] + xOffset, buttonY[i], 0.0f);
+            itemDepiction[i].transform.position = transform.position + new Vector3(PrimaryMenuLocations[i].x + xOffset, PrimaryMenuLocations[i].y, 0.0f);
         }
     }
     public void UploadToHUD()
@@ -120,11 +117,11 @@ public class InventoryMovement : MonoBehaviour
         WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
         if (playerInventory != null)
         {
-            for (int i = 0; i < buttonX.Count; i++)
+            for (int i = 0; i < PrimaryMenuLocations.Count; i++)
             {
                 itemDepiction[i].GetComponent<UnityEngine.UI.Image>().sprite = null;
             }
-            int I = (playerInventory.maxAmount > buttonX.Count) ? buttonX.Count : playerInventory.maxAmount;
+            int I = (playerInventory.maxAmount > PrimaryMenuLocations.Count) ? PrimaryMenuLocations.Count : playerInventory.maxAmount;
             for (int i = 0; i < I; i++)
             {
                 if (playerInventory.Items.Count > i)
@@ -187,6 +184,61 @@ public class InventoryMovement : MonoBehaviour
         }
         return -1;
     }
+
+    private bool ItemSwap(int index1, int index2, Inventory inventory1, Inventory inventory2, List<GameObject> buttons1, List<GameObject> buttons2, List<Vector3> locations, bool onlyOneInDestination = false)
+    {
+        int maxStack;
+        if (onlyOneInDestination)
+        {
+            maxStack = 1;
+        }
+        else
+        {
+            Item I = GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[inventory1.Items[index1]].GetComponent<Item>();
+            I.Start2();
+            maxStack = I.itemValues.maxStack;
+        }
+        if (inventory1.Items[index1] != inventory2.Items[index2])
+        {
+            int x = inventory1.Items[index1];
+            inventory1.Items[index1] = inventory2.Items[index2];
+            inventory2.Items[index2] = x;
+            x = inventory1.stacks[index1];
+            inventory1.stacks[index1] = inventory2.stacks[index2];
+            inventory2.stacks[index2] = x;
+            Sprite x2 = buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite;
+            buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite = buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite;
+            buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite = x2;
+            Color x3 = buttons1[index1].GetComponent<UnityEngine.UI.Image>().color;
+            buttons1[index1].GetComponent<UnityEngine.UI.Image>().color = buttons2[index2].GetComponent<UnityEngine.UI.Image>().color;
+            buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = x3;
+            buttons1[index1].transform.position = locations[index1];
+            return true;
+        }
+        else
+        {
+            if (maxStack >= (inventory1.stacks[index1] + inventory2.stacks[index2]))
+            {
+                inventory2.Items[index2] = inventory1.Items[index1];
+                inventory1.Items[index1] = -1;
+                inventory2.stacks[index2] += inventory1.stacks[index1];
+                inventory1.stacks[index1] = 0;
+                buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite = buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite;
+                buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite = null;
+                buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = buttons1[index1].GetComponent<UnityEngine.UI.Image>().color;
+                buttons1[index1].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f); ;
+                buttons1[index1].transform.position = locations[index1];
+                return true;
+            }
+            else
+            {
+                int x = maxStack - inventory2.stacks[index2];
+                inventory2.stacks[index2] += maxStack - inventory1.stacks[index1];
+                inventory1.stacks[index1] -= x;
+                return false;
+            }
+        }
+    }
     public void Clicked(float X, float Y)
     {
         int clicked2 = CalculateButtonNumberByCoordinates(X - MenuOffsetX, Y - MenuOffsetY);
@@ -206,36 +258,12 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (primary == prevprimary)
                     {
-                        int x = playerInventory.Items[clicked];
-                        playerInventory.Items[clicked] = playerInventory.Items[clicked2];
-                        playerInventory.Items[clicked2] = x;
-                        x = playerInventory.stacks[clicked];
-                        playerInventory.stacks[clicked] = playerInventory.stacks[clicked2];
-                        playerInventory.stacks[clicked2] = x;
-                        Sprite x2 = itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().sprite;
-                        itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().sprite = itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().sprite;
-                        itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().sprite = x2;
-                        Color x3 = itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().color;
-                        itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().color = itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().color;
-                        itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().color = x3;
-                        itemDepiction[clicked].transform.position = new Vector3(buttonX[clicked], buttonY[clicked], 0.0f);
+                        if(ItemSwap(clicked, clicked2, playerInventory, playerInventory, itemDepiction, itemDepiction, PrimaryMenuLocations))
                         clicked = -1;
                     }
                     else
                     {
-                        int x = otherInventory.Items[clicked];
-                        otherInventory.Items[clicked] = playerInventory.Items[clicked2];
-                        playerInventory.Items[clicked2] = x;
-                        x = otherInventory.stacks[clicked];
-                        otherInventory.stacks[clicked] = playerInventory.stacks[clicked2];
-                        playerInventory.stacks[clicked2] = x;
-                        Sprite x2 = SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().sprite;
-                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().sprite = itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().sprite;
-                        itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().sprite = x2;
-                        Color x3 = SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().color;
-                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().color = itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().color;
-                        itemDepiction[clicked2].GetComponent<UnityEngine.UI.Image>().color = x3;
-                        SecondaryMenuItems[clicked].transform.position = SecondaryMenuLocations[clicked];
+                        if(ItemSwap(clicked, clicked2, otherInventory, playerInventory, SecondaryMenuItems, itemDepiction, SecondaryMenuLocations))
                         clicked = -1;
                     }
                 }
@@ -250,7 +278,7 @@ public class InventoryMovement : MonoBehaviour
                         playerInventory.stacks[clicked] = 0;
                         itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().sprite = null;
                         itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
-                        itemDepiction[clicked].transform.position = new Vector3(buttonX[clicked], buttonY[clicked], 0.0f);
+                        itemDepiction[clicked].transform.position = PrimaryMenuLocations[clicked];
                         clicked = -1;
                     }
                 }
@@ -272,36 +300,13 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (primary == prevprimary)
                     {
-                        int x = otherInventory.Items[clicked];
-                        otherInventory.Items[clicked] = otherInventory.Items[clicked2];
-                        otherInventory.Items[clicked2] = x;
-                        x = otherInventory.stacks[clicked];
-                        otherInventory.stacks[clicked] = otherInventory.stacks[clicked2];
-                        otherInventory.stacks[clicked2] = x;
-                        Sprite x2 = SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().sprite;
-                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().sprite = SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().sprite;
-                        SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().sprite = x2;
-                        Color x3 = SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().color;
-                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().color = SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().color;
-                        SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().color = x3;
-                        SecondaryMenuItems[clicked].transform.position = SecondaryMenuLocations[clicked];
+
+                        if(ItemSwap(clicked, clicked2, otherInventory, otherInventory, SecondaryMenuItems, SecondaryMenuItems, SecondaryMenuLocations, true))
                         clicked = -1;
                     }
                     else
                     {
-                        int x = playerInventory.Items[clicked];
-                        playerInventory.Items[clicked] = otherInventory.Items[clicked2];
-                        otherInventory.Items[clicked2] = x;
-                        x = playerInventory.stacks[clicked];
-                        playerInventory.stacks[clicked] = otherInventory.stacks[clicked2];
-                        otherInventory.stacks[clicked2] = x;
-                        Sprite x2 = itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().sprite;
-                        itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().sprite = SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().sprite;
-                        SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().sprite = x2;
-                        Color x3 = itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().color;
-                        itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().color = SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().color;
-                        SecondaryMenuItems[clicked2].GetComponent<UnityEngine.UI.Image>().color = x3;
-                        itemDepiction[clicked].transform.position = new Vector3(buttonX[clicked], buttonY[clicked], 0.0f);
+                        if(ItemSwap(clicked, clicked2, playerInventory, otherInventory, itemDepiction, SecondaryMenuItems, PrimaryMenuLocations, true))
                         clicked = -1;
                     }
                 }

@@ -29,7 +29,10 @@ public class WorldManagement : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-	
+        for (int i = 0; i < ItemPrefabs.Count; i++)
+        {
+            ItemPrefabs[i].GetComponent<Item>().Start2();
+        }
 		//current_Scene = 0;//move it in load after it is fixed
 		//LoadInitialScenesData();
 		//SaveItemsData();

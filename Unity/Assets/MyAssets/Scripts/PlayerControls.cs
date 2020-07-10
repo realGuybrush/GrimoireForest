@@ -33,7 +33,7 @@ public class PlayerControls : BasicMovement
     private float turnAngleLeft;
     private float turnAngleRight;
     private int weaponSlotNumber = 0;
-    private int spellSlotNumber = 0;
+    //private int spellSlotNumber = 0;
     private bool inMenu = true;
 
     public Inventory inventory = new Inventory();
@@ -109,7 +109,7 @@ public class PlayerControls : BasicMovement
             {
                 GameObject G = Instantiate(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[munitions.Items[weaponSlotNumber + 6]]);
                 G.GetComponent<Item>().Start2();
-                SetWeapon(G, false);
+                SetWeapon(G);
             }
         }
     }
@@ -239,6 +239,10 @@ public class PlayerControls : BasicMovement
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                for (int i = 0; i < PickableItem.Count; i++)
+                {
+                    PickableItem[i].GetComponent<Item>().Start2();
+                }
                 PickUp(PickableItem);
             }
         }
@@ -315,7 +319,7 @@ public class PlayerControls : BasicMovement
             return false;
         if (munitions.Items.Contains(-1))
         {
-            if (SetMunitions(item[0]))
+            if (PickUpMunitions(item[0]))
             {
                 GameObject.Destroy(item[0]);
                 return true;
@@ -338,6 +342,36 @@ public class PlayerControls : BasicMovement
             }
         }
         return false;
+    }
+    public bool PickUpMunitions(GameObject munition)
+    {
+        return PickUpWeapons(munition);
+    }
+
+    public bool PickUpWeapons(GameObject munition)
+    {
+        int i;
+        for (i = 6; i < 11; i++)
+        {
+            if (munitions.Items[i] == -1)
+            {
+                break;
+            }
+        }
+        if (i == 11)
+        {
+            return false;
+        }
+        for (i = 6; i < 11; i++)
+        {
+            if (munitions.Items[i] == -1)
+            {
+                munitions.Items[i] = munition.GetComponent<Item>().itemValues.number;
+                munitions.stacks[i] = 1;
+                break;
+            }
+        }
+        return true;
     }
     public bool SetMunitions(GameObject munition)
     {
@@ -371,20 +405,8 @@ public class PlayerControls : BasicMovement
         //Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
         return true;
     }
-    public bool SetWeapon(GameObject weapon, bool pickingup = true)
+    public bool SetWeapon(GameObject weapon)
     {
-        int i;
-        for (i = 6; i < 11; i++)
-        {
-            if (munitions.Items[i] == -1)
-            {
-                break;
-            }
-        }
-        if (i == 11)
-        {
-            return false;
-        }
         if (Weapon == null)
         {
             switch (weapon.GetComponent<Item>().itemValues.type)
@@ -419,18 +441,6 @@ public class PlayerControls : BasicMovement
                     break;
                 default:
                     return false;
-            }
-        }
-        if (pickingup)
-        {
-            for (i = 6; i < 11; i++)
-            {
-                if (munitions.Items[i] == -1)
-                {
-                    munitions.Items[i] = Weapon.GetComponent<Item>().itemValues.number;
-                    munitions.stacks[i] = 1;
-                    break;
-                }
             }
         }
         Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
