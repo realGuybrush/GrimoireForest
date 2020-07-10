@@ -159,6 +159,7 @@ public class InventoryMovement : MonoBehaviour
                 }
             }
         }
+        UpdateAllStacks(playerInventory, itemDepiction, otherInventory, SecondaryMenuItems);
     }
     private int CalculateButtonNumberByCoordinates(float X, float Y)
     {
@@ -185,6 +186,28 @@ public class InventoryMovement : MonoBehaviour
         return -1;
     }
 
+    private void UpdateAllStacks(Inventory inv1, List<GameObject> buttons1, Inventory inv2, List<GameObject> buttons2)
+    {
+        for (int i = 0; i < inv1.stacks.Count; i++)
+        {
+            UpdateStack(buttons1[i], inv1.stacks[i]);
+        }
+        for (int i = 0; i < inv2.stacks.Count; i++)
+        {
+            UpdateStack(buttons2[i], inv2.stacks[i]);
+        }
+    }
+    private void UpdateStack(GameObject button, int amount = 0)
+    {
+        if (amount > 1)
+        {
+            button.transform.Find("Text").GetComponent<UnityEngine.UI.Text>().text = amount.ToString();
+        }
+        else
+        {
+            button.transform.Find("Text").GetComponent<UnityEngine.UI.Text>().text = "";
+        }
+    }
     private bool ItemSwap(int index1, int index2, Inventory inventory1, Inventory inventory2, List<GameObject> buttons1, List<GameObject> buttons2, List<Vector3> locations, bool onlyOneInDestination = false)
     {
         int maxStack;
@@ -219,6 +242,8 @@ public class InventoryMovement : MonoBehaviour
                 buttons1[index1].GetComponent<UnityEngine.UI.Image>().color = buttons2[index2].GetComponent<UnityEngine.UI.Image>().color;
                 buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = x3;
                 buttons1[index1].transform.position = locations[index1];
+                UpdateStack(buttons1[index1], inventory1.stacks[index1]);
+                UpdateStack(buttons2[index2], inventory2.stacks[index2]);
                 return true;
             }
             else
@@ -229,6 +254,8 @@ public class InventoryMovement : MonoBehaviour
                 buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite = buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite;
                 buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = buttons1[index1].GetComponent<UnityEngine.UI.Image>().color;
                 buttons1[index1].transform.position = locations[index1];
+                UpdateStack(buttons1[index1], inventory1.stacks[index1]);
+                UpdateStack(buttons2[index2], inventory2.stacks[index2]);
                 if (inventory1.stacks[index1] == 0)
                 {
                     inventory1.Items[index1] = -1;
@@ -253,12 +280,16 @@ public class InventoryMovement : MonoBehaviour
                 buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = buttons1[index1].GetComponent<UnityEngine.UI.Image>().color;
                 buttons1[index1].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f); ;
                 buttons1[index1].transform.position = locations[index1];
+                UpdateStack(buttons1[index1], inventory1.stacks[index1]);
+                UpdateStack(buttons2[index2], inventory2.stacks[index2]);
                 return true;
             }
             else
             {
                 inventory1.stacks[index1] -= maxStack - inventory2.stacks[index2];
                 inventory2.stacks[index2] = maxStack;
+                UpdateStack(buttons1[index1], inventory1.stacks[index1]);
+                UpdateStack(buttons2[index2], inventory2.stacks[index2]);
                 primary = prevprimary;
                 return false;
             }
