@@ -107,9 +107,9 @@ public class InventoryMovement : MonoBehaviour
         int I = (playerInventory.maxAmount > (width * height)) ? (width * height) : playerInventory.maxAmount;
         for (int i = 0; i < I; i++)
         {
-            PrimaryMenuLocations.Add(new Vector3(posX + buttonWidth * (i % width), posY - buttonHeight * (int)(i / width), 0.0f));
+            PrimaryMenuLocations.Add(new Vector3(transform.position.x + posX + buttonWidth * (i % width) + xOffset, transform.position.y + posY - buttonHeight * (int)(i / width), 0.0f));
             itemDepiction.Add(Instantiate(itemInInvPrefab, transform));
-            itemDepiction[i].transform.position = transform.position + new Vector3(PrimaryMenuLocations[i].x + xOffset, PrimaryMenuLocations[i].y, 0.0f);
+            itemDepiction[i].transform.position = PrimaryMenuLocations[i];// transform.position + new Vector3(PrimaryMenuLocations[i].x, PrimaryMenuLocations[i].y, 0.0f);
         }
     }
     public void UploadToHUD()
@@ -188,6 +188,10 @@ public class InventoryMovement : MonoBehaviour
     private bool ItemSwap(int index1, int index2, Inventory inventory1, Inventory inventory2, List<GameObject> buttons1, List<GameObject> buttons2, List<Vector3> locations, bool onlyOneInDestination = false)
     {
         int maxStack;
+        if ((index1 == index2) && (primary == prevprimary))
+        {
+            return true;
+        }
         if (onlyOneInDestination)
         {
             maxStack = 1;
@@ -200,20 +204,41 @@ public class InventoryMovement : MonoBehaviour
         }
         if (inventory1.Items[index1] != inventory2.Items[index2])
         {
-            int x = inventory1.Items[index1];
-            inventory1.Items[index1] = inventory2.Items[index2];
-            inventory2.Items[index2] = x;
-            x = inventory1.stacks[index1];
-            inventory1.stacks[index1] = inventory2.stacks[index2];
-            inventory2.stacks[index2] = x;
-            Sprite x2 = buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite;
-            buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite = buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite;
-            buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite = x2;
-            Color x3 = buttons1[index1].GetComponent<UnityEngine.UI.Image>().color;
-            buttons1[index1].GetComponent<UnityEngine.UI.Image>().color = buttons2[index2].GetComponent<UnityEngine.UI.Image>().color;
-            buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = x3;
-            buttons1[index1].transform.position = locations[index1];
-            return true;
+            if (!onlyOneInDestination)
+            {
+                int x = inventory1.Items[index1];
+                inventory1.Items[index1] = inventory2.Items[index2];
+                inventory2.Items[index2] = x;
+                x = inventory1.stacks[index1];
+                inventory1.stacks[index1] = inventory2.stacks[index2];
+                inventory2.stacks[index2] = x;
+                Sprite x2 = buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite;
+                buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite = buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite;
+                buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite = x2;
+                Color x3 = buttons1[index1].GetComponent<UnityEngine.UI.Image>().color;
+                buttons1[index1].GetComponent<UnityEngine.UI.Image>().color = buttons2[index2].GetComponent<UnityEngine.UI.Image>().color;
+                buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = x3;
+                buttons1[index1].transform.position = locations[index1];
+                return true;
+            }
+            else
+            {
+                inventory2.stacks[index2] = 1;
+                inventory1.stacks[index1] -= 1;
+                inventory2.Items[index2] = inventory1.Items[index1];
+                buttons2[index2].GetComponent<UnityEngine.UI.Image>().sprite = buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite;
+                buttons2[index2].GetComponent<UnityEngine.UI.Image>().color = buttons1[index1].GetComponent<UnityEngine.UI.Image>().color;
+                buttons1[index1].transform.position = locations[index1];
+                if (inventory1.stacks[index1] == 0)
+                {
+                    inventory1.Items[index1] = -1;
+                    buttons1[index1].GetComponent<UnityEngine.UI.Image>().sprite = null;
+                    buttons1[index1].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f); ;
+                    return true;
+                }
+                primary = prevprimary;
+                return false;
+            }
         }
         else
         {
@@ -232,9 +257,9 @@ public class InventoryMovement : MonoBehaviour
             }
             else
             {
-                int x = maxStack - inventory2.stacks[index2];
-                inventory2.stacks[index2] += maxStack - inventory1.stacks[index1];
-                inventory1.stacks[index1] -= x;
+                inventory1.stacks[index1] -= maxStack - inventory2.stacks[index2];
+                inventory2.stacks[index2] = maxStack;
+                primary = prevprimary;
                 return false;
             }
         }
