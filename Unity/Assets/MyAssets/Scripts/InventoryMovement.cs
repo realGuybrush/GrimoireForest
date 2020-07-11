@@ -9,6 +9,8 @@ public class InventoryMovement : MonoBehaviour
     Inventory playerInventory;
     Inventory otherInventory;
     List<GameObject> WeaponList;
+    private float bookWidth;
+    private float bookHeight;
     public int width = 3;
     public int height = 6;
     public float gridWidth = 150;
@@ -29,6 +31,9 @@ public class InventoryMovement : MonoBehaviour
 
     private void Start()
     {
+        GameObject Book = GameObject.Find("Book");
+        bookWidth = Book.GetComponent<RectTransform>().rect.width;
+        bookHeight = Book.GetComponent<RectTransform>().rect.height;
         MenuOffsetX = GameObject.Find("Menus").transform.position.x;
         MenuOffsetY = GameObject.Find("Menus").transform.position.y;
         for (int i = 0; i < SecondaryMenuItems.Count; i++)
@@ -183,6 +188,10 @@ public class InventoryMovement : MonoBehaviour
                 }
             }
         }
+        if ((X >= (-bookWidth / 2)) && (X <= (bookWidth / 2)) && (Y >= (-bookHeight / 2)) && (Y <= (bookHeight / 2)))
+        {
+            return -2;
+        }
         return -1;
     }
 
@@ -298,6 +307,11 @@ public class InventoryMovement : MonoBehaviour
     public void Clicked(float X, float Y)
     {
         int clicked2 = CalculateButtonNumberByCoordinates(X - MenuOffsetX, Y - MenuOffsetY);
+        if (clicked2 == -2)
+        {
+            primary = prevprimary;
+            return;
+        }
         if (primary)
         {
             if ((clicked == -1) && (clicked2 != -1))
