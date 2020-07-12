@@ -33,7 +33,7 @@ public class Item : MonoBehaviour
         itemValues.atk1 = "Atk2";
         itemValues.atk2 = "Atk7";
         itemValues.kick = "Atk4";
-        itemValues.maxStack = 2;
+        itemValues.maxStack = 3;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
     }
     private void OnTriggerEnter2D(Collider2D collision)
