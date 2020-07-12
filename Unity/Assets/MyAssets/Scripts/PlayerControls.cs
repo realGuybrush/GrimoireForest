@@ -37,7 +37,7 @@ public class PlayerControls : BasicMovement
     private bool inMenu = true;
 
     public Inventory inventory = new Inventory();
-    public Inventory munitions = new Inventory();
+    public Inventory munitions = new Inventory(11);
     public GameObject Menus;
 
 

@@ -7,13 +7,17 @@ public class Inventory
     public int maxAmount = 54;
 	public List<int> Items = new List<int>();
     public List<int> stacks = new List<int>();
-    public void Start()
+
+    public Inventory(int maxAmount = 54)
     {
         for (int i = Items.Count; i < maxAmount; i++)
         {
             Items.Add(-1);
             stacks.Add(0);
         }
+    }
+    public void Start()
+    {
     }
     public bool Add1(Item newItem)
     {

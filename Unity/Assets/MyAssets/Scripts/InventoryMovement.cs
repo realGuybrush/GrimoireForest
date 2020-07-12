@@ -15,19 +15,25 @@ public class InventoryMovement : MonoBehaviour
     public int height = 6;
     public float gridWidth = 150;
     public float gridHeight = 240;
-    public float xOffset = 0.0f;
-    List<Vector3> PrimaryMenuLocations = new List<Vector3>();
-    List<GameObject> itemDepiction = new List<GameObject>();
-    int clicked = -1;
-    public GameObject itemInInvPrefab;
+    public float gridXOffset = 0.0f;
     float MenuOffsetX;
     float MenuOffsetY;
-    Vector3 clickedPrevLocation;
+    public GameObject itemInInvPrefab;
 
+    List<GameObject> itemDepiction = new List<GameObject>();
+    List<Vector3> PrimaryMenuLocations = new List<Vector3>();
     public List<GameObject> SecondaryMenuItems = new List<GameObject>();
     List<Vector3> SecondaryMenuLocations = new List<Vector3>();
+    int clicked = -1;
     bool primary = true;
-    bool prevprimary = true;
+
+    public GameObject FloatingTile;
+    int floatingItem = - 1;
+    int floatingStack = 0;
+
+    Vector3 clickedPrevLocation;
+    bool prevprimary;
+
 
     private void Start()
     {
@@ -41,41 +47,49 @@ public class InventoryMovement : MonoBehaviour
             SecondaryMenuLocations.Add(SecondaryMenuItems[i].transform.position);
         }
     }
-    private void Update()
+    private bool GetMouseButtonDown()
     {
         if (Input.GetMouseButtonDown(0))
         {
+            clicked = 0;
+            return true;
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            clicked = 1;
+            return true;
+        }
+        if (Input.GetMouseButtonDown(2))
+        {
+            clicked = 2;
+            return true;
+        }
+        return false;
+    }
+    private void Update()
+    {
+        if (GetMouseButtonDown())
+        {
             Clicked(Input.mousePosition.x, Input.mousePosition.y);
         }
-        if (clicked > -1)
+        if (Floating())
         {
-            if (itemDepiction.Count > clicked)
-            {
-                if (primary)
-                {
-                    itemDepiction[clicked].transform.position = Input.mousePosition;
-                }
-                else
-                {
-                    SecondaryMenuItems[clicked].transform.position = Input.mousePosition;
-                }
-            }
+            FloatingTile.transform.position = Input.mousePosition;
         }
     }
 
     public void ShowHide()
     {
-        if (clicked >= 0)
+        if (Floating())
         {
-            if (primary)
+            if (prevprimary)
             {
-                itemDepiction[clicked].transform.position = clickedPrevLocation;
+                ItemSwap((int)clickedPrevLocation.z, playerInventory, itemDepiction, false);
             }
             else
             {
-                SecondaryMenuItems[clicked].transform.position = clickedPrevLocation;
+                ItemSwap((int)clickedPrevLocation.z, otherInventory, SecondaryMenuItems, false);
             }
-            clicked = -1;
         }
         UploadToHUD();
     }
@@ -94,7 +108,6 @@ public class InventoryMovement : MonoBehaviour
         {
             return;
         }
-
         float posX;
         float posY;
         float buttonWidth;
@@ -112,7 +125,7 @@ public class InventoryMovement : MonoBehaviour
         int I = (playerInventory.maxAmount > (width * height)) ? (width * height) : playerInventory.maxAmount;
         for (int i = 0; i < I; i++)
         {
-            PrimaryMenuLocations.Add(new Vector3(transform.position.x + posX + buttonWidth * (i % width) + xOffset, transform.position.y + posY - buttonHeight * (int)(i / width), 0.0f));
+            PrimaryMenuLocations.Add(new Vector3(transform.position.x + posX + buttonWidth * (i % width) + gridXOffset, transform.position.y + posY - buttonHeight * (int)(i / width), 0.0f));
             itemDepiction.Add(Instantiate(itemInInvPrefab, transform));
             itemDepiction[i].transform.position = PrimaryMenuLocations[i];// transform.position + new Vector3(PrimaryMenuLocations[i].x, PrimaryMenuLocations[i].y, 0.0f);
         }
@@ -168,11 +181,10 @@ public class InventoryMovement : MonoBehaviour
     }
     private int CalculateButtonNumberByCoordinates(float X, float Y)
     {
-        prevprimary = primary;
-        if ((X - xOffset >= (-gridWidth / 2)) && (X - xOffset <= (gridWidth / 2)) && (Y >= (-gridHeight / 2)) && (Y <= (gridHeight / 2)))
+        if ((X - gridXOffset >= (-gridWidth / 2)) && (X - gridXOffset <= (gridWidth / 2)) && (Y >= (-gridHeight / 2)) && (Y <= (gridHeight / 2)))
         {
             primary = true;
-            return ((int)((X - xOffset + (gridWidth / 2)) / (gridWidth / width)) - ((int)((Y - (gridHeight / 2)) / (gridHeight / height))) * width);
+            return ((int)((X - gridXOffset + (gridWidth / 2)) / (gridWidth / width)) - ((int)((Y - (gridHeight / 2)) / (gridHeight / height))) * width);
         }
         else
         {
@@ -217,7 +229,112 @@ public class InventoryMovement : MonoBehaviour
             button.transform.Find("Text").GetComponent<UnityEngine.UI.Text>().text = "";
         }
     }
-    private bool ItemSwap(int index1, int index2, Inventory inventory1, Inventory inventory2, List<GameObject> buttons1, List<GameObject> buttons2, List<Vector3> locations, bool onlyOneInDestination = false)
+    private bool Floating()
+    {
+        return (floatingItem > -1);
+    }
+    private bool ItemSwap(int index, Inventory inventory, List<GameObject> buttons, bool setget, bool onlyOneInDestination = false)
+    {
+        int maxStack;
+        if (onlyOneInDestination)
+        {
+            maxStack = 1;
+        }
+        else
+        {
+            Item I;
+            if (setget)
+            {
+                I = GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[inventory.Items[index]].GetComponent<Item>();
+            }
+            else
+            {
+                I = GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[floatingItem].GetComponent<Item>();
+            }
+            I.Start2();
+            maxStack = I.itemValues.maxStack;
+        }
+        if (!setget)
+        {
+            if (inventory.Items[index] != floatingItem)
+            {
+                if (!onlyOneInDestination)
+                {
+                    int x = inventory.Items[index];
+                    inventory.Items[index] = floatingItem;
+                    floatingItem = x;
+                    x = inventory.stacks[index];
+                    inventory.stacks[index] = floatingStack;
+                    floatingStack = x;
+                    Sprite x2 = buttons[index].GetComponent<UnityEngine.UI.Image>().sprite;
+                    buttons[index].GetComponent<UnityEngine.UI.Image>().sprite = FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite;
+                    FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = x2;
+                    Color x3 = buttons[index].GetComponent<UnityEngine.UI.Image>().color;
+                    buttons[index].GetComponent<UnityEngine.UI.Image>().color = FloatingTile.GetComponent<UnityEngine.UI.Image>().color;
+                    FloatingTile.GetComponent<UnityEngine.UI.Image>().color = x3;
+                    UpdateStack(buttons[index], inventory.stacks[index]);
+                    return true;
+                }
+                else
+                {
+                    if (inventory.Items[index] == -1)
+                    {
+                        inventory.stacks[index] = 1;
+                        floatingStack -= 1;
+                        inventory.Items[index] = floatingItem;
+                        buttons[index].GetComponent<UnityEngine.UI.Image>().sprite = FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite;
+                        buttons[index].GetComponent<UnityEngine.UI.Image>().color = FloatingTile.GetComponent<UnityEngine.UI.Image>().color;
+                        UpdateStack(buttons[index], inventory.stacks[index]);
+                        if (floatingStack == 0)
+                        {
+                            floatingItem = -1;
+                            FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
+                            FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f); ;
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            else
+            {
+                if (maxStack >= (inventory.stacks[index] + floatingStack))
+                {
+                    inventory.Items[index] = floatingItem;
+                    floatingItem = -1;
+                    inventory.stacks[index] += floatingStack;
+                    floatingStack = 0;
+                    buttons[index].GetComponent<UnityEngine.UI.Image>().sprite = FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite;
+                    FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
+                    buttons[index].GetComponent<UnityEngine.UI.Image>().color = FloatingTile.GetComponent<UnityEngine.UI.Image>().color;
+                    FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f); ;
+                    UpdateStack(buttons[index], inventory.stacks[index]);
+                    return true;
+                }
+                else
+                {
+                    floatingStack -= maxStack - inventory.stacks[index];
+                    inventory.stacks[index] = maxStack;
+                    UpdateStack(buttons[index], inventory.stacks[index]);
+                    return false;
+                }
+            }
+        }
+        else
+        {
+            floatingItem = inventory.Items[index];
+            inventory.Items[index] = -1;
+            floatingStack = inventory.stacks[index];
+            inventory.stacks[index] = 0;
+            FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = buttons[index].GetComponent<UnityEngine.UI.Image>().sprite;
+            buttons[index].GetComponent<UnityEngine.UI.Image>().sprite = null;
+            FloatingTile.GetComponent<UnityEngine.UI.Image>().color = buttons[index].GetComponent<UnityEngine.UI.Image>().color;
+            buttons[index].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f); ;
+            UpdateStack(buttons[index], inventory.stacks[index]);
+            return true;
+        }
+    }
+    /*private bool ItemSwap(int index1, int index2, Inventory inventory1, Inventory inventory2, List<GameObject> buttons1, List<GameObject> buttons2, List<Vector3> locations, bool onlyOneInDestination = false)
     {
         int maxStack;
         if ((index1 == index2) && (primary == prevprimary))
@@ -304,98 +421,128 @@ public class InventoryMovement : MonoBehaviour
             }
         }
     }
+    */
     public void Clicked(float X, float Y)
     {
         int clicked2 = CalculateButtonNumberByCoordinates(X - MenuOffsetX, Y - MenuOffsetY);
         if (clicked2 == -2)
         {
-            primary = prevprimary;
+            //primary = prevprimary;
             return;
         }
-        if (primary)
+        if (Floating())
         {
-            if ((clicked == -1) && (clicked2 != -1))
+            if (clicked2 == -1)
             {
-                if (playerInventory.Items[clicked2] != -1)
+                WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+                Vector3 v = GameObject.Find("Player").transform.position;
+                WM.Drop(floatingItem, floatingStack, v);
+                floatingItem = -1;
+                floatingStack = 0;
+                FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
+                FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
+            }
+            else
+            {
+                if (primary)
                 {
-                    clicked = clicked2;
-                    clickedPrevLocation = itemDepiction[clicked].transform.position;
+                    ItemSwap(clicked2, playerInventory, itemDepiction, false);
+                }
+                else
+                {
+                    ItemSwap(clicked2, otherInventory, SecondaryMenuItems, false, true);
+                }
+            }
+        }
+        else
+        {
+            if (clicked2 != -1)
+            {
+                if (primary)
+                {
+                    if (playerInventory.Items[clicked2] != -1)
+                    {
+                        ItemSwap(clicked2, playerInventory, itemDepiction, true);
+                        clickedPrevLocation = new Vector3(itemDepiction[clicked2].transform.position.x, itemDepiction[clicked2].transform.position.y, clicked2);
+                        prevprimary = primary;
+                    }
+                }
+                else
+                {
+                    if (otherInventory.Items[clicked2] != -1)
+                    {
+                        ItemSwap(clicked2, otherInventory, SecondaryMenuItems, true);
+                        clickedPrevLocation = new Vector3(SecondaryMenuItems[clicked2].transform.position.x, SecondaryMenuItems[clicked2].transform.position.y, clicked2);
+                        prevprimary = primary;
+                    }
+                }
+            }
+        }
+        /*if (primary)
+        {
+            if (Floating())
+            {
+                if (clicked2 != -1)
+                {
+                    if (playerInventory.Items[clicked2] != -1)
+                    {
+                        clickedPrevLocation = new Vector3(itemDepiction[clicked].transform.position.x, itemDepiction[clicked].transform.position.y, clicked);
+                    }
                 }
             }
             else
             {
                 if (clicked2 > -1)
                 {
-                    if (primary == prevprimary)
-                    {
-                        if(ItemSwap(clicked, clicked2, playerInventory, playerInventory, itemDepiction, itemDepiction, PrimaryMenuLocations))
-                        clicked = -1;
-                    }
-                    else
-                    {
-                        if(ItemSwap(clicked, clicked2, otherInventory, playerInventory, SecondaryMenuItems, itemDepiction, SecondaryMenuLocations))
-                        clicked = -1;
-                    }
+                    ItemSwap(clicked2, playerInventory, itemDepiction, true);
                 }
                 else
                 {
-                    if (clicked != -1)
+                    if (Floating())
                     {
                         WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
                         Vector3 v = GameObject.Find("Player").transform.position;
-                        WM.Drop(playerInventory.Items[clicked], playerInventory.stacks[clicked], v);
-                        playerInventory.Items[clicked] = -1;
-                        playerInventory.stacks[clicked] = 0;
-                        itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().sprite = null;
-                        itemDepiction[clicked].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
-                        itemDepiction[clicked].transform.position = PrimaryMenuLocations[clicked];
-                        clicked = -1;
+                        WM.Drop(floatingItem, floatingStack, v);
+                        floatingItem = -1;
+                        floatingStack = 0;
+                        FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
+                        FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
                     }
                 }
             }
         }
         else
         {
-            if ((clicked == -1) && (clicked2 != -1))
+            if (Floating())
             {
-                if (otherInventory.Items[clicked2] != -1)
+                if (clicked2 != -1)
                 {
-                    clicked = clicked2;
-                    clickedPrevLocation = SecondaryMenuItems[clicked].transform.position;
+                    if (otherInventory.Items[clicked2] != -1)
+                    {
+                        clickedPrevLocation = new Vector3(SecondaryMenuItems[clicked].transform.position.x, SecondaryMenuItems[clicked].transform.position.y, clicked);
+                    }
                 }
             }
             else
             {
                 if (clicked2 > -1)
                 {
-                    if (primary == prevprimary)
-                    {
-
-                        if(ItemSwap(clicked, clicked2, otherInventory, otherInventory, SecondaryMenuItems, SecondaryMenuItems, SecondaryMenuLocations, true))
-                        clicked = -1;
-                    }
-                    else
-                    {
-                        if(ItemSwap(clicked, clicked2, playerInventory, otherInventory, itemDepiction, SecondaryMenuItems, PrimaryMenuLocations, true))
-                        clicked = -1;
-                    }
+                    ItemSwap(clicked2, otherInventory, SecondaryMenuItems, true);
                 }
                 else
                 {
-                    if (clicked != -1)
+                    if (Floating())
                     {
                         WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
                         Vector3 v = GameObject.Find("Player").transform.position;
-                        WM.Drop(otherInventory.Items[clicked], otherInventory.stacks[clicked], v);
-                        otherInventory.Items[clicked] = -1;
-                        otherInventory.stacks[clicked] = 0;
-                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().sprite = null;
-                        SecondaryMenuItems[clicked].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
-                        SecondaryMenuItems[clicked].transform.position = SecondaryMenuLocations[clicked];
-                        clicked = -1;
+                        WM.Drop(floatingItem, floatingStack, v);
+                        floatingItem = -1;
+                        floatingStack = 0;
+                        FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
+                        FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
                     }
                 }
             }
-        }
+        }*/
     }
 }
