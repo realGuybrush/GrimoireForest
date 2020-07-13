@@ -302,8 +302,15 @@ MonoBehaviour:
   Rod: {fileID: 1727102160251200531}
   MagicArtefact: {fileID: 1727102160845010584}
   Bow: {fileID: 1727102161837194863}
+  Helmet: {fileID: 0}
+  Armor: {fileID: 0}
+  Pants: {fileID: 0}
+  Boots: {fileID: 0}
+  Gloves: {fileID: 0}
+  Shield: {fileID: 0}
   Weapon: {fileID: 0}
-  PickableItem: {fileID: 0}
+  PickableItem:
+  - {fileID: 0}
   Hip: {fileID: 1727102160979196001}
   Back: {fileID: 1727102159842457911}
   leftArm: {fileID: 1727102161347135208}
@@ -428,7 +435,7 @@ GameObject:
   - component: {fileID: 1727102159796496219}
   - component: {fileID: 1727102159796496221}
   - component: {fileID: 1727102159796496220}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: StepChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1696,7 +1703,7 @@ GameObject:
   - component: {fileID: 1727102160716300381}
   - component: {fileID: 1727102160716300382}
   - component: {fileID: 1727102160716300383}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WallChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2317,7 +2324,7 @@ GameObject:
   - component: {fileID: 1727102161342494760}
   - component: {fileID: 1727102161342494761}
   - component: {fileID: 1727102161342494762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LedgeChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2517,7 +2524,7 @@ GameObject:
   - component: {fileID: 1727102161387832701}
   - component: {fileID: 1727102161387832702}
   - component: {fileID: 1727102161387832703}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: LandChecker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

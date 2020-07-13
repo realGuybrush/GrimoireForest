@@ -61,6 +61,7 @@ public class PlayerControls : BasicMovement
         munitions.maxAmount = 11;
         munitions.Start();
         PickableItem = new List<GameObject>();
+        ShowHideMenu();
     }
 
     // Update is called once per frame
@@ -221,15 +222,19 @@ public class PlayerControls : BasicMovement
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            inMenu = !inMenu;
-            Menus.SetActive(!Menus.activeSelf);
-            GameObject I = GameObject.Find("Inventory");
-            if (I != null)
-            {
-                I.GetComponent<InventoryMovement>().SetInv(inventory, munitions);
-                I.GetComponent<InventoryMovement>().ShowHide();
-            }
-            //I.GetComponent<InventoryMovement>().ShowHide();
+            ShowHideMenu();
+        }
+    }
+
+    private void ShowHideMenu()
+    {
+        inMenu = !inMenu;
+        Menus.SetActive(!Menus.activeSelf);
+        GameObject I = GameObject.Find("Inventory");
+        if (I != null)
+        {
+            I.GetComponent<InventoryMovement>().SetInv(inventory, munitions);
+            I.GetComponent<InventoryMovement>().ShowHide();
         }
     }
 
