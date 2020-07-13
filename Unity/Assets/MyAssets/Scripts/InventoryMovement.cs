@@ -426,13 +426,29 @@ public class InventoryMovement : MonoBehaviour
         {
             if (clicked2 == -1)
             {
-                WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
-                Vector3 v = GameObject.Find("Player").transform.position;
-                WM.Drop(floatingItem, floatingStack, v);
-                floatingItem = -1;
-                floatingStack = 0;
-                FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
-                FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
+                if (clicked == 0)
+                {
+                    WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+                    Vector3 v = GameObject.Find("Player").transform.position;
+                    WM.Drop(floatingItem, floatingStack, v);
+                    floatingItem = -1;
+                    floatingStack = 0;
+                    FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
+                    FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
+                }
+                if (clicked == 1)
+                {
+                    WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+                    Vector3 v = GameObject.Find("Player").transform.position;
+                    WM.Drop(floatingItem, 1, v);
+                    floatingStack -= 1;
+                    if (floatingStack == 0)
+                    {
+                        floatingItem = -1;
+                        FloatingTile.GetComponent<UnityEngine.UI.Image>().sprite = null;
+                        FloatingTile.GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 0.0f);
+                    }
+                }
             }
             else
             {
