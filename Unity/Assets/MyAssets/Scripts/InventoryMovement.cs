@@ -442,6 +442,7 @@ public class InventoryMovement : MonoBehaviour
                     Vector3 v = GameObject.Find("Player").transform.position;
                     WM.Drop(floatingItem, 1, v);
                     floatingStack -= 1;
+                    UpdateStack(itemDepiction[0], playerInventory.stacks[0]);
                     if (floatingStack == 0)
                     {
                         floatingItem = -1;
