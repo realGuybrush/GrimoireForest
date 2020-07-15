@@ -21,3 +21,11 @@ jobs:
         with:
           name: Build
           path: build
+  remove-old-artifacts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: c-hive/gha-remove-artifacts@v1.2.0
+        with:
+          age: '0 ms'
+          skip-recent: 3
+          skip-tags: false
