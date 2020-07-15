@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class InventoryMovement : MonoBehaviour
 {
+    WorldManagement WM;
+    GameObject Player;
     Inventory playerInventory;
     Inventory otherInventory;
     List<GameObject> WeaponList;
@@ -46,6 +48,8 @@ public class InventoryMovement : MonoBehaviour
         {
             SecondaryMenuLocations.Add(SecondaryMenuItems[i].transform.position);
         }
+        WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+        Player = GameObject.Find("Player");
     }
     private bool GetMouseButtonDown()
     {
@@ -75,6 +79,14 @@ public class InventoryMovement : MonoBehaviour
         if (Floating())
         {
             FloatingTile.transform.position = Input.mousePosition;
+        }
+        if (WM == null)
+        {
+            WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+        }
+        if (Player == null)
+        {
+            Player = GameObject.Find("Player");
         }
     }
 
@@ -131,7 +143,6 @@ public class InventoryMovement : MonoBehaviour
     }
     public void UploadToHUD()
     {
-        WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
         if (playerInventory != null)
         {
             for (int i = 0; i < PrimaryMenuLocations.Count; i++)
@@ -428,8 +439,7 @@ public class InventoryMovement : MonoBehaviour
             {
                 if (clicked == 0)
                 {
-                    WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
-                    Vector3 v = GameObject.Find("Player").transform.position;
+                    Vector3 v = Player.transform.position;
                     WM.Drop(floatingItem, floatingStack, v);
                     floatingItem = -1;
                     floatingStack = 0;
@@ -438,8 +448,7 @@ public class InventoryMovement : MonoBehaviour
                 }
                 if (clicked == 1)
                 {
-                    WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
-                    Vector3 v = GameObject.Find("Player").transform.position;
+                    Vector3 v = Player.transform.position;
                     WM.Drop(floatingItem, 1, v);
                     floatingStack -= 1;
                     UpdateStack(itemDepiction[0], playerInventory.stacks[0]);

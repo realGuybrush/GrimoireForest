@@ -38,7 +38,8 @@ public class PlayerControls : BasicMovement
 
     public Inventory inventory = new Inventory();
     public Inventory munitions = new Inventory(11);
-    public GameObject Menus;
+    public GameObject Arms;
+    public GameObject Book;
 
 
     // Use this for initialization
@@ -84,6 +85,7 @@ public class PlayerControls : BasicMovement
             BasicCheckHold();
         }
         CheckInventoryInput();
+        CheckEsc();
         //BasicCheckRoll();
         //CheckDirections();
         if (crawlTimer > 0)
@@ -111,6 +113,14 @@ public class PlayerControls : BasicMovement
                 GameObject G = Instantiate(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[munitions.Items[weaponSlotNumber + 6]]);
                 G.GetComponent<Item>().Start2();
                 SetWeapon(G);
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (((munitions.Items[i + 6] == -1) && (Arms.GetComponent<ArmsDepiction>().ArmsAndSpells[i].GetComponent<UnityEngine.UI.Image>().sprite != null)) ||
+                ((munitions.Items[i + 6] != -1) && (Arms.GetComponent<ArmsDepiction>().ArmsAndSpells[i].GetComponent<UnityEngine.UI.Image>().sprite == null)))
+            {
+                Arms.GetComponent<ArmsDepiction>().Update2(i);
             }
         }
     }
@@ -229,7 +239,8 @@ public class PlayerControls : BasicMovement
     private void ShowHideMenu()
     {
         inMenu = !inMenu;
-        Menus.SetActive(!Menus.activeSelf);
+        Arms.SetActive(!Arms.activeSelf);
+        Book.SetActive(!Book.activeSelf);
         GameObject I = GameObject.Find("Inventory");
         if (I != null)
         {
@@ -376,6 +387,7 @@ public class PlayerControls : BasicMovement
                 break;
             }
         }
+        Arms.GetComponent<ArmsDepiction>().Update2(i - 6);
         return true;
     }
     public bool SetMunitions(GameObject munition)
@@ -612,6 +624,17 @@ public class PlayerControls : BasicMovement
         if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.A))
         {
             BasicSetLeft(false);
+        }
+    }
+
+    void CheckEsc()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!Arms.activeSelf)
+            {
+                ShowHideMenu();
+            }
         }
     }
 
