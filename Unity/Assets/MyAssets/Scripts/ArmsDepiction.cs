@@ -7,6 +7,8 @@ public class ArmsDepiction : MonoBehaviour
     PlayerControls Player;
     WorldManagement WM;
     public List<GameObject> ArmsAndSpells = new List<GameObject>();
+    public GameObject FloatingTile1;
+    public GameObject FloatingTile2;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +26,11 @@ public class ArmsDepiction : MonoBehaviour
 
     }
 
+    public void UpdateWSNumber()
+    {
+        FloatingTile1.transform.position = ArmsAndSpells[Player.weaponSlotNumber].transform.position;
+        //FloatingTile2.transform.position = ArmsAndSpells[Player.spellSlotNumber + 5].transform.position;
+    }
     public void Update2(int index)
     {
         if (index < 5)

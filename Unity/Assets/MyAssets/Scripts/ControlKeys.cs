@@ -1,14 +1,10 @@
-﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class ControlKeys : MonoBehaviour
+public class ControlKeys
 {
-    // Use this for initialization
-    private void Start()
-    {
-    }
-
-    // Update is called once per frame
-    private void Update()
-    {
-    }
+    //keys list;
+    //maybe basic check functions for every action
+    //setting keys
 }
