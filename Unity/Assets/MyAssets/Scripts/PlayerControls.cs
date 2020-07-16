@@ -121,19 +121,29 @@ public partial class PlayerControls : BasicMovement
         }
     }
 
-    private void ShowHideMenu(bool hideall = true, bool menu = false, bool weaponInv = false, bool spellInv = false, bool tradeInv = false)
+    public void ShowHideMenu(bool hideall = true, bool menu = false, bool weaponInv = false, bool spellInv = false, bool tradeInv = false)
     {
-        inMenu = !hideall && (menu || weaponInv || spellInv || tradeInv);
-        Arms.SetActive(!inMenu);
-        Book.SetActive(inMenu);
         MenusTrigger MT = Book.GetComponent<MenusTrigger>();
-        MT.ShowMenu(menu);
-        MT.ShowInv(weaponInv);
-        if (weaponInv)
+        if (!MT.IsMenuActive())
         {
-            MT.SetInv(inventory, munitions);
+            inMenu = !hideall && (menu || weaponInv || spellInv || tradeInv);
+            Arms.SetActive(!inMenu);
+            Book.SetActive(inMenu);
+            MT.ShowMenu(menu);
+            MT.ShowInv(weaponInv);
+            if (weaponInv)
+            {
+                MT.SetInv(inventory, munitions);
+            }
+            //the same goes for spells and other menus
         }
-        //the same goes for spells and other menus
+        else
+        {
+            if (MT.EscapeMenu())
+            {
+                ShowHideMenu(true);
+            }
+        }
     }
 
     //todo

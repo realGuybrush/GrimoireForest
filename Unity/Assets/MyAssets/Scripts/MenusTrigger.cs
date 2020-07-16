@@ -9,6 +9,10 @@ public class MenusTrigger : MonoBehaviour
     public GameObject Menus;
     public GameObject Trade;
 
+    public bool IsMenuActive()
+    {
+        return Menus.activeSelf;
+    }
     public void SetInv(Inventory inv1, Inventory inv2)
     {
         Inventory.GetComponent<InventoryMovement>().SetInv(inv1, inv2);
@@ -30,5 +34,14 @@ public class MenusTrigger : MonoBehaviour
     public void ShowMenu(bool show)
     {
         Menus.SetActive(show);
+    }
+    public bool EscapeMenu()
+    {
+        bool escape = Menus.GetComponent<MenuController>().Escape();
+        if (escape)
+        {
+            ShowMenu(false);
+        }
+        return escape;
     }
 }
