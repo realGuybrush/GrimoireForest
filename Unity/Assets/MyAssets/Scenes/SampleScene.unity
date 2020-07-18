@@ -192,13 +192,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6686bd556a5de349bc1d0f454aae7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WM: {fileID: 0}
+  Player: {fileID: 0}
+  bookWidth: 0
+  bookHeight: 0
   width: 6
   height: 9
   gridWidth: 180
   gridHeight: 270
   gridXOffset: -100
+  MenuOffsetX: 0
+  MenuOffsetY: 0
   itemInInvPrefab: {fileID: 6137758757848382826, guid: 80f9defb64a580340b172aba56263a4f,
     type: 3}
+  itemDepiction: []
+  PrimaryMenuLocations: []
   SecondaryMenuItems:
   - {fileID: 1789314666}
   - {fileID: 2106857745}
@@ -211,7 +219,14 @@ MonoBehaviour:
   - {fileID: 1362827403}
   - {fileID: 1051865983}
   - {fileID: 235521317}
+  SecondaryMenuLocations: []
+  clicked: -1
+  primary: 1
   FloatingTile: {fileID: 1905150318}
+  floatingItem: -1
+  floatingStack: 0
+  clickedPrevLocation: {x: 0, y: 0, z: 0}
+  prevprimary: 0
 --- !u!1 &7545795
 GameObject:
   m_ObjectHideFlags: 0
@@ -3337,7 +3352,6 @@ MonoBehaviour:
   OptionsSheet: {fileID: 1988715088}
   Messager: {fileID: 1175020117}
   inGame: 0
-  inSheet: 0
 --- !u!1 &634409416
 GameObject:
   m_ObjectHideFlags: 0
@@ -6708,6 +6722,7 @@ GameObject:
   - component: {fileID: 1167020375}
   - component: {fileID: 1167020376}
   - component: {fileID: 1167020377}
+  - component: {fileID: 1167020378}
   m_Layer: 5
   m_Name: Inventory
   m_TagString: Untagged
@@ -6755,18 +6770,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167020374}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a6686bd556a5de349bc1d0f454aae7c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WM: {fileID: 0}
+  Player: {fileID: 0}
+  bookWidth: 0
+  bookHeight: 0
   width: 6
   height: 9
   gridWidth: 180
   gridHeight: 270
   gridXOffset: -100
+  MenuOffsetX: 0
+  MenuOffsetY: 0
   itemInInvPrefab: {fileID: 6137758757848382826, guid: 80f9defb64a580340b172aba56263a4f,
     type: 3}
+  itemDepiction: []
+  PrimaryMenuLocations: []
   SecondaryMenuItems:
   - {fileID: 2042578766}
   - {fileID: 256285389}
@@ -6779,7 +6802,14 @@ MonoBehaviour:
   - {fileID: 1805308129}
   - {fileID: 838305059}
   - {fileID: 1268316542}
+  SecondaryMenuLocations: []
+  clicked: -1
+  primary: 1
   FloatingTile: {fileID: 1362145260}
+  floatingItem: -1
+  floatingStack: 0
+  clickedPrevLocation: {x: 0, y: 0, z: 0}
+  prevprimary: 0
 --- !u!222 &1167020377
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6788,6 +6818,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1167020374}
   m_CullTransparentMesh: 0
+--- !u!114 &1167020378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167020374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992b46aeb5c51434bb185eed5e950e80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WM: {fileID: 668901894}
+  Player: {fileID: 0}
+  bookWidth: 0
+  bookHeight: 0
+  width: 6
+  height: 9
+  gridWidth: 180
+  gridHeight: 270
+  gridXOffset: -100
+  MenuOffsetX: 0
+  MenuOffsetY: 0
+  itemInInvPrefab: {fileID: 6137758757848382826, guid: 80f9defb64a580340b172aba56263a4f,
+    type: 3}
+  itemDepiction: []
+  PrimaryMenuLocations: []
+  SecondaryMenuItems:
+  - {fileID: 2042578766}
+  - {fileID: 256285389}
+  - {fileID: 474064878}
+  - {fileID: 229919847}
+  - {fileID: 414696811}
+  - {fileID: 746809864}
+  - {fileID: 991564763}
+  - {fileID: 1300750095}
+  - {fileID: 1805308129}
+  - {fileID: 838305059}
+  - {fileID: 1268316542}
+  SecondaryMenuLocations: []
+  clicked: -1
+  primary: 1
+  FloatingTile: {fileID: 1362145260}
+  floatingItem: -1
+  floatingStack: 0
+  clickedPrevLocation: {x: 0, y: 0, z: 0}
+  prevprimary: 0
 --- !u!1 &1175020117
 GameObject:
   m_ObjectHideFlags: 0

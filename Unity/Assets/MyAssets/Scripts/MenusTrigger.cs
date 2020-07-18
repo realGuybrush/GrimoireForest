@@ -15,8 +15,8 @@ public class MenusTrigger : MonoBehaviour
     }
     public void SetInv(Inventory inv1, Inventory inv2)
     {
-        Inventory.GetComponent<InventoryMovement>().SetInv(inv1, inv2);
-        Inventory.GetComponent<InventoryMovement>().ShowHide();
+        Inventory.GetComponent<MunitionsMovement>().SetInv(inv1, inv2);
+        Inventory.GetComponent<MunitionsMovement>().ShowHide();
     }
     public void ShowInv(bool show)
     {

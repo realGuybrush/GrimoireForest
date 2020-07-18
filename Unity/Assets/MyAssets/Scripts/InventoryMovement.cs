@@ -6,35 +6,34 @@ using UnityEngine;
 
 public class InventoryMovement : MonoBehaviour
 {
-    WorldManagement WM;
-    GameObject Player;
-    Inventory playerInventory;
-    Inventory otherInventory;
-    List<GameObject> WeaponList;
-    private float bookWidth;
-    private float bookHeight;
+    public WorldManagement WM;
+    public GameObject Player;
+    public Inventory playerInventory;
+    public Inventory otherInventory;
+    public float bookWidth;
+    public float bookHeight;
     public int width = 3;
     public int height = 6;
     public float gridWidth = 150;
     public float gridHeight = 240;
     public float gridXOffset = 0.0f;
-    float MenuOffsetX;
-    float MenuOffsetY;
+    public float MenuOffsetX;
+    public float MenuOffsetY;
     public GameObject itemInInvPrefab;
 
-    List<GameObject> itemDepiction = new List<GameObject>();
-    List<Vector3> PrimaryMenuLocations = new List<Vector3>();
+    public List<GameObject> itemDepiction = new List<GameObject>();
+    public List<Vector3> PrimaryMenuLocations = new List<Vector3>();
     public List<GameObject> SecondaryMenuItems = new List<GameObject>();
-    List<Vector3> SecondaryMenuLocations = new List<Vector3>();
-    int clicked = -1;
-    bool primary = true;
+    public List<Vector3> SecondaryMenuLocations = new List<Vector3>();
+    public int clicked = -1;
+    public bool primary = true;
 
     public GameObject FloatingTile;
-    int floatingItem = - 1;
-    int floatingStack = 0;
+    public int floatingItem = - 1;
+    public int floatingStack = 0;
 
-    Vector3 clickedPrevLocation;
-    bool prevprimary;
+    public Vector3 clickedPrevLocation;
+    public bool prevprimary;
 
 
     private void Start()
@@ -113,7 +112,7 @@ public class InventoryMovement : MonoBehaviour
         CalculateItemPositions();
     }
 
-    private void CalculateItemPositions()
+    public void CalculateItemPositions()
     {
         if (width == 0 || height == 0)
         {
@@ -182,7 +181,7 @@ public class InventoryMovement : MonoBehaviour
         }
         UpdateAllStacks(playerInventory, itemDepiction, otherInventory, SecondaryMenuItems);
     }
-    private int CalculateButtonNumberByCoordinates(float X, float Y)
+    public int CalculateButtonNumberByCoordinates(float X, float Y)
     {
         if ((X - gridXOffset >= (-gridWidth / 2)) && (X - gridXOffset <= (gridWidth / 2)) && (Y >= (-gridHeight / 2)) && (Y <= (gridHeight / 2)))
         {
@@ -210,7 +209,7 @@ public class InventoryMovement : MonoBehaviour
         return -1;
     }
 
-    private void UpdateAllStacks(Inventory inv1, List<GameObject> buttons1, Inventory inv2, List<GameObject> buttons2)
+    public void UpdateAllStacks(Inventory inv1, List<GameObject> buttons1, Inventory inv2, List<GameObject> buttons2)
     {
         for (int i = 0; i < inv1.stacks.Count; i++)
         {
@@ -221,7 +220,7 @@ public class InventoryMovement : MonoBehaviour
             UpdateStack(buttons2[i], inv2.stacks[i]);
         }
     }
-    private void UpdateStack(GameObject button, int amount = 0)
+    public void UpdateStack(GameObject button, int amount = 0)
     {
         if (amount > 1)
         {
@@ -240,11 +239,11 @@ public class InventoryMovement : MonoBehaviour
             FloatingTile.transform.Find("Text").GetComponent<UnityEngine.UI.Text>().text = "";
         }
     }
-    private bool Floating()
+    public bool Floating()
     {
         return (floatingItem > -1);
     }
-    private bool ItemSwap(int index, Inventory inventory, List<GameObject> buttons, bool setget, bool onlyOneInDestination = false)
+    public bool ItemSwap(int index, Inventory inventory, List<GameObject> buttons, bool setget, bool onlyOneInDestination = false)
     {
         int maxStack;
         if (onlyOneInDestination)
@@ -426,7 +425,7 @@ public class InventoryMovement : MonoBehaviour
             }
         }
     }
-    public void Clicked(float X, float Y)
+    public virtual void Clicked(float X, float Y)
     {
         int clicked2 = CalculateButtonNumberByCoordinates(X - MenuOffsetX, Y - MenuOffsetY);
         if (clicked2 == -2)
