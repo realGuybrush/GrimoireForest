@@ -23,6 +23,7 @@ public partial class WorldManagement : MonoBehaviour
 	public List<GameObject> ItemPrefabs = new List<GameObject>();
     public Map GlobalMap = new Map();
     int PlayerXMap, PlayerYMap;
+    int PlayerCurrentXMapOffset = 0;
     DirectionType CameraLookDirection = DirectionType.North;
 	//public List<GameObject> CloneItemPrefabs = new List<GameObject>();
 	//public List<int> APnum = new List<int>();
@@ -63,5 +64,21 @@ public partial class WorldManagement : MonoBehaviour
         {
             GameObject.Instantiate(ItemPrefabs[itemNumber], coordinates, new Quaternion());
         }
+    }
+
+    public void CalculatePlayerCorridorOffset(int x)
+    {
+        int playerWidth = 10;
+        PlayerCurrentXMapOffset = -((x + System.Math.Sign(x)*(TileWidth+playerWidth) / 2) / TileWidth) * (-(int)CameraLookDirection - 1) % 2;
+    }
+    public void ChangePlayerCoordinates(int x, int y)
+    {
+        PlayerXMap += PlayerCurrentXMapOffset;
+        PlayerYMap += y * (-(int)CameraLookDirection - 2) % 2;
+    }
+
+    public void EnterDoor(DirectionType enterDirection)
+    {
+        ChangePlayerCoordinates(-((int)enterDirection-2)%2, ((int)enterDirection-1)%2);
     }
 }

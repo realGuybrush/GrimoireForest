@@ -6,7 +6,7 @@ public partial class WorldManagement : MonoBehaviour
 {
     public List<List<BiomeTilesData>> BiomePrefabs = new List<List<BiomeTilesData>>();
 
-    public int TileWidth = 300;
+    public int TileWidth = 70;
     public void SetBiomePrefabs()//set as constructor, if it will be separate class
     {
         for (int i = 0; i < BiomeTilesData.BiomesAmount; i++)
