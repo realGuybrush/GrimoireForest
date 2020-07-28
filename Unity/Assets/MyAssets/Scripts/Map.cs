@@ -1,116 +1,548 @@
-﻿using System.Collections.Generic;
-using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
+using System;
+using Unity.Mathematics;
 
-public class Map : MonoBehaviour
+public class Map
 {
-    private readonly List<List<bool>> Tiles = new List<List<bool>>();
-    private List<GameObject> LoadedPrefabs = new List<GameObject>();
-    public List<GameObject> TilePrefabs;
+	
+	int Width;
+	int Height;
+	int MaximumCorridorLength;
+	int MinimumCorridorLength;
+	public List<Biome> Biomes = new List<Biome>();
+    public List<List<MapTile>> Tiles = new List<List<MapTile>>();
 
-    // Use this for initialization
-    private void Start()
+    public Map()
     {
-        if (TilePrefabs == null)
-        {
-            TilePrefabs = new List<GameObject>();
-        }
-
-        LoadMap();
-        //MakeLineLengthsEven();
-        //UploadTilePrefabs();
+        Width = 100;
+        Height = 100;
+        MaximumCorridorLength = 10;
+        MinimumCorridorLength = 0;
+    }
+    public Map(int W, int H, int MxCL, int MnCL)
+    {
+        Width = W;
+        Height = H;
+        MaximumCorridorLength = MxCL;
+        MinimumCorridorLength = MnCL;
     }
 
-    // Update is called once per frame
-    private void Update()
+	public void Generate_Map(List<BiomeTilesData> BTD)//it might be better to make this bool and make some checks in case, that generation fails, so we could restart it
+	{
+		//generate tile's parts and put them in save, then create savegame file, after generation in finished
+		//biome creation might be changed further on, for River, for example
+		int min_radius = 5;//min_radius should be initialized from options
+        for (int i = 0; i < BiomeTilesData.BiomesAmount; i++)
+        {
+            Biomes.Add(new Biome((BiomesTypes)i));
+			Biomes[i].radius = SetBiomeRadius(min_radius, BTD, i);
+			SetBiomeCenter(i);
+        }
+		for (int y = 0; y < Height; y++)
+		{
+			Tiles.Add (new List<MapTile>());
+			for (int x = 0; x < Width; x++)
+			{
+				Tiles[y].Add (new MapTile ());
+			}
+		}
+		//if(!LoadTiles ())
+		    SetTiles();
+        PrintMapToFile();
+        PrintMapToFile (true);
+	}
+	void SetBiomeCenter(int biome_index)
+	{
+		//prevents biome centers overlap
+		if(biome_index != 0)
+		{
+			while(true)
+			{
+				Biomes[biome_index].Center.x = UnityEngine.Random.Range(0, Width);
+				Biomes[biome_index].Center.y = UnityEngine.Random.Range(0, Height);
+				for(int prev_biomes = 0; prev_biomes < biome_index; prev_biomes++)
+				{
+					if((Biomes[biome_index].Center.x == Biomes[prev_biomes].Center.x) && (Biomes[biome_index].Center.y == Biomes[prev_biomes].Center.y))
+						continue;
+				}
+				break;
+			}
+		}
+		else
+		{
+			Biomes[biome_index].radius = 0;
+			Biomes[biome_index].Center.x = Width/2;
+			Biomes[biome_index].Center.y = Height/2;
+		}
+	}
+
+    int SetBiomeRadius(int min_radius, List<BiomeTilesData> BTD, int biomeIndex)
     {
+        if (biomeIndex > 0)
+        {
+            return UnityEngine.Random.Range(min_radius, (Width*(int)BTD[biomeIndex].Size)/100);
+        }
+        else
+        {
+            return (int)(Math.Sqrt(Width * Width + Height * Height) + 1);
+        }
     }
 
-    private void LoadMap(string filename = "Assets/Resources/default.txt")
-    {
-        var map = ReadMapStringFromFile(filename);
-        if (map == "")
-        {
-            return;
-        }
+	/*void GenerateAllTilesStuffing(List<AllBiomePrefabs> PrefabsOfAllBiomes)
+	{
+		//fix; both this parameters must be calculated, considering biome and some diapasone of values
+		int MaxBGObjectAmount = 10;
+		int MaxBarricadesAmount = 10;
 
-        Tiles.Add(new List<bool>());
-        for (var i = 0; i < map.Length; i++)
+		for (int y = 0; y < Height; y++)
+		{
+			for (int x = 0; x < Width; x++)
+			{
+				//Tiles.Tiles [y] [x].FrontalBackgroundIndex = Random.Range (0, PrefabsOfAllBiomes [(int)Tiles.Tiles [y] [x].biome].FrontalBackground.Count);
+				//Tiles.Tiles [y] [x].RoadIndex = Random.Range (0, PrefabsOfAllBiomes [(int)Tiles.Tiles [y] [x].biome].Road.Count);
+				for (int BGObjectAmount = 0; BGObjectAmount < MaxBGObjectAmount; BGObjectAmount++)
+				{
+					Tiles.Tiles [y] [x].TileBackgroundObjects [BGObjectAmount] = PrefabsOfAllBiomes [(int)Tiles.Tiles [y] [x].biome].BackgroundObjects[Random.Range (0, PrefabsOfAllBiomes [(int)Tiles.Tiles [y] [x].biome].BackgroundObjects.Count)];
+					//fix; choose their coordinates somehow
+				}
+				for (int BarricadesAmount = 0; BarricadesAmount < MaxBarricadesAmount; BarricadesAmount++)
+				{
+					Tiles.Tiles [y] [x].TileBarrcicades [BarricadesAmount] = PrefabsOfAllBiomes [(int)Tiles.Tiles [y] [x].biome].Barricades[Random.Range (0, PrefabsOfAllBiomes [(int)Tiles.Tiles [y] [x].biome].Barricades.Count)];
+					//fix; choose their coordinates somehow; maybe add point array, or make new class int+point; maybe make list of objects instead of list of ints
+				}
+			}
+		}
+	}*/
+
+
+	void SetTiles()
+	{
+		for (int x = 0; x < Width; x++)
+		{
+			for (int y = 0; y < Height; y++)
+			{
+				SetTileBiome (x, y);
+			}
+		}
+		GenerateHorizontalCorridors ();
+		GenerateVerticalCorridors ();
+		//SaveGame();
+	}
+
+	void SetTileBiome(int x, int y)
+	{
+        int chosen = 0;
+        float shortestDistance = 100000.0f;
+        float newDistance;
+        for (int i = 1; i < BiomeTilesData.BiomesAmount; i++)
         {
-            switch (map[i])
+            newDistance = GetDistance(x, y, (int) Biomes[i].Center.x, (int) Biomes[i].Center.y);
+            if ((newDistance < shortestDistance)&&(newDistance <= Biomes[i].radius))
             {
-                case ' ':
-                    Tiles[Tiles.Count - 1].Add(false);
-                    break;
-                case '.':
-                    Tiles[Tiles.Count - 1].Add(true);
-                    break;
-                case '\n':
-                    Tiles.Add(new List<bool>());
-                    break;
+                shortestDistance = newDistance;
+                chosen = i;
             }
         }
+        Tiles[y][x].biome1 = (BiomesTypes)chosen;
+	}
+
+    float GetDistance(int x1, int y1, int x2, int y2)
+    {
+        float x = x1 - x2;
+        float y = y1 - y2;
+        return (float)(Math.Sqrt(x * x + y * y));
     }
 
-    private string ReadMapStringFromFile(string filename)
-    {
-        var map = "";
-        try
-        {
-            var Reader = new StreamReader(filename);
-            map = Reader.ReadToEnd();
-            Reader.Close();
-        }
-        catch
-        {
-            Debug.Log("File \"'{filename}'\" do not exist, or can not be opened.");
-        }
+	void GenerateHorizontalCorridors ()
+	{
+		int corridor_length = 0;
+		for (int y = 0; y < Height; y++)
+		{
+			for (int x = 0; x < Width; x++)
+			{
+				if (corridor_length == 0)
+				{
+					if (UnityEngine.Random.Range (0, 2) == 1)
+					{
+						corridor_length = UnityEngine.Random.Range (MinimumCorridorLength, MaximumCorridorLength) + 1;
+						if (UnityEngine.Random.Range (0, 2) == 1)
+						{
+							if (x > 0)
+							{
+								Tiles [y] [x - 1].passages[1] = PassageType.Door;
+								Tiles [y] [x].passages[3] = PassageType.Door;
+							}
+						}
+					}
+				}
+				if (corridor_length != 0)
+				{
+					if ((x + 1) < Width)
+					{
+						Tiles [y] [x].passages[1] = PassageType.Corridor;
+						Tiles [y] [x+1].passages[3] = PassageType.Corridor;
+					}
+					corridor_length--;
+				}
+			}
+		}
+	}
+	void GenerateVerticalCorridors ()
+	{
+		int corridor_length = 0;
+		for (int x = 0; x < Width; x++)
+		{
+			for (int y = 0; y < Height; y++)
+			{
+				if (corridor_length == 0)
+				{
+					if (UnityEngine.Random.Range (0, 2) == 1)
+					{
+						corridor_length = UnityEngine.Random.Range (MinimumCorridorLength, MaximumCorridorLength) + 1;
+						if (UnityEngine.Random.Range (0, 2) == 1)
+						{
+							if (y > 0)
+							{
+								Tiles [y - 1] [x].passages[2] = PassageType.Door;
+								Tiles [y] [x].passages[0] = PassageType.Door;
+							}
+						}
+					}
+				}
+				if (corridor_length != 0)
+				{
+					if ((y + 1) < Height)
+					{
+						if ((Tiles [y] [x].passages[1] == PassageType.Corridor) || (Tiles [y] [x].passages[3] == PassageType.Corridor))
+						{
+							if (UnityEngine.Random.Range (0, 2) == 1)
+							{
+								Tiles [y] [x].passages[2] = PassageType.Door;
+								Tiles [y + 1] [x].passages[0] = PassageType.Door;
+							}
+							else
+							{
+								if (Tiles [y] [x].passages[1] == PassageType.Corridor)
+								{
+									Tiles [y] [x].passages[1] = PassageType.Door;
+									Tiles [y] [x + 1].passages[3] = PassageType.Door;
+								}
+								if (Tiles [y] [x].passages[3] == PassageType.Corridor)
+								{
+									Tiles [y] [x - 1].passages[1] = PassageType.Door;
+									Tiles [y] [x].passages[3] = PassageType.Door;
+								}
+								if (Tiles [y + 1] [x].passages[1] == PassageType.Corridor)
+								{
+									Tiles [y + 1] [x].passages[1] = PassageType.Door;
+									Tiles [y + 1] [x + 1].passages[3] = PassageType.Door;
+								}
+								if (Tiles [y + 1] [x].passages[3] == PassageType.Corridor)
+								{
+									Tiles [y + 1] [x - 1].passages[1] = PassageType.Door;
+									Tiles [y + 1] [x].passages[3] = PassageType.Door;
+								}
+								Tiles [y] [x].passages[2] = PassageType.Corridor;
+								Tiles [y + 1] [x].passages[0] = PassageType.Corridor;
+							}
+						}
+						else
+						{
+							Tiles [y] [x].passages[2] = PassageType.Door;
+							Tiles [y + 1] [x].passages[0] = PassageType.Door;
+						}
+					}
+					corridor_length--;
+				}
+			}
+		}
+	}
+	/*bool LoadTiles()
+	{
+		// 1
+		//Debug.Log(Application.persistentDataPath);
+		if (File.Exists(Application.persistentDataPath + "/gamesave.save"))//"C:/Users/Василий.Василий-ПК/Documents/Grimoire Forest/Exe"
+		{
+			BinaryFormatter bf = new BinaryFormatter();
+			FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);//"C:/Users/Василий.Василий-ПК/Documents/Grimoire Forest/Exe"
+			try
+			{
+			Tiles = (SaveLoad)bf.Deserialize(file);
+			}
+			catch(System.Exception exc)
+			{
+				Debug.Log ("Whoopsy-doodle!");
+				file.Close();
+				return false;
+			}
+			file.Close();
+			return true;
+		}
+		return false;
+	}
+	public void SaveGame()
+	{
+		// 1
+		/*for (int x = 0; x < Width; x++)
+			for (int y = 0; y < Height; y++)
+			{
+				if (Save.SavedTiles.Count < (x * Height + y))
+					Save.SavedTiles.Add (new TileSave());
+				Save.SavedTiles [x * Height + y].biome = Tiles [y] [x].biome;
+				Save.SavedTiles [x * Height + y].FrontalBackgroundIndex = Tiles [y] [x].FrontalBackgroundIndex;
+				Save.SavedTiles [x * Height + y].RoadIndex = Tiles [y] [x].RoadIndex;
+				Save.SavedTiles [x * Height + y].biome = Tiles [y] [x].biome;
+				Save.SavedTiles [x * Height + y].biome = Tiles [y] [x].biome;
+				Save.SavedTiles [x * Height + y].biome = Tiles [y] [x].biome;
+				Save.SavedTiles [x * Height + y].biome = Tiles [y] [x].biome;
+				Save.SavedTiles [x * Height + y].biome = Tiles [y] [x].biome;
+				Save.SavedTiles [x * Height + y].biome = Tiles [y] [x].biome;
+			}
+		foreach (GameObject targetGameObject in targets)
+		{
+			Target target = targetGameObject.GetComponent<Target>();
+			if (target.activeRobot != null)
+			{
+				Save.livingTargetPositions.Add(target.position);
+				Save.livingTargetsTypes.Add((int)target.activeRobot.GetComponent<Robot>().type);
+				i++;
+			}
+		}
 
-        return map;
-    }
 
-    private void MakeLineLengthsEven()
-    {
-        //In case somebody has screwed up with map.
-        var curved = false;
-        var sizeX = Tiles[0].Count;
-        for (var i = 0; i < Tiles.Count; i++)
+
+		Save.hits = hits;
+		Save.shots = shots;*/
+
+		// 2
+		/*BinaryFormatter bf = new BinaryFormatter();
+		FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");//"C:/Users/Василий.Василий-ПК/Documents/Grimoire Forest/Exe"
+		bf.Serialize(file, Tiles);
+		file.Close();
+	}
+*/
+	void PrintMapToFile(bool noPass = false)
+	{
+        string name;
+        if (noPass)
         {
-            if (sizeX != Tiles[i].Count)
+            name = "TestMap1.txt";
+        }
+        else
+        {
+            name = "TestMap.txt";
+        }
+		var sr = File.CreateText(name);
+		for (int y = 0; y < Height; y++)
+		{
+            if (!noPass)
             {
-                sizeX = Tiles[i].Count;
-                curved = true;
-            }
-        }
-
-        if (curved)
-        {
-            Debug.Log("Map lines have uneven lengths. Shorter lines will be filled up with walls.");
-            for (var i = 0; i < Tiles.Count; i++)
-            {
-                if (Tiles[i].Count != sizeX)
+                for (int x = 0; x < Width; x++)
                 {
-                    while (Tiles[i].Count < sizeX)
+                    switch (Tiles[y][x].passages[0])
                     {
-                        Tiles[i].Add(true);
+                        case PassageType.No:
+                            sr.Write("  ");// 
+                            break;
+                        case PassageType.Door:
+                            sr.Write(" |");// 
+                            break;
+                        case PassageType.SecretDoor:
+                            sr.Write(" :");// 
+                            break;
+                        case PassageType.Corridor:
+                            sr.Write(" H");// 
+                            break;
+                        default:
+                            break;
                     }
                 }
+                sr.WriteLine();
             }
-        }
-    }
-
-    private void UploadTilePrefabs()
-    {
-        GameObject temp;
-        for (var i = 0; i < Tiles.Count; i++)
-        {
-            for (var j = 0; j < Tiles[i].Count; j++)
-            {
-                if (Tiles[i][j])
+			for (int x = 0; x < Width; x++)
+			{
+                if (!noPass)
                 {
-                    temp = Instantiate(TilePrefabs[0], new Vector3(j, -i), new Quaternion());
+                    switch (Tiles[y][x].passages[1])
+                    {
+                        case PassageType.No:
+                            sr.Write(" ");
+                            break;
+                        case PassageType.Door:
+                            sr.Write("-");
+                            break;
+                        case PassageType.SecretDoor:
+                            sr.Write("~");
+                            break;
+                        case PassageType.Corridor:
+                            sr.Write("=");
+                            break;
+                        default:
+                            break;
+                    }
                 }
-            }
-        }
-    }
+				switch (Tiles [y] [x].biome1)
+				{
+					case BiomesTypes.Forest:
+						sr.Write ('T');
+						break;
+					case BiomesTypes.Dump:
+						sr.Write ('%');
+						break;
+					/*case BiomesTypes.DumpWaterfall:
+						sr.Write ('!');
+						break;
+					case BiomesTypes.DumpShroom:
+						sr.Write ('&');
+						break;
+					case BiomesTypes.DumpRiver:
+						sr.Write ('@');
+						break;
+					case BiomesTypes.DumpCaves:
+						sr.Write ('8');
+						break;
+					case BiomesTypes.DumpSwamp:
+						sr.Write ('+');
+						break;
+					case BiomesTypes.DumpMill:
+						sr.Write ('M');
+						break;
+					case BiomesTypes.DumpMaze:
+						sr.Write ('=');
+						break;*/
+					case BiomesTypes.Waterfall:
+						sr.Write ('|');
+						break;
+					/*case BiomesTypes.WaterfallShroom:
+						sr.Write ('F');
+						break;
+					case BiomesTypes.WaterfallRiver:
+						sr.Write ('^');
+						break;
+					case BiomesTypes.WaterfallCaves:
+						sr.Write ('0');
+						break;
+					case BiomesTypes.WaterfallSwamp:
+						sr.Write ('K');
+						break;
+					case BiomesTypes.WaterfallMill:
+						sr.Write ('[');
+						break;
+					case BiomesTypes.WaterfallMaze:
+						sr.Write ('{');
+						break;*/
+					case BiomesTypes.Shroom:
+						sr.Write ('P');
+						break;
+					/*case BiomesTypes.ShroomRiver:
+						sr.Write ('R');
+						break;
+					case BiomesTypes.ShroomCaves:
+						sr.Write ('9');
+						break;
+					case BiomesTypes.ShroomSwamp:
+						sr.Write ('*');
+						break;
+					case BiomesTypes.ShroomMill:
+						sr.Write ('p');
+						break;
+					case BiomesTypes.ShroomMaze:
+						sr.Write ('Y');
+						break;*/
+					case BiomesTypes.River:
+						sr.Write ('~');
+						break;
+					/*case BiomesTypes.RiverCaves:
+						sr.Write ('s');
+						break;
+					case BiomesTypes.RiverSwamp:
+						sr.Write ('w');
+						break;
+					case BiomesTypes.RiverMill:
+						sr.Write ('a');
+						break;
+					case BiomesTypes.RiverMaze:
+						sr.Write ('$');
+						break;*/
+					case BiomesTypes.Caves:
+						sr.Write ('O');
+						break;
+					/*case BiomesTypes.CavesSwamp:
+						sr.Write ('C');
+						break;
+					case BiomesTypes.CavesMill:
+						sr.Write ('B');
+						break;
+					case BiomesTypes.CavesMaze:
+						sr.Write ('G');
+						break;*/
+					case BiomesTypes.Swamp:
+						sr.Write ('x');
+						break;
+					/*case BiomesTypes.SwampMill:
+						sr.Write ('y');
+						break;
+					case BiomesTypes.SwampMaze:
+						sr.Write ('W');
+						break;*/
+					case BiomesTypes.Mill:
+						sr.Write ('A');
+						break;
+					/*case BiomesTypes.MillMaze:
+						sr.Write ('H');
+						break;*/
+					case BiomesTypes.Maze:
+						sr.Write ('#');
+						break;
+					default:
+						sr.Write ('.');
+						break;
+				}
+				/*switch (Tiles [y] [x].eastern_passage)
+				{
+					case PassageType.No:
+						sr.Write (" ");
+						break;
+					case PassageType.Door:
+						sr.Write ("-");
+						break;
+					case PassageType.SecretDoor:
+						sr.Write ("~");
+						break;
+					case PassageType.Corridor:
+						sr.Write ("=");
+						break;
+					default:
+						break;
+				}*/
+			}
+			sr.WriteLine ();
+			/*for (int x = 0; x < Width; x++)
+			{
+				switch (Tiles [y] [x].southern_passage)
+				{
+					case PassageType.No:
+						sr.Write ("   ");
+						break;
+					case PassageType.Door:
+						sr.Write (" | ");
+						break;
+					case PassageType.SecretDoor:
+						sr.Write (" : ");
+						break;
+					case PassageType.Corridor:
+						sr.Write (" H ");
+						break;
+					default:
+						break;
+				}
+			}
+			sr.WriteLine ();*/
+		}
+		sr.Close();
+	}
 }

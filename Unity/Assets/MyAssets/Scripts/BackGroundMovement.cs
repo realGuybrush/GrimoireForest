@@ -11,7 +11,10 @@ public class BackGroundMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (mainCamera == null)
+        {
+            mainCamera = GameObject.Find("Main Camera");
+        }
     }
 
     // Update is called once per frame

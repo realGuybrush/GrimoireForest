@@ -15,11 +15,15 @@ using System.Runtime.Serialization.Formatters.Binary;
 	//public List<bool>Bools = new List<bool>();
 }*/
 
-public class WorldManagement : MonoBehaviour 
+public partial class WorldManagement : MonoBehaviour 
 {
-	//public string initial_scene_data;
-	//public List<Scene> Scenes = new List<Scene>();
+    //public string initial_scene_data;
+    //public List<Scene> Scenes = new List<Scene>();
+    public GameObject Environment;
 	public List<GameObject> ItemPrefabs = new List<GameObject>();
+    public Map GlobalMap = new Map();
+    int PlayerXMap, PlayerYMap;
+    DirectionType CameraLookDirection = DirectionType.North;
 	//public List<GameObject> CloneItemPrefabs = new List<GameObject>();
 	//public List<int> APnum = new List<int>();
 	//public List<AnimatorProperties>AP = new List<AnimatorProperties>();
@@ -29,16 +33,22 @@ public class WorldManagement : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+
         for (int i = 0; i < ItemPrefabs.Count; i++)
         {
             ItemPrefabs[i].GetComponent<Item>().Start2();
         }
-		//current_Scene = 0;//move it in load after it is fixed
-		//LoadInitialScenesData();
-		//SaveItemsData();
-		//GameObject.Find("Player").GetComponent<Inventory>().takeall = true;
-		//LoadWHUD();
-	}
+        SetBiomePrefabs();
+        MapGeneration();
+        PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
+        PlayerYMap = (int)GlobalMap.Biomes[0].Center.y;
+        SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
+        //current_Scene = 0;//move it in load after it is fixed
+        //LoadInitialScenesData();
+        //SaveItemsData();
+        //GameObject.Find("Player").GetComponent<Inventory>().takeall = true;
+        //LoadWHUD();
+    }
 	
 	// Update is called once per frame
 	void Update () 
