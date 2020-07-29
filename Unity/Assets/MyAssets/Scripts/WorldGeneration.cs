@@ -29,6 +29,14 @@ public partial class WorldManagement : MonoBehaviour
         //public List<GameObject> EntitiesPrefabs;
     }
 
+    public void DeleteCorridor()
+    {
+        for (int i = Environment.transform.childCount-1; i > 1; i--)
+        {
+            GameObject.Destroy(Environment.transform.GetChild(i).gameObject);
+        }
+        Player.GetComponent<PlayerControls>().RemoveDoors();
+    }
     public void SpawnCorridor(MapTile MT, DirectionType LookTurn = DirectionType.North)
     {
         int offsetTilesLeft = 0;
@@ -45,6 +53,7 @@ public partial class WorldManagement : MonoBehaviour
         {
             SpawnTile(i, GlobalMap.Tiles[PlayerYMap+i*(-(int)LookTurn-2)%2][PlayerXMap+i*(-(int)LookTurn-1)%2], LookTurn);
         }
+        GameObject.Find("Main Camera").GetComponent<Camera_Movement>().SetCameraBoundaries(offsetTilesLeft, offsetTilesRight);
     }
 
     public void SpawnTile(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North)

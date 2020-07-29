@@ -6,6 +6,7 @@ public class Camera_Movement : MonoBehaviour
     public float yEdge = 5.0f;
     public float xOffset = 0.0f;
     public float yOffset = 4.0f;
+    float xEdgeOneTile;
     public bool sceneReloaded = true;
     //public int VerticalCameraOffsetFromPlayer;
 
@@ -22,6 +23,7 @@ public class Camera_Movement : MonoBehaviour
         cameraStart = transform.position;
         var playerPosition = player.position;// + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
         transform.position = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z + cameraStart.z);
+        xEdgeOneTile = xEdge;
         //background.position = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.0f);
         //background.parent = this.transform;
         //CalculateEdges();
@@ -89,6 +91,12 @@ public class Camera_Movement : MonoBehaviour
             new_position = new Vector3(new_position.x, yEdge + yOffset, new_position.z);
         }
         transform.position = new Vector3(new_position.x, new_position.y, playerPosition.z + cameraStart.z);
+    }
+
+    public void SetCameraBoundaries(int leftOffset, int rightOffset)
+    {
+        xOffset = (rightOffset - leftOffset)*xEdgeOneTile/2.0f;
+        xEdge = (Mathf.Abs(rightOffset) + Mathf.Abs(leftOffset)+1) * xEdgeOneTile;
     }
 
     /*void CalculateEdges()

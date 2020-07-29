@@ -19,6 +19,7 @@ public partial class WorldManagement : MonoBehaviour
 {
     //public string initial_scene_data;
     //public List<Scene> Scenes = new List<Scene>();
+    public GameObject Player;
     public GameObject Environment;
 	public List<GameObject> ItemPrefabs = new List<GameObject>();
     public Map GlobalMap = new Map();
@@ -34,7 +35,7 @@ public partial class WorldManagement : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-
+        Player = GameObject.Find("Player");
         for (int i = 0; i < ItemPrefabs.Count; i++)
         {
             ItemPrefabs[i].GetComponent<Item>().Start2();
@@ -69,16 +70,48 @@ public partial class WorldManagement : MonoBehaviour
     public void CalculatePlayerCorridorOffset(int x)
     {
         int playerWidth = 10;
-        PlayerCurrentXMapOffset = -((x + System.Math.Sign(x)*(TileWidth+playerWidth) / 2) / TileWidth) * (-(int)CameraLookDirection - 1) % 2;
+        PlayerCurrentXMapOffset = -((x + System.Math.Sign(x)*(TileWidth+playerWidth) / 2) / TileWidth) * calculateXDirectionCoeff(CameraLookDirection);
     }
     public void ChangePlayerCoordinates(int x, int y)
     {
-        PlayerXMap += PlayerCurrentXMapOffset;
-        PlayerYMap += y * (-(int)CameraLookDirection - 2) % 2;
+        PlayerXMap += -x + PlayerCurrentXMapOffset * calculateXDirectionCoeff(CameraLookDirection);
+        PlayerYMap += PlayerCurrentXMapOffset * calculateYDirectionCoeff(CameraLookDirection) + -y * calculateXDirectionCoeff(CameraLookDirection);
+    }
+
+    public void SetCorrectPlayerPosition(DirectionType walkTo)
+    {
+        DirectionType enterFrom = (DirectionType)(((int)walkTo + (int) CameraLookDirection + 2) % 4);
+        if ((enterFrom == DirectionType.North) || (enterFrom == DirectionType.South))
+        {
+            Player.transform.position = new Vector3(0.0f, Player.transform.position.y, 0.0f);
+        }
+        else
+        {
+            if (enterFrom == DirectionType.East)
+            {
+                Player.transform.position = new Vector3(TileWidth / 2, Player.transform.position.y, 0.0f);
+            }
+            else
+            {
+                Player.transform.position = new Vector3(-TileWidth / 2, Player.transform.position.y, 0.0f);
+            }
+        }
     }
 
     public void EnterDoor(DirectionType enterDirection)
     {
-        ChangePlayerCoordinates(-((int)enterDirection-2)%2, ((int)enterDirection-1)%2);
+        DeleteCorridor();
+        ChangePlayerCoordinates(calculateYDirectionCoeff(enterDirection), calculateXDirectionCoeff(enterDirection));
+        SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
+        SetCorrectPlayerPosition(enterDirection);
+    }
+
+    int calculateXDirectionCoeff(DirectionType enterDirection)
+    {
+        return ((int)enterDirection - 1) % 2;
+    }
+    int calculateYDirectionCoeff(DirectionType enterDirection)
+    {
+        return ((int)enterDirection - 2) % 2;
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public partial class PlayerControls : BasicMovement
 {
+    public List<GameObject> PickableItem;
     public void IncludePickable(GameObject newP)
     {
         PickableItem.Add(newP);

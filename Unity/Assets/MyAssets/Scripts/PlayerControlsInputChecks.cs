@@ -15,6 +15,36 @@ public partial class PlayerControls : BasicMovement
         move.movementMultiplier = Input.GetAxis("Horizontal");
     }
 
+    private void CheckPass()
+    {
+        if (land.landed)
+        {
+            if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            {
+                if (HaveSuchPassage(DirectionType.North))
+                    Pass(DirectionType.North);
+            }
+            if (Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+            {
+                if (HaveSuchPassage(DirectionType.South))
+                    Pass(DirectionType.South);
+            }
+            if (move.movementMultiplier != 0)
+            {
+                if (move.movingDirection == -1)
+                {
+                    if (HaveSuchPassage(DirectionType.West))
+                        Pass(DirectionType.West);
+                }
+                else
+                {
+                    if (HaveSuchPassage(DirectionType.East))
+                        Pass(DirectionType.East);
+                }
+            }
+        }
+    }
+
     private void CheckJumpInput()
     {
         if (Input.GetButton("Jump"))

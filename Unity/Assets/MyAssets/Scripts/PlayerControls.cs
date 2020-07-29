@@ -4,7 +4,6 @@ using UnityEngine;
 
 public partial class PlayerControls : BasicMovement
 {
-    public List<GameObject> PickableItem;
     private int crawlTimer;
 
     public GameObject Hip;
@@ -52,6 +51,7 @@ public partial class PlayerControls : BasicMovement
         if(!inMenu)
         {
             PlayerCheckMove();
+            CheckPass();
             CheckLand();
             CheckJumpInput();
             wall.UpdateHold();

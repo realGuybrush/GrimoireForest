@@ -8,7 +8,7 @@ public class PlayerSteppedOnTile : MonoBehaviour
     {
         if (c.gameObject.name.Contains("Ground"))
         {
-            GameObject.Find("WorldManager").GetComponent<WorldManagement>().CalculatePlayerCorridorOffset((int)this.gameObject.transform.position.x, 0);
+            GameObject.Find("WorldManager").GetComponent<WorldManagement>().CalculatePlayerCorridorOffset((int)this.gameObject.transform.position.x);
         }
     }
 
