@@ -41,10 +41,10 @@ public partial class WorldManagement : MonoBehaviour
             ItemPrefabs[i].GetComponent<Item>().Start2();
         }
         SetBiomePrefabs();
-        MapGeneration();
-        PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
-        PlayerYMap = (int)GlobalMap.Biomes[0].Center.y;
-        SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
+        //MapGeneration();
+        //PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
+        //PlayerYMap = (int)GlobalMap.Biomes[0].Center.y;
+        //SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
         //current_Scene = 0;//move it in load after it is fixed
         //LoadInitialScenesData();
         //SaveItemsData();

@@ -36,6 +36,9 @@ public class MenuButtons : MonoBehaviour
             case "No":
                 Menu.ContinueAction(false);
                 break;
+            case "Launch":
+                Menu.LaunchNewGame();
+                break;
             default:
                 break;
         }

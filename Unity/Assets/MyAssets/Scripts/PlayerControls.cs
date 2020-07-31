@@ -41,7 +41,7 @@ public partial class PlayerControls : BasicMovement
         munitions.maxAmount = 11;
         munitions.Start();
         PickableItem = new List<GameObject>();
-        ShowHideMenu();
+        //ShowHideMenu();
     }
 
     // Update is called once per frame

@@ -32,6 +32,14 @@ public class MenuController : MonoBehaviour
     {
         NewGameSheet.SetActive(true);
     }
+
+    public void LaunchNewGame()
+    {
+        Escape();
+        FlipMenu(false);
+        inGame = true;
+        GameObject.Find("WorldManager").GetComponent<WorldManagement>().MapGeneration();
+    }
     public void Resume()
     {
         CloseAll();
@@ -97,23 +105,11 @@ public class MenuController : MonoBehaviour
         }
         else
         {
-            GameObject G, F;
             switch (continueAction)
             {
                 case "Load":
-                    G = GameObject.Find("NewGame");
-                    if (G != null)
-                    {
-                        G.name = "Resume";
-                        G.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Resume";
-                    }
-                    F = GameObject.Find("Exit");
-                    if (F != null)
-                    {
-                        F.name = "Quit";
-                        F.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Quit";
-                    }
                     //WM.Load(SlotIndex);
+                    FlipMenu(false);
                     inGame = true;
                     Resume();
                     break;
@@ -122,18 +118,7 @@ public class MenuController : MonoBehaviour
                     break;
                 case "Quit":
                     //WM.DestroyWorld();
-                    G = GameObject.Find("Resume");
-                    if (G != null)
-                    {
-                        G.name = "NewGame";
-                        G.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "New Game";
-                    }
-                    F = GameObject.Find("Quit");
-                    if (F != null)
-                    {
-                        F.name = "Exit";
-                        F.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Exit";
-                    }
+                    FlipMenu(true);
                     inGame = false;
                     break;
                 case "Exit":
@@ -141,6 +126,40 @@ public class MenuController : MonoBehaviour
                     break;
                 default:
                     break;
+            }
+        }
+    }
+    public void FlipMenu(bool mainmenu)
+    {
+        GameObject G, F;
+        if (mainmenu)
+        {
+            G = GameObject.Find("Resume");
+            if (G != null)
+            {
+                G.name = "NewGame";
+                G.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "New Game";
+            }
+            F = GameObject.Find("Quit");
+            if (F != null)
+            {
+                F.name = "Exit";
+                F.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Exit";
+            }
+        }
+        else
+        {
+            G = GameObject.Find("NewGame");
+            if (G != null)
+            {
+                G.name = "Resume";
+                G.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Resume";
+            }
+            F = GameObject.Find("Exit");
+            if (F != null)
+            {
+                F.name = "Quit";
+                F.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Quit";
             }
         }
     }

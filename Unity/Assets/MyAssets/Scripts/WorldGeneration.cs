@@ -109,5 +109,10 @@ public partial class WorldManagement : MonoBehaviour
     public void MapGeneration()
     {
         GlobalMap.Generate_Map(BiomePrefabs[0]);
+        PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
+        PlayerYMap = (int)GlobalMap.Biomes[0].Center.y;
+        SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
+        Player.GetComponent<PlayerControls>().ShowHideMenu();
+        Player.transform.position = new Vector3(0.0f, 0.0f, Player.transform.position.z);
     }
 }
