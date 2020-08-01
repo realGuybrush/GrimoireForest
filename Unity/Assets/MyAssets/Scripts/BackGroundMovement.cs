@@ -25,6 +25,6 @@ public class BackGroundMovement : MonoBehaviour
 
     public void SetPosition()
     {
-        this.gameObject.transform.position = new Vector3((mainCamera.transform.position.x + tileOffset*tileWidth)*movementCoefficient, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        this.gameObject.transform.position = new Vector3((mainCamera.transform.position.x)*movementCoefficient + tileOffset*tileWidth, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
     }
 }

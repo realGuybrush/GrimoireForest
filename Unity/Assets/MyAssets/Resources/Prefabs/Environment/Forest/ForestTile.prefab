@@ -206,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4357603049260070888}
   - component: {fileID: 7542800610964431118}
-  - component: {fileID: 6252216284139181963}
+  - component: {fileID: 1930251059979371760}
   m_Layer: 8
   m_Name: ForestBGLeftPath
   m_TagString: Untagged
@@ -254,7 +254,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3.4990396}
   m_EdgeRadius: 0
---- !u!114 &6252216284139181963
+--- !u!114 &1930251059979371760
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -263,7 +263,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2495796037004357280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9509ef916c355e4449165f4bfba3caf5, type: 3}
+  m_Script: {fileID: 11500000, guid: f74eb6b881b18e441986e62435246737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LocalDirection: 3
@@ -277,7 +277,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5277447391787076699}
   - component: {fileID: 6049365260881382360}
-  - component: {fileID: 827216440046571269}
+  - component: {fileID: 8904934724553238624}
   m_Layer: 8
   m_Name: ForestBGRightPath
   m_TagString: Untagged
@@ -325,7 +325,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 3.9310646}
   m_EdgeRadius: 0
---- !u!114 &827216440046571269
+--- !u!114 &8904934724553238624
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3611744912047187248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9509ef916c355e4449165f4bfba3caf5, type: 3}
+  m_Script: {fileID: 11500000, guid: f74eb6b881b18e441986e62435246737, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   LocalDirection: 1
@@ -535,7 +535,7 @@ PrefabInstance:
     - target: {fileID: 5167701361350881407, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
       propertyPath: tileWidth
-      value: 150
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7897858228010572308, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
@@ -778,7 +778,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2057528933, guid: 9dfce94a6d3d16b4492b3189a8d9be36, type: 3}
       propertyPath: tileWidth
-      value: 150
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
@@ -788,7 +788,7 @@ PrefabInstance:
     - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
       propertyPath: tileWidth
-      value: 150
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768748, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
@@ -938,7 +938,7 @@ PrefabInstance:
     - target: {fileID: 8721058188467773101, guid: f9db5021d6d65424a8f39a2a233482d7,
         type: 3}
       propertyPath: tileWidth
-      value: 150
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f9db5021d6d65424a8f39a2a233482d7, type: 3}
