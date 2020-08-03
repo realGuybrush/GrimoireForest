@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BasicClimb
 {
@@ -21,14 +21,6 @@ public class BasicClimb
 
         return false;
     }
-
-    /*public void UpdateClimb(bool canClimb = false)
-    {
-        if (canClimb)
-        {
-            Climb();
-        }
-    }*/
 
     public void Climb()
     {

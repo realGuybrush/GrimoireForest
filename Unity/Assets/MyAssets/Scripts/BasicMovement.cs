@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
 {
@@ -85,6 +85,12 @@ public class BasicMovement : MonoBehaviour
             anim.SetVar("Jump", true);
             anim.SetVar("Roll", true);
         }
+    }
+
+    public bool isClimbing()
+    {if (anim.a.GetBool("Climb"))
+            return true;
+        return false;
     }
 
     public void BasicCheckClimb()

@@ -48,7 +48,7 @@ public partial class PlayerControls : BasicMovement
     private void Update()
     {
         CheckWeaponSpell();
-        if(!inMenu)
+        if(!inMenu&&!isClimbing())
         {
             PlayerCheckMove();
             CheckPass();

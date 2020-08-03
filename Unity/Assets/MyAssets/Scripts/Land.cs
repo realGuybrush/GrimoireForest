@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BasicLand
 {
@@ -12,7 +12,7 @@ public class BasicLand
     public bool landed = true;
     private int landTimer;
     private readonly Rigidbody2D thisObject;
-    private float xSpeedPreHold;
+    private Vector3 PosPreHold;
 
     public BasicLand(Rigidbody2D newThisObject, BasicJump newJump, BasicClimb newClimb, int newHoldingMaximumTime = 0,
         bool newCanJump = true, bool newCanClimb = false)
@@ -38,10 +38,13 @@ public class BasicLand
     {
         if (landChecker)
         {
-            Land();
-            if (canHold)
+            if (!holding)
             {
-                Hold();
+                Land();
+                if (canHold)
+                {
+                    Hold();
+                }
             }
         }
         else
@@ -52,7 +55,7 @@ public class BasicLand
 
     public bool UpdateHold()
     {
-        var zeroSpeed = new Vector2(xSpeedPreHold * 1.5f, 0.195f); //0.195f - y speed needed to prevent falling
+        //var zeroSpeed = new Vector2(xSpeedPreHold * 1.5f, 0.195f); //0.195f - y speed needed to prevent falling
         if (landed)
         {
             if (landTimer == 0)
@@ -62,7 +65,8 @@ public class BasicLand
             }
 
             landTimer--;
-            thisObject.velocity = zeroSpeed;
+            //thisObject.velocity = zeroSpeed;
+            thisObject.transform.position = PosPreHold;
         }
         else
         {
@@ -78,7 +82,9 @@ public class BasicLand
         jump.successfulJumps = 0;
         landTimer = holdingMaximumTime;
         holding = true;
-        xSpeedPreHold = thisObject.velocity.x;
+        //xSpeedPreHold = thisObject.velocity.x;
+        PosPreHold = thisObject.transform.position;
+        thisObject.velocity = new Vector2(0.0f, 0.0f);
     }
 
     public void Unhold()

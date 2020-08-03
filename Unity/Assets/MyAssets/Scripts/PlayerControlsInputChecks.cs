@@ -49,7 +49,7 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetButton("Jump"))
         {
-            if (!BasicCheckHold() && !anim.a.GetBool("Climb"))
+            if (!BasicCheckHold() && !isClimbing())
             {
                 if (move.crawl.crawling)
                 {

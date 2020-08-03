@@ -780,6 +780,10 @@ PrefabInstance:
       propertyPath: tileWidth
       value: 70
       objectReference: {fileID: 0}
+    - target: {fileID: 2057528933, guid: 9dfce94a6d3d16b4492b3189a8d9be36, type: 3}
+      propertyPath: movementCoefficient
+      value: 0.9
+      objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
       propertyPath: mainCamera
@@ -789,6 +793,11 @@ PrefabInstance:
         type: 3}
       propertyPath: tileWidth
       value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 2147370547864768747, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
+        type: 3}
+      propertyPath: movementCoefficient
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 2147370547864768748, guid: 9dfce94a6d3d16b4492b3189a8d9be36,
         type: 3}
