@@ -56,7 +56,7 @@ public class BasicLand
     public bool UpdateHold()
     {
         //var zeroSpeed = new Vector2(xSpeedPreHold * 1.5f, 0.195f); //0.195f - y speed needed to prevent falling
-        if (landed)
+        if (holding)
         {
             if (landTimer == 0)
             {

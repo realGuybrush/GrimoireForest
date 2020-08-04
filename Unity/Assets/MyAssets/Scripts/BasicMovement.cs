@@ -24,7 +24,11 @@ public class BasicMovement : MonoBehaviour
     public bool BasicCheckHold(bool setGrabValue = false)
     {
         var holding = land.holding || ledge.holding || wall.holding || step.holding;
-        //if (setGrabValue)
+        if (holding)// setGrabValue
+        {
+            anim.SetVar("Grab", holding);
+        }
+        else
         {
             anim.SetVar("Grab", holding);
         }
@@ -87,10 +91,9 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
-    public bool isClimbing()
-    {if (anim.a.GetBool("Climb"))
-            return true;
-        return false;
+    public bool IsClimbing()
+    {
+        return anim.a.GetBool("Climb");
     }
 
     public void BasicCheckClimb()

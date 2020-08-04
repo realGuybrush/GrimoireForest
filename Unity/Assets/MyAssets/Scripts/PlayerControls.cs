@@ -48,7 +48,7 @@ public partial class PlayerControls : BasicMovement
     private void Update()
     {
         CheckWeaponSpell();
-        if(!inMenu&&!isClimbing())
+        if(!inMenu&&!IsClimbing())
         {
             PlayerCheckMove();
             CheckPass();
@@ -161,13 +161,13 @@ public partial class PlayerControls : BasicMovement
     // рэгдолл игрока при слишком большом уроне, 
     //инвентарь, +
     // меню инвентаря, +
-    //меню, 
-    //генерация карты, 
-    // генерация уровней, 
+    //меню, +
+    //генерация карты, +
+    // генерация уровней, +
     // меню карты, 
     //сохранение, 
     //загрузка, 
-    //главное меню.
+    //главное меню. +
     //Потом враги, 
     // их ИИ, 
     // анимации, 
@@ -178,6 +178,6 @@ public partial class PlayerControls : BasicMovement
     //weapon script
     //roll +
     //combinations of buttons x
-    //more than one scene
-    //interscene movement
+    //more than one scene +
+    //interscene movement +
 }
