@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class AttackInAnimation : StateMachineBehaviour
 {
-    public string animatorOwner;
     private GameObject aO;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        aO = GameObject.Find(animatorOwner);
+        aO = animator.gameObject;
         if (aO.GetComponent<PlayerControls>() != null)
         {
             if (aO.GetComponent<PlayerControls>().Weapon != null)
@@ -28,7 +27,7 @@ public class AttackInAnimation : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        aO = GameObject.Find(animatorOwner);
+        aO = animator.gameObject;
         if (aO.GetComponent<PlayerControls>() != null)
         {
             if (aO.GetComponent<PlayerControls>().Weapon != null)

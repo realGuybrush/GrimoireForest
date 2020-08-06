@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class PlayerClimb : StateMachineBehaviour
 {
@@ -15,7 +15,7 @@ public class PlayerClimb : StateMachineBehaviour
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameObject.Find("Player").GetComponent<Animator>().SetBool("Climb", false);
+        animator.SetBool("Climb", false);
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove(). Code that processes and affects root motion should be implemented here
