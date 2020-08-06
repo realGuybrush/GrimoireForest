@@ -5,11 +5,14 @@ public class Item : MonoBehaviour
     private ContactPoint2D grabPoint1;
     private ContactPoint2D grabPoint2;
     public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
+    public Vector3 projectilePosition = new Vector3(0.5f, 0.0f, 0.0f);
+    public Vector2 projectileVelocity = new Vector2(50.0f, 0.0f);
     public ItemCharacteristics itemValues;
     private Collider2D thisCollider;
     public Sprite InventoryImage;
     private bool set;
     private int atkType;
+    private string masterName;
     //onCollision
     // search for hp script and extract hp.
     void Start()
@@ -24,6 +27,7 @@ public class Item : MonoBehaviour
         itemValues.kick = "Atk4";
         itemValues.maxStack = 2;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
+        masterName = "Player";
     }
     public void Start2()
     {
@@ -44,14 +48,15 @@ public class Item : MonoBehaviour
         set = value;
         atkType = type;
     }
-    public void Shoot()
+    public void Shoot(Vector3 directions)
     {
+        Vector3 newPosition = this.transform.position + new Vector3(projectilePosition.x * directions.x, projectilePosition.y * directions.y, 0.0f);
         Start2();
         if (itemValues.GetProjectile(atkType) != null)
         {
             set = false;
-            GameObject bullet = GameObject.Instantiate(itemValues.GetProjectile(atkType));// add position
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(10.0f, 0.0f);// make it normal
+            GameObject bullet = GameObject.Instantiate(itemValues.GetProjectile(atkType), newPosition, new Quaternion());// add position
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileVelocity.x*directions.x, projectileVelocity.y * directions.y);// make it normal
             //set any gun buffs for bullet.GetComponent<Projectile>().debuff
         }
     }
@@ -66,13 +71,18 @@ public class Item : MonoBehaviour
         }
         else
         {
-            if (collision.gameObject.GetComponent<Health>() != null)
+            if (set)
             {
-                collision.gameObject.GetComponent<Health>().Substract(itemValues.GetBuff(atkType).atk);
-            }
-            if (collision.gameObject.GetComponent<BasicMovement>() != null)
-            {
-                collision.gameObject.GetComponent<BasicMovement>().thisHealth.Substract(itemValues.GetBuff(atkType).atk);
+                if (collision.gameObject.name.Contains(masterName))
+                { return; }
+                if (collision.gameObject.GetComponent<Health>() != null)
+                {
+                    collision.gameObject.GetComponent<Health>().Substract(itemValues.GetBuff(atkType).atk);
+                }
+                if (collision.gameObject.GetComponent<BasicMovement>() != null)
+                {
+                    collision.gameObject.GetComponent<BasicMovement>().thisHealth.Substract(itemValues.GetBuff(atkType).atk);
+                }
             }
         }
     }

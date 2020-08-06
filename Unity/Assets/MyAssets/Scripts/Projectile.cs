@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public int lifeTime = 100;
     public int atk = 5;
     public Buff debuff;
     // Start is called before the first frame update
@@ -15,11 +16,17 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        lifeTime--;
+        if (lifeTime < 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if ((collision.gameObject.layer == 8)|| (collision.gameObject.layer == 9)|| (collision.gameObject.layer == 12))
+        { return; }
         if (collision.gameObject.GetComponent<Health>() != null)
         {
             collision.gameObject.GetComponent<Health>().Substract(atk);

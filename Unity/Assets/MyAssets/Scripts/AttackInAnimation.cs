@@ -14,7 +14,7 @@ public class AttackInAnimation : StateMachineBehaviour
         {
             if (aO.GetComponent<PlayerControls>().Weapon != null)
             {
-                aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().Shoot();
+                aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().Shoot(new Vector3(aO.GetComponent<PlayerControls>().flip.facingRight?1.0f:-1.0f, 0.0f, 0.0f));
             }
         }
     }
