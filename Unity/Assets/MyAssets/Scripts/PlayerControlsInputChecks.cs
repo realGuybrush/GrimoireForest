@@ -163,49 +163,52 @@ public partial class PlayerControls : BasicMovement
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                BasicAtk1(true, GetAttackType(1));
+                BasicAtk1(true, GetAttackType(1), GetBuff(1));
+                Weapon.GetComponent<Item>().Attack(true, 1);
             }
 
             if (Input.GetButtonUp("Fire1"))
             {
-                BasicAtk1(false, GetAttackType(1));
+                BasicAtk1(false, GetAttackType(1), GetBuff(1));
             }
 
             if (Input.GetButtonDown("Fire2"))
             {
-                BasicAtk1(true, GetAttackType(2));
+                BasicAtk1(true, GetAttackType(2), GetBuff(2));
+                Weapon.GetComponent<Item>().Attack(true, 2);
                 //thisHealth.AddBuff(-1, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             }
 
             if (Input.GetButtonUp("Fire2"))
             {
-                BasicAtk1(false, GetAttackType(2));
+                BasicAtk1(false, GetAttackType(2), GetBuff(2));
             }
         }
         if (Weapon != null)
         {
             if (Input.GetButtonDown("Fire3"))
             {
-                BasicAtk1(true, GetAttackType(3));
+                BasicAtk1(true, GetAttackType(3), GetBuff(3));
+                Weapon.GetComponent<Item>().Attack(true, 3);
                 //thisHealth.AddBuff(-1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             }
 
             if (Input.GetButtonUp("Fire3"))
             {
-                BasicAtk1(false, GetAttackType(3));
+                BasicAtk1(false, GetAttackType(3), GetBuff(3));
             }
         }
         else
         {
             if (Input.GetButtonDown("Fire3"))
             {
-                BasicAtk1(true, "Atk4");
+                BasicAtk1(true, "Atk4", new Buff());
                 //thisHealth.AddBuff(-1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             }
 
             if (Input.GetButtonUp("Fire3"))
             {
-                BasicAtk1(false, "Atk4");
+                BasicAtk1(false, "Atk4", new Buff());
             }
         }
     }

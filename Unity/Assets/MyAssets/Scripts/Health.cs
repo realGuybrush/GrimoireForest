@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class Health : MonoBehaviour
 {
@@ -43,6 +43,10 @@ public class Health : MonoBehaviour
     {
         values.AddBuff(time, amountOfHits, atk, percentAtk, percentXSpd, percentYSpd, def, percentDef, hp, percentHp,
             maxHp, percentMaxHp);
+    }
+    public void AddBuff(Buff buff)
+    {
+        values.AddBuff(buff);
     }
 
     public void UpdateTimes()

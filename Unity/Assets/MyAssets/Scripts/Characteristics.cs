@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 public class Characteristics
 {
@@ -10,6 +10,10 @@ public class Characteristics
     private int health = 10;
     public string name;
 
+    public void AddBuff(Buff buff)
+    {
+        buffs.Add(new Buff(buff));
+    }
     public void AddBuff(int time, int amountOfHits, int atk, int percentAtk, float percentXSpd, float percentYSpd,
         int def, int percentDef, int hp, int percentHp, int maxHp, int percentMaxHp)
     {

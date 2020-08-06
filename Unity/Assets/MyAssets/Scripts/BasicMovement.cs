@@ -119,10 +119,11 @@ public class BasicMovement : MonoBehaviour
         }
     }
 
-    public void BasicAtk1(bool atk, string attackType)
+    public void BasicAtk1(bool atk, string attackType, Buff buff)
     {
         anim.SetVar(attackType, atk);
         thisHealth.values.attacking = true;
+        thisHealth.values.AddBuff(buff);
     }
 
     /*public void BasicAtk2(bool atk)

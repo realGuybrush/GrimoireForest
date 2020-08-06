@@ -196,4 +196,8 @@ public partial class PlayerControls : BasicMovement
         }
         return "";
     }
+    public Buff GetBuff(int attackIndex)
+    {
+        return Weapon.GetComponent<Item>().itemValues.GetBuff(attackIndex);
+    }
 }
