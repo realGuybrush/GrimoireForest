@@ -41,6 +41,7 @@ public partial class PlayerControls : BasicMovement
         munitions.maxAmount = 11;
         munitions.Start();
         PickableItem = new List<GameObject>();
+        defaultBackAngle = Back.transform.eulerAngles;
         //ShowHideMenu();
     }
 
@@ -64,6 +65,7 @@ public partial class PlayerControls : BasicMovement
             CheckNumberInput();
             BasicCheckMidAir();
             BasicCheckHold();
+            FollowCursor();
         }
         CheckInventoryInput();
         CheckEsc();
@@ -150,13 +152,13 @@ public partial class PlayerControls : BasicMovement
     //Можно сделать предметы, 
     //собирание предметов, +
     //навешивание их на специально выделенные объекты на руках, + 
-    //баффы предметов на атаки, 
+    //баффы предметов на атаки, +
     //распределение того, какая атака вызывает какую анимацию, +
-    //генерация снарядов, 
-    //манекен для битья, 
-    // атака, 
-    // оборона, 
-    // смерть, 
+    //генерация снарядов, +
+    //манекен для битья, +
+    // атака, +
+    // оборона, +
+    // смерть, +
     // рэгдолл трупа монстров, или анимации, 
     // рэгдолл игрока при слишком большом уроне, 
     //инвентарь, +
