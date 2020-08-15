@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
     private ContactPoint2D grabPoint2;
     public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
     public Vector3 projectilePosition = new Vector3(0.5f, 0.0f, 0.0f);
-    public Vector2 projectileVelocity = new Vector2(50.0f, 0.0f);
+    public Vector2 projectileVelocity = new Vector2(50.0f, 50.0f);
     public ItemCharacteristics itemValues;
     private Collider2D thisCollider;
     public Sprite InventoryImage;
@@ -56,7 +56,7 @@ public class Item : MonoBehaviour
         {
             set = false;
             GameObject bullet = GameObject.Instantiate(itemValues.GetProjectile(atkType), newPosition, new Quaternion());// add position
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileVelocity.x*directions.x, projectileVelocity.y * directions.y);// make it normal
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileVelocity.x*directions.x*Mathf.Cos(directions.z), projectileVelocity.y * Mathf.Sin(directions.z));// make it normal
             //set any gun buffs for bullet.GetComponent<Projectile>().debuff
         }
     }
