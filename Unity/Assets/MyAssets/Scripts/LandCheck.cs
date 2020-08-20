@@ -13,6 +13,7 @@ public class LandCheck : MonoBehaviour
     private void Start()
     {
         ignoreLayer.Add(8);
+        ignoreLayer.Add(13);
     }
     private void OnTriggerEnter2D(Collider2D c)
     {

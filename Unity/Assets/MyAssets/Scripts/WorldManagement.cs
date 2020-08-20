@@ -35,6 +35,8 @@ public partial class WorldManagement : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+        Physics2D.IgnoreLayerCollision(8, 11);
+        Physics2D.IgnoreLayerCollision(13, 11);
         Player = GameObject.Find("Player");
         for (int i = 0; i < ItemPrefabs.Count; i++)
         {

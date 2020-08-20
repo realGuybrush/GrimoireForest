@@ -13,7 +13,11 @@ public class AttackInAnimation : StateMachineBehaviour
         {
             if (aO.GetComponent<PlayerControls>().Weapon != null)
             {
-                aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().Shoot(new Vector3((aO.GetComponent<PlayerControls>().flip.facingRight?1.0f:-1.0f), 0.0f, aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z));
+                Item item = aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>();
+                if (aO.GetComponent<PlayerControls>().inventory.Remove(item.projectileIndex, item.projectilePerShot))
+                {
+                    item.Shoot(new Vector3((aO.GetComponent<PlayerControls>().flip.facingRight ? 1.0f : -1.0f), 0.0f, aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z));
+                }
             }
         }
     }

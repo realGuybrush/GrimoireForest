@@ -35,6 +35,53 @@ public class Inventory
         }
         return false;
     }
+
+    public bool Remove(int itemIndex, int amount)
+    {
+        if (moreThanThisLeft(itemIndex, amount))
+        {
+            if (amount == 0)
+                return true;
+            for (int i = 0; i < Items.Count; i++)
+            {
+                if (Items[i] == itemIndex)
+                {
+                    if (stacks[i] <= amount)
+                    {
+                        amount -= stacks[i];
+                        stacks[i] = 0;
+                        Items[i] = -1;
+                    }
+                    else
+                    {
+                        stacks[i] -= amount;
+                        return true;
+                    }
+                }
+                if (amount == 0)
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public bool moreThanThisLeft(int itemIndex, int amount)
+    {
+        for (int i = 0; i < Items.Count; i++)
+        {
+            if (Items[i] == itemIndex)
+            {
+                amount -= stacks[i];
+                if (amount <= 0)
+                {
+                    return true;
+                }
+            }
+        }
+        if (amount <= 0)
+            return true;
+        return false;
+    }
     public void Load(List<int> invemtory, List<int> Stacks)
 	{
 		Items = invemtory;

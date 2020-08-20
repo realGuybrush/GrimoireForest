@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8737539376818025111}
   - component: {fileID: 1361624348135588159}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BgNear_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8887973754488141644}
   - component: {fileID: 4476758779830776461}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BgNear_4 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 95314038216609467}
   - component: {fileID: 1887315554860789089}
   - component: {fileID: 1127187776864166416}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: ForestBG1Path
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5845237114383191709}
   - component: {fileID: 7431775518096289882}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BgNear_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
