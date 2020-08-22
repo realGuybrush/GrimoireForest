@@ -10476,6 +10476,16 @@ PrefabInstance:
       propertyPath: Book
       value: 
       objectReference: {fileID: 7545795}
+    - target: {fileID: 4261192396270076538, guid: e3f9363aba6a9274ea8d660206f5f714,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.0825473
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261192396270076538, guid: e3f9363aba6a9274ea8d660206f5f714,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9965872
+      objectReference: {fileID: 0}
     - target: {fileID: 4261192396284073257, guid: e3f9363aba6a9274ea8d660206f5f714,
         type: 3}
       propertyPath: m_Mesh
@@ -12795,11 +12805,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Gun
-      objectReference: {fileID: 0}
-    - target: {fileID: 5709847547725100360, guid: 09af8eec5d848ea4786235efda87ee28,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09af8eec5d848ea4786235efda87ee28, type: 3}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject ignore;
     public int lifeTime = 100;
     public int atk = 5;
     public Buff debuff;
@@ -23,9 +24,9 @@ public class Projectile : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.layer == 8)|| (collision.gameObject.layer == 9)|| (collision.gameObject.layer == 12))
+        if ((collision.gameObject.layer == 8)|| (collision.gameObject.layer == 9)|| (collision.gameObject.layer == 12) || collision.gameObject == ignore)
         { return; }
         if (collision.gameObject.GetComponent<Health>() != null)
         {

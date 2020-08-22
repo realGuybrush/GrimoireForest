@@ -21,6 +21,8 @@ public class BasicMovement : MonoBehaviour
     public BasicLand wall;
     public LandCheck wallChecker;
 
+    public bool attacking = false;
+
     public bool BasicCheckHold(bool setGrabValue = false)
     {
         var holding = land.holding || ledge.holding || wall.holding || step.holding;

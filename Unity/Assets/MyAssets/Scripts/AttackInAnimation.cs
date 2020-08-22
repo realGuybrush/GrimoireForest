@@ -16,6 +16,8 @@ public class AttackInAnimation : StateMachineBehaviour
                 Item item = aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>();
                 if (aO.GetComponent<PlayerControls>().inventory.Remove(item.projectileIndex, item.projectilePerShot))
                 {
+                    aO.GetComponent<PlayerControls>().attacking = true;
+                    aO.GetComponent<PlayerControls>().StartFollowingCursor();
                     item.Shoot(new Vector3((aO.GetComponent<PlayerControls>().flip.facingRight ? 1.0f : -1.0f), aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z< 180?1.0f:-1.0f, aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z));
                 }
             }
@@ -36,6 +38,7 @@ public class AttackInAnimation : StateMachineBehaviour
         {
             if (aO.GetComponent<PlayerControls>().Weapon != null)
             {
+                aO.GetComponent<PlayerControls>().attacking = false;
                 aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().Attack(false, 1);
             }
         }
