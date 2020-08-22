@@ -5,7 +5,7 @@ public class Item : MonoBehaviour
     private ContactPoint2D grabPoint1;
     private ContactPoint2D grabPoint2;
     public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
-    public Vector2 projectileVelocity = new Vector2(50.0f, 50.0f);
+    public float projectileVelocity = 50.0f;
     public ItemCharacteristics itemValues;
     private Collider2D thisCollider;
     public Sprite InventoryImage;
@@ -53,14 +53,18 @@ public class Item : MonoBehaviour
     }
     public void Shoot(Vector3 directions)
     {
+        float z = directions.z >= 270.0f ? directions.z - 360.0f : directions.z;
         Vector3 projectilePosition = this.gameObject.transform.GetChild(0).transform.position;
         //Vector3 newPosition = this.transform.position + new Vector3(projectilePosition.x * directions.x, projectilePosition.y * directions.y, 0.0f);
         Start2();
         if (itemValues.GetProjectile(atkType) != null)
         {
+            Debug.Log(z.ToString() + " " + Mathf.Abs(Mathf.Cos(z)).ToString() + " " + Mathf.Abs(Mathf.Sin(z)).ToString());
             set = false;
-            GameObject bullet = GameObject.Instantiate(itemValues.GetProjectile(atkType), projectilePosition, new Quaternion());// add position
-            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileVelocity.x*Mathf.Cos(directions.z), projectileVelocity.y * Mathf.Sin(directions.z));// make it normal
+            GameObject bullet = GameObject.Instantiate(itemValues.GetProjectile(atkType), projectilePosition, Quaternion.identity); //new Quaternion());// add position
+            bullet.transform.right = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.transform.position.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - bullet.transform.position.y);
+            bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right*projectileVelocity;
+            //bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileVelocity.x, 0.0f);//projectileVelocity.x*directions.x*Mathf.Abs(Mathf.Cos(z)), projectileVelocity.y * directions.y * Mathf.Abs(Mathf.Sin(z)));// make it normal
             //set any gun buffs for bullet.GetComponent<Projectile>().debuff
         }
     }
