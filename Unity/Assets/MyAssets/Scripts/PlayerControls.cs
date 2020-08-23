@@ -8,6 +8,7 @@ public partial class PlayerControls : BasicMovement
 
     public GameObject Hip;
     public GameObject Back;
+    public GameObject Head;
     public GameObject leftArm;
     public GameObject leftHand;
     public GameObject rightArm;
@@ -41,7 +42,7 @@ public partial class PlayerControls : BasicMovement
         munitions.maxAmount = 11;
         munitions.Start();
         PickableItem = new List<GameObject>();
-        defaultBackAngle = Back.transform.eulerAngles;
+        SetDefaultBoneAngles();
         //ShowHideMenu();
     }
 

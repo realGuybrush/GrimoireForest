@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.5000005
+  m_Length: 0.5000004
   m_ChildTransform: {fileID: 4261192396522044792}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &4261192395592221541
@@ -1611,8 +1611,10 @@ MonoBehaviour:
   thisHealth: {fileID: 4261192396113293067}
   thisObject: {fileID: 4261192396113293061}
   wallChecker: {fileID: 4261192396604193565}
+  attacking: 0
   Hip: {fileID: 4261192395150279459}
   Back: {fileID: 4261192396270076533}
+  Head: {fileID: 4261192395129857359}
   leftArm: {fileID: 4261192395587714474}
   leftHand: {fileID: 4261192396522044795}
   rightArm: {fileID: 4261192395163508399}
@@ -1999,7 +2001,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4261192396270076533}
-  m_LocalRotation: {x: -0, y: -0, z: -0.08254376, w: 0.9965875}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0825473, w: 0.9965872}
   m_LocalPosition: {x: 0.8000003, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
