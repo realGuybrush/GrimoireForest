@@ -121,11 +121,13 @@ public class Map
 
 	void SetTiles()
 	{
-		for (int x = 0; x < Width; x++)
+        List<List<BiomeTilesData>> B = GameObject.Find("WorldManager").GetComponent<WorldManagement>().BiomePrefabs;
+        for (int x = 0; x < Width; x++)
 		{
 			for (int y = 0; y < Height; y++)
 			{
 				SetTileBiome (x, y);
+                GeneratePlatforms(x, y, B);
 			}
 		}
 		GenerateHorizontalCorridors ();
@@ -261,6 +263,16 @@ public class Map
 			}
 		}
 	}
+    void GeneratePlatforms(int x, int y, List<List<BiomeTilesData>> BiomePrefabs)
+    {
+        for (int i = 0; i < BiomePrefabs[(int)Tiles[y][x].biome1][(int)Tiles[y][x].biome2].PlatformPrefab.Count; i++)
+        {
+            if (!BiomePrefabs[(int)Tiles[y][x].biome1][(int)Tiles[y][x].biome2].PlatformPrefab[i].GetComponent<Platform>().sub)
+            {
+                Tiles[y][x].TilePlatforms.AddRange(BiomePrefabs[(int)Tiles[y][x].biome1][(int)Tiles[y][x].biome2].PlatformPrefab[i].GetComponent<Platform>().GeneratePlatforms());
+            }
+        }
+    }
 	/*bool LoadTiles()
 	{
 		// 1

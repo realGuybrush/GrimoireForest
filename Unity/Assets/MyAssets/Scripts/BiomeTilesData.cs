@@ -24,7 +24,7 @@ public class BiomeTilesData
     public Sprite Sky;
     public Sprite Moon;
     public GameObject TilePrefab;
-    public GameObject PlatformPrefab;
+    public List<GameObject> PlatformPrefab = new List<GameObject>();
     public List<GameObject> CoverPrefabs = new List<GameObject>();
     public List<GameObject> EntitiesPrefabs = new List<GameObject>();
 }
