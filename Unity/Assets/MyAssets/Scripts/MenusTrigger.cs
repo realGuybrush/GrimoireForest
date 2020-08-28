@@ -24,12 +24,21 @@ public class MenusTrigger : MonoBehaviour
     }
     public void SetSpell(Inventory inv1, Inventory inv2)
     {
-        Spells.GetComponent<InventoryMovement>().SetInv(inv1, inv2);
-        Spells.GetComponent<InventoryMovement>().ShowHide();
+        Spells.GetComponent<SpellMovement>().SetInv(inv1, inv2);
+        Spells.GetComponent<SpellMovement>().ShowHide();
     }
     public void ShowSpell(bool show)
     {
         Spells.SetActive(show);
+    }
+    public void SetTrade(Inventory inv1, Inventory inv2)
+    {
+        Trade.GetComponent<InventoryMovement>().SetInv(inv1, inv2);
+        Trade.GetComponent<InventoryMovement>().ShowHide();
+    }
+    public void ShowTrade(bool show)
+    {
+        Trade.SetActive(show);
     }
     public void ShowMenu(bool show)
     {

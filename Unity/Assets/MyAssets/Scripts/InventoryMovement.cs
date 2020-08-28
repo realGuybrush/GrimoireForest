@@ -105,14 +105,14 @@ public class InventoryMovement : MonoBehaviour
         UploadToHUD();
     }
 
-    public void SetInv(Inventory PI, Inventory OI)
+    virtual public void SetInv(Inventory PI, Inventory OI)
     {
         playerInventory = PI;
         otherInventory = OI;
         CalculateItemPositions();
     }
 
-    public void CalculateItemPositions()
+    virtual public void CalculateItemPositions()
     {
         if (width == 0 || height == 0)
         {
@@ -173,6 +173,7 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (otherInventory.Items[i] >= 0)
                     {
+                        WM.ItemPrefabs[otherInventory.Items[i]].GetComponent<Item>().Start2();//fix:delete later
                         SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[otherInventory.Items[i]].GetComponent<Item>().InventoryImage;
                         SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 255.0f);
                     }

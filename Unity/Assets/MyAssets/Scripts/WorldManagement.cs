@@ -23,6 +23,7 @@ public partial class WorldManagement : MonoBehaviour
     public GameObject Environment;
 	public List<GameObject> ItemPrefabs = new List<GameObject>();
     public Map GlobalMap = new Map();
+    public GameObject DropPrefab;
     int PlayerXMap, PlayerYMap;
     int PlayerCurrentXMapOffset = 0;
     DirectionType CameraLookDirection = DirectionType.North;

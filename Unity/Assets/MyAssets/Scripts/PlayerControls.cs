@@ -17,7 +17,6 @@ public partial class PlayerControls : BasicMovement
     private float turnAngleRight;
     private bool inMenu = true;
 
-    public Inventory inventory = new Inventory();
     public GameObject Arms;
     public GameObject Book;
 
@@ -41,7 +40,7 @@ public partial class PlayerControls : BasicMovement
         inventory.Start();
         munitions.maxAmount = 11;
         munitions.Start();
-        PickableItem = new List<GameObject>();
+        pickableItem = new List<GameObject>();
         SetDefaultBoneAngles();
         //ShowHideMenu();
     }
@@ -63,12 +62,14 @@ public partial class PlayerControls : BasicMovement
             CheckClimbInput();
             CheckAtkInput();
             CheckPickUpInput();
+            CheckChestInput();
             CheckNumberInput();
             BasicCheckMidAir();
             BasicCheckHold();
             FollowCursor();
         }
         CheckInventoryInput();
+        CheckSpellInput();
         CheckEsc();
         //BasicCheckRoll();
         //CheckDirections();
@@ -124,21 +125,34 @@ public partial class PlayerControls : BasicMovement
         }
     }
 
-    public void ShowHideMenu(bool hideall = true, bool menu = false, bool weaponInv = false, bool spellInv = false, bool tradeInv = false)
+    public void ShowHideMenu(bool hideall = true, bool menu = false, bool weaponInv = false, bool spellInv = false, bool tradeInv = false, bool chestInv = false)
     {
         MenusTrigger MT = Book.GetComponent<MenusTrigger>();
         if (!MT.IsMenuActive())
         {
-            inMenu = !hideall && (menu || weaponInv || spellInv || tradeInv);
+            inMenu = !hideall && (menu || weaponInv || spellInv || tradeInv || chestInv);
             Arms.SetActive(!inMenu);
             Book.SetActive(inMenu);
             MT.ShowMenu(menu);
             MT.ShowInv(weaponInv);
+            MT.ShowSpell(spellInv);
+            MT.ShowTrade(tradeInv||chestInv);
             if (weaponInv)
             {
                 MT.SetInv(inventory, munitions);
             }
-            //the same goes for spells and other menus
+            if (spellInv)
+            {
+                MT.SetSpell(inventory, spells);
+            }
+            if (tradeInv)
+            {
+                //MT.SetTrade(inventory, otherinventory);
+            }
+            if (chestInv)
+            {
+                MT.SetTrade(inventory, chest[chosenChestIndex].GetComponent<Chest>().inventory);
+            }
         }
         else
         {

@@ -32,10 +32,7 @@ public class Health : MonoBehaviour
     public void Substract(int damage)
     {
         values.SetHealth(values.GetHealth() - damage * (100 / (values.GetDefense() + 100)));
-        if (values.GetHealth() <= 0)
-        {
-            Destroy(gameObject);
-        }
+        this.gameObject.GetComponent<BasicMovement>().BasicCheckHealth();//uncomment this to se it work
     }
 
     public void AddBuff(int time, int amountOfHits, int atk, int percentAtk, float percentXSpd, float percentYSpd,

@@ -4,17 +4,17 @@ using UnityEngine;
 
 public partial class PlayerControls : BasicMovement
 {
-    public List<GameObject> PickableItem;
+    public List<GameObject> pickableItem;
     public void IncludePickable(GameObject newP)
     {
-        PickableItem.Add(newP);
+        pickableItem.Add(newP);
     }
 
     public void ExcludePickable(GameObject ExcP)
     {
-        if (PickableItem.Contains(ExcP))
+        if (pickableItem.Contains(ExcP))
         {
-            PickableItem.Remove(ExcP);
+            pickableItem.Remove(ExcP);
         }
     }
 

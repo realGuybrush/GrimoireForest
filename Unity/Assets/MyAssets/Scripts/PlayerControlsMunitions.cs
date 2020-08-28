@@ -23,6 +23,7 @@ public partial class PlayerControls : BasicMovement
     public GameObject Weapon;
 
     public Inventory munitions = new Inventory(11);
+    public Inventory spells = new Inventory(5);
     public int weaponSlotNumber = 0;
     //public int spellSlotNumber = 0;
 
@@ -49,6 +50,14 @@ public partial class PlayerControls : BasicMovement
         {
             if (((munitions.Items[i + 6] == -1) && (Arms.GetComponent<ArmsDepiction>().ArmsAndSpells[i].GetComponent<UnityEngine.UI.Image>().sprite != null)) ||
                 ((munitions.Items[i + 6] != -1) && (Arms.GetComponent<ArmsDepiction>().ArmsAndSpells[i].GetComponent<UnityEngine.UI.Image>().sprite == null)))
+            {
+                Arms.GetComponent<ArmsDepiction>().Update2(i);
+            }
+        }
+        for (int i = 5; i < 10; i++)
+        {
+            if (((spells.Items[i - 5] == -1) && (Arms.GetComponent<ArmsDepiction>().ArmsAndSpells[i].GetComponent<UnityEngine.UI.Image>().sprite != null)) ||
+                ((spells.Items[i - 5] != -1) && (Arms.GetComponent<ArmsDepiction>().ArmsAndSpells[i].GetComponent<UnityEngine.UI.Image>().sprite == null)))
             {
                 Arms.GetComponent<ArmsDepiction>().Update2(i);
             }

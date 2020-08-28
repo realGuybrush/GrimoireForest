@@ -15,7 +15,6 @@ public class EnvironmentStuffingValues
         location = v;
         indexInPrefabs = i;
     }
-
 }
 
 public class MapTile

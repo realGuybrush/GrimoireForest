@@ -48,9 +48,9 @@ public class ArmsDepiction : MonoBehaviour
         }
         else
         {
-            if (Player.munitions.Items[index - 5] > -1)
+            if (Player.spells.Items[index - 5] > -1)
             {
-                ArmsAndSpells[index].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[Player.munitions.Items[index - 5]].GetComponent<Item>().InventoryImage;
+                ArmsAndSpells[index].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[Player.spells.Items[index - 5]].GetComponent<Item>().InventoryImage;
                 ArmsAndSpells[index].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 255.0f);
             }
             else

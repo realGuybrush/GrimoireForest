@@ -22,7 +22,24 @@ public class BasicMovement : MonoBehaviour
     public LandCheck wallChecker;
 
     public bool attacking = false;
+    public Inventory inventory = new Inventory();
 
+    public void BasicCheckHealth()
+    {
+        if (thisHealth.values.GetHealth() <= 0)
+        {
+            DropItems();
+            Destroy(gameObject);//replace it with body dropping later on
+        }
+    }
+    public void DropItems()
+    {
+        WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+        GameObject d = GameObject.Instantiate(WM.DropPrefab, this.transform.position, this.transform.rotation);
+        inventory.Items[0] = 0;//for show
+        inventory.stacks[0] = 1;//uncomment this
+        d.GetComponent<Chest>().SetInventory(inventory);
+    }
     public bool BasicCheckHold(bool setGrabValue = false)
     {
         var holding = land.holding || ledge.holding || wall.holding || step.holding;

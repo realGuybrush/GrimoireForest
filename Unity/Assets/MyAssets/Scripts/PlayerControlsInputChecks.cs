@@ -98,21 +98,38 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            ShowHideMenu(inMenu, false, !inMenu, false, false);
+            ShowHideMenu(inMenu, false, !inMenu, false, false, false);
         }
     }
-
+    public void CheckSpellInput()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            ShowHideMenu(inMenu, false,  false, !inMenu, false, false);
+        }
+    }
     public void CheckPickUpInput()
     {
-        if (PickableItem.Count != 0)
+        if (pickableItem.Count != 0)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                for (int i = 0; i < PickableItem.Count; i++)
+                for (int i = 0; i < pickableItem.Count; i++)
                 {
-                    PickableItem[i].GetComponent<Item>().Start2();
+                    pickableItem[i].GetComponent<Item>().Start2();
                 }
-                PickUp(PickableItem);
+                PickUp(pickableItem);
+            }
+        }
+    }
+    public void CheckChestInput()
+    {
+        if ((pickableItem.Count == 0)&&(chest.Count != 0))
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                ChooseChest();
+                ShowHideMenu(inMenu, false, false, false, false, !inMenu);
             }
         }
     }
@@ -323,6 +340,7 @@ public partial class PlayerControls : BasicMovement
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             ShowHideMenu(inMenu, !inMenu);
+            DeleteEmptyDrops();
         }
     }
 }

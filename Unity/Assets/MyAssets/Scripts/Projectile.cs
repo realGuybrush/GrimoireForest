@@ -31,7 +31,10 @@ public class Projectile : MonoBehaviour
         if (collision.gameObject.GetComponent<Health>() != null)
         {
             collision.gameObject.GetComponent<Health>().Substract(atk);
-            collision.gameObject.GetComponent<Health>().AddBuff(debuff);
+            if (debuff != null)
+            {
+                collision.gameObject.GetComponent<Health>().AddBuff(debuff);
+            }
             Destroy(this.gameObject);
         }
         if (collision.gameObject.GetComponent<BasicMovement>() != null)
