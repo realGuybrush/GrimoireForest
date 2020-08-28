@@ -10,6 +10,11 @@ public class EnemyMovement : BasicMovement
         thisHealth = this.gameObject.GetComponent<Health>();
     }
 
+    private void FixedUpdate()
+    {
+        BasicCheckHealth();
+    }
+
     public bool Near(Vector3 v)
     {
         var x = gameObject.transform.position.x;

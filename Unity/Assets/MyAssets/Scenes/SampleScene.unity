@@ -9123,16 +9123,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 1729772230}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd9bc05012a6f6c4d8bf80b1914ae620, type: 3}
+  m_Script: {fileID: 11500000, guid: fc727ff376b23914d9ce8f9310be583e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   landChecker: {fileID: 0}
   ledgeChecker: {fileID: 0}
   stepChecker: {fileID: 0}
   thisHealth: {fileID: 0}
-  thisObject: {fileID: 0}
+  thisObject: {fileID: 1729772283}
   wallChecker: {fileID: 0}
   attacking: 0
+--- !u!50 &1729772283 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 50934587108283302, guid: 63ae5506af299e6428eb3c7628a20f1f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1729772229}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1770452395
 GameObject:
   m_ObjectHideFlags: 0

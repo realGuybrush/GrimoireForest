@@ -68,6 +68,7 @@ public partial class PlayerControls : BasicMovement
             BasicCheckHold();
             FollowCursor();
         }
+        BasicCheckHealth();
         CheckInventoryInput();
         CheckSpellInput();
         CheckEsc();
