@@ -134,13 +134,47 @@ public partial class WorldManagement : MonoBehaviour
         }
         for (int i = 0; i < MT.TileChests.Count; i++)
         {
-            GameObject.Instantiate(MT.TileChests[i], Environment.transform.GetChild(0).transform);
+            SpawnChest(MT, i);
+        }
+        for (int i = 0; i < MT.TileItems.Count; i++)
+        {
+            Drop(MT.TileItems[i].indexInPrefabs, 1, MT.TileItems[i].location.ToV3());
+        }
+        for (int i = 0; i < MT.TileEntitiesPositions.Count; i++)
+        {
+            SpawnEntity(MT.TileEntitiesPositions[i]);
         }
     }
 
     void Instantiate(BiomeTilesData BTD, EnvironmentStuffingValues ESV, Transform parent)
     {
-        GameObject.Instantiate(BTD.PlatformPrefab[ESV.indexInPrefabs], ESV.location, new Quaternion(), parent);
+        GameObject.Instantiate(BTD.PlatformPrefab[ESV.indexInPrefabs], ESV.location.ToV3(), new Quaternion(), parent);
+    }
+
+    public GameObject SpawnEntity(EntityValues EV)
+    {
+        GameObject entity = GameObject.Instantiate(EntityPrefabs[EV.indexInPrefabs], GameObject.Find("Entities").transform);
+        entity.transform.position = EV.location.ToV3();
+        entity.transform.eulerAngles = EV.rotation.ToV3();
+        entity.GetComponent<Rigidbody2D>().velocity = EV.velocity.ToV3();
+        entity.GetComponent<BasicMovement>().inventory = EV.inventory;
+        entity.GetComponent<BasicMovement>().thisHealth.values = EV.characteristics;
+        return entity;
+    }
+
+    public void SpawnChest(MapTile MT, int i)
+    {
+        GameObject temp;
+        if (MT.TileChests[i].indexInPrefabs == 0)
+        {
+            temp = GameObject.Instantiate(DropPrefab, MT.TileChests[i].location.ToV3(), new Quaternion(), Environment.transform.GetChild(3).transform);
+            temp.GetComponent<Chest>().inventory = MT.TileChestsInventry[i];
+        }
+        else
+        {
+            temp = GameObject.Instantiate(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].ChestPrefab, MT.TileChests[i].location.ToV3(), new Quaternion(), Environment.transform.GetChild(3).transform);
+            temp.GetComponent<Chest>().inventory = MT.TileChestsInventry[i];
+        }
     }
 
     public void MapGeneration()

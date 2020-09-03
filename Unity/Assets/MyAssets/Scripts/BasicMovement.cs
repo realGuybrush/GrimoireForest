@@ -35,7 +35,7 @@ public class BasicMovement : MonoBehaviour
     public void DropItems()
     {
         WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
-        GameObject d = GameObject.Instantiate(WM.DropPrefab, this.transform.position, this.transform.rotation);
+        GameObject d = GameObject.Instantiate(WM.DropPrefab, this.transform.position, this.transform.rotation, GameObject.Find("Chests").transform);
         inventory.Items[0] = 0;//for show
         inventory.stacks[0] = 1;//uncomment this
         d.GetComponent<Chest>().SetInventory(inventory);
@@ -196,5 +196,14 @@ public class BasicMovement : MonoBehaviour
         wall.Unhold();
         step.Unhold();
         //anim.SetVar("Grab", false);
+    }
+
+    public void BasicLoadData(SVector3 position, SVector3 rotation, SVector3 speed, Characteristics newCharacteristics, Inventory newInventory)
+    {
+        this.gameObject.transform.position = position.ToV3();
+        this.gameObject.transform.eulerAngles = rotation.ToV3();
+        this.gameObject.GetComponent<Rigidbody2D>().velocity = speed.ToV3();
+        thisHealth.values = newCharacteristics;
+        inventory = newInventory;
     }
 }

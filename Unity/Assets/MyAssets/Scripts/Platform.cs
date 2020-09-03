@@ -29,7 +29,7 @@ public class Platform : MonoBehaviour
                 P.Add(new EnvironmentStuffingValues(SetRandomPlace(), numberInBiome));
                 if (subPlatforms != null)
                 {
-                    P.AddRange(subPlatforms.GetComponent<Platform>().GeneratePlatforms(false, P[P.Count-1].location));
+                    P.AddRange(subPlatforms.GetComponent<Platform>().GeneratePlatforms(false, P[P.Count-1].location.ToV3()));
                 }
             }
             else

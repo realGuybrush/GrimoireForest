@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System;
 using Unity.Mathematics;
-
+[Serializable]
 public class Map
 {
 	
@@ -13,6 +13,8 @@ public class Map
 	int Height;
 	int MaximumCorridorLength;
 	int MinimumCorridorLength;
+    //[NonSerialized]
+    //public List<GameObject> GlobalEntities = new List<GameObject>();
 	public List<Biome> Biomes = new List<Biome>();
     public List<List<MapTile>> Tiles = new List<List<MapTile>>();
 

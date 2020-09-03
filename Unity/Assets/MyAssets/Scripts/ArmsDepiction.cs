@@ -18,6 +18,7 @@ public class ArmsDepiction : MonoBehaviour
             Player = Player2.GetComponent<PlayerControls>();
         }
         WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
+        this.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

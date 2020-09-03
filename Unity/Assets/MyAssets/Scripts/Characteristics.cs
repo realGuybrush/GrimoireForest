@@ -1,5 +1,7 @@
+using System;
 using System.Collections.Generic;
 
+[Serializable]
 public class Characteristics
 {
     private readonly List<Buff> buffs = new List<Buff>();

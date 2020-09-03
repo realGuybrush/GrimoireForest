@@ -75,7 +75,7 @@ public class Item : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (this.transform.parent == null)
+        if ((this.transform.parent == null)|| (this.transform.parent.name == "Items"))
         {
             if (collision.gameObject.GetComponent<PlayerControls>() != null)
             {

@@ -78,7 +78,7 @@ public class MenuController : MonoBehaviour
         //}
         //else
         //{
-        //   ContinueAction(true);
+           ContinueAction(true);
         //}
     }
     public void Options()
@@ -110,11 +110,12 @@ public class MenuController : MonoBehaviour
                 case "Load":
                     //WM.Load(SlotIndex);
                     FlipMenu(false);
+                    GameObject.Find("WorldManager").GetComponent<WorldManagement>().LoadGame();
                     inGame = true;
                     Resume();
                     break;
                 case "Save":
-                    //WM.Save(SlotIndex);
+                    GameObject.Find("WorldManager").GetComponent<WorldManagement>().SaveGame();//SlotIndex
                     break;
                 case "Quit":
                     //WM.DestroyWorld();

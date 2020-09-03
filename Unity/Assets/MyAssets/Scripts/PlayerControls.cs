@@ -132,6 +132,10 @@ public partial class PlayerControls : BasicMovement
         if (!MT.IsMenuActive())
         {
             inMenu = !hideall && (menu || weaponInv || spellInv || tradeInv || chestInv);
+            if (inMenu)
+            {
+                GameObject.Find("WorldManager").GetComponent<WorldManagement>().StopTime();
+            }
             Arms.SetActive(!inMenu);
             Book.SetActive(inMenu);
             MT.ShowMenu(menu);
@@ -164,6 +168,12 @@ public partial class PlayerControls : BasicMovement
         }
     }
 
+    public void LoadData(SVector3 position, SVector3 rotation, SVector3 speed, Characteristics newCharacteristics, Inventory newInventory, Inventory newMunitions, Inventory newSpells)
+    {
+        BasicLoadData(position, rotation, speed, newCharacteristics, newInventory);
+        munitions = newMunitions;
+        spells = newSpells;
+    }
     //todo
     //Можно сделать предметы, 
     //собирание предметов, +

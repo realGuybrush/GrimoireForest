@@ -50,6 +50,7 @@ public class MenusTrigger : MonoBehaviour
         if (escape)
         {
             ShowMenu(false);
+            GameObject.Find("WorldManager").GetComponent<WorldManagement>().UnStopTime();
         }
         return escape;
     }
