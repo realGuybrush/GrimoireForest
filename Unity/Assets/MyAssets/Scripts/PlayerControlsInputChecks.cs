@@ -116,6 +116,7 @@ public partial class PlayerControls : BasicMovement
             {
                 for (int i = 0; i < pickableItem.Count; i++)
                 {
+                    if(pickableItem[i] != null)
                     pickableItem[i].GetComponent<Item>().Start2();
                 }
                 PickUp(pickableItem);

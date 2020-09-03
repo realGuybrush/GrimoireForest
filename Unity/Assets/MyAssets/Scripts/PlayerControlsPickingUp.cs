@@ -24,7 +24,7 @@ public partial class PlayerControls : BasicMovement
             return false;
         //absolutely needed: without it item[0] will sometimes be null after picking up previous item, and won't be deleted for soe reason
         //if you simply put item.RemoveAt(0) after deletion of item, however, two items will be removed from List! magic
-        if (item[0] == null)
+        while (item[0] == null)
         {
             item.RemoveAt(0);
             if (item.Count == 0)

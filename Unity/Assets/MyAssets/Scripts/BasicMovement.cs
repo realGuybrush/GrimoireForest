@@ -205,5 +205,9 @@ public class BasicMovement : MonoBehaviour
         this.gameObject.GetComponent<Rigidbody2D>().velocity = speed.ToV3();
         thisHealth.values = newCharacteristics;
         inventory = newInventory;
+        if (transform.eulerAngles.y != 0)
+        {
+            flip.facingRight = false;
+        }
     }
 }
