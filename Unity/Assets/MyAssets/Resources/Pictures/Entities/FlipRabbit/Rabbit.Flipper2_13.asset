@@ -1,0 +1,403 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!43 &-5740637935376064541
+Mesh:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Rabbit.Flipper2_13
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 27
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 11
+    localAABB:
+      m_Center: {x: 0.007287331, y: 0.010160521, z: 0}
+      m_Extent: {x: 0.19744793, y: 0.27382803, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose:
+  - e00: -0.13216153
+    e01: -0.99122816
+    e02: 0
+    e03: 0.27902094
+    e10: 0.99122816
+    e11: -0.13216153
+    e12: 0
+    e13: -0.043480903
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  - e00: -0.34447166
+    e01: -0.9387967
+    e02: 0
+    e03: 0.08658325
+    e10: 0.9387967
+    e11: -0.34447166
+    e12: 0
+    e13: -0.02526431
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB:
+  - m_Min: {x: -0.0056935847, y: -0.16824943, z: 0}
+    m_Max: {x: 0.28015372, y: 0.14065152, z: 0}
+  - m_Min: {x: 0.04766275, y: -0.16515079, z: 0}
+    m_Max: {x: 0.36779216, y: 0.16890433, z: 0}
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 00000a0001000000020007000200030005000a0000000900020005000700060005000300030008000400040006000300070009000000
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 11
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 1
+      offset: 0
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 2
+      offset: 0
+      format: 0
+      dimension: 4
+    - stream: 2
+      offset: 16
+      format: 10
+      dimension: 4
+    m_DataSize: 896
+    _typelessdata: 8fc22abe0a2946bd000000000000000000000000000080bf0000803f15882f3300000000000080bf76b942be04db29be000000000000000000000000000080bf0000803fcfaf31b400000000000080bf1442ebbd71c2053d000000000000000000000000000080bf0000803f460169af00000000000080bf3d4cdbbd7356103e000000000000000000000000000080bf0000803fcc3da93200000000000080bf7bdaae3d4a3c8d3e000000000000000000000000000080bf0000803f3d22b93300000000000080bf8fbe3a3e718dd0bc000000000000000000000000000080bf0000803f368d293300000000000080bf1fa6513e1f16503e000000000000000000000000000080bf0000803fc3e4df3300000000000080bf7b0c1c3e69ea17be000000000000000000000000000080bf0000803fb0ef0db200000000000080bf143a59bdf366913e000000000000000000000000000080bf0000803f30ad29b400000000000080bf7be41f3dbf9885be000000000000000000000000000080bf0000803ff775983200000000000080bf333bc8bd6eff86be000000000000000000000000000080bf0000803fcb65c63300000000000080bf0000000000000000220bcc3eecc6db3d8252c83e3f47913d2b4bd43e3394073e6488d53ea0e9293e7422f43ea7ad543e3ec7013f674fea3d7d8e033f27a63d3e49cafe3ef7629c3d5520de3e1f42573e1ac4ec3eb2032a3d5b03d73e528b263d00000000000000000000803f000000000000000000000000010000000000000000000000000000000000803f000000000000000000000000010000000000000000000000000000003333333f9a99993e0000000000000000010000000000000000000000000000000000803f000000000000000000000000000000000000000000000000000000000000803f00000000000000000000000000000000000000000000000000000000cdcc4c3fcccc4c3e0000000000000000000000000100000000000000000000000000803f000000000000000000000000000000000000000000000000000000000000803f000000000000000000000000010000000000000000000000000000000000803f000000000000000000000000000000000000000000000000000000000000803f000000000000000000000000010000000000000000000000000000000000803f00000000000000000000000001000000000000000000000000000000
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: 0.007287331, y: 0.010160521, z: 0}
+    m_Extent: {x: 0.19744793, y: 0.27382803, z: 0}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
+--- !u!114 &-2005536482208877468
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e715ea371f114f4a8d2584ad476634d, type: 3}
+  m_Name: Rabbit.Flipper2_13_Data
+  m_EditorClassIdentifier: 
+  m_PivotPoint: {x: 145, y: 39.5}
+  m_Vertices:
+  - {x: 128.32422, y: 34.6621}
+  - {x: 125.98394, y: 22.912546}
+  - {x: 133.51279, y: 42.765614}
+  - {x: 134.2921, y: 53.595478}
+  - {x: 153.53777, y: 67.08506}
+  - {x: 163.23676, y: 36.954193}
+  - {x: 165.47353, y: 59.82094}
+  - {x: 160.23914, y: 24.664486}
+  - {x: 139.69661, y: 67.89886}
+  - {x: 148.90363, y: 13.4069}
+  - {x: 135.22308, y: 13.133248}
+  m_BoneWeights:
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 1
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 1
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 0.3
+    weight1: 0.7
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: 1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 0.8
+    weight1: 0.19999999
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: 1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 1
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 1
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 1
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  m_Edges:
+  - index1: 9
+    index2: 10
+  - index1: 7
+    index2: 9
+  - index1: 6
+    index2: 4
+  - index1: 4
+    index2: 8
+  - index1: 2
+    index2: 0
+  - index1: 1
+    index2: 10
+  - index1: 6
+    index2: 5
+  - index1: 5
+    index2: 7
+  - index1: 1
+    index2: 0
+  - index1: 2
+    index2: 3
+  - index1: 8
+    index2: 3
+  m_Holes: []
+  m_Indices: 000000000a000000010000000000000002000000070000000200000003000000050000000a0000000000000009000000020000000500000007000000060000000500000003000000030000000800000004000000040000000600000003000000070000000900000000000000
+  m_BindPoses:
+  - bindPose:
+      e00: -0.13216153
+      e01: -0.99122816
+      e02: 0
+      e03: 0.27902094
+      e10: 0.99122816
+      e11: -0.13216153
+      e12: 0
+      e13: -0.043480903
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    boneLength: 0.2
+    path: LeftArm
+    name: LeftArm
+    color: {r: 1, g: 0, b: 0, a: 1}
+    zOrder: 0
+  - bindPose:
+      e00: -0.34447166
+      e01: -0.9387967
+      e02: 0
+      e03: 0.08658325
+      e10: 0.9387967
+      e11: -0.34447166
+      e12: 0
+      e13: -0.02526431
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    boneLength: 0.2
+    path: LeftArm/LeftHand
+    name: LeftHand
+    color: {r: 1, g: 0.75, b: 0, a: 1}
+    zOrder: 0
+  m_Blendshapes: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10c0be6d28fe4d539c4a39822fe301c, type: 3}
+  m_Name: Rabbit.Flipper2_13
+  m_EditorClassIdentifier: 
+  m_ApiVersion: 4
+  m_Sprite: {fileID: 3007434276503677181, guid: b2a03d10b92bfc241813a1a39c78470e,
+    type: 3}
+  m_SharedMesh: {fileID: -5740637935376064541}
+  m_SharedMaterials: []
