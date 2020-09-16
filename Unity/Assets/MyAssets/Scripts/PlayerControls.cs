@@ -136,6 +136,10 @@ public partial class PlayerControls : BasicMovement
             {
                 GameObject.Find("WorldManager").GetComponent<WorldManagement>().StopTime();
             }
+            else
+            {
+                GameObject.Find("WorldManager").GetComponent<WorldManagement>().UnStopTime();
+            }
             Arms.SetActive(!inMenu);
             Book.SetActive(inMenu);
             MT.ShowMenu(menu);

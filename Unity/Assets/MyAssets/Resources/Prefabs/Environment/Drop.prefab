@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 4549335938989430331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.27999973, y: -3.88, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.75, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 73e2f743aeae62340a31e225e5e5127a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cf431a5e03f823469875b5c227b987b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,18 +99,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.0000009536743, y: 0.008084655}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.18, y: 3.84}
+    oldSize: {x: 1.36, y: 1.22}
     newSize: {x: 4.18, y: 3.84}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4.18, y: 3.84}
+  m_Size: {x: 1.1398602, y: 1.1071031}
   m_EdgeRadius: 0
 --- !u!114 &4549335938989430330
 MonoBehaviour:
@@ -124,6 +124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e77dec6c4edcbf4caa4f422273a636b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory:
+    maxAmount: 54
+    Items: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+    stacks: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   realChest: 0
 --- !u!50 &2284951094901399623
 Rigidbody2D:
@@ -162,8 +166,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 2.162075, y: -1.9033086}
-  - {x: -2.1013298, y: -1.8628132}
+  - {x: 0.5658741, y: -0.5554066}
+  - {x: -0.57607174, y: -0.55038214}
 --- !u!251 &582115065
 PlatformEffector2D:
   m_ObjectHideFlags: 0
