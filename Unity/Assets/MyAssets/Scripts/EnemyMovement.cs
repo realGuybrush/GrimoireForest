@@ -20,6 +20,8 @@ public class EnemyMovement : BasicMovement
         destination = gameObject.transform.position;
         thisHealth = this.gameObject.GetComponent<Health>();
         move.SetThisObject(gameObject.GetComponent<Rigidbody2D>());
+        flip.SetThisObject(gameObject.GetComponent<Rigidbody2D>());
+        flip.facingRight = false;
     }
 
     private void FixedUpdate()
@@ -67,7 +69,7 @@ public class EnemyMovement : BasicMovement
         //if (destination.x > x - 2.01f && destination.x < x + 2.01f && destination.y > y - 2.01f &&
         //    destination.y < y + 5.01f)
         RaycastHit2D[] R = Physics2D.RaycastAll(ToV2(transform.position), destination-transform.position, lookDistance, LayerMask.GetMask("Default"));
-        Debug.DrawRay(transform.position, destination-transform.position, Color.red, 10.0f);
+        //Debug.DrawRay(transform.position, destination-transform.position, Color.red, 10.0f);
         float dis;
         int i;
         for (i = 0; i < R.Length; i++)
@@ -112,20 +114,12 @@ public class EnemyMovement : BasicMovement
 
     private void Follow()
     {
-        if (IsThereFloor())
-        {
-            if (walker)
-                WalkFollow();
-            if (jumper)
-                JumpFollow();
-            if (flyer)
-                FlyFollow();
-            flip.CheckFlip(move.movingDirection);
-        }
-        else
-        {
-            Stop();
-        }
+        if (walker)
+            WalkFollow();
+        if (jumper)
+            JumpFollow();
+        if (flyer)
+            FlyFollow();
     }
     void Stop()
     {
@@ -135,9 +129,18 @@ public class EnemyMovement : BasicMovement
 
     void WalkFollow()
     {
-        move.movementMultiplier = (transform.position.x > destination.x) ? -1 : 1;
         move.movingDirection = (transform.position.x > destination.x)?-1:1;
-        move.Move();
+        flip.CheckFlip(move.movingDirection);
+
+        if (IsThereFloor())
+        {
+            move.movementMultiplier = (transform.position.x > destination.x) ? -1 : 1;
+            move.Move();
+        }
+        else
+        {
+            Stop();
+        }
         //move.movementMultiplier = ;
         //follow target
         //if not following player
@@ -159,8 +162,8 @@ public class EnemyMovement : BasicMovement
     }
     bool IsThereFloor()
     {
-        Debug.DrawRay(transform.position, new Vector2(lookDistance * lookDirection.x * Mathf.Cos(-45*Mathf.Deg2Rad), lookDistance * lookDirection.y * Mathf.Sin(-45 * Mathf.Deg2Rad)), Color.blue, 10.0f);
-        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(lookDirection.x * Mathf.Cos(-45 * Mathf.Deg2Rad), lookDirection.y * Mathf.Sin(-45 * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Environment")).collider != null)
+        //Debug.DrawRay(transform.position, new Vector2(lookDistance * lookDirection.x * flip.FacingDirection() *  Mathf.Cos(-45*Mathf.Deg2Rad), lookDistance * lookDirection.y * Mathf.Sin(-45 * Mathf.Deg2Rad)), Color.blue, 10.0f);
+        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(lookDirection.x * flip.FacingDirection() * Mathf.Cos(-30 * Mathf.Deg2Rad), lookDirection.y * Mathf.Sin(-30 * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Environment")).collider != null)
             return true;
         return false;
     }
@@ -175,8 +178,8 @@ public class EnemyMovement : BasicMovement
         //if casted sector hit player
         for (int i = minLookAngle; i < maxlookAngle; i++)
         {
-            Debug.DrawRay(transform.position, new Vector2(lookDistance * lookDirection.x * Mathf.Cos(i * Mathf.Deg2Rad), lookDistance * lookDirection.y * Mathf.Sin(i * Mathf.Deg2Rad)), Color.green, 10.0f);
-            All = Physics2D.RaycastAll(ToV2(transform.position), new Vector2(lookDirection.x*Mathf.Cos(i * Mathf.Deg2Rad), lookDirection.y*Mathf.Sin(i * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Default"));
+            //Debug.DrawRay(transform.position, new Vector2(lookDistance * lookDirection.x * Mathf.Cos(i * Mathf.Deg2Rad), lookDistance * lookDirection.y * Mathf.Sin(i * Mathf.Deg2Rad)), Color.green, 10.0f);
+            All = Physics2D.RaycastAll(ToV2(transform.position), new Vector2(lookDirection.x * flip.FacingDirection() * Mathf.Cos(i * Mathf.Deg2Rad), lookDirection.y*Mathf.Sin(i * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Default"));
             for (int j = 0; j < All.Length; j++)
             {
                 if (All[j].transform.gameObject.name == "Player")
