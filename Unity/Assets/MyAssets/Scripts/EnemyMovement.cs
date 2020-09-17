@@ -8,7 +8,7 @@ public class EnemyMovement : BasicMovement
     Vector2 lookDirection = new Vector3(-1.0f, 1.0f);
     int minLookAngle = -30;
     int maxlookAngle = 45;
-    float lookDistance = 3.0f;
+    public float lookDistance = 3.0f;
     public float nearby = 1.5f;
     public bool walker = true;
     public bool jumper = false;
@@ -22,6 +22,9 @@ public class EnemyMovement : BasicMovement
         move.SetThisObject(gameObject.GetComponent<Rigidbody2D>());
         flip.SetThisObject(gameObject.GetComponent<Rigidbody2D>());
         flip.facingRight = false;
+        jump.SetThisObject(thisObject);
+        climb.SetThisObject(thisObject);
+        land = new BasicLand(thisObject, jump, climb);
     }
 
     private void FixedUpdate()
@@ -32,6 +35,8 @@ public class EnemyMovement : BasicMovement
     private void Update()
     {
         FcknActAlready();
+        BasicCheckMidAir();
+        //anim.SetVar("MidAir", land.landed ? false : true);
     }
 
     void FcknActAlready()
@@ -125,17 +130,19 @@ public class EnemyMovement : BasicMovement
     {
         move.movementMultiplier = 0;
         move.SlowDown(1.0f);
+        anim.SetVar("Moving", false);
     }
 
     void WalkFollow()
     {
-        move.movingDirection = (transform.position.x > destination.x)?-1:1;
-        flip.CheckFlip(move.movingDirection);
+        flip.CheckFlip((transform.position.x > destination.x) ? -1 : 1);
 
         if (IsThereFloor())
         {
+            move.movingDirection = (transform.position.x > destination.x) ? -1 : 1;
             move.movementMultiplier = (transform.position.x > destination.x) ? -1 : 1;
             move.Move();
+            anim.SetVar("Moving", true);
         }
         else
         {
@@ -162,8 +169,8 @@ public class EnemyMovement : BasicMovement
     }
     bool IsThereFloor()
     {
-        //Debug.DrawRay(transform.position, new Vector2(lookDistance * lookDirection.x * flip.FacingDirection() *  Mathf.Cos(-45*Mathf.Deg2Rad), lookDistance * lookDirection.y * Mathf.Sin(-45 * Mathf.Deg2Rad)), Color.blue, 10.0f);
-        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(lookDirection.x * flip.FacingDirection() * Mathf.Cos(-30 * Mathf.Deg2Rad), lookDirection.y * Mathf.Sin(-30 * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Environment")).collider != null)
+        //Debug.DrawRay(transform.position, new Vector2(lookDistance * flip.FacingDirection() *  Mathf.Cos(-45*Mathf.Deg2Rad), lookDistance * Mathf.Sin(-45 * Mathf.Deg2Rad)), Color.blue, 10.0f);
+        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(flip.FacingDirection() * Mathf.Cos(-30 * Mathf.Deg2Rad), Mathf.Sin(-30 * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Environment")).collider != null)
             return true;
         return false;
     }
@@ -178,8 +185,8 @@ public class EnemyMovement : BasicMovement
         //if casted sector hit player
         for (int i = minLookAngle; i < maxlookAngle; i++)
         {
-            //Debug.DrawRay(transform.position, new Vector2(lookDistance * lookDirection.x * Mathf.Cos(i * Mathf.Deg2Rad), lookDistance * lookDirection.y * Mathf.Sin(i * Mathf.Deg2Rad)), Color.green, 10.0f);
-            All = Physics2D.RaycastAll(ToV2(transform.position), new Vector2(lookDirection.x * flip.FacingDirection() * Mathf.Cos(i * Mathf.Deg2Rad), lookDirection.y*Mathf.Sin(i * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Default"));
+            //Debug.DrawRay(transform.position, new Vector2(lookDistance * Mathf.Cos(i * Mathf.Deg2Rad), lookDistance * Mathf.Sin(i * Mathf.Deg2Rad)), Color.green, 10.0f);
+            All = Physics2D.RaycastAll(ToV2(transform.position), new Vector2(flip.FacingDirection() * Mathf.Cos(i * Mathf.Deg2Rad), Mathf.Sin(i * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Default"));
             for (int j = 0; j < All.Length; j++)
             {
                 if (All[j].transform.gameObject.name == "Player")

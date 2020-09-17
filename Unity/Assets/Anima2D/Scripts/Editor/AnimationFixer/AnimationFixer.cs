@@ -1,4 +1,4 @@
-﻿#if UNITY_5_4_OR_NEWER
+#if UNITY_5_4_OR_NEWER
 using UnityEngine;
 using UnityEditor;
 using System.Collections;

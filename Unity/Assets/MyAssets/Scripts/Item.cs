@@ -63,7 +63,7 @@ public class Item : MonoBehaviour
         Start2();
         if (itemValues.GetProjectile(atkType) != null)
         {
-            Debug.Log(z.ToString() + " " + Mathf.Abs(Mathf.Cos(z)).ToString() + " " + Mathf.Abs(Mathf.Sin(z)).ToString());
+            //Debug.Log(z.ToString() + " " + Mathf.Abs(Mathf.Cos(z)).ToString() + " " + Mathf.Abs(Mathf.Sin(z)).ToString());
             set = false;
             GameObject bullet = GameObject.Instantiate(itemValues.GetProjectile(atkType), projectilePosition, Quaternion.identity); //new Quaternion());// add position
             bullet.GetComponent<Projectile>().ignore = GameObject.Find(masterName);
