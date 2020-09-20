@@ -8,14 +8,22 @@ public class EnemyMovement : BasicMovement
     Vector2 lookDirection = new Vector3(-1.0f, 1.0f);
     int minLookAngle = -30;
     int maxlookAngle = 45;
+    public float jumpHeight = 3.0f;
     public float lookDistance = 3.0f;
-    public float nearby = 1.5f;
+    public float meleeDistance = 3.0f;
+    public float shootDistance = 3.0f;
+    public bool canMelee = true;
+    public bool canShoot = false;
     public bool walker = true;
     public bool jumper = false;
     public bool flyer = false;
+    public int attachedTo = -1;
+    public Vector3 attPos;
 
     private void Start()
     {
+        if (attachedTo != -1)
+            attPos = this.transform.localPosition;
         anim.a = gameObject.GetComponent<Animator>();
         destination = gameObject.transform.position;
         thisHealth = this.gameObject.GetComponent<Health>();
@@ -25,6 +33,7 @@ public class EnemyMovement : BasicMovement
         jump.SetThisObject(thisObject);
         climb.SetThisObject(thisObject);
         land = new BasicLand(thisObject, jump, climb);
+        jump.jumpSpeedY = jumpHeight;
     }
 
     private void FixedUpdate()
@@ -34,9 +43,34 @@ public class EnemyMovement : BasicMovement
 
     private void Update()
     {
-        FcknActAlready();
         BasicCheckMidAir();
+        if (attachedTo == -1)
+        {
+            FcknActAlready();
+        }
+        else
+        {
+            transform.localPosition = attPos;
+            if (CanSee())
+            {
+                SetDestination();
+                if (Near(destination))
+                {
+                    Detach();
+                    Attack();
+                }
+            }
+        }
         //anim.SetVar("MidAir", land.landed ? false : true);
+    }
+
+    void Detach()
+    {
+        if (attachedTo != -2)
+        {
+            attachedTo = -1;
+            this.transform.parent = this.transform.parent.parent.parent;
+        }
     }
 
     void FcknActAlready()
@@ -51,17 +85,20 @@ public class EnemyMovement : BasicMovement
         }
         else
         {
-            Stop();
-            if (CanSee())
+            if (!anim.a.GetBool("MidAir"))
             {
-                Attack();
-            }
-            else
-            {
-                UnAttack();
-                if (Random.Range(0, 10) == 0)
+                Stop();
+                if (CanSee())
                 {
-                    SetRandomDestination();
+                    Attack();
+                }
+                else
+                {
+                    UnAttack();
+                    if (Random.Range(0, 10) == 0)
+                    {
+                        SetRandomDestination();
+                    }
                 }
             }
         }
@@ -73,7 +110,7 @@ public class EnemyMovement : BasicMovement
         //var y = gameObject.transform.position.y;
         //if (destination.x > x - 2.01f && destination.x < x + 2.01f && destination.y > y - 2.01f &&
         //    destination.y < y + 5.01f)
-        RaycastHit2D[] R = Physics2D.RaycastAll(ToV2(transform.position), destination-transform.position, lookDistance, LayerMask.GetMask("Default"));
+        RaycastHit2D[] R = Physics2D.RaycastAll(ToV2(transform.position), destination-transform.position, meleeDistance, LayerMask.GetMask("Default"));
         //Debug.DrawRay(transform.position, destination-transform.position, Color.red, 10.0f);
         float dis;
         int i;
@@ -87,7 +124,7 @@ public class EnemyMovement : BasicMovement
         if (i < R.Length)
         {
             dis = R[i].distance;
-            if (dis < nearby)
+            if (dis < meleeDistance)
             {
                 return true;
             }
@@ -109,6 +146,8 @@ public class EnemyMovement : BasicMovement
     {
         attacking = true;
         anim.SetVar("Atk", true);
+        if (jumper)
+            jump.Jump(move.movingDirection, move.walkSpeed*2.0f);
     }
 
     private void UnAttack()
@@ -170,7 +209,7 @@ public class EnemyMovement : BasicMovement
     bool IsThereFloor()
     {
         //Debug.DrawRay(transform.position, new Vector2(lookDistance * flip.FacingDirection() *  Mathf.Cos(-45*Mathf.Deg2Rad), lookDistance * Mathf.Sin(-45 * Mathf.Deg2Rad)), Color.blue, 10.0f);
-        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(flip.FacingDirection() * Mathf.Cos(-30 * Mathf.Deg2Rad), Mathf.Sin(-30 * Mathf.Deg2Rad)), lookDistance, LayerMask.GetMask("Environment")).collider != null)
+        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(flip.FacingDirection() * Mathf.Cos(-30 * Mathf.Deg2Rad), Mathf.Sin(-30 * Mathf.Deg2Rad)), meleeDistance, LayerMask.GetMask("Environment")).collider != null)
             return true;
         return false;
     }

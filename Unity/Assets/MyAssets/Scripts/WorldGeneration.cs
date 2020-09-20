@@ -30,6 +30,8 @@ public partial class WorldManagement : MonoBehaviour
         BiomePrefabs[0][0].PlatformPrefab = RemoveAllNull(BiomePrefabs[0][0].PlatformPrefab);
         //public List<GameObject> CoverPrefabs;
         //public List<GameObject> EntitiesPrefabs;
+
+        //fix add somewhere predefinition of tile monster spawn pattern
     }
 
     public List<GameObject> RemoveAllNull(List<GameObject> L)
@@ -140,10 +142,18 @@ public partial class WorldManagement : MonoBehaviour
         {
             Drop(MT.TileItems[i].indexInPrefabs, 1, MT.TileItems[i].location.ToV3());
         }
+        if (MT.TileEntitiesPositions.Count == 0)
+        {
+            SetTileEntities(MT);
+        }
         for (int i = 0; i < MT.TileEntitiesPositions.Count; i++)
         {
-            SpawnEntity(MT.TileEntitiesPositions[i]);
+            SpawnEntity(MT.TileEntitiesPositions[i], i);
         }
+    }
+    void SetTileEntities(MapTile MT)
+    {
+        //fix create here array of entities in tile to spawn them
     }
 
     void Instantiate(BiomeTilesData BTD, EnvironmentStuffingValues ESV, Transform parent)
@@ -151,7 +161,7 @@ public partial class WorldManagement : MonoBehaviour
         GameObject.Instantiate(BTD.PlatformPrefab[ESV.indexInPrefabs], ESV.location.ToV3(), new Quaternion(), parent);
     }
 
-    public GameObject SpawnEntity(EntityValues EV)
+    public GameObject SpawnEntity(EntityValues EV, int parentIndex = -1)
     {
         GameObject entity = GameObject.Instantiate(EntityPrefabs[EV.indexInPrefabs], GameObject.Find("Entities").transform);
         entity.transform.position = EV.location.ToV3();
@@ -159,6 +169,13 @@ public partial class WorldManagement : MonoBehaviour
         entity.GetComponent<Rigidbody2D>().velocity = EV.velocity.ToV3();
         entity.GetComponent<BasicMovement>().inventory = EV.inventory;
         entity.GetComponent<BasicMovement>().thisHealth.values = EV.characteristics;
+        if (entity.transform.GetChild(entity.transform.childCount - 1).name == "Attached")
+        {
+            for (int i = 0; i < entity.transform.GetChild(entity.transform.childCount - 1).childCount; i++)
+            {
+                entity.transform.GetChild(entity.transform.childCount - 1).GetChild(i).GetComponent<EnemyMovement>().attachedTo = parentIndex;
+            }
+        }
         return entity;
     }
 

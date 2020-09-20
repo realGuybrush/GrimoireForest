@@ -42,6 +42,7 @@ public partial class WorldManagement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(0, 14);
         Physics2D.IgnoreLayerCollision(8, 11);
         Physics2D.IgnoreLayerCollision(13, 11);
+        Physics2D.IgnoreLayerCollision(14, 14);
         Player = GameObject.Find("Player");
         for (int i = 0; i < ItemPrefabs.Count; i++)
         {

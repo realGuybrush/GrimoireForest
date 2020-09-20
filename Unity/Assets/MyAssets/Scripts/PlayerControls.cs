@@ -123,6 +123,18 @@ public partial class PlayerControls : BasicMovement
         if (!BasicCheckHold())
         {
             flip.CheckFlip(move.movingDirection);
+            FlipParasites();
+        }
+    }
+
+    private void FlipParasites()
+    {
+        if (transform.GetChild(0).GetChild(0).childCount > 0)
+        {
+            for (int i = 0; i < transform.GetChild(0).GetChild(0).childCount; i++)
+            {
+                transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<BasicMovement>().flip.facingRight = !transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<BasicMovement>().flip.facingRight;
+            }
         }
     }
 
