@@ -180,7 +180,10 @@ public partial class WorldManagement : MonoBehaviour
         {
             chI = Environment.transform.GetChild(2).GetChild(i);
             newCoords = calculateMapCoordsForThis(chI.position, LookTurn);
-            GlobalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileEntitiesPositions.Add(new EntityValues(EntityNumberByName(chI.gameObject.name), ShrinkPosition(chI.position), chI.eulerAngles, chI.gameObject.GetComponent<Rigidbody2D>().velocity, chI.gameObject.GetComponent<BasicMovement>().inventory, chI.gameObject.GetComponent<BasicMovement>().thisHealth.values));
+            if (EntityNumberByName(chI.gameObject.name) != -1)
+            {
+                GlobalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileEntitiesPositions.Add(new EntityValues(EntityNumberByName(chI.gameObject.name), ShrinkPosition(chI.position), chI.eulerAngles, chI.gameObject.GetComponent<Rigidbody2D>().velocity, chI.gameObject.GetComponent<BasicMovement>().inventory, chI.gameObject.GetComponent<BasicMovement>().thisHealth.values));
+            }
         }
         for (int i = 0; i < Environment.transform.GetChild(3).childCount; i++)
         {

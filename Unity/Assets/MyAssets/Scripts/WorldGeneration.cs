@@ -48,15 +48,16 @@ public partial class WorldManagement : MonoBehaviour
     }
     public void DeleteCorridor()
     {
-        for (int i = Environment.transform.GetChild(0).transform.childCount - 1; i > 1; i--)
+        for(int j = 0; j<4; j++)
+        for (int i = Environment.transform.GetChild(j).transform.childCount - 1; i > 1; i--)
         {
-            GameObject.Destroy(Environment.transform.GetChild(0).transform.GetChild(i).gameObject);
+            GameObject.Destroy(Environment.transform.GetChild(j).transform.GetChild(i).gameObject);
         }
-        for (int i = Environment.transform.GetChild(1).transform.childCount - 1; i > 1; i--)
-        {
-            GameObject.Destroy(Environment.transform.GetChild(1).transform.GetChild(i).gameObject);
-        }
-        for (int i = Environment.transform.childCount-1; i > 1; i--)
+        //for (int i = Environment.transform.GetChild(1).transform.childCount - 1; i > 1; i--)
+        //{
+        //    GameObject.Destroy(Environment.transform.GetChild(1).transform.GetChild(i).gameObject);
+        //}
+        for (int i = Environment.transform.childCount-1; i > 3; i--)
         {
             GameObject.Destroy(Environment.transform.GetChild(i).gameObject);
         }
