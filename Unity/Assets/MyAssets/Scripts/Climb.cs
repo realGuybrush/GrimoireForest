@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class BasicClimb
 {
-    private readonly float climbXChange = 1.5f;
-    private readonly float climbYChange = 2.0f;
+    private readonly float climbXChange = 0.5f;//1.5f;
+    private readonly float climbYChange = 0.0f;
     private Rigidbody2D thisObject;
 
     public void SetThisObject(Rigidbody2D newThisObject)
@@ -24,7 +24,7 @@ public class BasicClimb
 
     public void Climb()
     {
-        var newPositionX = thisObject.transform.position.x + climbXChange * thisObject.transform.forward.z;
+        var newPositionX = thisObject.transform.position.x + climbXChange * -thisObject.transform.forward.z;
         var newPositionY = thisObject.transform.position.y + climbYChange;
         var newPosition = new Vector2(newPositionX, newPositionY);
         thisObject.transform.position = newPosition;

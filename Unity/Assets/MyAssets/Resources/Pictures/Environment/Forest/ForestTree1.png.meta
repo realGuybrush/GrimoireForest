@@ -1,0 +1,380 @@
+fileFormatVersion: 2
+guid: 9e9098a44f414f545876076b958c77b7
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 135031251619755056
+    second: ForestTree1_0
+  - first:
+      213: 9184568156431851285
+    second: ForestTree1_1
+  - first:
+      213: -9081581436665134205
+    second: ForestTree1_2
+  - first:
+      213: -4897768477746904098
+    second: ForestTree1_3
+  - first:
+      213: 1278524137302206042
+    second: ForestTree1_4
+  - first:
+      213: -5308019969987656844
+    second: ForestTree1_5
+  - first:
+      213: 3093805960891205306
+    second: ForestTree1_6
+  - first:
+      213: -2128960940662973600
+    second: ForestTree1_7
+  - first:
+      213: 1673997246127420360
+    second: ForestTree1_8
+  - first:
+      213: 5234980764915110134
+    second: ForestTree1_9
+  - first:
+      213: -8387726889333274475
+    second: ForestTree1_10
+  - first:
+      213: 706103827533098165
+    second: ForestTree1_11
+  - first:
+      213: -196197181193441558
+    second: ForestTree1_12
+  - first:
+      213: 1094316523942957168
+    second: ForestTree1_13
+  - first:
+      213: -6941459815016354186
+    second: ForestTree1_14
+  - first:
+      213: 3187095444295841144
+    second: ForestTree1_15
+  - first:
+      213: 7072032918432592603
+    second: ForestTree1_16
+  - first:
+      213: -5291995239790043877
+    second: ForestTree1_17
+  - first:
+      213: 6776388588788711379
+    second: ForestTree1_18
+  - first:
+      213: 5595298172701767918
+    second: ForestTree1_19
+  - first:
+      213: -645973960458611609
+    second: ForestTree1_20
+  - first:
+      213: 5423795595658156783
+    second: ForestTree1_6
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: ForestTree1_0
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 100
+        width: 424
+        height: 3652
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0343f5a353abfd100800000000000000
+      internalID: 135031251619755056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_1
+      rect:
+        serializedVersion: 2
+        x: 589
+        y: 876
+        width: 1690
+        height: 2978
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51f1c7b8314267f70800000000000000
+      internalID: 9184568156431851285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_2
+      rect:
+        serializedVersion: 2
+        x: 1221
+        y: 572
+        width: 135
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3830bc4bccdb7f180800000000000000
+      internalID: -9081581436665134205
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_3
+      rect:
+        serializedVersion: 2
+        x: 607
+        y: 305
+        width: 49
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed34acbd481a70cb0800000000000000
+      internalID: -4897768477746904098
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_4
+      rect:
+        serializedVersion: 2
+        x: 711
+        y: 294
+        width: 54
+        height: 131
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5629a0ddea3eb110800000000000000
+      internalID: 1278524137302206042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_5
+      rect:
+        serializedVersion: 2
+        x: 804
+        y: 288
+        width: 89
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 473c43cd5ff1656b0800000000000000
+      internalID: -5308019969987656844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_8
+      rect:
+        serializedVersion: 2
+        x: 1010
+        y: 191
+        width: 476
+        height: 350
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c3386a40ab3b3710800000000000000
+      internalID: 1673997246127420360
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_13
+      rect:
+        serializedVersion: 2
+        x: 1605
+        y: 195
+        width: 533
+        height: 273
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 070d571a41bcf2f00800000000000000
+      internalID: 1094316523942957168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_14
+      rect:
+        serializedVersion: 2
+        x: 622
+        y: 147
+        width: 87
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 67e2d4f531bfaaf90800000000000000
+      internalID: -6941459815016354186
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ForestTree1_15
+      rect:
+        serializedVersion: 2
+        x: 757
+        y: 148
+        width: 103
+        height: 120
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 875f48eab66da3c20800000000000000
+      internalID: 3187095444295841144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

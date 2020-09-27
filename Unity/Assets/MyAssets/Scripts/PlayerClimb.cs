@@ -3,18 +3,21 @@ using UnityEngine;
 public class PlayerClimb : StateMachineBehaviour
 {
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
-    //override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    //
-    //}
+    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
+        animator.transform.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2 ((animator.transform.gameObject.GetComponent<BasicMovement>().flip.facingRight ? 1.0f : -1.0f) * 1.0f, 9.0f);
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
-    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-    //
+    //override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    //{
+    //    animator.transform.gameObject.GetComponent<Rigidbody2D>().velocity += new Vector2(0.0f, 0.5f);
     //}
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.transform.gameObject.GetComponent<Rigidbody2D>().velocity += new Vector2((animator.transform.gameObject.GetComponent<BasicMovement>().flip.facingRight ? 1.0f : -1.0f) * 2.0f, 0.0f);
         animator.SetBool("Climb", false);
     }
 
