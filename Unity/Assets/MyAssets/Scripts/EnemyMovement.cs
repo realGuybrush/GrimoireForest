@@ -69,7 +69,8 @@ public class EnemyMovement : BasicMovement
         if (attachedTo != -2)
         {
             attachedTo = -1;
-            this.transform.parent = this.transform.parent.parent.parent;
+            this.transform.parent = this.transform.parent.parent.parent.parent;
+            this.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         }
     }
 
@@ -147,7 +148,14 @@ public class EnemyMovement : BasicMovement
         attacking = true;
         anim.SetVar("Atk", true);
         if (jumper)
-            jump.Jump(move.movingDirection, move.walkSpeed*2.0f);
+        {
+            if ((move.movingDirection == 0) || (move.movementMultiplier == 0))
+            {
+                move.movingDirection = (transform.position.x > destination.x) ? -1 : 1;
+                move.movementMultiplier = (transform.position.x > destination.x) ? -1 : 1;
+            }
+            jump.Jump(move.movingDirection, move.walkSpeed * 2.0f);
+        }
     }
 
     private void UnAttack()
