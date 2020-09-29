@@ -12,7 +12,7 @@ public class Attach : MonoBehaviour
             this.transform.gameObject.GetComponent<EnemyMovement>().anim.SetVar("Grab", true);
             this.transform.gameObject.GetComponent<EnemyMovement>().attPos = new Vector3(-0.2f, -0.44f, 0.0f);//not 0, 0; trust me, I'm an engineer
             this.transform.gameObject.GetComponent<EnemyMovement>().attachedTo = -2;
-            this.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            this.transform.eulerAngles = new Vector3(0.0f, this.transform.eulerAngles.y, 0.0f);
         }
     }
 }

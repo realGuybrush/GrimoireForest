@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BasicFlip
 {
@@ -31,6 +31,10 @@ public class BasicFlip
 
     public float FacingDirection()
     {
-        return facingRight ? 1.0f : -1.0f;
+        if (thisObject.name == "Player")
+            return (thisObject.transform.eulerAngles.y == 0.0f ? 1.0f : -1.0f);
+        else
+            return (thisObject.transform.eulerAngles.y == 0.0f ? -1.0f : 1.0f);
+        //return facingRight ? 1.0f : -1.0f;
     }
 }

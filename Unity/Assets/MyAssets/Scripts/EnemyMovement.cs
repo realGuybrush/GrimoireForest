@@ -61,6 +61,7 @@ public class EnemyMovement : BasicMovement
                 }
             }
         }
+        //this.transform.eulerAngles = new Vector3(0.0f, this.transform.eulerAngles.y, 0.0f);
         //anim.SetVar("MidAir", land.landed ? false : true);
     }
 
@@ -70,7 +71,7 @@ public class EnemyMovement : BasicMovement
         {
             attachedTo = -1;
             this.transform.parent = this.transform.parent.parent.parent.parent;
-            this.transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            this.transform.eulerAngles = new Vector3(0.0f, this.transform.eulerAngles.y, 0.0f);
         }
     }
 

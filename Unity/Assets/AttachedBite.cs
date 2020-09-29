@@ -18,6 +18,7 @@ public class AttachedBite : StateMachineBehaviour
             animator.SetBool("Grab", false);
             animator.transform.gameObject.transform.parent = GameObject.Find("Entities").transform;
             animator.transform.gameObject.GetComponent<EnemyMovement>().attachedTo = -1;
+            animator.transform.gameObject.transform.eulerAngles = new Vector3(0.0f, animator.transform.gameObject.transform.eulerAngles.y, 0.0f);
         }
     }
 
