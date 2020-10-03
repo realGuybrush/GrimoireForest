@@ -86,6 +86,7 @@ public partial class PlayerControls : BasicMovement
     {
         //float beta = CalculateBeta();
         //Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
+        if(!anim.a.GetBool("Grab"))
         if ((move.movementMultiplier != 0)&&(!attacking))
         {
             holdAngleFor = 0;
