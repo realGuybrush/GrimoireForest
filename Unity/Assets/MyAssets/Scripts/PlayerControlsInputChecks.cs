@@ -98,6 +98,7 @@ public partial class PlayerControls : BasicMovement
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
+            DeleteEmptyDrops();
             ShowHideMenu(inMenu, false, !inMenu, false, false, false);
         }
     }
@@ -129,8 +130,16 @@ public partial class PlayerControls : BasicMovement
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                ChooseChest();
-                ShowHideMenu(inMenu, false, false, false, false, !inMenu);
+                if (!inMenu)
+                {
+                    ChooseChest();
+                    ShowHideMenu(inMenu, false, false, false, false, !inMenu);
+                }
+                else
+                {
+                    DeleteEmptyDrops();
+                    ShowHideMenu(inMenu, false, false, false, false, !inMenu);
+                }
             }
         }
     }

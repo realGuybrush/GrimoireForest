@@ -62,7 +62,6 @@ public partial class PlayerControls : BasicMovement
             CheckClimbInput();
             CheckAtkInput();
             CheckPickUpInput();
-            CheckChestInput();
             CheckNumberInput();
             BasicCheckMidAir();
             BasicCheckHold();
@@ -70,6 +69,7 @@ public partial class PlayerControls : BasicMovement
         }
         BasicCheckHealth();
         CheckInventoryInput();
+        CheckChestInput();
         CheckSpellInput();
         CheckEsc();
         //BasicCheckRoll();
