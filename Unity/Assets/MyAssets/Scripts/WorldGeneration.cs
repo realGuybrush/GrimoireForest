@@ -6,7 +6,7 @@ public partial class WorldManagement : MonoBehaviour
 {
     public List<List<BiomeTilesData>> BiomePrefabs = new List<List<BiomeTilesData>>();
 
-    public int TileWidth = 70;
+    public float TileWidth = 80.5f;
     public void SetBiomePrefabs()//set as constructor, if it will be separate class
     {
         for (int i = 0; i < BiomeTilesData.BiomesAmount; i++)
@@ -28,6 +28,8 @@ public partial class WorldManagement : MonoBehaviour
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BigTree"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\TreeBranch"));
         BiomePrefabs[0][0].PlatformPrefab = RemoveAllNull(BiomePrefabs[0][0].PlatformPrefab);
+        BiomePrefabs[0][0].EntitiesPrefabs.Add(1);
+        BiomePrefabs[0][0].EntitiesAmounts.Add(2);
         //public List<GameObject> CoverPrefabs;
         //public List<GameObject> EntitiesPrefabs;
 
@@ -154,7 +156,21 @@ public partial class WorldManagement : MonoBehaviour
     }
     void SetTileEntities(MapTile MT)
     {
+        int newAmount;
         //fix create here array of entities in tile to spawn them
+        for (int i = 0; i < BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs.Count; i++)
+        {
+            newAmount = Random.Range(0, BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesAmounts[i]);
+            for (int j = 0; j < newAmount; j++)
+            {
+                MT.TileEntitiesPositions.Add(new EntityValues(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i],
+                                                              new Vector3(Random.Range((float)(-TileWidth / 2), (float)(TileWidth / 2)), 0.0f, 0.0f),
+                                                              new Vector3(0.0f, 0.0f, 0.0f),
+                                                              new Vector3(0.0f, 0.0f, 0.0f),
+                                                              new Inventory(),//EntityPrefabs[BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<BasicMovement>().inventory
+                                                              new Characteristics()));//EntityPrefabs[BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<BasicMovement>().thisHealth.values
+            }
+        }
     }
 
     void Instantiate(BiomeTilesData BTD, EnvironmentStuffingValues ESV, Transform parent)

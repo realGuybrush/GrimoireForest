@@ -79,7 +79,7 @@ public partial class WorldManagement : MonoBehaviour
     public void CalculatePlayerCorridorOffset(int x)
     {
         int playerWidth = 10;
-        PlayerCurrentXMapOffset = -((x + System.Math.Sign(x) * (TileWidth + playerWidth) / 2) / TileWidth) * calculateXDirectionCoeff(CameraLookDirection);
+        PlayerCurrentXMapOffset = -((x + System.Math.Sign(x) * ((int)TileWidth + playerWidth) / 2) / (int)TileWidth) * calculateXDirectionCoeff(CameraLookDirection);
     }
     public void ChangePlayerCoordinates(int x, int y)
     {

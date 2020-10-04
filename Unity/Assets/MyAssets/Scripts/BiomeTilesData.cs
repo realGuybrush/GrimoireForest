@@ -29,6 +29,7 @@ public class BiomeTilesData
     public GameObject TilePrefab;
     public List<GameObject> PlatformPrefab = new List<GameObject>();
     public List<GameObject> CoverPrefabs = new List<GameObject>();
-    public List<GameObject> EntitiesPrefabs = new List<GameObject>();
+    public List<int> EntitiesPrefabs = new List<int>();
+    public List<int> EntitiesAmounts = new List<int>();
     public GameObject ChestPrefab;
 }
