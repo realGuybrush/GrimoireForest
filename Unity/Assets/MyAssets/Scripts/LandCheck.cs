@@ -12,6 +12,7 @@ public class LandCheck : MonoBehaviour
     //this script requires a specified land trigger
     private void Start()
     {
+        ignoreLayer.Add(0);
         ignoreLayer.Add(8);
         ignoreLayer.Add(13);
         ignoreLayer.Add(14);
