@@ -9,8 +9,8 @@ using Unity.Mathematics;
 public class Map
 {
 	
-	int Width;
-	int Height;
+	public int Width;
+	public int Height;
 	int MaximumCorridorLength;
 	int MinimumCorridorLength;
     //[NonSerialized]
@@ -134,6 +134,7 @@ public class Map
 		}
 		GenerateHorizontalCorridors ();
 		GenerateVerticalCorridors ();
+        FixCorridors();
 		//SaveGame();
 	}
 
@@ -265,6 +266,59 @@ public class Map
 			}
 		}
 	}
+
+    void FixCorridors()
+    {
+        for (int y = 0; y < Height-1; y++)
+        {
+            for (int x = 0; x < Width-1; x++)
+            {
+                if (Tiles[y][x].passages[2] != Tiles[y + 1][x].passages[0])
+                {
+                    Tiles[y][x].passages[2] = FixConnection(Tiles[y][x].passages[2], Tiles[y + 1][x].passages[0]);
+                    Tiles[y + 1][x].passages[0] = FixConnection(Tiles[y][x].passages[2], Tiles[y + 1][x].passages[0]);
+                }
+                if (Tiles[y][x].passages[1] != Tiles[y][x + 1].passages[3])
+                {
+                    Tiles[y][x].passages[1] = FixConnection(Tiles[y][x].passages[1], Tiles[y][x + 1].passages[3]);
+                    Tiles[y][x + 1].passages[3] = FixConnection(Tiles[y][x].passages[1], Tiles[y][x + 1].passages[3]);
+                }
+            }
+        }
+        for (int x = 0; x < Width; x++)
+        {
+            Tiles[0][x].passages[0] = PassageType.No;
+        }
+        for (int y = 0; y < Height; y++)
+        {
+            Tiles[y][Width-1].passages[1] = PassageType.No;
+        }
+        for (int x = 0; x < Width; x++)
+        {
+            Tiles[Height-1][x].passages[2] = PassageType.No;
+        }
+        for (int y = 0; y < Height; y++)
+        {
+            Tiles[y][0].passages[3] = PassageType.No;
+        }
+    }
+
+    PassageType FixConnection(PassageType pass1, PassageType pass2)
+    {
+        if ((pass1 == PassageType.No) || (pass2 == PassageType.No))
+        {
+            return PassageType.No;
+        }
+        if((pass1 == PassageType.SecretDoor) || (pass2 == PassageType.SecretDoor))
+        {
+            return PassageType.SecretDoor;
+        }
+        if ((pass1 == PassageType.Door) || (pass2 == PassageType.Door))
+        {
+            return PassageType.Door;
+        }
+        return PassageType.Corridor;
+    }
     void GeneratePlatforms(int x, int y, List<List<BiomeTilesData>> BiomePrefabs)
     {
         for (int i = 0; i < BiomePrefabs[(int)Tiles[y][x].biome1][(int)Tiles[y][x].biome2].PlatformPrefab.Count; i++)
@@ -381,7 +435,7 @@ public class Map
 			{
                 if (!noPass)
                 {
-                    switch (Tiles[y][x].passages[1])
+                    switch (Tiles[y][x].passages[3])
                     {
                         case PassageType.No:
                             sr.Write(" ");

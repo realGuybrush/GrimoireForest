@@ -65,21 +65,23 @@ public partial class WorldManagement : MonoBehaviour
         }
         Player.GetComponent<PlayerControls>().RemoveDoors();
     }
-    public void SpawnCorridor(MapTile MT, DirectionType LookTurn = DirectionType.North)
+    public void SpawnCorridor(DirectionType LookTurn = DirectionType.North)
     {
+        int xCoeff = calculateXDirectionCoeff(LookTurn);
+        int yCoeff = -calculateYDirectionCoeff(LookTurn);
         int offsetTilesLeft = 0;
         int offsetTilesRight = 0;
-        while (GlobalMap.Tiles[PlayerYMap][PlayerXMap + offsetTilesLeft].passages[3] == PassageType.Corridor)
+        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesLeft * yCoeff].passages[3] == PassageType.Corridor)
         {
             offsetTilesLeft--;
         }
-        while (GlobalMap.Tiles[PlayerYMap][PlayerXMap + offsetTilesRight].passages[1] == PassageType.Corridor)
+        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesRight * yCoeff].passages[1] == PassageType.Corridor)
         {
             offsetTilesRight++;
         }
         for (int i = offsetTilesLeft; i <= offsetTilesRight; i++)
         {
-            SpawnTile(i, GlobalMap.Tiles[PlayerYMap+i*(-(int)LookTurn-2)%2][PlayerXMap+i*(-(int)LookTurn-1)%2], LookTurn);
+            SpawnTile(i, GlobalMap.Tiles[PlayerYMap + +i * xCoeff][PlayerXMap+i* yCoeff], LookTurn);
         }
         GameObject.Find("Main Camera").GetComponent<Camera_Movement>().SetCameraBoundaries(offsetTilesLeft, offsetTilesRight);
     }
@@ -216,7 +218,7 @@ public partial class WorldManagement : MonoBehaviour
         GlobalMap.Generate_Map(BiomePrefabs[0]);
         PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
         PlayerYMap = (int)GlobalMap.Biomes[0].Center.y;
-        SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap], DirectionType.North);
+        SpawnCorridor(DirectionType.North);
         Player.GetComponent<PlayerControls>().ShowHideMenu();
         Player.transform.position = new Vector3(0.0f, 0.0f, Player.transform.position.z);
     }

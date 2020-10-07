@@ -2359,7 +2359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171ff2153b5f07941b6214fc74e0ea1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xEdge: 50
+  xEdge: 22
   yEdge: 30
   xOffset: 0
   yOffset: 32
@@ -3196,6 +3196,8 @@ MonoBehaviour:
   - {fileID: 5046216633960626277, guid: f3f91b08edf60714ba514907fd8498cb, type: 3}
   - {fileID: 7859400090961293852, guid: 72526336faab1014cac3ff9fc05bb8fa, type: 3}
   GlobalMap:
+    Width: 3
+    Height: 3
     Biomes: []
   DropPrefab: {fileID: 4549335938989430331, guid: 172918939519b7f4b9d781c024d7e890,
     type: 3}

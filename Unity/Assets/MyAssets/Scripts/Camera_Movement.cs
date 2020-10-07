@@ -43,14 +43,36 @@ public class Camera_Movement : MonoBehaviour
         {
             var playerPosition = player.position;// + new Vector3(0, VerticalCameraOffsetFromPlayer, 0);
             var new_position = new Vector3();
-            if ((playerPosition.x <= (xEdge + xOffset)) && (playerPosition.x >= (-xEdge + xOffset)))
-                new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
+            if (playerPosition.x <= (xEdge + xOffset))
+            {
+                if (playerPosition.x >= (-xEdge + xOffset))
+                {
+                    new_position = new Vector3(playerPosition.x, new_position.y, new_position.z);
+                }
+                else
+                {
+                    new_position = new Vector3(-xEdge + xOffset, new_position.y, new_position.z);
+                }
+            }
             else
-                new_position = new Vector3(transform.position.x, new_position.y, new_position.z);
-            if ((playerPosition.y <= (yEdge + yOffset)) && (playerPosition.y >= (-yEdge + yOffset)))
-                new_position = new Vector3(new_position.x, playerPosition.y, new_position.z);
+            {
+                new_position = new Vector3(xEdge + xOffset, new_position.y, new_position.z);
+            }
+            if (playerPosition.y <= (yEdge + yOffset))
+            {
+                if (playerPosition.y >= (-yEdge + yOffset))
+                {
+                    new_position = new Vector3(new_position.x, playerPosition.y, new_position.z);
+                }
+                else
+                {
+                    new_position = new Vector3(new_position.x, -yEdge + yOffset, new_position.z);
+                }
+            }
             else
-                new_position = new Vector3(new_position.x, transform.position.y, new_position.z);
+            {
+                new_position = new Vector3(new_position.x, yEdge + yOffset, new_position.z);
+            }
             transform.position = new Vector3(new_position.x, new_position.y, playerPosition.z + cameraStart.z);
         }
         //background.position = new Vector3 (this.transform.position.x, this.transform.position.y, this.transform.position.z + 1.0f);
@@ -60,7 +82,7 @@ public class Camera_Movement : MonoBehaviour
     {
         var playerPosition = player.position;
         var new_position = new Vector3();
-        if (playerPosition.x <= (xEdge + xOffset))
+        if (playerPosition.x <= (xEdge - xOffset))
         {
             if (playerPosition.x >= (-xEdge + xOffset))
             {
@@ -73,9 +95,9 @@ public class Camera_Movement : MonoBehaviour
         }
         else
         {
-            new_position = new Vector3(xEdge + xOffset, new_position.y, new_position.z);
+            new_position = new Vector3(xEdge - xOffset, new_position.y, new_position.z);
         }
-        if (playerPosition.y <= (yEdge + yOffset))
+        if (playerPosition.y <= (yEdge - yOffset))
         {
             if (playerPosition.y >= (-yEdge + yOffset))
             {
@@ -88,15 +110,16 @@ public class Camera_Movement : MonoBehaviour
         }
         else
         {
-            new_position = new Vector3(new_position.x, yEdge + yOffset, new_position.z);
+            new_position = new Vector3(new_position.x, yEdge - yOffset, new_position.z);
         }
         transform.position = new Vector3(new_position.x, new_position.y, playerPosition.z + cameraStart.z);
     }
 
     public void SetCameraBoundaries(int leftOffset, int rightOffset)
     {
-        xOffset = (rightOffset - leftOffset)*xEdgeOneTile/2.0f;
-        xEdge = (Mathf.Abs(rightOffset) + Mathf.Abs(leftOffset)+1) * xEdgeOneTile;
+        xOffset = (int)((rightOffset + leftOffset)*1.727*xEdgeOneTile);
+        xEdge = (int)(((Mathf.Abs(rightOffset) + Mathf.Abs(leftOffset))* 1.7+1)  * xEdgeOneTile);
+        Debug.Log(xOffset.ToString() + " " + xEdge.ToString());
     }
 
     /*void CalculateEdges()

@@ -67,7 +67,6 @@ public partial class WorldManagement : MonoBehaviour
         //if(Pass != null)
         //Enter();
     }
-
     public void Drop(int itemNumber, int itemCount, Vector3 coordinates)
     {
         for (int i = 0; i < itemCount; i++)
@@ -79,12 +78,12 @@ public partial class WorldManagement : MonoBehaviour
     public void CalculatePlayerCorridorOffset(int x)
     {
         int playerWidth = 10;
-        PlayerCurrentXMapOffset = -((x + System.Math.Sign(x) * ((int)TileWidth + playerWidth) / 2) / (int)TileWidth) * calculateXDirectionCoeff(CameraLookDirection);
+        PlayerCurrentXMapOffset = -((x + System.Math.Sign(x) * ((int)TileWidth - playerWidth) / 2) / (int)TileWidth) * calculateYDirectionCoeff(CameraLookDirection);
     }
     public void ChangePlayerCoordinates(int x, int y)
     {
-        PlayerXMap += -x + PlayerCurrentXMapOffset * calculateXDirectionCoeff(CameraLookDirection);
-        PlayerYMap += PlayerCurrentXMapOffset * calculateYDirectionCoeff(CameraLookDirection) + -y * calculateXDirectionCoeff(CameraLookDirection);
+        PlayerXMap += x - PlayerCurrentXMapOffset * calculateYDirectionCoeff(CameraLookDirection);
+        PlayerYMap += y + PlayerCurrentXMapOffset * calculateXDirectionCoeff(CameraLookDirection);
     }
 
     public void SetCorrectPlayerPosition(DirectionType walkTo)
@@ -109,20 +108,21 @@ public partial class WorldManagement : MonoBehaviour
 
     public void EnterDoor(DirectionType enterDirection)
     {
+        CalculatePlayerCorridorOffset((int)Player.transform.position.x);
         UpdateCorridor();
         DeleteCorridor();
-        ChangePlayerCoordinates(calculateYDirectionCoeff(enterDirection), calculateXDirectionCoeff(enterDirection));
-        SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
+        ChangePlayerCoordinates(calculateXDirectionCoeff(enterDirection), calculateYDirectionCoeff(enterDirection));
+        SpawnCorridor();
         SetCorrectPlayerPosition(enterDirection);
     }
 
     int calculateXDirectionCoeff(DirectionType enterDirection)
     {
-        return ((int)enterDirection - 1) % 2;
+        return (-((int)enterDirection - 2)) % 2;
     }
     int calculateYDirectionCoeff(DirectionType enterDirection)
     {
-        return ((int)enterDirection - 2) % 2;
+        return ((int)enterDirection - 1) % 2;
     }
 
     public int ItemNumberByName(string itemName)
@@ -151,24 +151,24 @@ public partial class WorldManagement : MonoBehaviour
     public void UpdateCorridor(DirectionType LookTurn = DirectionType.North)
     {
         int xCoeff = calculateXDirectionCoeff(LookTurn);
-        int yCoeff = calculateYDirectionCoeff(LookTurn);
+        int yCoeff = -calculateYDirectionCoeff(LookTurn);
         int offsetTilesLeft = 0;
         int offsetTilesRight = 0;
         Vector2 newCoords;
         Transform chI;
-        while (GlobalMap.Tiles[PlayerYMap * yCoeff][PlayerXMap + offsetTilesLeft* xCoeff].passages[3] == PassageType.Corridor)
+        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft* xCoeff][PlayerXMap + offsetTilesLeft* yCoeff].passages[3] == PassageType.Corridor)
         {
             offsetTilesLeft--;
         }
-        while (GlobalMap.Tiles[PlayerYMap * yCoeff][PlayerXMap + offsetTilesRight * xCoeff].passages[1] == PassageType.Corridor)
+        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesRight * yCoeff].passages[1] == PassageType.Corridor)
         {
             offsetTilesRight++;
         }
         for (int i = offsetTilesLeft; i <= offsetTilesRight; i++)
         {
-            GlobalMap.Tiles[PlayerYMap + i * yCoeff][PlayerXMap + i * xCoeff].TileChests = new List<EnvironmentStuffingValues>();
-            GlobalMap.Tiles[PlayerYMap + i * yCoeff][PlayerXMap + i * xCoeff].TileChestsInventry = new List<Inventory>();
-            GlobalMap.Tiles[PlayerYMap + i * yCoeff][PlayerXMap + i * xCoeff].TileEntitiesPositions = new List<EntityValues>();
+            GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileChests = new List<EnvironmentStuffingValues>();
+            GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileChestsInventry = new List<Inventory>();
+            GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions = new List<EntityValues>();
         }
         for (int i = 0; i < Environment.transform.GetChild(1).childCount; i++)
         {
@@ -198,8 +198,16 @@ public partial class WorldManagement : MonoBehaviour
     {
         int X = PlayerXMap;
         int Y = PlayerYMap;
-        X += (int)((position.x + TileWidth / 2) / TileWidth) * calculateXDirectionCoeff(LookTurn);
-        Y += (int)((position.x + TileWidth / 2) / TileWidth) * calculateYDirectionCoeff(LookTurn);
+        X += (int)((position.x + TileWidth / 2) / TileWidth) * calculateYDirectionCoeff(LookTurn);
+        Y += (int)((position.x + TileWidth / 2) / TileWidth) * calculateXDirectionCoeff(LookTurn);
+        if (X < 0)
+            X = 0;
+        if (Y < 0)
+            Y = 0;
+        if (X > GlobalMap.Width - 1)
+            X = GlobalMap.Width - 1;
+        if (Y < GlobalMap.Height - 1)
+            Y = GlobalMap.Height - 1;
         return new Vector2(X, Y);
     }
     Vector3 ShrinkPosition(Vector3 position)
@@ -226,7 +234,7 @@ public partial class WorldManagement : MonoBehaviour
             Save save = (Save)bf.Deserialize(file);
             file.Close();
             save.ExecuteLoading();
-            SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
+            SpawnCorridor();
         }
     }
     public void StopTime()
