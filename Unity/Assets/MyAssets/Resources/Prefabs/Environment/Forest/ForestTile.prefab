@@ -458,12 +458,12 @@ PrefabInstance:
     - target: {fileID: 5167701361350881407, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
       propertyPath: tileWidth
-      value: 80.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5167701361350881407, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
       propertyPath: movementCoefficient
-      value: -0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 5302489355864809575, guid: 4af2e560f8f483d4bbd7683e9fd1b349,
         type: 3}
@@ -1368,12 +1368,12 @@ PrefabInstance:
     - target: {fileID: 8721058188467773101, guid: f9db5021d6d65424a8f39a2a233482d7,
         type: 3}
       propertyPath: tileWidth
-      value: 80.5
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8721058188467773101, guid: f9db5021d6d65424a8f39a2a233482d7,
         type: 3}
       propertyPath: movementCoefficient
-      value: -0.1
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 9100554572187273888, guid: f9db5021d6d65424a8f39a2a233482d7,
         type: 3}
