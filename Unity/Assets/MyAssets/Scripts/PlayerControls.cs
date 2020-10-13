@@ -52,6 +52,7 @@ public partial class PlayerControls : BasicMovement
         if(!inMenu&&!IsClimbing())
         {
             PlayerCheckMove();
+            CheckHide();
             CheckPass();
             CheckLand();
             CheckJumpInput();

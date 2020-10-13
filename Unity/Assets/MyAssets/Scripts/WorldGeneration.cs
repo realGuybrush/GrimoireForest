@@ -27,8 +27,17 @@ public partial class WorldManagement : MonoBehaviour
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\ForestPlatform"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BigTree"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\TreeBranch"));
+        BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover1"));
+        BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover2"));
+        BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover3"));
         BiomePrefabs[0][0].PlatformPrefab = RemoveAllNull(BiomePrefabs[0][0].PlatformPrefab);
         BiomePrefabs[0][0].EntitiesPrefabs.Add(1);
+        BiomePrefabs[0][0].EntitiesAmounts.Add(2);
+        BiomePrefabs[0][0].EntitiesPrefabs.Add(2);
+        BiomePrefabs[0][0].EntitiesAmounts.Add(2);
+        BiomePrefabs[0][0].EntitiesPrefabs.Add(3);
+        BiomePrefabs[0][0].EntitiesAmounts.Add(2);
+        BiomePrefabs[0][0].EntitiesPrefabs.Add(4);
         BiomePrefabs[0][0].EntitiesAmounts.Add(2);
         //public List<GameObject> CoverPrefabs;
         //public List<GameObject> EntitiesPrefabs;

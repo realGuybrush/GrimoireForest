@@ -161,26 +161,37 @@ public partial class PlayerControls : BasicMovement
 		}*/
         if (Input.GetKeyDown(KeyCode.C))
         {
-            if (!move.run.running && crawlTimer == 0 && !BasicCheckHold())
+            if (!hidden)
             {
-                if (!anim.a.GetBool("Crawl"))
+                if (!move.run.running && crawlTimer == 0 && !BasicCheckHold() && !CanHide())
                 {
-                    anim.SetVar("Crawl", true);
-                    move.crawl.Crawl();
+                    if (!anim.a.GetBool("Crawl"))
+                    {
+                        anim.SetVar("Crawl", true);
+                        move.crawl.Crawl();
+                    }
+                    else
+                    {
+                        anim.SetVar("Crawl", false);
+                        move.crawl.UnCrawl();
+                    }
                 }
                 else
                 {
-                    anim.SetVar("Crawl", false);
-                    move.crawl.UnCrawl();
+                    if (BasicCheckHold())
+                    {
+                        ReleaseHolds();
+                        anim.SetVar("Grab", false);
+                    }
+                    if (CanHide())
+                    {
+                        Hide();
+                    }
                 }
             }
             else
             {
-                if (BasicCheckHold())
-                {
-                    ReleaseHolds();
-                    anim.SetVar("Grab", false);
-                }
+                UnHide();
             }
         }
     }

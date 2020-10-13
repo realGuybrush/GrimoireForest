@@ -157,15 +157,17 @@ public class BasicMovement : MonoBehaviour
         thisHealth.values.attacking = true;
     }*/
 
-    public void BasicCheckMidAir()
+    public bool BasicCheckMidAir()
     {
         if (landChecker.FirstJumpSuccessfull())
         {
             anim.SetVar("MidAir", true);
+            return true;
         }
         else
         {
             anim.SetVar("MidAir", false);
+            return false;
         }
     }
 

@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class EnemyMovement : BasicMovement
 {
-    private Vector3 destination;
-    Vector2 lookDirection = new Vector3(-1.0f, 1.0f);
-    int minLookAngle = -30;
-    int maxlookAngle = 45;
+    public Vector3 destination;
+    public Vector2 lookDirection = new Vector3(-1.0f, 1.0f);
+    public int minLookAngle = -30;
+    public int maxlookAngle = 45;
     public float jumpHeight = 3.0f;
     public float lookDistance = 3.0f;
     public float meleeDistance = 3.0f;
@@ -144,7 +144,7 @@ public class EnemyMovement : BasicMovement
         destination = new Vector3(transform.position.x + Random.Range(-5.0f, 5.0f), transform.position.y, transform.position.z);
     }
 
-    private void Attack()
+    public void Attack()
     {
         attacking = true;
         anim.SetVar("Atk", true);
@@ -159,7 +159,7 @@ public class EnemyMovement : BasicMovement
         }
     }
 
-    private void UnAttack()
+    public void UnAttack()
     {
         attacking = false;
         anim.SetVar("Atk", false);
@@ -227,7 +227,7 @@ public class EnemyMovement : BasicMovement
         return new Vector3(v.x, v.y);
     }
 
-    private bool CanSee()
+    public bool CanSee()
     {
         RaycastHit2D[] All;
         //if casted sector hit player
