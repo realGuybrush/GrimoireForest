@@ -3195,6 +3195,9 @@ MonoBehaviour:
   EntityPrefabs:
   - {fileID: 5046216633960626277, guid: f3f91b08edf60714ba514907fd8498cb, type: 3}
   - {fileID: 7859400090961293852, guid: 72526336faab1014cac3ff9fc05bb8fa, type: 3}
+  - {fileID: 6882551837517926009, guid: 83cd97a2462fecf4a93d31bb71a12070, type: 3}
+  - {fileID: 4016661696945336106, guid: 664e66eb1bb839c498a7fce9ca366350, type: 3}
+  - {fileID: 7564789142102385139, guid: a3d620e402500b247b77bcac44b8841c, type: 3}
   GlobalMap:
     Width: 100
     Height: 100

@@ -1,0 +1,432 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!43 &-4371165120374926625
+Mesh:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Bushes_1
+  serializedVersion: 10
+  m_SubMeshes:
+  - serializedVersion: 2
+    firstByte: 0
+    indexCount: 24
+    topology: 0
+    baseVertex: 0
+    firstVertex: 0
+    vertexCount: 10
+    localAABB:
+      m_Center: {x: -0.004999995, y: -0.0049999356, z: 0}
+      m_Extent: {x: 0.155, y: 0.9699999, z: 0}
+  m_Shapes:
+    vertices: []
+    shapes: []
+    channels: []
+    fullWeights: []
+  m_BindPose:
+  - e00: 0.022108035
+    e01: -2.0997725
+    e02: 0
+    e03: 1.4985596
+    e10: 1.4998374
+    e11: 0.030951248
+    e12: 0
+    e13: 0.010052755
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  - e00: 0.018811416
+    e01: -2.0998352
+    e02: 0
+    e03: 0.49853596
+    e10: 1.4998823
+    e11: 0.02633598
+    e12: 0
+    e13: 0.011148275
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  - e00: 0.018811416
+    e01: -2.0998352
+    e02: 0
+    e03: -0.50146353
+    e10: 1.4998823
+    e11: 0.02633598
+    e12: 0
+    e13: 0.011148036
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  m_BoneNameHashes: 
+  m_RootBoneNameHash: 0
+  m_BonesAABB:
+  - m_Min: {x: -0.5303737, y: -0.21193726, z: 0}
+    m_Max: {x: 0.9256459, y: 0.2621107, z: 0}
+  - m_Min: {x: -0.08688691, y: -0.21210043, z: 0}
+    m_Max: {x: 1.0525529, y: 0.23391744, z: 0}
+  - m_Min: {x: -0.023186743, y: -0.20376784, z: 0}
+    m_Max: {x: 1.5475684, y: 0.18081646, z: 0}
+  m_VariableBoneCountWeights:
+    m_Data: 
+  m_MeshCompression: 0
+  m_IsReadable: 1
+  m_KeepVertices: 1
+  m_KeepIndices: 1
+  m_IndexFormat: 0
+  m_IndexBuffer: 080007000900030006000500060002000700010004000800090007000200030000000600000002000600010008000900
+  m_VertexData:
+    serializedVersion: 3
+    m_VertexCount: 10
+    m_Channels:
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 12
+      format: 0
+      dimension: 3
+    - stream: 0
+      offset: 24
+      format: 0
+      dimension: 4
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 1
+      offset: 0
+      format: 0
+      dimension: 2
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 0
+      offset: 0
+      format: 0
+      dimension: 0
+    - stream: 2
+      offset: 0
+      format: 0
+      dimension: 4
+    - stream: 2
+      offset: 16
+      format: 10
+      dimension: 4
+    m_DataSize: 800
+    _typelessdata: 9a99193e0000603f000000000000000000000000000080bf0000803fde6f36b400000000000080bfec51b83d979979bf000000000000000000000000000080bf0000803f34a5ea3200000000000080bf9a0d133ecd668f3e000000000000000000000000000080bf0000803f182865b400000000000080bfcdcc4c3d3d0a773f000000000000000000000000000080bf0000803f8735e6b300000000000080bfec51b8bd979979bf000000000000000000000000000080bf0000803f0000000000000000000080bf8fc2f5bd3d0a773f000000000000000000000000000080bf0000803f0000000000000000000080bf0ad723be48e15a3f000000000000000000000000000080bf0000803fb16a3fb400000000000080bf0a4b1dbe71de8a3e000000000000000000000000000080bf0000803f55a941b400000000000080bf14f60dbe9ab887be000000000000000000000000000080bf0000803fe0a5cb3300000000000080bf33d3ef3d332968be000000000000000000000000000080bf0000803f4b33543300000000000080bf487a7a3fb853793f671c783f7b19093fb9397a3fb73c553f7c88763f68c97e3fc302713f7b19093fd3d36f3f68c97e3fe73f6e3f1f1d783f77806e3f3bb3543fa8176f3f6f2a343f142e793f2b7e363f0000803f000000000000000000000000000000000000000000000000000000000000803f000000000000000000000000020000000000000000000000000000006666663fd0cccc3d0000000000000000000000000100000000000000000000000000803f000000000000000000000000000000000000000000000000000000000000803f000000000000000000000000020000000000000000000000000000000000803f000000000000000000000000000000000000000000000000000000000000803f000000000000000000000000000000000000000000000000000000006666663fd0cccc3d0000000000000000000000000100000000000000000000006666663fcdcccc3d0000000000000000010000000200000000000000000000006666663fcdcccc3d000000000000000001000000020000000000000000000000
+  m_CompressedMesh:
+    m_Vertices:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UV:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Normals:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Tangents:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Weights:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_NormalSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_TangentSigns:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_FloatColors:
+      m_NumItems: 0
+      m_Range: 0
+      m_Start: 0
+      m_Data: 
+      m_BitSize: 0
+    m_BoneIndices:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_Triangles:
+      m_NumItems: 0
+      m_Data: 
+      m_BitSize: 0
+    m_UVInfo: 0
+  m_LocalAABB:
+    m_Center: {x: -0.004999995, y: -0.0049999356, z: 0}
+    m_Extent: {x: 0.155, y: 0.9699999, z: 0}
+  m_MeshUsageFlags: 0
+  m_BakedConvexCollisionMesh: 
+  m_BakedTriangleCollisionMesh: 
+  m_MeshMetrics[0]: 1
+  m_MeshMetrics[1]: 1
+  m_MeshOptimizationFlags: 1
+  m_StreamData:
+    offset: 0
+    size: 0
+    path: 
+--- !u!114 &-2252384429486180794
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e715ea371f114f4a8d2584ad476634d, type: 3}
+  m_Name: Bushes_1_Data
+  m_EditorClassIdentifier: 
+  m_PivotPoint: {x: 620, y: 323.5}
+  m_Vertices:
+  - {x: 635, y: 411}
+  - {x: 629, y: 226.00002}
+  - {x: 634.36066, y: 351.50812}
+  - {x: 625, y: 420}
+  - {x: 611, y: 226.00002}
+  - {x: 608, y: 420}
+  - {x: 604, y: 409}
+  - {x: 604.63934, y: 350.62283}
+  - {x: 606.1366, y: 296.99197}
+  - {x: 631.7102, y: 300.82803}
+  m_BoneWeights:
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 2
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 0.9
+    weight1: 0.100000024
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: 1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 2
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 1
+    weight1: 0
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: -1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 0.9
+    weight1: 0.100000024
+    weight2: 0
+    weight3: 0
+    boneIndex0: 0
+    boneIndex1: 1
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 0.9
+    weight1: 0.1
+    weight2: 0
+    weight3: 0
+    boneIndex0: 1
+    boneIndex1: 2
+    boneIndex2: -1
+    boneIndex3: -1
+  - weight0: 0.9
+    weight1: 0.1
+    weight2: 0
+    weight3: 0
+    boneIndex0: 1
+    boneIndex1: 2
+    boneIndex2: -1
+    boneIndex3: -1
+  m_Edges:
+  - index1: 7
+    index2: 6
+  - index1: 5
+    index2: 6
+  - index1: 3
+    index2: 5
+  - index1: 0
+    index2: 3
+  - index1: 1
+    index2: 4
+  - index1: 2
+    index2: 0
+  - index1: 7
+    index2: 8
+  - index1: 4
+    index2: 8
+  - index1: 2
+    index2: 9
+  - index1: 1
+    index2: 9
+  m_Holes: []
+  m_Indices: 080000000700000009000000030000000600000005000000060000000200000007000000010000000400000008000000090000000700000002000000030000000000000006000000000000000200000006000000010000000800000009000000
+  m_BindPoses:
+  - bindPose:
+      e00: 0.022108035
+      e01: -2.0997725
+      e02: 0
+      e03: 1.4985596
+      e10: 1.4998374
+      e11: 0.030951248
+      e12: 0
+      e13: 0.010052755
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    boneLength: 1.0000006
+    path: Tentacle4
+    name: Tentacle4
+    color: {r: 1, g: 0, b: 0, a: 1}
+    zOrder: 0
+  - bindPose:
+      e00: 0.018811416
+      e01: -2.0998352
+      e02: 0
+      e03: 0.49853596
+      e10: 1.4998823
+      e11: 0.02633598
+      e12: 0
+      e13: 0.011148275
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    boneLength: 1.0000005
+    path: Tentacle4/T41
+    name: T41
+    color: {r: 1, g: 0.75, b: 0, a: 1}
+    zOrder: 0
+  - bindPose:
+      e00: 0.018811416
+      e01: -2.0998352
+      e02: 0
+      e03: -0.50146353
+      e10: 1.4998823
+      e11: 0.02633598
+      e12: 0
+      e13: 0.011148036
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    boneLength: 1
+    path: Tentacle4/T41/T411
+    name: T411
+    color: {r: 0.5, g: 1, b: 0, a: 1}
+    zOrder: 0
+  m_Blendshapes: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10c0be6d28fe4d539c4a39822fe301c, type: 3}
+  m_Name: Bushes_1
+  m_EditorClassIdentifier: 
+  m_ApiVersion: 4
+  m_Sprite: {fileID: -7357922426693696371, guid: fb5f6fe9eeecc3848b6168e95c716c05,
+    type: 3}
+  m_SharedMesh: {fileID: -4371165120374926625}
+  m_SharedMaterials: []

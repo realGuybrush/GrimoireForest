@@ -8,6 +8,8 @@ public class FakeCoverMovement : EnemyMovement
     public int wakeChance = 0;
     public int wakeTime = 100;
     int curWakeTime = 0;
+    public int tryWakeTurns = 20;
+    int curWakeTurns = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +38,22 @@ public class FakeCoverMovement : EnemyMovement
     {
         if (hidden)
         {
-            if (Random.Range(0, 99) >= (100 - wakeChance))
+            if (curWakeTurns == 0)
             {
-                UnHide();
-                Attack();
-                curWakeTime = wakeTime;
+                if (Random.Range(0, 100) >= (100 - wakeChance))
+                {
+                    UnHide();
+                    Attack();
+                    curWakeTime = wakeTime;
+                }
+                else
+                {
+                    curWakeTurns = tryWakeTurns;
+                }
+            }
+            else
+            {
+                curWakeTurns--;
             }
         }
         else
@@ -58,6 +71,7 @@ public class FakeCoverMovement : EnemyMovement
                 else
                 {
                     Hide();
+                    SetWake(0);
                 }
             }
             else
@@ -90,7 +104,7 @@ public class FakeCoverMovement : EnemyMovement
         if (collision.gameObject.GetComponent<PlayerControls>() != null)
         {
             collision.gameObject.GetComponent<PlayerControls>().IncludeCover(this.gameObject);
-            SetWake(10);
+            SetWake(5);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

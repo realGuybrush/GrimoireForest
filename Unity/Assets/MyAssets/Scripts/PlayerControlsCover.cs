@@ -35,7 +35,7 @@ public partial class PlayerControls : BasicMovement
             anim.SetVar("Hide", true);
         if (cover[chosenCoverIndex].GetComponent<FakeCoverMovement>() != null)
         {
-            cover[chosenCoverIndex].GetComponent<FakeCoverMovement>().SetWake(35);
+            cover[chosenCoverIndex].GetComponent<FakeCoverMovement>().SetWake(25);
         }
     }
     public void UnHide()
