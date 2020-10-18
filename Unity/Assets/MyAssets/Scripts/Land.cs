@@ -85,6 +85,10 @@ public class BasicLand
         //xSpeedPreHold = thisObject.velocity.x;
         PosPreHold = thisObject.transform.position;
         thisObject.velocity = new Vector2(0.0f, 0.0f);
+        //if (thisObject.GetComponent<PlayerControls>() != null)
+        //{
+        //    thisObject.GetComponent<PlayerControls>().HideWeapons(-19);
+        //}
     }
 
     public void Unhold()

@@ -28,6 +28,10 @@ public class BasicClimb
         var newPositionY = thisObject.transform.position.y + climbYChange;
         var newPosition = new Vector2(newPositionX, newPositionY);
         thisObject.transform.position = newPosition;
+        //if (thisObject.GetComponent<PlayerControls>() != null)
+        //{
+        //    thisObject.GetComponent<PlayerControls>().ShowWeapons(19);
+        //}
         //var climbVector = new Vector2(climbXChange * thisObject.transform.forward.z, climbYChange);
         //thisObject.velocity = climbVector;
     }
