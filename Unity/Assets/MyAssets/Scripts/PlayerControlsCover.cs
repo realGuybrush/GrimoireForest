@@ -57,8 +57,9 @@ public partial class PlayerControls : BasicMovement
 
     public void CheckHide()
     {
-        if (hidden && (!CanHide() || BasicCheckMidAir()))
+        if (hidden && (!CanHide() || BasicCheckMidAir())&&!anim.a.GetBool("Roll"))
         {
+            move.crawl.UnCrawl();
             UnHide();
             //ShowWeapons();
         }

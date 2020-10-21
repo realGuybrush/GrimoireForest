@@ -185,12 +185,14 @@ public partial class PlayerControls : BasicMovement
                     }
                     if (CanHide())
                     {
+                        move.crawl.Crawl();
                         Hide();
                     }
                 }
             }
             else
             {
+                move.crawl.UnCrawl();
                 UnHide();
             }
         }
