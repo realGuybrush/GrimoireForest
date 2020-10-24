@@ -9,7 +9,6 @@ public class Item : MonoBehaviour
     public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
     public float projectileVelocity = 50.0f;
     public ItemCharacteristics itemValues;
-    public float strPenalty = 1.0f;
     private Collider2D thisCollider;
     public Sprite InventoryImage;
     private bool set;
@@ -18,7 +17,9 @@ public class Item : MonoBehaviour
     private string masterName;
     public int projectileIndex;
     public int projectilePerShot;
+    public float atkSpd; //only on main atk for guns, on both atk for others
 
+    public float strPenalty = 1.0f;
     public int strReq = 5;
     public int intReq = 5;
 
@@ -53,6 +54,8 @@ public class Item : MonoBehaviour
         itemValues.atk2 = "Atk7";
         itemValues.kick = "Atk4";
         itemValues.maxStack = 3;
+        projectileIndex = 2;
+        projectilePerShot = 0;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
         itemValues.SetProjectiles("Prefabs\\Projectiles\\Bullet", "", "");
     }
@@ -101,11 +104,11 @@ public class Item : MonoBehaviour
                 { return; }
                 if (collision.gameObject.GetComponent<Health>() != null)
                 {
-                    collision.gameObject.GetComponent<Health>().Substract((int)(itemValues.GetBuff(atkType).atk * strPenalty));
+                    collision.gameObject.GetComponent<Health>().Substract((int)((this.transform.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<PlayerControls>().ArmsStrength.value + itemValues.GetBuff(atkType).atk) * strPenalty));
                 }
                 if (collision.gameObject.GetComponent<BasicMovement>() != null)
                 {
-                    collision.gameObject.GetComponent<BasicMovement>().thisHealth.Substract((int)(itemValues.GetBuff(atkType).atk*strPenalty));
+                    collision.gameObject.GetComponent<BasicMovement>().thisHealth.Substract((int)((this.transform.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<PlayerControls>().ArmsStrength.value + itemValues.GetBuff(atkType).atk)*strPenalty));
                 }
             }
         }

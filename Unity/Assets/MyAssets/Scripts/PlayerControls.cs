@@ -42,6 +42,7 @@ public partial class PlayerControls : BasicMovement
         munitions.Start();
         pickableItem = new List<GameObject>();
         SetDefaultBoneAngles();
+        RecalcCharacteristics();
         //ShowHideMenu();
     }
 
@@ -73,7 +74,6 @@ public partial class PlayerControls : BasicMovement
         CheckChestInput();
         CheckSpellInput();
         CheckEsc();
-        RecalcCharacteristics();
         //BasicCheckRoll();
         //CheckDirections();
         if (crawlTimer > 0)

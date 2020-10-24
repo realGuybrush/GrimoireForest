@@ -205,6 +205,7 @@ public partial class PlayerControls : BasicMovement
             {
                 BasicAtk1(true, GetAttackType(1), GetBuff(1));
                 Weapon.GetComponent<Item>().Attack(true, 1);
+                RecalcAtkSpd(GetAttackType(1));
             }
 
             if (Input.GetButtonUp("Fire1"))
@@ -216,7 +217,7 @@ public partial class PlayerControls : BasicMovement
             {
                 BasicAtk1(true, GetAttackType(2), GetBuff(2));
                 Weapon.GetComponent<Item>().Attack(true, 2);
-                //thisHealth.AddBuff(-1, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                RecalcAtkSpd(GetAttackType(1)=="Atk2"?"":GetAttackType(2));
             }
 
             if (Input.GetButtonUp("Fire2"))
@@ -230,7 +231,7 @@ public partial class PlayerControls : BasicMovement
             {
                 BasicAtk1(true, GetAttackType(3), GetBuff(3));
                 Weapon.GetComponent<Item>().Attack(true, 3);
-                //thisHealth.AddBuff(-1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+                RecalcAtkSpd(GetAttackType(1) == "Atk2" ? "" : GetAttackType(3));
             }
 
             if (Input.GetButtonUp("Fire3"))

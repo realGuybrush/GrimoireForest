@@ -142,7 +142,7 @@ public class BasicMovement : MonoBehaviour
     {
         anim.SetVar(attackType, atk);
         thisHealth.values.attacking = true;
-        thisHealth.values.AddBuff(buff);
+        //thisHealth.values.AddBuff(buff);
     }
 
     /*public void BasicAtk2(bool atk)

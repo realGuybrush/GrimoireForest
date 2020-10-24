@@ -38,9 +38,25 @@ public partial class PlayerControls : BasicMovement
     public void RecalcAtk()
     {
     }
-    public void RecalcAtkSpd()
+    public void RecalcAtkSpd(string atkType = "")
     {
-        anim.SetVar("AtkSpd", ((float)(ArmsSpeed.value)/(float)(baseArmsSpeed))/ (Weapon.GetComponent<Item>().strPenalty>2.0f?2.0f:Weapon.GetComponent<Item>().strPenalty));
+        float newAtkSpd;
+        if (atkType == "Atk2")
+        {
+            newAtkSpd = Weapon.GetComponent<Item>().atkSpd;
+        }
+        else
+        {
+            if (atkType != "")
+            {
+                newAtkSpd = ((float)(ArmsSpeed.value) / (float)(baseArmsSpeed))* Weapon.GetComponent<Item>().atkSpd / (Weapon.GetComponent<Item>().strPenalty > 2.0f ? 2.0f : Weapon.GetComponent<Item>().strPenalty);
+            }
+            else
+            {
+                newAtkSpd = 1.0f / (Weapon.GetComponent<Item>().strPenalty > 2.0f ? 2.0f : Weapon.GetComponent<Item>().strPenalty);
+            }
+        }
+        anim.SetVar("AtkSpd", newAtkSpd);
     }
     public void RecalcSpd()
     {

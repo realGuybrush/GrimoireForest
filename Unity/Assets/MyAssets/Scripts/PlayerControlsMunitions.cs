@@ -139,6 +139,7 @@ public partial class PlayerControls : BasicMovement
         //BackFire(Weapon.GetComponent<Item>().strReq);
         Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
         Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
+        RecalcCharacteristics();
         return true;
     }
     public void RemoveWeapon()
