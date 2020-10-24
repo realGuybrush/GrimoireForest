@@ -9,6 +9,7 @@ public class Item : MonoBehaviour
     public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
     public float projectileVelocity = 50.0f;
     public ItemCharacteristics itemValues;
+    public float strPenalty = 1.0f;
     private Collider2D thisCollider;
     public Sprite InventoryImage;
     private bool set;
@@ -17,6 +18,10 @@ public class Item : MonoBehaviour
     private string masterName;
     public int projectileIndex;
     public int projectilePerShot;
+
+    public int strReq = 100;
+    public int intReq = 5;
+
     //onCollision
     // search for hp script and extract hp.
     void Start()
@@ -74,6 +79,11 @@ public class Item : MonoBehaviour
             //set any gun buffs for bullet.GetComponent<Projectile>().debuff
         }
     }
+
+    public void SetPenalty(float p)
+    {
+        strPenalty = p;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if ((this.transform.parent == null)|| (this.transform.parent.name == "Items"))
@@ -91,11 +101,11 @@ public class Item : MonoBehaviour
                 { return; }
                 if (collision.gameObject.GetComponent<Health>() != null)
                 {
-                    collision.gameObject.GetComponent<Health>().Substract(itemValues.GetBuff(atkType).atk);
+                    collision.gameObject.GetComponent<Health>().Substract((int)(itemValues.GetBuff(atkType).atk * strPenalty));
                 }
                 if (collision.gameObject.GetComponent<BasicMovement>() != null)
                 {
-                    collision.gameObject.GetComponent<BasicMovement>().thisHealth.Substract(itemValues.GetBuff(atkType).atk);
+                    collision.gameObject.GetComponent<BasicMovement>().thisHealth.Substract((int)(itemValues.GetBuff(atkType).atk*strPenalty));
                 }
             }
         }

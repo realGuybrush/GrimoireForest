@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -134,6 +135,8 @@ public partial class PlayerControls : BasicMovement
                     return false;
             }
         }
+        Weapon.GetComponent<Item>().SetPenalty(CalcWeaponPenalty(Weapon.GetComponent<Item>().strReq));
+        //BackFire(Weapon.GetComponent<Item>().strReq);
         Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
         Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
         return true;
@@ -208,5 +211,28 @@ public partial class PlayerControls : BasicMovement
     public Buff GetBuff(int attackIndex)
     {
         return Weapon.GetComponent<Item>().itemValues.GetBuff(attackIndex);
+    }
+
+    public void BackFire(int weaponStr=0)
+    {
+        Vector2 forceAngle = CalcBackFireXY();
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(forceAngle.x*25.0f*(1.0f-CalcWeaponPenalty(weaponStr)), forceAngle.y * 25.0f * (1.0f - CalcWeaponPenalty(weaponStr))));
+        SetBackFireAngle(CalcWeaponPenalty(weaponStr));
+    }
+
+    public Vector2 CalcBackFireXY()
+    {
+        float dX, dY;
+        float gipotenuza;
+        Vector2 dir;
+        //it should be middle of the back bone, but here would be base, because whatever
+        dX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.transform.position.x;
+        dY = Camera.main.ScreenToWorldPoint(Input.mousePosition).y - this.transform.position.y;
+        gipotenuza = (float)Math.Sqrt(dX * dX + dY * dY);
+        float tempY = (float)(dY / gipotenuza);
+        if ((tempY > -0.05f) && !BasicCheckMidAir())
+            tempY = 0.0f;
+        dir = new Vector2 ((float)(dX / gipotenuza), tempY);
+        return dir;
     }
 }

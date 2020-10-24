@@ -17,6 +17,8 @@ public partial class PlayerControls : BasicMovement
     private float normalizationStep;
     private int tactsToHoldMax = 200;
     private int holdAngleFor = 0;
+
+    public float backFireAngle = 0.0f;
     float CalculateBeta()
     {
         float dX, dY;
@@ -99,16 +101,17 @@ public partial class PlayerControls : BasicMovement
             {
                 Back.transform.localEulerAngles = new Vector3(0.0f, 0.0f, preNormalizeAngle);
                 Head.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultHeadAngle.z);
-                leftArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultLAAngle.z);
-                rightArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultRAAngle.z);
+                leftArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultLAAngle.z + backFireAngle);
+                rightArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultRAAngle.z + backFireAngle);
             }
             else
             {
                 Back.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 45.0f);
                 Head.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultHeadAngle.z + preNormalizeAngle - 45.0f);
-                leftArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultLAAngle.z + preNormalizeAngle - 45.0f);
-                rightArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultRAAngle.z + preNormalizeAngle - 45.0f);
+                leftArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultLAAngle.z + preNormalizeAngle + backFireAngle - 45.0f);
+                rightArm.transform.localEulerAngles = new Vector3(0.0f, 0.0f, defaultRAAngle.z + preNormalizeAngle + backFireAngle - 45.0f);
             }
+            if(!attacking)
             holdAngleFor--;
         }
         else
@@ -117,7 +120,22 @@ public partial class PlayerControls : BasicMovement
             if(currentNormalization>=0)
             ReturningStep();
         }
+        ReturnungStepBackFire();
         //Quaternion.Euler(0.0f, 0.0f, );
         //Debug.Log(Back.transform.eulerAngles.z);
+    }
+
+    public void SetBackFireAngle(float penalty)
+    {
+        float finalAngleDif = (1.0f-penalty)*180.0f;
+        backFireAngle += UnityEngine.Random.Range(-finalAngleDif, finalAngleDif);
+    }
+
+    public void ReturnungStepBackFire()
+    {
+        if (backFireAngle != 0.0f)
+        {
+            backFireAngle *= 0.7f;
+        }
     }
 }

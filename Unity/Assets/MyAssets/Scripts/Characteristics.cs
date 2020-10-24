@@ -5,9 +5,9 @@ using System.Collections.Generic;
 public class Characteristics
 {
     private readonly List<Buff> buffs = new List<Buff>();
-    private readonly int damage = 4;
-    private readonly int defense = 0;
-    private readonly int maxHealth = 10;
+    public int damage = 4;
+    public int defense = 0;
+    public int maxHealth = 10;
     public bool attacking = false;
     private int health = 10;
     public string name;

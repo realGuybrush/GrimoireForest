@@ -19,6 +19,7 @@ public class AttackInAnimation : StateMachineBehaviour
                     aO.GetComponent<PlayerControls>().attacking = true;
                     aO.GetComponent<PlayerControls>().StartFollowingCursor();
                     item.Shoot(new Vector3((aO.GetComponent<PlayerControls>().flip.facingRight ? 1.0f : -1.0f), aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z< 180?1.0f:-1.0f, aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z));
+                    aO.GetComponent<PlayerControls>().BackFire(aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().strReq);
                 }
             }
         }
