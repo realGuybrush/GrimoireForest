@@ -19,7 +19,7 @@ public class Item : MonoBehaviour
     public int projectileIndex;
     public int projectilePerShot;
 
-    public int strReq = 100;
+    public int strReq = 5;
     public int intReq = 5;
 
     //onCollision

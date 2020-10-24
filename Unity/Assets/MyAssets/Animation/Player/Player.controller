@@ -401,9 +401,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk5
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
@@ -659,9 +656,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk2
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
@@ -979,9 +973,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk3
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
@@ -1082,9 +1073,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk6
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
@@ -1955,9 +1943,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk4
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
@@ -2750,9 +2735,6 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Atk6
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -2938,6 +2920,27 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: MidAir
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atk1
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atk2
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atk3
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atk4
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atk5
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atk6
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Atk7
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102122031339496678}
@@ -3209,9 +3212,6 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Atk7
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -3459,10 +3459,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Atk3
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: Jump
+    m_ConditionEvent: MidAir
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102671691141735522}
@@ -4112,9 +4109,6 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Atk4
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -4499,9 +4493,6 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Atk1
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -4855,9 +4846,6 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: Atk5
-    m_EventTreshold: 0
-  - m_ConditionMode: 2
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -4985,9 +4973,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk2
-    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: Jump
     m_EventTreshold: 0
@@ -6182,9 +6167,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk1
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MidAir
     m_EventTreshold: 0
@@ -6313,9 +6295,6 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: Atk7
-    m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: MidAir
     m_EventTreshold: 0

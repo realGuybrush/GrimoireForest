@@ -40,7 +40,7 @@ public partial class PlayerControls : BasicMovement
     }
     public void RecalcAtkSpd()
     {
-        anim.SetVar("AtkSpd", (float)(ArmsSpeed.value)/(float)(baseArmsSpeed));
+        anim.SetVar("AtkSpd", ((float)(ArmsSpeed.value)/(float)(baseArmsSpeed))/ (Weapon.GetComponent<Item>().strPenalty>2.0f?2.0f:Weapon.GetComponent<Item>().strPenalty));
     }
     public void RecalcSpd()
     {
