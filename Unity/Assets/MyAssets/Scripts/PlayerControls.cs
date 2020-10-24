@@ -73,6 +73,7 @@ public partial class PlayerControls : BasicMovement
         CheckChestInput();
         CheckSpellInput();
         CheckEsc();
+        RecalcCharacteristics();
         //BasicCheckRoll();
         //CheckDirections();
         if (crawlTimer > 0)

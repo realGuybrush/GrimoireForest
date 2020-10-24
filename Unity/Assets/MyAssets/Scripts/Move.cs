@@ -9,6 +9,7 @@ public class BasicMove
     public BasicRun run = new BasicRun();
     private Rigidbody2D thisObject;
     public float walkSpeed = 3.0f;
+    public float baseWalkSpeed = 3.0f;
 
     public void SetThisObject(Rigidbody2D newObject)
     {
