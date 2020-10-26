@@ -464,6 +464,7 @@ public class InventoryMovement : MonoBehaviour
             {
                 if (primary)
                 {
+                    GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[floatingItem].GetComponent<Item>().eve.DoEvent();
                     ItemSwap(clicked2, playerInventory, itemDepiction, false);
                 }
                 else
@@ -480,6 +481,7 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (playerInventory.Items[clicked2] != -1)
                     {
+                        GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[floatingItem].GetComponent<Item>().eve.DoEvent();
                         ItemSwap(clicked2, playerInventory, itemDepiction, true);
                         clickedPrevLocation = new Vector3(itemDepiction[clicked2].transform.position.x, itemDepiction[clicked2].transform.position.y, clicked2);
                         prevprimary = primary;

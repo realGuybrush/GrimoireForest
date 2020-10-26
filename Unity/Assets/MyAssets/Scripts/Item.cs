@@ -23,6 +23,8 @@ public class Item : MonoBehaviour
     public int strReq = 5;
     public int intReq = 5;
 
+    public Events eve;//replace with event
+
     //onCollision
     // search for hp script and extract hp.
     void Start()
@@ -40,16 +42,25 @@ public class Item : MonoBehaviour
         projectilePerShot = 0;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
         masterName = "Player";
+        eve = new Events("addonlyone", true, false, ' ', 1, -1);
     }
     public void Start2()
     {
-        projectilePosition = this.gameObject.transform.GetChild(0).transform.position;
-        projectilePosition1 = this.gameObject.transform.GetChild(1).transform.position;
+        if (this.gameObject.transform.childCount > 2)
+        {
+            projectilePosition = this.gameObject.transform.GetChild(0).transform.position;
+            projectilePosition1 = this.gameObject.transform.GetChild(1).transform.position;
+        }
         thisCollider = this.gameObject.GetComponent<Collider2D>();
         //instead of this, items values should be loaded by worldmanager
         itemValues = new ItemCharacteristics();
         itemValues.number = 0;
         itemValues.type = "Gun";
+        if (this.gameObject.name == "Bullet")
+        {
+            itemValues.type = "";
+            itemValues.number = 2;
+        }
         itemValues.atk1 = "Atk2";
         itemValues.atk2 = "Atk7";
         itemValues.kick = "Atk4";
@@ -58,6 +69,7 @@ public class Item : MonoBehaviour
         projectilePerShot = 0;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
         itemValues.SetProjectiles("Prefabs\\Projectiles\\Bullet", "", "");
+        eve = new Events("addonlyone", true, false, ' ', 1, -1);
     }
     public void Attack(bool value, int type)
     {

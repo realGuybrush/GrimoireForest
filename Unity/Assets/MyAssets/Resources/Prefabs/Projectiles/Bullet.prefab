@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8681610758471305809}
   - component: {fileID: 6932534950835713113}
   - component: {fileID: 4526523418832888543}
+  - component: {fileID: 6035891515129618319}
   m_Layer: 11
   m_Name: Bullet
   m_TagString: Untagged
@@ -96,8 +97,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e22dda858200b8b47b805ae14e3d4bfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ignore: {fileID: 0}
   lifeTime: 100
   atk: 5
+  debuff:
+    amountOfHits: 0
+    atk: 0
+    def: 0
+    hp: 0
+    maxHp: 0
+    percentAtk: 0
+    percentDef: 0
+    percentHp: 0
+    percentMaxHp: 0
+    percentXSpd: 0
+    percentYSpd: 0
+    time: 0
 --- !u!50 &6932534950835713113
 Rigidbody2D:
   serializedVersion: 4
@@ -145,3 +160,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.3, y: 0.3}
   m_EdgeRadius: 0
+--- !u!114 &6035891515129618319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4773232642241213361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2a75e3129f15e4f83397ad8734005e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  positionOnHand: {x: 0, y: 0, z: 0}
+  projectileVelocity: 0
+  InventoryImage: {fileID: 21300000, guid: 0ed3661d677edba46880dcbc069472e2, type: 3}
+  projectileIndex: 0
+  projectilePerShot: 0
+  atkSpd: 0
+  strPenalty: 1
+  strReq: 1
+  intReq: 1
+  eve:
+    PLAYING: 0
+    EvType: 
+    activatable: 0
+    turn_off_after_activation: 0
+    parameter_to_activate: 0
+    index_of_activatable_parameter1: 0
+    index_of_activatable_parameter2: 0
+    wait_for_in_seconds: 0

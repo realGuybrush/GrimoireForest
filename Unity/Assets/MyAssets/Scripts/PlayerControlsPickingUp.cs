@@ -37,6 +37,7 @@ public partial class PlayerControls : BasicMovement
         {
             if (PickUpMunitions(item[0]))
             {
+                I.eve.DoEvent();
                 GameObject.Destroy(item[0]);
                 return true;
             }
@@ -44,6 +45,7 @@ public partial class PlayerControls : BasicMovement
             {
                 if (inventory.Add1(I))
                 {
+                    I.eve.DoEvent();
                     GameObject.Destroy(item[0]);
                     return true;
                 }
@@ -53,6 +55,7 @@ public partial class PlayerControls : BasicMovement
         {
             if (inventory.Add1(I))
             {
+                I.eve.DoEvent();
                 GameObject.Destroy(item[0]);
                 return true;
             }
