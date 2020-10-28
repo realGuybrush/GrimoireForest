@@ -330,31 +330,31 @@ public partial class PlayerControls : BasicMovement
         }
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            //spellSlotNumber = 0;
+            spellSlotNumber = 0;
             CheckWeaponSpell();
             Arms.GetComponent<ArmsDepiction>().UpdateWSNumber();
         }
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
-            //spellSlotNumber = 1;
+            spellSlotNumber = 1;
             CheckWeaponSpell();
             Arms.GetComponent<ArmsDepiction>().UpdateWSNumber();
         }
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            //spellSlotNumber = 2;
+            spellSlotNumber = 2;
             CheckWeaponSpell();
             Arms.GetComponent<ArmsDepiction>().UpdateWSNumber();
         }
         if (Input.GetKeyDown(KeyCode.Alpha9))
         {
-            //spellSlotNumber = 3;
+            spellSlotNumber = 3;
             CheckWeaponSpell();
             Arms.GetComponent<ArmsDepiction>().UpdateWSNumber();
         }
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
-            //spellSlotNumber = 4;
+            spellSlotNumber = 4;
             CheckWeaponSpell();
             Arms.GetComponent<ArmsDepiction>().UpdateWSNumber();
         }

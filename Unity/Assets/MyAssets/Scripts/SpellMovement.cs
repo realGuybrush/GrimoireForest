@@ -15,7 +15,7 @@ public class SpellMovement : InventoryMovement
     public override void Clicked(float X, float Y)
     {
         int clicked2 = CalculateButtonNumberByCoordinates(X - MenuOffsetX, Y - MenuOffsetY);
-        if (clicked2 == -2)
+        if (clicked2 < 0)
         {
             return;
         }

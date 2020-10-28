@@ -38,6 +38,7 @@ public partial class PlayerControls : BasicMovement
         step = new BasicLand(thisObject, jump, climb, 0, false);
         climb.SetThisObject(thisObject);
         inventory.Start();
+        spellInventory.Start();
         munitions.maxAmount = 11;
         munitions.Start();
         pickableItem = new List<GameObject>();
@@ -166,7 +167,7 @@ public partial class PlayerControls : BasicMovement
             }
             if (spellInv)
             {
-                MT.SetSpell(inventory, spells);
+                MT.SetSpell(spellInventory, spells);
             }
             if (tradeInv)
             {

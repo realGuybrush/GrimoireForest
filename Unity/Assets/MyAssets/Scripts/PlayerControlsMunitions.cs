@@ -26,7 +26,8 @@ public partial class PlayerControls : BasicMovement
     public Inventory munitions = new Inventory(11);
     public Inventory spells = new Inventory(5);
     public int weaponSlotNumber = 0;
-    //public int spellSlotNumber = 0;
+    public int spellSlotNumber = 0;
+    public Inventory spellInventory = new Inventory();
 
     private void CheckWeaponSpell()
     {
@@ -139,7 +140,7 @@ public partial class PlayerControls : BasicMovement
         //BackFire(Weapon.GetComponent<Item>().strReq);
         Weapon.transform.localPosition = Weapon.GetComponent<Item>().positionOnHand;
         Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
-        RecalcCharacteristics();
+        RecalcCharacteristics(GetAttackType(1));
         return true;
     }
     public void RemoveWeapon()

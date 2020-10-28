@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     public int lifeTime = 100;
     public int atk = 5;
     public Buff debuff;
+    public int specialRod = -1;
     // Start is called before the first frame update
     void Start()
     {

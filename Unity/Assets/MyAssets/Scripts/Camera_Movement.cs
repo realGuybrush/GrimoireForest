@@ -119,7 +119,7 @@ public class Camera_Movement : MonoBehaviour
     {
         xOffset = (int)((rightOffset + leftOffset)*1.727*xEdgeOneTile);
         xEdge = (int)(((Mathf.Abs(rightOffset) + Mathf.Abs(leftOffset))* 1.7+1)  * xEdgeOneTile);
-        Debug.Log(xOffset.ToString() + " " + xEdge.ToString());
+        //Debug.Log(xOffset.ToString() + " " + xEdge.ToString());
     }
 
     /*void CalculateEdges()

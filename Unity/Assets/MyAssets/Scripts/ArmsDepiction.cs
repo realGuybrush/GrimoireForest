@@ -30,7 +30,7 @@ public class ArmsDepiction : MonoBehaviour
     public void UpdateWSNumber()
     {
         FloatingTile1.transform.position = ArmsAndSpells[Player.weaponSlotNumber].transform.position;
-        //FloatingTile2.transform.position = ArmsAndSpells[Player.spellSlotNumber + 5].transform.position;
+        FloatingTile2.transform.position = ArmsAndSpells[Player.spellSlotNumber + 5].transform.position;
     }
     public void Update2(int index)
     {

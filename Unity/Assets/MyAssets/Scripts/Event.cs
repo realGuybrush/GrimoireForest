@@ -28,6 +28,7 @@ public class Events
 
     public void DoEvent()
     {
+        WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
         switch (EvType)
         {
             case "spawn":
@@ -41,12 +42,28 @@ public class Events
                 break;
             case "add":
                 //instantly add another item to inventory
-                GameObject.Find("Player").GetComponent<PlayerControls>().inventory.Add1(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>());
+                if (WM.ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>().itemValues.type != "Spell")
+                {
+                    GameObject.Find("Player").GetComponent<PlayerControls>().inventory.Add1(WM.ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>());
+                }
+                else
+                {
+                    if (!GameObject.Find("Player").GetComponent<PlayerControls>().spells.Items.Contains(index_of_activatable_parameter1))
+                        GameObject.Find("Player").GetComponent<PlayerControls>().spells.Add1(WM.ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>());
+                }
                 break;
             case "addonlyone":
                 //instantly add another item to inventory
-                if(!GameObject.Find("Player").GetComponent<PlayerControls>().inventory.Items.Contains(index_of_activatable_parameter1))
-                    GameObject.Find("Player").GetComponent<PlayerControls>().inventory.Add1(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>());
+                if (WM.ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>().itemValues.type != "Spell")
+                {
+                    if (!GameObject.Find("Player").GetComponent<PlayerControls>().inventory.Items.Contains(index_of_activatable_parameter1))
+                        GameObject.Find("Player").GetComponent<PlayerControls>().inventory.Add1(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>());
+                }
+                else
+                {
+                    if (!GameObject.Find("Player").GetComponent<PlayerControls>().spells.Items.Contains(index_of_activatable_parameter1))
+                        GameObject.Find("Player").GetComponent<PlayerControls>().spells.Add1(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[index_of_activatable_parameter1].GetComponent<Item>());
+                }
                 break;
             default:
                 break;

@@ -29,10 +29,17 @@ public partial class PlayerControls : BasicMovement
     public ParameterLevel LegsSpeed = new ParameterLevel(5);
     int baseLegsSpeed = 5;
 
-    public void RecalcCharacteristics()
+    public void RecalcCharacteristics(string atkType = "")
     {
-        RecalcAtkSpd();
-        RecalcSpd();
+        if (Weapon != null)
+        {
+            RecalcAtkSpd(atkType);
+            RecalcSpd();
+        }
+        else
+        {
+            anim.SetVar("AtkSpd", 1.0f);
+        }
     }
 
     public void RecalcAtk()

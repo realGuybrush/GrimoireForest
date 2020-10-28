@@ -17,7 +17,7 @@ public class Item : MonoBehaviour
     private string masterName;
     public int projectileIndex;
     public int projectilePerShot;
-    public float atkSpd; //only on main atk for guns, on both atk for others
+    public float atkSpd = 1.0f; //only on main atk for guns, on both atk for others
 
     public float strPenalty = 1.0f;
     public int strReq = 5;
@@ -38,7 +38,7 @@ public class Item : MonoBehaviour
         itemValues.atk2 = "Atk7";
         itemValues.kick = "Atk4";
         itemValues.maxStack = 2;
-        projectileIndex = 2;
+        //projectileIndex = 2;
         projectilePerShot = 0;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
         masterName = "Player";
@@ -46,7 +46,7 @@ public class Item : MonoBehaviour
     }
     public void Start2()
     {
-        if (this.gameObject.transform.childCount > 2)
+        if (this.gameObject.transform.childCount > 1)
         {
             projectilePosition = this.gameObject.transform.GetChild(0).transform.position;
             projectilePosition1 = this.gameObject.transform.GetChild(1).transform.position;
@@ -56,20 +56,34 @@ public class Item : MonoBehaviour
         itemValues = new ItemCharacteristics();
         itemValues.number = 0;
         itemValues.type = "Gun";
-        if (this.gameObject.name == "Bullet")
+        if (this.gameObject.name.Contains("Bullet"))
         {
-            itemValues.type = "";
+            itemValues.type = "Projectile";
             itemValues.number = 2;
+        }
+        if (this.gameObject.name.Contains("AcornSpell"))
+        {
+            itemValues.type = "Spell";
+            itemValues.number = 4;
+            this.gameObject.GetComponent<Projectile>().specialRod = 3;
         }
         itemValues.atk1 = "Atk2";
         itemValues.atk2 = "Atk7";
         itemValues.kick = "Atk4";
         itemValues.maxStack = 3;
-        projectileIndex = 2;
+        //projectileIndex = 2;
         projectilePerShot = 0;
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
         itemValues.SetProjectiles("Prefabs\\Projectiles\\Bullet", "", "");
-        eve = new Events("addonlyone", true, false, ' ', 1, -1);
+        if (this.gameObject.name.Contains("AcornStaff"))
+        {
+            itemValues.type = "Rod";
+            itemValues.atk1 = "Atk5";
+            itemValues.atk2 = "Atk1";
+            itemValues.number = 3;
+            eve = new Events("addonlyone", true, false, ' ', 4, -1);
+            itemValues.SetProjectiles("Prefabs\\Projectiles\\AcornSpell", "", "");
+        }
     }
     public void Attack(bool value, int type)
     {
