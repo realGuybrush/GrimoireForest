@@ -44,11 +44,13 @@ public partial class WorldManagement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(13, 11);
         Physics2D.IgnoreLayerCollision(14, 14);
         Player = GameObject.Find("Player");
-        for (int i = 0; i < ItemPrefabs.Count; i++)
+        //for (int i = 0; i < ItemPrefabs.Count; i++)
         {
-            ItemPrefabs[i].GetComponent<Item>().Start2();
+            //ItemPrefabs[i].GetComponent<Item>().Start2();
         }
         SetBiomePrefabs();
+        Drop(0, 1, new Vector3(0.0f, 0.0f, 0.0f));
+        Drop(3,1,new Vector3(0.0f, 0.0f, 0.0f));
         StopTime();
         //MapGeneration();
         //PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
@@ -71,7 +73,10 @@ public partial class WorldManagement : MonoBehaviour
     {
         for (int i = 0; i < itemCount; i++)
         {
-            GameObject.Instantiate(ItemPrefabs[itemNumber], coordinates, new Quaternion(), GameObject.Find("Items").transform);
+            //GameObject G =
+            GameObject.Instantiate(ItemPrefabs[itemNumber], coordinates, new Quaternion(), GameObject.Find("Items").transform);//.GetComponent<Item>().Start2()
+            //Environment.transform.GetChild(1).transform.GetChild(Environment.transform.GetChild(1).transform.childCount - 1).gameObject.GetComponent<Item>().Start2();
+            //G.GetComponent<Item>().Start2();
         }
     }
 

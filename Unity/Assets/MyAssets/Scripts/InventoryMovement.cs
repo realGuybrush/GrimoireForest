@@ -173,7 +173,7 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (otherInventory.Items[i] >= 0)
                     {
-                        WM.ItemPrefabs[otherInventory.Items[i]].GetComponent<Item>().Start2();//fix:delete later
+                        //WM.ItemPrefabs[otherInventory.Items[i]].GetComponent<Item>().Start2();//fix:delete later
                         SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().sprite = WM.ItemPrefabs[otherInventory.Items[i]].GetComponent<Item>().InventoryImage;
                         SecondaryMenuItems[i].GetComponent<UnityEngine.UI.Image>().color = new Color(255.0f, 255.0f, 255.0f, 255.0f);
                     }
@@ -262,7 +262,7 @@ public class InventoryMovement : MonoBehaviour
             {
                 I = GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[floatingItem].GetComponent<Item>();
             }
-            I.Start2();
+            //I.Start2();
             maxStack = I.itemValues.maxStack;
         }
         if (!setget)

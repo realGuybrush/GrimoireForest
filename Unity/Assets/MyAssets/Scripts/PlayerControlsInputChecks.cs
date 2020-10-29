@@ -117,8 +117,8 @@ public partial class PlayerControls : BasicMovement
             {
                 for (int i = 0; i < pickableItem.Count; i++)
                 {
-                    if(pickableItem[i] != null)
-                    pickableItem[i].GetComponent<Item>().Start2();
+                    //if(pickableItem[i] != null)
+                    //pickableItem[i].GetComponent<Item>().Start2();
                 }
                 PickUp(pickableItem);
             }
@@ -203,9 +203,12 @@ public partial class PlayerControls : BasicMovement
         {
             if (Input.GetButtonDown("Fire1"))
             {
-                BasicAtk1(true, GetAttackType(1), GetBuff(1));
-                Weapon.GetComponent<Item>().Attack(true, 1);
-                RecalcAtkSpd(GetAttackType(1));
+                if ((GetAttackType(1) == "Atk5")&&(spells.Items[spellSlotNumber] != -1)||(GetAttackType(1)!="Atk5"))
+                {
+                    BasicAtk1(true, GetAttackType(1), GetBuff(1));
+                    Weapon.GetComponent<Item>().Attack(true, 1);
+                    RecalcAtkSpd(GetAttackType(1));
+                }
             }
 
             if (Input.GetButtonUp("Fire1"))

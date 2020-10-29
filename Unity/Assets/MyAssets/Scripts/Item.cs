@@ -4,11 +4,11 @@ public class Item : MonoBehaviour
 {
     private ContactPoint2D grabPoint1;
     private ContactPoint2D grabPoint2;
-    private Vector3 projectilePosition;
-    private Vector3 projectilePosition1;
+    public Vector3 projectilePosition;
+    public Vector3 projectilePosition1;
     public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
     public float projectileVelocity = 50.0f;
-    public ItemCharacteristics itemValues;
+    public ItemCharacteristics itemValues = new ItemCharacteristics();
     private Collider2D thisCollider;
     public Sprite InventoryImage;
     private bool set;
@@ -23,7 +23,7 @@ public class Item : MonoBehaviour
     public int strReq = 5;
     public int intReq = 5;
 
-    public Events eve;//replace with event
+    public Events eve;
 
     //onCollision
     // search for hp script and extract hp.
@@ -31,7 +31,7 @@ public class Item : MonoBehaviour
     {
         thisCollider = this.gameObject.GetComponent<Collider2D>();
         //instead of this, items values should be loaded by worldmanager
-        itemValues = new ItemCharacteristics();
+        /*itemValues = new ItemCharacteristics();
         itemValues.number = 0;
         itemValues.type = "Gun";
         itemValues.atk1 = "Atk2";
@@ -39,12 +39,12 @@ public class Item : MonoBehaviour
         itemValues.kick = "Atk4";
         itemValues.maxStack = 2;
         //projectileIndex = 2;
-        projectilePerShot = 0;
+        projectilePerShot = 0;*/
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
         masterName = "Player";
-        eve = new Events("addonlyone", true, false, ' ', 1, -1);
+        //eve = new Events("addonlyone", true, false, ' ', 1, -1);
     }
-    public void Start2()
+    /*public void Start2()
     {
         if (this.gameObject.transform.childCount > 1)
         {
@@ -84,7 +84,7 @@ public class Item : MonoBehaviour
             eve = new Events("addonlyone", true, false, ' ', 4, -1);
             itemValues.SetProjectiles("Prefabs\\Projectiles\\AcornSpell", "", "");
         }
-    }
+    }*/
     public void Attack(bool value, int type)
     {
         set = value;
@@ -94,11 +94,16 @@ public class Item : MonoBehaviour
     {
         float z = directions.z >= 270.0f ? directions.z - 360.0f : directions.z;
         //Vector3 newPosition = this.transform.position + new Vector3(projectilePosition.x * directions.x, projectilePosition.y * directions.y, 0.0f);
-        Start2();
+        //Start2();
         if (itemValues.GetProjectile(atkType) != null)
         {
             //Debug.Log(z.ToString() + " " + Mathf.Abs(Mathf.Cos(z)).ToString() + " " + Mathf.Abs(Mathf.Sin(z)).ToString());
             set = false;
+            if (this.gameObject.transform.childCount > 1)
+            {
+                projectilePosition = this.gameObject.transform.GetChild(0).transform.position;
+                projectilePosition1 = this.gameObject.transform.GetChild(1).transform.position;
+            }
             GameObject bullet = GameObject.Instantiate(itemValues.GetProjectile(atkType), projectilePosition, Quaternion.identity); //new Quaternion());// add position
             bullet.GetComponent<Projectile>().ignore = GameObject.Find(masterName);
             bullet.transform.right = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - projectilePosition1.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - projectilePosition1.y);

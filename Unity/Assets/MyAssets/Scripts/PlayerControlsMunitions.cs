@@ -44,7 +44,7 @@ public partial class PlayerControls : BasicMovement
             if ((Weapon == null) && (munitions.Items[weaponSlotNumber + 6] != -1))
             {
                 GameObject G = Instantiate(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[munitions.Items[weaponSlotNumber + 6]]);
-                G.GetComponent<Item>().Start2();
+                //G.GetComponent<Item>().Start2();
                 SetWeapon(G);
             }
         }
@@ -157,37 +157,37 @@ public partial class PlayerControls : BasicMovement
             case "Sword":
                 foreach (Transform child in Sword.transform)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
                 break;
             case "Spear":
                 foreach (Transform child in Spear.transform)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
                 break;
             case "Arrow":
                 foreach (Transform child in Arrow.transform)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
                 break;
             case "Rod":
                 foreach (Transform child in Rod.transform)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
                 break;
             case "MagicArtefact":
                 foreach (Transform child in MagicArtefact.transform)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
                 break;
             case "Bow":
                 foreach (Transform child in Bow.transform)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
                 break;
             default:

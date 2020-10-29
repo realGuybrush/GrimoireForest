@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class ItemCharacteristics
 {
     public int number = 0;
@@ -10,12 +11,12 @@ public class ItemCharacteristics
     public string atk2 = "Atk2";
     public string kick = "Atk3";
     public int maxStack = 64;
-    private Buff atk1Buff = new Buff();
-    private Buff atk2Buff = new Buff();
-    private Buff atk3Buff = new Buff();
-    private GameObject atk1Projectile;
-    private GameObject atk2Projectile;
-    private GameObject atk3Projectile;
+    public Buff atk1Buff = new Buff();
+    public Buff atk2Buff = new Buff();
+    public Buff atk3Buff = new Buff();
+    public GameObject atk1Projectile;
+    public GameObject atk2Projectile;
+    public GameObject atk3Projectile;
 
     public void SetBuffs(Buff Atk1, Buff Atk2, Buff Atk3)
     {
