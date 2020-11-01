@@ -95,7 +95,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -113,6 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2a75e3129f15e4f83397ad8734005e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePosition: {x: 0, y: 0, z: 0}
+  projectilePosition1: {x: 0, y: 0, z: 0}
   positionOnHand: {x: 0, y: 0, z: 0}
   projectileVelocity: 50
   itemValues:
@@ -194,7 +196,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ignore: {fileID: 0}
   lifeTime: 100
-  atk: 5
+  atk: 50
   debuff:
     amountOfHits: 0
     atk: 0

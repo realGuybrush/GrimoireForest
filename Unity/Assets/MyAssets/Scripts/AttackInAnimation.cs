@@ -49,6 +49,7 @@ public class AttackInAnimation : StateMachineBehaviour
                         if ((item.itemValues.number == GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[aO.GetComponent<PlayerControls>().spells.Items[aO.GetComponent<PlayerControls>().spellSlotNumber]].GetComponent<Projectile>().specialRod) ||
                           GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[aO.GetComponent<PlayerControls>().spells.Items[aO.GetComponent<PlayerControls>().spellSlotNumber]].GetComponent<Projectile>().specialRod == -1)
                         {
+                            aO.GetComponent<PlayerControls>().attacking = true;
                             aO.GetComponent<PlayerControls>().StartFollowingCursor(true);
                         }
                     }
@@ -89,7 +90,7 @@ public class AttackInAnimation : StateMachineBehaviour
                         if ((item.itemValues.number == GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[aO.GetComponent<PlayerControls>().spells.Items[aO.GetComponent<PlayerControls>().spellSlotNumber]].GetComponent<Projectile>().specialRod) ||
                           GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[aO.GetComponent<PlayerControls>().spells.Items[aO.GetComponent<PlayerControls>().spellSlotNumber]].GetComponent<Projectile>().specialRod == -1)
                         {
-                            aO.GetComponent<PlayerControls>().attacking = false;
+                            //aO.GetComponent<PlayerControls>().attacking = false;
                             aO.GetComponent<PlayerControls>().StartFollowingCursor(true);
                             item.Shoot(new Vector3((aO.GetComponent<PlayerControls>().flip.facingRight ? 1.0f : -1.0f), aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z < 180 ? 1.0f : -1.0f, aO.GetComponent<PlayerControls>().Back.transform.localEulerAngles.z));
                             aO.GetComponent<PlayerControls>().BackFire(aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().intReq);
