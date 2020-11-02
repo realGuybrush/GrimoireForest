@@ -40,7 +40,11 @@ public partial class WorldManagement : MonoBehaviour
     {
         Book = GameObject.Find("Book");
         Physics2D.IgnoreLayerCollision(0, 14);
+        //Physics2D.IgnoreLayerCollision(0, 11);
         Physics2D.IgnoreLayerCollision(8, 11);
+        Physics2D.IgnoreLayerCollision(9, 11);
+        Physics2D.IgnoreLayerCollision(11, 11);
+        Physics2D.IgnoreLayerCollision(12, 11);
         Physics2D.IgnoreLayerCollision(13, 11);
         Physics2D.IgnoreLayerCollision(14, 14);
         Player = GameObject.Find("Player");

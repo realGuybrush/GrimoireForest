@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1032700546317395118}
   - component: {fileID: 1032700546317395119}
-  - component: {fileID: 1032700546317395104}
-  - component: {fileID: 1032700546317395105}
   - component: {fileID: 1032700546317395117}
   - component: {fileID: 48226381976358114}
+  - component: {fileID: -3878995668371996202}
+  - component: {fileID: 1032700546317395105}
   m_Layer: 11
   m_Name: AcornSpell
   m_TagString: Untagged
@@ -85,8 +85,114 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &1032700546317395104
-CircleCollider2D:
+--- !u!114 &1032700546317395117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032700546317395106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22dda858200b8b47b805ae14e3d4bfb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ignore: {fileID: 0}
+  lifeTime: 100
+  atk: 50
+  debuff:
+    amountOfHits: 0
+    atk: 0
+    def: 0
+    hp: 0
+    maxHp: 0
+    percentAtk: 0
+    percentDef: 0
+    percentHp: 0
+    percentMaxHp: 0
+    percentXSpd: 0
+    percentYSpd: 0
+    time: 0
+  specialRod: 3
+  onCollisionEvents:
+  - PLAYING: 0
+    EvType: spawn
+    activatable: 1
+    turn_off_after_activation: 1
+    parameter_to_activate: 0
+    index_of_activatable_parameter1: 1
+    index_of_activatable_parameter2: 18
+    index_of_activatable_parameter3: 50
+    stringParameter: 
+    wait_for_in_seconds: 0
+    coords: {x: 0, y: 0, z: 0}
+  - PLAYING: 0
+    EvType: spawn
+    activatable: 1
+    turn_off_after_activation: 1
+    parameter_to_activate: 0
+    index_of_activatable_parameter1: 1
+    index_of_activatable_parameter2: 90
+    index_of_activatable_parameter3: 50
+    stringParameter: 
+    wait_for_in_seconds: 0
+    coords: {x: 0, y: 0, z: 0}
+  - PLAYING: 0
+    EvType: spawn
+    activatable: 1
+    turn_off_after_activation: 1
+    parameter_to_activate: 0
+    index_of_activatable_parameter1: 1
+    index_of_activatable_parameter2: 162
+    index_of_activatable_parameter3: 50
+    stringParameter: 
+    wait_for_in_seconds: 0
+    coords: {x: 0, y: 0, z: 0}
+  - PLAYING: 0
+    EvType: spawn
+    activatable: 1
+    turn_off_after_activation: 1
+    parameter_to_activate: 0
+    index_of_activatable_parameter1: 1
+    index_of_activatable_parameter2: 234
+    index_of_activatable_parameter3: 50
+    stringParameter: 
+    wait_for_in_seconds: 0
+    coords: {x: 0, y: 0, z: 0}
+  - PLAYING: 0
+    EvType: spawn
+    activatable: 1
+    turn_off_after_activation: 1
+    parameter_to_activate: 0
+    index_of_activatable_parameter1: 1
+    index_of_activatable_parameter2: 306
+    index_of_activatable_parameter3: 50
+    stringParameter: 
+    wait_for_in_seconds: 0
+    coords: {x: 0, y: 0, z: 0}
+--- !u!50 &48226381976358114
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032700546317395106}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 10
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!61 &-3878995668371996202
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -98,9 +204,19 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.02, y: 0.002}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.3, y: 0.3}
+    newSize: {x: 0.3, y: 0.3}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.15
+  m_Size: {x: 0.17, y: 0.17}
+  m_EdgeRadius: 0
 --- !u!114 &1032700546317395105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -181,54 +297,7 @@ MonoBehaviour:
     parameter_to_activate: 0
     index_of_activatable_parameter1: 0
     index_of_activatable_parameter2: 0
+    index_of_activatable_parameter3: 0
+    stringParameter: 
     wait_for_in_seconds: 0
---- !u!114 &1032700546317395117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032700546317395106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22dda858200b8b47b805ae14e3d4bfb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ignore: {fileID: 0}
-  lifeTime: 100
-  atk: 50
-  debuff:
-    amountOfHits: 0
-    atk: 0
-    def: 0
-    hp: 0
-    maxHp: 0
-    percentAtk: 0
-    percentDef: 0
-    percentHp: 0
-    percentMaxHp: 0
-    percentXSpd: 0
-    percentYSpd: 0
-    time: 0
-  specialRod: 3
---- !u!50 &48226381976358114
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1032700546317395106}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 10
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+    coords: {x: 0, y: 0, z: 0}

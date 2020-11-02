@@ -114,6 +114,7 @@ MonoBehaviour:
     percentYSpd: 0
     time: 0
   specialRod: -1
+  onCollisionEvents: []
 --- !u!50 &6932534950835713113
 Rigidbody2D:
   serializedVersion: 4
@@ -173,6 +174,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2a75e3129f15e4f83397ad8734005e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePosition: {x: 0, y: 0, z: 0}
+  projectilePosition1: {x: 0, y: 0, z: 0}
   positionOnHand: {x: 0, y: 0, z: 0}
   projectileVelocity: 0
   itemValues:
@@ -239,4 +242,7 @@ MonoBehaviour:
     parameter_to_activate: 0
     index_of_activatable_parameter1: 0
     index_of_activatable_parameter2: 0
+    index_of_activatable_parameter3: 0
+    stringParameter: 
     wait_for_in_seconds: 0
+    coords: {x: 0, y: 0, z: 0}

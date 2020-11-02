@@ -83,6 +83,7 @@ public class AttackInAnimation : StateMachineBehaviour
                 }
                 if (a5)
                 {
+                    aO.GetComponent<PlayerControls>().attacking = false;
                     Item item = aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>();
                     //item.Start2();
                     if (aO.GetComponent<PlayerControls>().spells.Items[aO.GetComponent<PlayerControls>().spellSlotNumber] != -1)
