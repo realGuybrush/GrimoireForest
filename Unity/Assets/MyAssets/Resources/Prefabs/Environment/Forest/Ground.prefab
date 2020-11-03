@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8202165694962888439}
   - component: {fileID: 8202165694962888438}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundPlatformsForest_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8202165696230850498}
   - component: {fileID: 8202165696230850509}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
