@@ -25,6 +25,7 @@ public partial class WorldManagement : MonoBehaviour
     public List<GameObject> EntityPrefabs = new List<GameObject>();
     public Map GlobalMap = new Map();
     public GameObject DropPrefab;
+    public GameObject TalkCloudPrefab;
     public int PlayerXMap, PlayerYMap;
     int PlayerCurrentXMapOffset = 0;
     GameObject Book;

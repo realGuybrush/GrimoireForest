@@ -65,7 +65,7 @@ public class EnemyMovement : BasicMovement
         //anim.SetVar("MidAir", land.landed ? false : true);
     }
 
-    void Detach()
+    public void Detach()
     {
         if (attachedTo != -2)
         {
@@ -75,7 +75,7 @@ public class EnemyMovement : BasicMovement
         }
     }
 
-    void FcknActAlready()
+    public void FcknActAlready()
     {
         if (CanSee())
             SetDestination();
@@ -134,7 +134,7 @@ public class EnemyMovement : BasicMovement
         return false;
     }
 
-    private void SetDestination()
+    public void SetDestination()
     {
         destination = GameObject.Find("Player").transform.position;
     }

@@ -19,6 +19,7 @@ public partial class PlayerControls : BasicMovement
 
     public GameObject Arms;
     public GameObject Book;
+    public GameObject Talks;
 
 
     // Use this for initialization
@@ -69,6 +70,7 @@ public partial class PlayerControls : BasicMovement
             BasicCheckMidAir();
             BasicCheckHold();
             FollowCursor();
+            CheckTalkInput();
         }
         BasicCheckHealth();
         CheckInventoryInput();
@@ -141,7 +143,7 @@ public partial class PlayerControls : BasicMovement
         }
     }
 
-    public void ShowHideMenu(bool hideall = true, bool menu = false, bool weaponInv = false, bool spellInv = false, bool tradeInv = false, bool chestInv = false)
+    public void ShowHideMenu(bool hideall = true, bool menu = false, bool weaponInv = false, bool spellInv = false, bool tradeInv = false, bool chestInv = false, bool talkInv = false)
     {
         MenusTrigger MT = Book.GetComponent<MenusTrigger>();
         if (!MT.IsMenuActive())
@@ -155,8 +157,9 @@ public partial class PlayerControls : BasicMovement
             {
                 GameObject.Find("WorldManager").GetComponent<WorldManagement>().UnStopTime();
             }
-            Arms.SetActive(!inMenu);
-            Book.SetActive(inMenu);
+            Arms.SetActive(!inMenu&&!talkInv);
+            Book.SetActive(inMenu&&!talkInv);
+            Talks.SetActive(!inMenu&& talkInv);
             MT.ShowMenu(menu);
             MT.ShowInv(weaponInv);
             MT.ShowSpell(spellInv);
@@ -176,6 +179,10 @@ public partial class PlayerControls : BasicMovement
             if (chestInv)
             {
                 MT.SetTrade(inventory, chest[chosenChestIndex].GetComponent<Chest>().inventory);
+            }
+            if (talkInv)
+            {
+                Talks.GetComponent<TalkMovement>().SetTalk(talks.GetComponent<NPCBehaviour>().talk);
             }
         }
         else

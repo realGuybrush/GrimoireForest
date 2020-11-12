@@ -8,6 +8,7 @@ public class MenusTrigger : MonoBehaviour
     public GameObject Spells;
     public GameObject Menus;
     public GameObject Trade;
+    public GameObject Talk;
 
     public bool IsMenuActive()
     {

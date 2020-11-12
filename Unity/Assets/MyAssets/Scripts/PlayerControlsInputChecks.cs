@@ -109,17 +109,25 @@ public partial class PlayerControls : BasicMovement
             ShowHideMenu(inMenu, false,  false, !inMenu, false, false);
         }
     }
+
+    public void CheckTalkInput()
+    {
+        if (talks != null)
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                StartTalk();
+                //dGameObject.Find("WorldManager").GetComponent<WorldManagement>().StartTalk(talks.GetComponent<NPCBehaviour>().talk);
+            }
+        }
+    }
+
     public void CheckPickUpInput()
     {
         if (pickableItem.Count != 0)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
-                for (int i = 0; i < pickableItem.Count; i++)
-                {
-                    //if(pickableItem[i] != null)
-                    //pickableItem[i].GetComponent<Item>().Start2();
-                }
                 PickUp(pickableItem);
             }
         }

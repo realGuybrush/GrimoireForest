@@ -19,7 +19,7 @@ public class Events
     public Vector3 coords = new Vector3();
 
 
-    public Events(string t, bool a, bool o, char p, int j, int k)
+    public Events(string t, bool a, bool o, char p, int j, int k, int i, string s, float f, Vector3 v)
     {
         EvType = t;
         activatable = a;
@@ -27,6 +27,10 @@ public class Events
         parameter_to_activate = p;
         index_of_activatable_parameter1 = j;
         index_of_activatable_parameter2 = k;
+        index_of_activatable_parameter3 = i;
+        stringParameter = s;
+        wait_for_in_seconds = f;
+        coords = v;
     }
 
     public void DoEvent()
