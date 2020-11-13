@@ -1,21 +1,19 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Runtime.Serialization.Formatters.Binary;
 
 [System.Serializable]
 public class Talk
 {
     public TextAsset inputText;
-	private List<Sentence> Phrases = new List<Sentence>();//this contains all conversation of this item with player;
-	//player will take sentences from clusters and use them, each sentence will cause event to happen, which will trigger the activation of other sentence of this item
+    public List<Sentence> Phrases = new List<Sentence>();
+    //this contains all conversation of this item with player;
+    //player will take sentences from clusters and use them, each sentence will cause event to happen, which will trigger the activation of other sentence of this item
 
     public void Load()
     {
-		//CurrentSentence = 0;
         int evNum = 0;
         //List<Sentence> Phrases = new List<Sentence>();
-        string [] arrayStr = inputText.text.Split('\n');
+        string[] arrayStr = inputText.text.Split('\n');
         for (int i = 0; i < arrayStr.Length; i++)
         {
             string[] arrayParts = arrayStr[i].Split('~');
@@ -48,15 +46,15 @@ public class Talk
 [System.Serializable]
 public class Sentence
 {
-	//now, this points of data make a 
-	public string BeautifulLine;
-	//public bool change_to_another_cluster_or_line;//true - cluster, false - line
-	public int changing_to;//to which cluster/line we are changing
+    //now, this points of data make a 
+    public string BeautifulLine;
+    //public bool change_to_another_cluster_or_line;//true - cluster, false - line
+    public int changing_to;//to which cluster/line we are changing
     public int index; //index of sentence and or possible answers, there might be several lines with same index
     public char action;//' '-no, 't'-trade, 'e'-exit
-	public List<Events> eve = new List<Events>();//event, that occurs after this phrase, comes before any assigned line change
-	public bool disappear_after_use;
-	public bool enabled;
+    public List<Events> eve = new List<Events>();//event, that occurs after this phrase, comes before any assigned line change
+    public bool disappear_after_use;
+    public bool enabled;
 }
 /*[System.Serializable]
 public class SentenceCluster

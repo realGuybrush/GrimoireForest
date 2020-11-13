@@ -4712,6 +4712,7 @@ MonoBehaviour:
   attPos: {x: 0, y: 0, z: 0}
   talk:
     inputText: {fileID: 4900000, guid: 4e79262c706a6654b9f8fab6f80977e9, type: 3}
+    Phrases: []
   friendly: 1
 --- !u!61 &797780484
 BoxCollider2D:

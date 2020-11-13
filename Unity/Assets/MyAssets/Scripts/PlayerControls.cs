@@ -182,7 +182,7 @@ public partial class PlayerControls : BasicMovement
             }
             if (talkInv)
             {
-                Talks.GetComponent<TalkMovement>().SetTalk(talks.GetComponent<NPCBehaviour>().talk);
+                Talks.GetComponent<TalkMovement>().SetTalk(talks.GetComponent<NPCBehaviour>().talk, talks.transform.position, this.transform.position);
             }
         }
         else
