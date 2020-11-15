@@ -376,6 +376,7 @@ public partial class PlayerControls : BasicMovement
         {
             ShowHideMenu(inMenu, !inMenu);
             DeleteEmptyDrops();
+            Talks.GetComponent<TalkMovement>().Exit();
         }
     }
 }

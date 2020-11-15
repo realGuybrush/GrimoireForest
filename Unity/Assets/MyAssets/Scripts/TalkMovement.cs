@@ -6,7 +6,7 @@ public class TalkMovement : MonoBehaviour
 {
     bool playerOrNot = false;
     Talk talk;
-    int curIndex = 0;
+    int curIndex = -1;
     int chosenLine = 0;
     int maxWait=200;
     int curWait = 0;
@@ -36,6 +36,8 @@ public class TalkMovement : MonoBehaviour
         playerTalkOrb.transform.parent = this.transform;
         otherTalkOrb.transform.parent = this.transform;
         playerTalkOrb.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(0.0f, 0, false);
+        playerTalkOrb.transform.GetChild(4).localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        playerTalkOrb.transform.GetChild(5).localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -59,6 +61,7 @@ public class TalkMovement : MonoBehaviour
                     //NextLine();
                     ResetPlayer(new List<string>() { talk.Phrases[linesToChoose[0]].BeautifulLine }, true);
                     choosing =false;
+                    Act();
                 }
             }
             if (choosing)
@@ -91,6 +94,7 @@ public class TalkMovement : MonoBehaviour
             if (rotateStep == 0)
             {
                 EndStep();
+                UpdateIcons();
             }
             else
             {
@@ -106,7 +110,7 @@ public class TalkMovement : MonoBehaviour
         playerTalkOrb.transform.GetChild(0).transform.position += new Vector3(0.0f, -rotateDelta* maxRotateSteps, 0.0f);
         playerTalkOrb.transform.GetChild(1).transform.position += new Vector3(0.0f, -rotateDelta* maxRotateSteps, 0.0f);
         playerTalkOrb.transform.GetChild(2).transform.position += new Vector3(0.0f, -rotateDelta* maxRotateSteps, 0.0f);
-        if (rotateDelta < 0)
+        if (rotateDelta > 0)
         {
             for (int i = 1; i < linesToChoose.Count; i++)
             {
@@ -127,36 +131,109 @@ public class TalkMovement : MonoBehaviour
         playerTalkOrb.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(1.0f, 0, false);
         playerTalkOrb.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(1.0f, 0, false);
         playerTalkOrb.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(0.0f, 0, false);
+        UpdateIcons();
+    }
+
+    /*void UpdateIconsTransparency(float tradeTransp, float exitTransp, int tradeTime, int exitTime)
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (talk.Phrases[linesToChoose[i]].action == 't')
+            {
+                playerTalkOrb.transform.GetChild(4).transform.position = new Vector3(playerTalkOrb.transform.GetChild(i).transform.position.x+ playerTalkOrb.transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x/2, playerTalkOrb.transform.GetChild(i).transform.position.y, 0.0f);
+            }
+            if (talk.Phrases[linesToChoose[i]].action == 'e')
+            {
+                playerTalkOrb.transform.GetChild(5).transform.position = new Vector3(playerTalkOrb.transform.GetChild(i).transform.position.x + playerTalkOrb.transform.GetChild(i).GetComponent<RectTransform>().sizeDelta.x / 2, playerTalkOrb.transform.GetChild(i).transform.position.y, 0.0f);
+            }
+        }
+    }*/
+    void UpdateIcons()//Positions
+    {
+        List<int> corr = new List<int> { 1, 2, 0, linesToChoose.Count-1 };
+        float a;
+        bool zeroT = true;
+        bool zeroE = true;
+        for (int i = 0; i < 4; i++)
+        {
+            if (i == 2)
+                continue;
+            if (talk.Phrases[linesToChoose[i]].action == 't')
+            {
+                playerTalkOrb.transform.GetChild(4).transform.position = new Vector3(playerTalkOrb.transform.GetChild(corr[i]).transform.position.x+ playerTalkOrb.transform.GetChild(corr[i]).GetComponent<RectTransform>().sizeDelta.x/2, playerTalkOrb.transform.GetChild(corr[i]).transform.position.y, 0.0f);
+                playerTalkOrb.transform.GetChild(4).localScale = new Vector3(1.0f, 1.0f, 0.0f);
+                zeroT = false;
+            }
+            if (talk.Phrases[linesToChoose[i]].action == 'e')
+            {
+                a = 1.0f-(float)(maxRotateSteps - rotateStep)/(float)maxRotateSteps;
+                playerTalkOrb.transform.GetChild(5).transform.position = new Vector3(playerTalkOrb.transform.GetChild(corr[i]).transform.position.x + playerTalkOrb.transform.GetChild(corr[i]).GetComponent<RectTransform>().sizeDelta.x / 2, playerTalkOrb.transform.GetChild(corr[i]).transform.position.y, 0.0f);
+                playerTalkOrb.transform.GetChild(5).localScale = new Vector3(1.0f, 1.0f, 0.0f);
+                zeroE = false;
+            }
+        }
+        /*if (rotating)
+        {
+            if (rotateDelta > 0)
+            {
+                a = 1.0f - (float)(maxRotateSteps - rotateStep) / (float)maxRotateSteps;
+                if (talk.Phrases[linesToChoose[linesToChoose.Count-1]].action == 't')
+                {
+                    playerTalkOrb.transform.GetChild(4).localScale = new Vector3(a, a, 0.0f);
+                }
+                if (talk.Phrases[linesToChoose[linesToChoose.Count - 1]].action == 'e')
+                {
+                    playerTalkOrb.transform.GetChild(5).localScale = new Vector3(a, a, 0.0f);
+                }
+            }
+            else
+            {
+                a = (float)(maxRotateSteps - rotateStep) / (float)maxRotateSteps;
+                if (talk.Phrases[linesToChoose[1 % linesToChoose.Count]].action == 't')
+                {
+                    playerTalkOrb.transform.GetChild(4).localScale = new Vector3(a, a, 0.0f);
+                }
+                if (talk.Phrases[linesToChoose[1 % linesToChoose.Count]].action == 'e')
+                {
+                    playerTalkOrb.transform.GetChild(5).localScale = new Vector3(a, a, 0.0f);
+                }
+            }
+        }*/
+        if (zeroT)
+            playerTalkOrb.transform.GetChild(4).localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        if (zeroE)
+            playerTalkOrb.transform.GetChild(5).localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
     void CommenceRotateStep()
     {
-        if(rotateDelta>0)
+        if(rotateDelta<0)
         playerTalkOrb.transform.GetChild(0).transform.position += new Vector3(0.0f, rotateDelta, 0.0f);
         playerTalkOrb.transform.GetChild(1).transform.position += new Vector3(0.0f, rotateDelta, 0.0f);
-        if(rotateDelta<0)
+        if(rotateDelta>0)
         playerTalkOrb.transform.GetChild(2).transform.position += new Vector3(0.0f, rotateDelta, 0.0f);
+        UpdateIcons();
         rotateStep--;
     }
     void SwitchUp()
     {
         rotating = true;
         rotateStep = maxRotateSteps;
-        rotateDelta = (playerTalkOrb.transform.GetChild(1).transform.position.y - playerTalkOrb.transform.GetChild(2).transform.position.y)/maxRotateSteps;
+        rotateDelta = (playerTalkOrb.transform.GetChild(1).transform.position.y - playerTalkOrb.transform.GetChild(0).transform.position.y)/maxRotateSteps;
         playerTalkOrb.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = talk.Phrases[linesToChoose[2%linesToChoose.Count]].BeautifulLine;
-        playerTalkOrb.transform.GetChild(3).transform.position = playerTalkOrb.transform.GetChild(2).transform.position;
-        playerTalkOrb.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta = playerTalkOrb.transform.GetChild(2).GetComponent<RectTransform>().sizeDelta;
-        playerTalkOrb.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(0.0f, (float)maxRotateSteps/50.0f, false);
+        playerTalkOrb.transform.GetChild(3).transform.position = playerTalkOrb.transform.GetChild(0).transform.position;
+        playerTalkOrb.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta = playerTalkOrb.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta;
+        playerTalkOrb.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(0.0f, (float)maxRotateSteps/50.0f, false);
         playerTalkOrb.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(1.0f, (float)maxRotateSteps / 50.0f, false);
     }
     void SwitchDown()
     {
         rotating = true;
         rotateStep = maxRotateSteps;
-        rotateDelta = (playerTalkOrb.transform.GetChild(1).transform.position.y - playerTalkOrb.transform.GetChild(0).transform.position.y)/ maxRotateSteps;
+        rotateDelta = (playerTalkOrb.transform.GetChild(1).transform.position.y - playerTalkOrb.transform.GetChild(2).transform.position.y)/ maxRotateSteps;
         playerTalkOrb.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().text = talk.Phrases[linesToChoose[2 % linesToChoose.Count]].BeautifulLine;
-        playerTalkOrb.transform.GetChild(3).transform.position = playerTalkOrb.transform.GetChild(0).transform.position;
-        playerTalkOrb.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta = playerTalkOrb.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta;
-        playerTalkOrb.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(0.0f, (float)maxRotateSteps / 50.0f, false);
+        playerTalkOrb.transform.GetChild(3).transform.position = playerTalkOrb.transform.GetChild(2).transform.position;
+        playerTalkOrb.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta = playerTalkOrb.transform.GetChild(2).GetComponent<RectTransform>().sizeDelta;
+        playerTalkOrb.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(0.0f, (float)maxRotateSteps / 50.0f, false);
         playerTalkOrb.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(1.0f, (float)maxRotateSteps / 50.0f, false);
     }
     public void NextLine()
@@ -179,13 +256,15 @@ public class TalkMovement : MonoBehaviour
             RandomChoose();
             ResetOther(talk.Phrases[chosenLine].BeautifulLine);//("sdfasd fasdfasdfasdf dfasdfasd asdfasd asdfasdfa sdaf");
             playerOrNot = !playerOrNot;
+            Act();
         }
+        UpdateIcons();
         maxWait = waitPerSymbol * talk.Phrases[chosenLine].BeautifulLine.Length;
         curWait = maxWait;
     }
     void RandomChoose()
     {
-        chosenLine = 0;
+        chosenLine = linesToChoose[Random.Range(0, linesToChoose.Count-1)];
     }
     void ConstructLineList()
     {
@@ -216,9 +295,35 @@ public class TalkMovement : MonoBehaviour
         otherPos = OtherPos;
         playerPos = PlayerPos;
     }
-    public void ShowHide()
+    public void Act()
     {
-
+        for (int i = 0; i < talk.Phrases[chosenLine].eve.Count; i++)
+        {
+            talk.Phrases[chosenLine].eve[i].DoEvent();
+        }
+        switch (talk.Phrases[chosenLine].action)
+        {
+            case 't':
+                //trade
+                break;
+            case 'e':
+                //exit
+                Exit();
+                GameObject.Find("Player").GetComponent<PlayerControls>().ShowHideMenu(true, false, false, false, false, false, false);
+                break;
+            default:
+                break;
+        }
+    }
+    public void Exit()
+    {
+        chosenLine = 0;
+        maxWait = 200;
+        curWait = 0;
+        waitPerSymbol = 10;
+        choosing = false;
+        playerOrNot = false;
+        curIndex = -1;
     }
     public void ResetOther(string line)
     {
@@ -301,7 +406,7 @@ public class TalkMovement : MonoBehaviour
                 playerTalkOrb.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = line[0].Substring(0, maxSymbolsInLine - 4) + "...";
             }
             playerTalkOrb.transform.GetChild(0).GetComponent<RectTransform>().sizeDelta = new Vector3(newWidth, fontSize + 4);
-            playerTalkOrb.transform.GetChild(0).transform.position = new Vector3(playerTalkOrb.transform.GetChild(0).transform.position.x, playerTalkOrb.transform.GetChild(1).transform.position.y - (newHeight / 2 + 5 + fontSize / 2));
+            playerTalkOrb.transform.GetChild(0).transform.position = new Vector3(playerTalkOrb.transform.GetChild(0).transform.position.x, playerTalkOrb.transform.GetChild(1).transform.position.y + (newHeight / 2 + 5 + fontSize / 2));
         }
         playerTalkOrb.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = newLine;
         playerTalkOrb.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector3(newWidth, newHeight);
@@ -315,7 +420,7 @@ public class TalkMovement : MonoBehaviour
             {
                 playerTalkOrb.transform.GetChild(2).GetComponent<UnityEngine.UI.Text>().text = line[2].Substring(0, maxSymbolsInLine - 4) + "...";
             }
-            playerTalkOrb.transform.GetChild(2).transform.position = new Vector3(playerTalkOrb.transform.GetChild(2).transform.position.x, playerTalkOrb.transform.GetChild(1).transform.position.y + (newHeight / 2 + 5 + fontSize / 2));
+            playerTalkOrb.transform.GetChild(2).transform.position = new Vector3(playerTalkOrb.transform.GetChild(2).transform.position.x, playerTalkOrb.transform.GetChild(1).transform.position.y - (newHeight / 2 + 5 + fontSize / 2));
             playerTalkOrb.transform.GetChild(2).GetComponent<RectTransform>().sizeDelta = new Vector3(newWidth, fontSize + 4);
         }
         if (!onlyOne)
