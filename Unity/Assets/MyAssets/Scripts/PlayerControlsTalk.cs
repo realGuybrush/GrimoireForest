@@ -22,4 +22,9 @@ public partial class PlayerControls : BasicMovement
     {
         ShowHideMenu(inMenu, false, false, false, false,  false, !inMenu);
     }
+
+    public bool IsTalking()
+    {
+        return Talks.activeSelf;
+    }
 }

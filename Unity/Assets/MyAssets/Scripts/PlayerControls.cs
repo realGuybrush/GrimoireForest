@@ -52,7 +52,7 @@ public partial class PlayerControls : BasicMovement
     private void Update()
     {
         CheckWeaponSpell();
-        if(!inMenu&&!IsClimbing())
+        if(!inMenu&&!IsClimbing()&&!IsTalking())
         {
             PlayerCheckMove();
             CheckHide();
@@ -70,12 +70,12 @@ public partial class PlayerControls : BasicMovement
             BasicCheckMidAir();
             BasicCheckHold();
             FollowCursor();
-            CheckTalkInput();
         }
         BasicCheckHealth();
         CheckInventoryInput();
         CheckChestInput();
         CheckSpellInput();
+        CheckTalkInput();
         CheckEsc();
         //BasicCheckRoll();
         //CheckDirections();

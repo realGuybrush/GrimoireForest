@@ -10,7 +10,7 @@ public class TalkMovement : MonoBehaviour
     int chosenLine = 0;
     int maxWait=200;
     int curWait = 0;
-    int waitPerSymbol = 10;
+    int waitPerSymbol = 20;
     bool choosing = false;
     List<int> linesToChoose = new List<int>();
     GameObject playerTalkOrb;
@@ -21,9 +21,9 @@ public class TalkMovement : MonoBehaviour
     bool rotating = false;
     int rotateStep = 0;
     float rotateDelta = 0.0f;
-    int maxRotateSteps = 20;
+    int maxRotateSteps = 30;
 
-    public int maxOrbWidth = 240;
+    public int maxOrbWidth = 200;
     int maxSymbolsInLine = 0;
     int fontSize = 14;
     // Start is called before the first frame update
@@ -38,6 +38,8 @@ public class TalkMovement : MonoBehaviour
         playerTalkOrb.transform.GetChild(3).GetComponent<UnityEngine.UI.Text>().CrossFadeAlpha(0.0f, 0, false);
         playerTalkOrb.transform.GetChild(4).localScale = new Vector3(0.0f, 0.0f, 0.0f);
         playerTalkOrb.transform.GetChild(5).localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        otherTalkOrb.transform.GetChild(4).localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        otherTalkOrb.transform.GetChild(5).localScale = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
     // Update is called once per frame
@@ -358,7 +360,7 @@ public class TalkMovement : MonoBehaviour
     }
     void RandomChoose()
     {
-        chosenLine = linesToChoose[Random.Range(0, linesToChoose.Count-1)];
+        chosenLine = linesToChoose[Random.Range(0, linesToChoose.Count)];
     }
     void ConstructLineList()
     {
@@ -442,14 +444,15 @@ public class TalkMovement : MonoBehaviour
             }
         }
         newLine += newLinePart;
-        if (newLine.Length < maxSymbolsInLine)
+        newWidth = maxOrbWidth;
+        /*if (newLine.Length < maxSymbolsInLine)
         {
             newWidth = (newLine.Length) * (fontSize/2);
         }
         else
         {
             newWidth = (symbolsInLine) * (fontSize/2);
-        }
+        }*/
         otherTalkOrb.GetComponent<RectTransform>().sizeDelta = new Vector2(newWidth + 2*fontSize, newHeight + fontSize);
         otherTalkOrb.transform.GetChild(1).GetComponent<UnityEngine.UI.Text>().text = newLine;
         otherTalkOrb.transform.GetChild(1).GetComponent<RectTransform>().sizeDelta = new Vector3(newWidth, newHeight);
@@ -481,14 +484,15 @@ public class TalkMovement : MonoBehaviour
             }
         }
         newLine += newLinePart;
-        if (newLine.Length < maxSymbolsInLine)
+        newWidth = maxOrbWidth;
+        /*if (newLine.Length < maxSymbolsInLine)
         {
             newWidth = (newLine.Length) * ((fontSize)/2);
         }
         else
         {
             newWidth = (symbolsInLine) * ((fontSize)/2);
-        }
+        }*/
         if (!onlyOne)
         {
             if (line[0].Length < maxSymbolsInLine)
