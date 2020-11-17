@@ -78,6 +78,7 @@ public class AttackInAnimation : StateMachineBehaviour
             {
                 if (a1 || a4 || a7)
                 {
+                    aO.GetComponent<PlayerControls>().StartFollowingCursor(true);
                     aO.GetComponent<PlayerControls>().attacking = false;
                     aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().Attack(false, 1);
                 }
