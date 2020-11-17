@@ -32,7 +32,12 @@ public class AttackInAnimation : StateMachineBehaviour
             if (aO.GetComponent<PlayerControls>().Weapon != null)
             {
                 Item item = aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>();
-                if (a2 || a3 || a6)
+                if (a1 || a3 || a4 || a6 || a7)
+                {
+                    aO.GetComponent<PlayerControls>().attacking = true;
+                    aO.GetComponent<PlayerControls>().StartFollowingCursor(true);
+                }
+                if (a2)
                 {
                     if (aO.GetComponent<PlayerControls>().inventory.Remove(item.projectileIndex, item.projectilePerShot))
                     {
@@ -76,9 +81,9 @@ public class AttackInAnimation : StateMachineBehaviour
         {
             if (aO.GetComponent<PlayerControls>().Weapon != null)
             {
-                if (a1 || a4 || a7)
+                if (a1 || a2 || a3 || a4 || a6 || a7)
                 {
-                    aO.GetComponent<PlayerControls>().StartFollowingCursor(true);
+                    aO.GetComponent<PlayerControls>().StartFollowingCursor();
                     aO.GetComponent<PlayerControls>().attacking = false;
                     aO.GetComponent<PlayerControls>().Weapon.GetComponent<Item>().Attack(false, 1);
                 }
