@@ -265,6 +265,17 @@ public partial class PlayerControls : BasicMovement
         }
     }
 
+    public void StopAttacking()
+    {
+        if (Weapon != null)
+        {
+            BasicAtk1(false, GetAttackType(1), GetBuff(1));
+            BasicAtk1(false, GetAttackType(2), GetBuff(2));
+            BasicAtk1(false, GetAttackType(3), GetBuff(3));
+        }
+        anim.SetVar("Moving", false);
+    }
+
     public void CheckDirections()
     {
         if (Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))

@@ -52,24 +52,31 @@ public partial class PlayerControls : BasicMovement
     private void Update()
     {
         CheckWeaponSpell();
-        if(!inMenu&&!IsClimbing()&&!IsTalking())
+        if(!inMenu&&!IsClimbing())
         {
-            PlayerCheckMove();
-            CheckHide();
-            CheckPass();
             CheckLand();
-            CheckJumpInput();
-            wall.UpdateHold();
-            ledge.UpdateHold();
-            move.crawl.UpdateRoll(anim.a.GetBool("Roll"));
-            CheckFlip();
-            CheckClimbInput();
-            CheckAtkInput();
-            CheckPickUpInput();
-            CheckNumberInput();
             BasicCheckMidAir();
-            BasicCheckHold();
-            FollowCursor();
+            if (!IsTalking())
+            {
+                PlayerCheckMove();
+                CheckHide();
+                CheckPass();
+                CheckJumpInput();
+                wall.UpdateHold();
+                ledge.UpdateHold();
+                move.crawl.UpdateRoll(anim.a.GetBool("Roll"));
+                CheckFlip();
+                CheckClimbInput();
+                CheckAtkInput();
+                CheckPickUpInput();
+                CheckNumberInput();
+                BasicCheckHold();
+                FollowCursor();
+            }
+            else
+            {
+                StopAttacking();
+            }
         }
         BasicCheckHealth();
         CheckInventoryInput();
