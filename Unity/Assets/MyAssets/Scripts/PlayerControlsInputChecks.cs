@@ -110,29 +110,43 @@ public partial class PlayerControls : BasicMovement
         }
     }
 
-    public void CheckTalkInput()
+    public void CheckActionInput()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (!CheckPickUpInput())
+                if (!CheckChestInput())
+                    CheckTalkInput();
+        }
+    }
+
+    public bool CheckTalkInput()
     {
         if (talks != null)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 StartTalk();
+                return true;
                 //dGameObject.Find("WorldManager").GetComponent<WorldManagement>().StartTalk(talks.GetComponent<NPCBehaviour>().talk);
             }
         }
+        return false;
     }
 
-    public void CheckPickUpInput()
+    public bool CheckPickUpInput()
     {
         if (pickableItem.Count != 0)
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
                 PickUp(pickableItem);
+                return true;
             }
         }
+        return false;
     }
-    public void CheckChestInput()
+    public bool CheckChestInput()
     {
         if ((pickableItem.Count == 0)&&(chest.Count != 0))
         {
@@ -148,8 +162,10 @@ public partial class PlayerControls : BasicMovement
                     DeleteEmptyDrops();
                     ShowHideMenu(inMenu, false, false, false, false, !inMenu);
                 }
+                return true;
             }
         }
+        return false;
     }
 
     public void CheckCrawlInput()

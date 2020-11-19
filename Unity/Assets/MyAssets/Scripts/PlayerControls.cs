@@ -68,7 +68,8 @@ public partial class PlayerControls : BasicMovement
                 CheckFlip();
                 CheckClimbInput();
                 CheckAtkInput();
-                CheckPickUpInput();
+                CheckActionInput();
+                //CheckPickUpInput();
                 CheckNumberInput();
                 BasicCheckHold();
                 FollowCursor();
@@ -80,9 +81,9 @@ public partial class PlayerControls : BasicMovement
         }
         BasicCheckHealth();
         CheckInventoryInput();
-        CheckChestInput();
+        //CheckChestInput();
         CheckSpellInput();
-        CheckTalkInput();
+        //CheckTalkInput();
         CheckEsc();
         //BasicCheckRoll();
         //CheckDirections();
