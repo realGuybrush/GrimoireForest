@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1435979850553109984}
   - component: {fileID: 1435979850553109985}
   - component: {fileID: 1435979850553109990}
-  - component: {fileID: 8749785073893633490}
+  - component: {fileID: 1846838361653692735}
   m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
@@ -204,7 +204,7 @@ MonoBehaviour:
     stringParameter: 
     wait_for_in_seconds: 0
     coords: {x: 0, y: 0, z: 0}
---- !u!50 &8749785073893633490
+--- !u!50 &1846838361653692735
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

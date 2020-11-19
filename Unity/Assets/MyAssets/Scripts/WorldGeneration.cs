@@ -90,7 +90,22 @@ public partial class WorldManagement : MonoBehaviour
         }
         for (int i = offsetTilesLeft; i <= offsetTilesRight; i++)
         {
-            SpawnTile(i, GlobalMap.Tiles[PlayerYMap + +i * xCoeff][PlayerXMap+i* yCoeff], LookTurn);
+            SpawnTile(i, GlobalMap.Tiles[PlayerYMap +i * xCoeff][PlayerXMap+i* yCoeff], LookTurn);
+            int j = GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions.Count - 1;
+
+            if (GlobalTalks.Count > j)
+            {
+                while (GlobalTalks[j].TileCoords.x < 0)
+                {
+                    GlobalTalks[j].TileCoords.x = PlayerXMap + i * yCoeff;
+                    GlobalTalks[j].TileCoords.y = PlayerYMap + i * xCoeff;
+                    j--;
+                }
+            }
+            /*while (GlobalMap.GlobalEntitiesLocalIndexes.Count < GlobalMap.GlobalEntitiesTileLocations.Count)
+            {
+                GlobalMap.GlobalEntitiesTileLocations.Add(new SVector3(PlayerXMap + i * yCoeff, PlayerYMap + i * xCoeff, 0.0f));
+            }*/
         }
         GameObject.Find("Main Camera").GetComponent<Camera_Movement>().SetCameraBoundaries(offsetTilesLeft, offsetTilesRight);
     }
@@ -172,6 +187,17 @@ public partial class WorldManagement : MonoBehaviour
         for (int i = 0; i < BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs.Count; i++)
         {
             newAmount = Random.Range(0, BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesAmounts[i]);
+            if (EntityPrefabs[BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<NPCBehaviour>() != null)
+            {
+                newAmount = 1;
+                GlobalTalks.Add(new TalkData(MT.TileEntitiesPositions.Count, BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i], new Vector3(-1, -1, 0),
+                    EntityPrefabs[BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<NPCBehaviour>().talk));
+            }
+            /*if (GlobalEntities.Contains(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]))
+            {
+                newAmount = 1;
+                GlobalMap.GlobalEntitiesLocalIndexes.Add(MT.TileEntitiesPositions.Count);
+            }*/
             for (int j = 0; j < newAmount; j++)
             {
                 MT.TileEntitiesPositions.Add(new EntityValues(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i],
@@ -221,12 +247,54 @@ public partial class WorldManagement : MonoBehaviour
             temp.GetComponent<Chest>().inventory = MT.TileChestsInventry[i];
         }
     }
-
+    public bool CoordsInBiomeCenters(int x, int y)
+    {
+        for (int i = 0; i < GlobalMap.Biomes.Count; i++)
+        {
+            if ((GlobalMap.Biomes[i].Center.x == x) && (GlobalMap.Biomes[i].Center.y == y))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    public void SetGlobalEntities()
+    {
+        int x=0;
+        int y=0;
+        for (int i = 0; i < GlobalEntities.Count; i++)
+        {
+            x = Random.Range(0, GlobalMap.Width);
+            y = Random.Range(0, GlobalMap.Height);
+            while (CoordsInBiomeCenters(x, y))
+            {
+                x = Random.Range(0, GlobalMap.Width);
+                y = Random.Range(0, GlobalMap.Height);
+            }
+            GlobalMap.Tiles[y][x].TileEntitiesPositions.Add(new EntityValues(GlobalEntities[i],
+                                                              new Vector3(Random.Range((float)(-TileWidth / 2), (float)(TileWidth / 2)), 0.0f, 0.0f),
+                                                              new Vector3(0.0f, 0.0f, 0.0f),
+                                                              new Vector3(0.0f, 0.0f, 0.0f),
+                                                              new Inventory(),//EntityPrefabs[BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<BasicMovement>().inventory
+                                                              new Characteristics()));//EntityPrefabs[BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<BasicMovement>().thisHealth.values
+        }
+    }
+    public void UpdateGlobalTalks(int index, Vector3 coord, Talk talk)
+    {
+        for (int i = 0; i < GlobalTalks.Count; i++)
+        {
+            if ((GlobalTalks[i].entityIndexOnTile == index) && (GlobalTalks[i].TileCoords == coord))
+            {
+                GlobalTalks[i].talk = talk;
+            }
+        }
+    }
     public void MapGeneration()
     {
         GlobalMap.Generate_Map(BiomePrefabs[0]);
         PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
         PlayerYMap = (int)GlobalMap.Biomes[0].Center.y;
+        SetGlobalEntities();
         SpawnCorridor(DirectionType.North);
         Player.GetComponent<PlayerControls>().ShowHideMenu();
         Player.transform.position = new Vector3(0.0f, 0.0f, Player.transform.position.z);

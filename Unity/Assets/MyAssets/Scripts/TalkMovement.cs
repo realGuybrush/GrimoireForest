@@ -18,6 +18,11 @@ public class TalkMovement : MonoBehaviour
     Vector3 otherPos;
     Vector3 playerPos;
 
+    bool appearing = false;
+    int appearStep = 0;
+    float appearDelta = 0.0f;
+    int maxAppearSteps = 30;
+
     bool rotating = false;
     int rotateStep = 0;
     float rotateDelta = 0.0f;
@@ -47,60 +52,70 @@ public class TalkMovement : MonoBehaviour
     {
         if (talk == null)
             return;
-        if (!rotating)
+        if (!appearing)
         {
-            if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.Space))
+            if (!rotating)
             {
-                if (!choosing)
+                if (Input.GetKeyUp(KeyCode.E) || Input.GetKeyUp(KeyCode.Space))
                 {
-                    NextLine();
+                    if (!choosing)
+                    {
+                        NextLine();
+                    }
+                    else
+                    {
+                        //ResetPlayer(new List<string>() { talk.Phrases[linesToChoose[linesToChoose.Count - 1]].BeautifulLine, talk.Phrases[linesToChoose[0]].BeautifulLine, talk.Phrases[linesToChoose[1 % linesToChoose.Count]].BeautifulLine }, linesToChoose.Count == 1);
+                        chosenLine = linesToChoose[0];
+                        playerOrNot = !playerOrNot;
+                        //NextLine();
+                        ResetPlayer(new List<string>() { talk.Phrases[linesToChoose[0]].BeautifulLine }, true);
+                        choosing = false;
+                        Act();
+                    }
+                }
+                if (choosing)
+                {
+                    if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
+                    {
+                        SwitchUp();
+                    }
+                    if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
+                    {
+                        SwitchDown();
+                    }
                 }
                 else
                 {
-                    //ResetPlayer(new List<string>() { talk.Phrases[linesToChoose[linesToChoose.Count - 1]].BeautifulLine, talk.Phrases[linesToChoose[0]].BeautifulLine, talk.Phrases[linesToChoose[1 % linesToChoose.Count]].BeautifulLine }, linesToChoose.Count == 1);
-                    chosenLine = linesToChoose[0];
-                    playerOrNot = !playerOrNot;
-                    //NextLine();
-                    ResetPlayer(new List<string>() { talk.Phrases[linesToChoose[0]].BeautifulLine }, true);
-                    choosing =false;
-                    Act();
-                }
-            }
-            if (choosing)
-            {
-                if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.UpArrow))
-                {
-                    SwitchUp();
-                }
-                if (Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow))
-                {
-                    SwitchDown();
+                    if (curWait == 0)
+                    {
+                        NextLine();
+                        curWait--;
+                    }
+                    else
+                    {
+                        if (curWait > 0)
+                            curWait--;
+                    }
                 }
             }
             else
             {
-                if (curWait == 0)
+                if (rotateStep == 0)
                 {
-                    NextLine();
-                    curWait--;
+                    EndStep();
+                    UpdateIcons();
                 }
                 else
                 {
-                    if(curWait>0)
-                    curWait--;
+                    CommenceRotateStep();
                 }
             }
         }
         else
         {
-            if (rotateStep == 0)
+            if (appearStep > -1)
             {
-                EndStep();
-                UpdateIcons();
-            }
-            else
-            {
-                CommenceRotateStep();
+                CommenceAppearStep();
             }
         }
     }
@@ -384,6 +399,23 @@ public class TalkMovement : MonoBehaviour
             otherTalkOrb.SetActive(false);
         }
     }
+    void CommenceAppearStep()
+    {
+        if (playerOrNot)
+        {
+            appearDelta = ((maxAppearSteps - appearStep) / maxAppearSteps);
+            playerTalkOrb.transform.position = Camera.main.WorldToScreenPoint(playerPos + new Vector3(0.0f, appearDelta * 10.0f, 0.0f));
+            playerTalkOrb.transform.position = new Vector3(appearDelta * 1.0f, appearDelta * 1.0f, 0.0f);
+        }
+        else
+        {
+            appearDelta = ((maxAppearSteps - appearStep) / maxAppearSteps);
+            otherTalkOrb.transform.position = Camera.main.WorldToScreenPoint(otherPos + new Vector3(0.0f, appearDelta * 10.0f, 0.0f));
+            otherTalkOrb.transform.localScale = new Vector3(appearDelta * 1.0f, appearDelta * 1.0f, 0.0f);
+        }
+        UpdateIcons();
+        appearStep--;
+    }
 
     public void SetTalk(Talk t, Vector3 OtherPos, Vector3 PlayerPos)
     {
@@ -420,6 +452,7 @@ public class TalkMovement : MonoBehaviour
         choosing = false;
         playerOrNot = false;
         curIndex = -1;
+        GameObject.Find("Player").GetComponent<PlayerControls>().UpdateGlobalTalks();
     }
     public void ResetOther(string line)
     {
@@ -525,6 +558,6 @@ public class TalkMovement : MonoBehaviour
             newHeight+=fontSize * 2 + 8;
         playerTalkOrb.GetComponent<RectTransform>().sizeDelta = new Vector3(newWidth+2*fontSize, newHeight+ fontSize);
         playerTalkOrb.transform.GetChild(3).GetComponent<RectTransform>().sizeDelta = new Vector3(newWidth, newHeight);
-        playerTalkOrb.transform.position = Camera.main.WorldToScreenPoint(GameObject.Find("Player").transform.position+new Vector3(0.0f, 10.0f, 0.0f));
+        playerTalkOrb.transform.position = Camera.main.WorldToScreenPoint(playerPos+new Vector3(0.0f, 10.0f, 0.0f));
     }
 }

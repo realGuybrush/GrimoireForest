@@ -23,6 +23,8 @@ public partial class WorldManagement : MonoBehaviour
     public GameObject Environment;
     public List<GameObject> ItemPrefabs = new List<GameObject>();
     public List<GameObject> EntityPrefabs = new List<GameObject>();
+    public List<int> GlobalEntities = new List<int>();
+    public List<TalkData> GlobalTalks = new List<TalkData>();
     public Map GlobalMap = new Map();
     public GameObject DropPrefab;
     public GameObject TalkCloudPrefab;
@@ -248,6 +250,11 @@ public partial class WorldManagement : MonoBehaviour
             SpawnCorridor();
         }
     }
+    public List<TalkData> GetTalks()
+    {
+        return GlobalTalks;
+    }
+
     public void StopTime()
     {
         Time.timeScale = 0;

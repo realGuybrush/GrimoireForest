@@ -3738,9 +3738,13 @@ MonoBehaviour:
   - {fileID: 6882551837517926009, guid: 83cd97a2462fecf4a93d31bb71a12070, type: 3}
   - {fileID: 4016661696945336106, guid: 664e66eb1bb839c498a7fce9ca366350, type: 3}
   - {fileID: 7564789142102385139, guid: a3d620e402500b247b77bcac44b8841c, type: 3}
+  GlobalEntities: 
+  GlobalTalks: []
   GlobalMap:
     Width: 100
     Height: 100
+    GlobalEntitiesLocalIndexes: 
+    GlobalEntitiesTileLocations: []
     Biomes: []
   DropPrefab: {fileID: 4549335938989430331, guid: 172918939519b7f4b9d781c024d7e890,
     type: 3}

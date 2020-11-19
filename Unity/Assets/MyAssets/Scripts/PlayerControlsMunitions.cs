@@ -138,7 +138,7 @@ public partial class PlayerControls : BasicMovement
         }
         if (Weapon.GetComponent<Rigidbody2D>() != null)
         {
-            Weapon.GetComponent<Rigidbody2D>().simulated = false;// .isKinematic = false;
+            Weapon.GetComponent<Rigidbody2D>().isKinematic = true;//gravityScale = 0;//.simulated = false;// .isKinematic = false;
             //Weapon.GetComponent<Rigidbody2D>().collisionDetectionMode = false;
         }
         Weapon.GetComponent<Item>().SetPenalty(CalcWeaponPenalty(Weapon.GetComponent<Item>().strReq));

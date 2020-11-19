@@ -15,6 +15,8 @@ public class Map
 	int MinimumCorridorLength;
     //[NonSerialized]
     //public List<GameObject> GlobalEntities = new List<GameObject>();
+    public List<int> GlobalEntitiesLocalIndexes = new List<int>();
+    public List<SVector3> GlobalEntitiesTileLocations = new List<SVector3>(); 
 	public List<Biome> Biomes = new List<Biome>();
     public List<List<MapTile>> Tiles = new List<List<MapTile>>();
 

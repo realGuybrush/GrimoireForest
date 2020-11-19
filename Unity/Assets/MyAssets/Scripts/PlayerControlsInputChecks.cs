@@ -114,7 +114,7 @@ public partial class PlayerControls : BasicMovement
     {
         if (talks != null)
         {
-            if (Input.GetKeyDown(KeyCode.T))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 StartTalk();
                 //dGameObject.Find("WorldManager").GetComponent<WorldManagement>().StartTalk(talks.GetComponent<NPCBehaviour>().talk);

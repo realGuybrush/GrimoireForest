@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3100043934888670234}
   - component: {fileID: 3100043934888670233}
   - component: {fileID: 3100043934888670232}
-  - component: {fileID: 2114790314575102116}
+  - component: {fileID: 3810426829124547981}
   m_Layer: 8
   m_Name: AcornStaff
   m_TagString: Untagged
@@ -237,7 +237,7 @@ MonoBehaviour:
     stringParameter: 
     wait_for_in_seconds: 0
     coords: {x: 0, y: 0, z: 0}
---- !u!50 &2114790314575102116
+--- !u!50 &3810426829124547981
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

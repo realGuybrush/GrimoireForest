@@ -32,7 +32,21 @@ public class SVector3
         return new Vector3(x, y, z);
     }
 }
-
+[Serializable]
+public class TalkData
+{
+    public int entityIndexOnTile;
+    public int entityIndexInWM;
+    public Vector3 TileCoords;
+    public Talk talk;
+    public TalkData(int index, int indexW, Vector3 tile, Talk t)
+    {
+        entityIndexOnTile = index;
+        entityIndexInWM = indexW;
+        TileCoords = tile;
+        talk = t;
+    }
+}
 [Serializable]
 public class Save
 {
@@ -48,6 +62,8 @@ public class Save
     Inventory playerSpells;
     //map
     MapSave MS = new MapSave();
+    //talks
+    List<TalkData> talks = new List<TalkData>();
     public void ExecuteSaving()
     {
         GameObject Player = GameObject.Find("Player");
@@ -59,12 +75,14 @@ public class Save
         playerMunitions = Player.GetComponent<PlayerControls>().munitions;
         playerSpells = Player.GetComponent<PlayerControls>().spells;
         MS.SaveMap();
+        talks = GameObject.Find("WorldManager").GetComponent<WorldManagement>().GetTalks();
     }
 
     public void ExecuteLoading()
     {
         GameObject.Find("Player").GetComponent<PlayerControls>().LoadData(playerPosition, playerRotation, playerSpeed, playerCharacteristics, playerInventory, playerMunitions, playerSpells);
         MS.LoadMap();
+        GameObject.Find("WorldManager").GetComponent<WorldManagement>().GlobalTalks = talks;
     }
 }
 
