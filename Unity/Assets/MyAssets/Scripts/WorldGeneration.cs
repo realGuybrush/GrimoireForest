@@ -60,7 +60,7 @@ public partial class WorldManagement : MonoBehaviour
     public void DeleteCorridor()
     {
         for(int j = 0; j<4; j++)
-        for (int i = Environment.transform.GetChild(j).transform.childCount - 1; i > 1; i--)
+        for (int i = Environment.transform.GetChild(j).transform.childCount - 1; i > -1; i--)
         {
             GameObject.Destroy(Environment.transform.GetChild(j).transform.GetChild(i).gameObject);
         }
@@ -93,7 +93,7 @@ public partial class WorldManagement : MonoBehaviour
             SpawnTile(i, GlobalMap.Tiles[PlayerYMap +i * xCoeff][PlayerXMap+i* yCoeff], LookTurn);
             int j = GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions.Count - 1;
 
-            if (GlobalTalks.Count > j)
+            if ((GlobalTalks.Count > j)&&(j!=-1))
             {
                 while (GlobalTalks[j].TileCoords.x < 0)
                 {

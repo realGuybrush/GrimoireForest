@@ -116,7 +116,8 @@ public partial class PlayerControls : BasicMovement
         {
             if (!CheckPickUpInput())
                 if (!CheckChestInput())
-                    CheckTalkInput();
+                    if(!BasicCheckMidAir())
+                        CheckTalkInput();
         }
     }
 

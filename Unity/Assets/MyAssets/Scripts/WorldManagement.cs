@@ -219,7 +219,7 @@ public partial class WorldManagement : MonoBehaviour
             Y = 0;
         if (X > GlobalMap.Width - 1)
             X = GlobalMap.Width - 1;
-        if (Y < GlobalMap.Height - 1)
+        if (Y > GlobalMap.Height - 1)
             Y = GlobalMap.Height - 1;
         return new Vector2(X, Y);
     }
