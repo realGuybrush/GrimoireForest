@@ -59,7 +59,7 @@ public partial class WorldManagement : MonoBehaviour
     }
     public void DeleteCorridor()
     {
-        for(int j = 0; j<4; j++)
+        for(int j = 0; j<5; j++)
         for (int i = Environment.transform.GetChild(j).transform.childCount - 1; i > -1; i--)
         {
             GameObject.Destroy(Environment.transform.GetChild(j).transform.GetChild(i).gameObject);
@@ -68,13 +68,13 @@ public partial class WorldManagement : MonoBehaviour
         //{
         //    GameObject.Destroy(Environment.transform.GetChild(1).transform.GetChild(i).gameObject);
         //}
-        for (int i = Environment.transform.childCount-1; i > 3; i--)
+        for (int i = Environment.transform.childCount-1; i > 4; i--)
         {
             GameObject.Destroy(Environment.transform.GetChild(i).gameObject);
         }
         Player.GetComponent<PlayerControls>().RemoveDoors();
     }
-    public void SpawnCorridor(DirectionType LookTurn = DirectionType.North)
+    public void SpawnCorridor(DirectionType LookTurn = DirectionType.North, bool load = false)
     {
         int xCoeff = calculateXDirectionCoeff(LookTurn);
         int yCoeff = -calculateYDirectionCoeff(LookTurn);
@@ -90,7 +90,7 @@ public partial class WorldManagement : MonoBehaviour
         }
         for (int i = offsetTilesLeft; i <= offsetTilesRight; i++)
         {
-            SpawnTile(i, GlobalMap.Tiles[PlayerYMap +i * xCoeff][PlayerXMap+i* yCoeff], LookTurn);
+            SpawnTile(i, GlobalMap.Tiles[PlayerYMap +i * xCoeff][PlayerXMap+i* yCoeff], LookTurn, load);
             int j = GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions.Count - 1;
 
             if ((GlobalTalks.Count > j)&&(j!=-1))
@@ -110,7 +110,7 @@ public partial class WorldManagement : MonoBehaviour
         GameObject.Find("Main Camera").GetComponent<Camera_Movement>().SetCameraBoundaries(offsetTilesLeft, offsetTilesRight);
     }
 
-    public void SpawnTile(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North)
+    public void SpawnTile(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North, bool load = false)
     {
         GameObject GO = GameObject.Instantiate(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].TilePrefab, new Vector3(xTileOffset * TileWidth, 0.0f, 0.0f), new Quaternion(), Environment.transform);
         //GameObject GO2 = GameObject.Instantiate(BiomePrefabs[(int)type1][(int)type2].PlatformPrefab);//print them all, probably set on first spawn
@@ -171,7 +171,7 @@ public partial class WorldManagement : MonoBehaviour
         {
             Drop(MT.TileItems[i].indexInPrefabs, 1, MT.TileItems[i].location.ToV3());
         }
-        if (MT.TileEntitiesPositions.Count == 0)
+        if ((MT.TileEntitiesPositions.Count == 0)&&!load)
         {
             SetTileEntities(MT);
         }

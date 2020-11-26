@@ -72,6 +72,7 @@ public class MenuController : MonoBehaviour
         //SlotIndex = slotIndex;
         SaveLoadSheet.SetActive(true);
         continueAction = "Save";
+        Debug.Log("Saving.");
         //if(WM.SlotOccupied(slotIndex))
         //{
         //   ShowMessage("Overwrite this save file?");
@@ -110,12 +111,14 @@ public class MenuController : MonoBehaviour
                 case "Load":
                     //WM.Load(SlotIndex);
                     FlipMenu(false);
+                    GameObject.Find("WorldManager").GetComponent<WorldManagement>().DeleteCorridor();
                     GameObject.Find("WorldManager").GetComponent<WorldManagement>().LoadGame();
                     inGame = true;
                     Resume();
                     break;
                 case "Save":
                     GameObject.Find("WorldManager").GetComponent<WorldManagement>().SaveGame();//SlotIndex
+                    Debug.Log("Saved.");
                     break;
                 case "Quit":
                     //WM.DestroyWorld();

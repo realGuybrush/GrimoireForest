@@ -242,12 +242,13 @@ public partial class WorldManagement : MonoBehaviour
     {
         if (File.Exists(Directory.GetCurrentDirectory() + "/TestSave.sav"))
         {
+            DeleteCorridor();
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Directory.GetCurrentDirectory() + "/TestSave.sav", FileMode.Open);
             Save save = (Save)bf.Deserialize(file);
             file.Close();
             save.ExecuteLoading();
-            SpawnCorridor();
+            SpawnCorridor(DirectionType.North, true);
         }
     }
     public List<TalkData> GetTalks()

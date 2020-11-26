@@ -42,7 +42,7 @@ public class Events
         {
             case "spawn":
                 //spawn anything such as vine or explosion
-                GameObject bullet = GameObject.Instantiate(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[index_of_activatable_parameter1], coords, Quaternion.identity);
+                GameObject bullet = GameObject.Instantiate(GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[index_of_activatable_parameter1], coords, Quaternion.identity,GameObject.Find("Projectiles").transform);
                 bullet.GetComponent<Projectile>().ignore = GameObject.Find(stringParameter);
                 bullet.transform.eulerAngles = new Vector3(0.0f, 0.0f, (float)index_of_activatable_parameter2);
                 bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * (float)index_of_activatable_parameter3;
