@@ -2015,7 +2015,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7859400090961293853}
-  - component: {fileID: 7859400090961293849}
+  - component: {fileID: 8085994086510125191}
   - component: {fileID: 7859400090961293848}
   - component: {fileID: 7859400090961293855}
   - component: {fileID: 7859400090961293854}
@@ -2045,8 +2045,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &7859400090961293849
-BoxCollider2D:
+--- !u!60 &8085994086510125191
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2058,7 +2058,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0057678223, y: -0.02883792}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -2068,9 +2068,14 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.5882921, y: 1.3575897}
-  m_EdgeRadius: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.782732, y: 0.66002536}
+      - {x: -0.7929287, y: -0.57649827}
+      - {x: -0.5245342, y: -0.69042134}
+      - {x: 0.54407454, y: -0.6904211}
+      - {x: 0.78040695, y: -0.56446934}
+      - {x: 0.78502274, y: 0.6568981}
 --- !u!114 &7859400090961293848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2094,6 +2099,10 @@ MonoBehaviour:
     maxAmount: 54
     Items: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     stacks: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  destination: {x: 0, y: 0, z: 0}
+  lookDirection: {x: -1, y: 1}
+  minLookAngle: -30
+  maxlookAngle: 45
   jumpHeight: 3
   lookDistance: 3
   meleeDistance: 3
@@ -2118,6 +2127,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
+    damage: 4
+    defense: 0
+    maxHealth: 10
     attacking: 0
     name: 
 --- !u!50 &7859400090961293854

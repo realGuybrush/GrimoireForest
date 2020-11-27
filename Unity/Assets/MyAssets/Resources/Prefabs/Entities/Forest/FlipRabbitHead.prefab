@@ -857,6 +857,7 @@ GameObject:
   - component: {fileID: 5046216633960626264}
   - component: {fileID: 5046216633960626267}
   - component: {fileID: 5046216633960626278}
+  - component: {fileID: 4012695728617139083}
   - component: {fileID: 5046216633960626266}
   m_Layer: 14
   m_Name: FlipRabbitHead
@@ -905,6 +906,10 @@ MonoBehaviour:
     maxAmount: 54
     Items: ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
     stacks: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  destination: {x: 0, y: 0, z: 0}
+  lookDirection: {x: -1, y: 1}
+  minLookAngle: -30
+  maxlookAngle: 45
   jumpHeight: 3
   lookDistance: 5
   meleeDistance: 5
@@ -950,6 +955,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
+    damage: 4
+    defense: 0
+    maxHealth: 10
     attacking: 0
     name: 
 --- !u!95 &5046216633960626267
@@ -997,6 +1005,37 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.8489299, y: 0.6566596}
   m_EdgeRadius: 0
+--- !u!60 &4012695728617139083
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5046216633960626277}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.49900723, y: 0.15644014}
+      - {x: -0.4995737, y: -1.8859038}
+      - {x: -0.32045984, y: -2.000668}
+      - {x: 0.21684265, y: -2.0112352}
+      - {x: 0.34434175, y: -1.8701425}
+      - {x: 0.3391781, y: 0.16050303}
 --- !u!114 &5046216633960626266
 MonoBehaviour:
   m_ObjectHideFlags: 0

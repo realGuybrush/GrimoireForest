@@ -30,7 +30,7 @@ public partial class PlayerControls : BasicMovement
 
     public void UpdateGlobalTalks()
     {
-        WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();
-        GameObject.Find("WorldManager").GetComponent<WorldManagement>().UpdateGlobalTalks(WM.EntityNumberByName(talks.GetComponent<NPCBehaviour>().name),new Vector3(WM.PlayerXMap, WM.PlayerYMap), talks.GetComponent<NPCBehaviour>().talk);
+        WorldManagement WM = GameObject.Find("WorldManager").GetComponent<WorldManagement>();//fix v
+        //GameObject.Find("WorldManager").GetComponent<WorldManagement>().UpdateGlobalTalks(WM.EntityNumberByName(talks.GetComponent<NPCBehaviour>().name),new Vector3(WM.PlayerXMap, WM.PlayerYMap), talks.GetComponent<NPCBehaviour>().talk);
     }
 }

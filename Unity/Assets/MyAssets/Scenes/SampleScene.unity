@@ -3741,8 +3741,9 @@ MonoBehaviour:
   GlobalEntities: 
   GlobalTalks: []
   GlobalMap:
-    Width: 100
-    Height: 100
+    Width: 3
+    Height: 3
+    BlocksInTile: 60
     GlobalEntitiesLocalIndexes: 
     GlobalEntitiesTileLocations: []
     Biomes: []
@@ -9460,6 +9461,16 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 4261192395664326204, guid: e3f9363aba6a9274ea8d660206f5f714,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.39854437
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261192395664326204, guid: e3f9363aba6a9274ea8d660206f5f714,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.2165514
+      objectReference: {fileID: 0}
     - target: {fileID: 4261192395928268631, guid: e3f9363aba6a9274ea8d660206f5f714,
         type: 3}
       propertyPath: m_Mesh
@@ -9474,6 +9485,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261192396113293056, guid: e3f9363aba6a9274ea8d660206f5f714,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4261192396113293057, guid: e3f9363aba6a9274ea8d660206f5f714,
         type: 3}

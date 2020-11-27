@@ -13,6 +13,7 @@ public class Map
 	public int Height;
 	int MaximumCorridorLength;
 	int MinimumCorridorLength;
+    public int BlocksInTile = 43;
     //[NonSerialized]
     //public List<GameObject> GlobalEntities = new List<GameObject>();
     public List<int> GlobalEntitiesLocalIndexes = new List<int>();
@@ -52,14 +53,111 @@ public class Map
 			for (int x = 0; x < Width; x++)
 			{
 				Tiles[y].Add (new MapTile ());
-			}
+            }
 		}
 		//if(!LoadTiles ())
 		    SetTiles();
         PrintMapToFile();
         PrintMapToFile (true);
-	}
-	void SetBiomeCenter(int biome_index)
+    }
+    void GenerateBlocks(MapTile MT, int x, int y, int maxDiffs = 0)
+    {
+        int temp=4;
+        if (maxDiffs > 4)
+            maxDiffs = 4;
+        if (maxDiffs < -4)
+            maxDiffs = -4;
+        for (int i = 0; i < 4; i++)
+        {
+            MT.blocks.Add(new List<int>());
+            for (int j = 0; j < BlocksInTile; j++)
+                MT.blocks[i].Add(4);
+        }
+        for (int i = 4; i < 9; i++)
+        {
+            MT.blocks.Add(new List<int>());
+            for (int j = 0; j < BlocksInTile; j++)
+                MT.blocks[i].Add(3);//BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs.Count
+        }
+        for (int i = 0; i < (BlocksInTile/4+1); i++)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs+1));
+            for (int j = 0; j < 9; j ++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+            /*temp = UnityEngine.Random.Range(-maxDiffs, (maxDiffs+1));
+            for (int j = 4 + temp; j != 4- (int)Mathf.Sign(temp); j -= (int)Mathf.Sign(temp))
+            {
+                MT.blocks[j][i] = ((j < (4-(int)Mathf.Sign(temp))) ? 3 : 4);//4-empty; 3-solid without topping
+            }*/
+        }
+        temp = 4;
+        for (int i = BlocksInTile/2; i > (BlocksInTile/4); i--)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }
+        temp = 4;
+        for (int i = BlocksInTile/2+1; i < (3* (BlocksInTile/4)+1); i++)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }
+        temp = 4;
+        for (int i = BlocksInTile-1; i > (3* (BlocksInTile/4)); i--)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }
+        for (int i = 0; i < BlocksInTile; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (MT.blocks[j][i] == 3)
+                {
+                    if (j != 8)
+                    {
+                        if ((i != 0) && (i != BlocksInTile-1))
+                        {
+                            if ((j == 0) || (MT.blocks[j - 1][i] == 4))
+                            {
+                                if ((MT.blocks[j + 1][i - 1] != 4) && (MT.blocks[j][i - 1] == 4))
+                                    MT.blocks[j][i] = 1;
+                                if ((MT.blocks[j + 1][i + 1] != 4) && (MT.blocks[j][i + 1] == 4))
+                                    MT.blocks[j][i] = 2;
+                                if ((MT.blocks[j][i - 1] == 4) && (MT.blocks[j][i + 1] == 4))
+                                    MT.blocks[j][i] = 4;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < 60; i++)
+        {
+            for (int j = 0; j < 9; j++)
+            {
+                if (MT.blocks[j][i] == 3)
+                {
+                    if ((j == 0) || (MT.blocks[j - 1][i] == 4))
+                    {
+                        MT.blocks[j][i] = 0;
+                    }
+                }
+            }
+        }
+    }
+    void SetBiomeCenter(int biome_index)
 	{
 		//prevents biome centers overlap
 		if(biome_index != 0)
@@ -132,6 +230,8 @@ public class Map
 			{
 				SetTileBiome (x, y);
                 GeneratePlatforms(x, y, B);
+                GenerateBlocks(Tiles[y][x], x, y, 1);
+                //PrintTileToFile(Tiles[y][x].blocks, x, y);
 			}
 		}
 		GenerateHorizontalCorridors ();
@@ -331,7 +431,7 @@ public class Map
             }
         }
     }
-	/*bool LoadTiles()
+    /*bool LoadTiles()
 	{
 		// 1
 		//Debug.Log(Application.persistentDataPath);
@@ -388,14 +488,52 @@ public class Map
 		Save.hits = hits;
 		Save.shots = shots;*/
 
-		// 2
-		/*BinaryFormatter bf = new BinaryFormatter();
-		FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");//"C:/Users/Василий.Василий-ПК/Documents/Grimoire Forest/Exe"
-		bf.Serialize(file, Tiles);
-		file.Close();
-	}
+    // 2
+    /*BinaryFormatter bf = new BinaryFormatter();
+    FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");//"C:/Users/Василий.Василий-ПК/Documents/Grimoire Forest/Exe"
+    bf.Serialize(file, Tiles);
+    file.Close();
+}
 */
-	void PrintMapToFile(bool noPass = false)
+    void PrintTileToFile(List<List<int>> Tiles, int x1, int y1, bool noPass = false)
+    {
+        string name;
+        if (noPass)
+        {
+            name = "Tiles\\TestTile"+y1.ToString()+x1.ToString()+"1.txt";
+        }
+        else
+        {
+            name = "Tiles\\TestTile" + y1.ToString() + x1.ToString() + ".txt";
+        }
+        var sr = File.CreateText(name);
+        for (int y = 0; y < 9; y++)
+        {
+            for (int x = 0; x < 50; x++)
+            {
+                switch (Tiles[y][x])
+                {
+                    case 0:
+                        sr.Write("=");// 
+                        break;
+                    case 1:
+                        sr.Write("/");// 
+                        break;
+                    case 2:
+                        sr.Write("\\");// 
+                        break;
+                    case 3:
+                        sr.Write("#");// 
+                        break;
+                    default:
+                        break;
+                }
+            }
+            sr.WriteLine();
+        }
+        sr.Close();
+    }
+    void PrintMapToFile(bool noPass = false)
 	{
         string name;
         if (noPass)

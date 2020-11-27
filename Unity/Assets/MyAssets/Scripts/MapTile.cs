@@ -52,6 +52,7 @@ public class MapTile
     public BiomesTypes biome1 = BiomesTypes.Forest;
     public BiomesTypes biome2 = BiomesTypes.Forest;
     public InhabitationPattern spawnPattern = new InhabitationPattern();
+    public List<List<int>> blocks = new List<List<int>>();
     public List<EntityValues> TileEntitiesPositions = new List<EntityValues>();
     public List<EnvironmentStuffingValues> TileChests = new List<EnvironmentStuffingValues>();
     public List<Inventory> TileChestsInventry = new List<Inventory>();

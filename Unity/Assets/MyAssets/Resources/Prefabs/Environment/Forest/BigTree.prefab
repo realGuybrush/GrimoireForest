@@ -437,7 +437,7 @@ MonoBehaviour:
   subPlatforms: {fileID: 6805172976836295740, guid: 417c249f2aa648549aa703909e05fccd,
     type: 3}
   MaxAmount: 2
-  numberInBiome: 1
+  numberInBiome: 0
   sub: 0
 --- !u!1 &7346947668599894696
 GameObject:

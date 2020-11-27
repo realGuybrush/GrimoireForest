@@ -147,5 +147,5 @@ MonoBehaviour:
   ymax: -2
   subPlatforms: {fileID: 0}
   MaxAmount: 5
-  numberInBiome: 0
+  numberInBiome: 5
   sub: 0

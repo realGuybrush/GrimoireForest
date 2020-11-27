@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 7564789142102385138}
   - component: {fileID: 7564789142102385148}
   - component: {fileID: -8610168114286987181}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BushCover3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ MonoBehaviour:
   ymax: -2.2
   subPlatforms: {fileID: 0}
   MaxAmount: 2
-  numberInBiome: 5
+  numberInBiome: 4
   sub: 0
 --- !u!114 &-8610168114286987181
 MonoBehaviour:

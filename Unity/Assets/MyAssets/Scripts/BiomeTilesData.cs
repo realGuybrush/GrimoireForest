@@ -32,4 +32,5 @@ public class BiomeTilesData
     public List<int> EntitiesPrefabs = new List<int>();
     public List<int> EntitiesAmounts = new List<int>();
     public GameObject ChestPrefab;
+    public List<GameObject> BlockPrefabs = new List<GameObject>();
 }

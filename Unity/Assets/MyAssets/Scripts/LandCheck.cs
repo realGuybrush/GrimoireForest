@@ -17,6 +17,10 @@ public class LandCheck : MonoBehaviour
         ignoreLayer.Add(13);
         ignoreLayer.Add(14);
     }
+    public void Res()
+    {
+        landed = 1;
+    }
     private void OnTriggerEnter2D(Collider2D c)
     {
         if(!ignoreLayer.Contains(c.gameObject.layer))
@@ -31,6 +35,6 @@ public class LandCheck : MonoBehaviour
 
     public bool FirstJumpSuccessfull()
     {
-        return landed==0;
+        return landed<=0;
     }
 }

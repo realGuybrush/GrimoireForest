@@ -202,6 +202,13 @@ public partial class PlayerControls : BasicMovement
         }
     }
 
+    public void Res()
+    {
+        landChecker.Res();
+        wallChecker.Res();
+        stepChecker.Res();
+        ledgeChecker.Res();
+    }
     public void LoadData(SVector3 position, SVector3 rotation, SVector3 speed, Characteristics newCharacteristics, Inventory newInventory, Inventory newMunitions, Inventory newSpells)
     {
         BasicLoadData(position, rotation, speed, newCharacteristics, newInventory);

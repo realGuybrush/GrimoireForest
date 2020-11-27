@@ -121,6 +121,7 @@ public partial class WorldManagement : MonoBehaviour
 
     public void EnterDoor(DirectionType enterDirection)
     {
+        GameObject.Find("Player").GetComponent<PlayerControls>().Res();
         CalculatePlayerCorridorOffset((int)Player.transform.position.x);
         UpdateCorridor();
         DeleteCorridor();

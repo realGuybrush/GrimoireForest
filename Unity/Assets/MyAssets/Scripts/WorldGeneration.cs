@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public partial class WorldManagement : MonoBehaviour
 {
@@ -24,13 +25,17 @@ public partial class WorldManagement : MonoBehaviour
         BiomePrefabs[0][0].Sky = (Sprite)Resources.Load("Pictures\\Environment\\Forest\\stars.png");
         BiomePrefabs[0][0].Moon = (Sprite)Resources.Load("Pictures\\Environment\\Forest\\moon.png");
         BiomePrefabs[0][0].TilePrefab = (GameObject)Resources.Load("Prefabs\\Environment\\Forest\\ForestTile");
-        BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\ForestPlatform"));
+        //BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\ForestPlatform"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BigTree"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\TreeBranch"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover1"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover2"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover3"));
         BiomePrefabs[0][0].PlatformPrefab = RemoveAllNull(BiomePrefabs[0][0].PlatformPrefab);
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.FullTop"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.TriangleLeft"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.TriangleRight"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.Full"));
         BiomePrefabs[0][0].EntitiesPrefabs.Add(1);
         BiomePrefabs[0][0].EntitiesAmounts.Add(2);
         BiomePrefabs[0][0].EntitiesPrefabs.Add(2);
@@ -159,6 +164,16 @@ public partial class WorldManagement : MonoBehaviour
             GO.transform.GetChild(5).transform.GetChild(1).gameObject.SetActive(false);
         }
 
+        for (int i = 0; i < 9; i++)
+        {
+            for (int j = 0; j < GlobalMap.BlocksInTile; j++)
+            {
+                if(MT.blocks[i][j] < 4)
+                Instantiate(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs[MT.blocks[i][j]], new Vector3((j-GlobalMap.BlocksInTile/2)*1.5f+ xTileOffset*(GlobalMap.BlocksInTile*1.5f), (i-1)*-1.5f-1.0f,  0.0f), new Quaternion(), GO.transform.GetChild(6));
+            }
+        }
+
+        //PrintTileToFile(MT.blocks);
         for (int i = 0; i < MT.TilePlatforms.Count; i++)
         {
             Instantiate(BiomePrefabs[(int)MT.biome1][(int)MT.biome2], MT.TilePlatforms[i], Environment.transform.GetChild(0).transform);
@@ -212,7 +227,14 @@ public partial class WorldManagement : MonoBehaviour
 
     void Instantiate(BiomeTilesData BTD, EnvironmentStuffingValues ESV, Transform parent)
     {
-        GameObject.Instantiate(BTD.PlatformPrefab[ESV.indexInPrefabs], ESV.location.ToV3(), new Quaternion(), parent);
+        try
+        {
+            GameObject.Instantiate(BTD.PlatformPrefab[ESV.indexInPrefabs], ESV.location.ToV3(), new Quaternion(), parent);
+        }
+        catch
+        {
+            Debug.Log(ESV.indexInPrefabs);
+        }
     }
 
     public GameObject SpawnEntity(EntityValues EV, int parentIndex = -1)
