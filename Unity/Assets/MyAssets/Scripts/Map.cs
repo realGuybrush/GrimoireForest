@@ -79,46 +79,8 @@ public class Map
             for (int j = 0; j < BlocksInTile; j++)
                 MT.blocks[i].Add(3);//BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs.Count
         }
-        for (int i = 0; i < (BlocksInTile/4+1); i++)
-        {
-            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs+1));
-            for (int j = 0; j < 9; j ++)
-            {
-                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
-            }
-            /*temp = UnityEngine.Random.Range(-maxDiffs, (maxDiffs+1));
-            for (int j = 4 + temp; j != 4- (int)Mathf.Sign(temp); j -= (int)Mathf.Sign(temp))
-            {
-                MT.blocks[j][i] = ((j < (4-(int)Mathf.Sign(temp))) ? 3 : 4);//4-empty; 3-solid without topping
-            }*/
-        }
-        temp = 4;
-        for (int i = BlocksInTile/2; i > (BlocksInTile/4); i--)
-        {
-            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = 0; j < 9; j++)
-            {
-                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
-            }
-        }
-        temp = 4;
-        for (int i = BlocksInTile/2+1; i < (3* (BlocksInTile/4)+1); i++)
-        {
-            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = 0; j < 9; j++)
-            {
-                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
-            }
-        }
-        temp = 4;
-        for (int i = BlocksInTile-1; i > (3* (BlocksInTile/4)); i--)
-        {
-            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = 0; j < 9; j++)
-            {
-                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
-            }
-        }
+        FromCenterRow(temp, maxDiffs, MT);
+        //FromCenterAndEdges(temp, maxDiffs, MT);
         for (int i = 0; i < BlocksInTile; i++)
         {
             for (int j = 0; j < 9; j++)
@@ -127,17 +89,14 @@ public class Map
                 {
                     if (j != 8)
                     {
-                        if ((i != 0) && (i != BlocksInTile-1))
+                        if ((j == 0) || (MT.blocks[j - 1][i] == 4))
                         {
-                            if ((j == 0) || (MT.blocks[j - 1][i] == 4))
-                            {
-                                if ((MT.blocks[j + 1][i - 1] != 4) && (MT.blocks[j][i - 1] == 4))
-                                    MT.blocks[j][i] = 1;
-                                if ((MT.blocks[j + 1][i + 1] != 4) && (MT.blocks[j][i + 1] == 4))
-                                    MT.blocks[j][i] = 2;
-                                if ((MT.blocks[j][i - 1] == 4) && (MT.blocks[j][i + 1] == 4))
-                                    MT.blocks[j][i] = 4;
-                            }
+                            if ((i==0)||((MT.blocks[j + 1][i - 1] != 4) && (MT.blocks[j][i - 1] == 4)))
+                                MT.blocks[j][i] = 1;
+                            if ((i == BlocksInTile - 1)||((MT.blocks[j + 1][i + 1] != 4) && (MT.blocks[j][i + 1] == 4)))
+                                MT.blocks[j][i] = 2;
+                            if (((i == 0)||(MT.blocks[j][i - 1] == 4)) && ((i == BlocksInTile - 1)||(MT.blocks[j][i + 1] == 4)))
+                                MT.blocks[j][i] = 4;
                         }
                     }
                 }
@@ -156,6 +115,63 @@ public class Map
                 }
             }
         }
+    }
+
+    void FromCenterRow(int middle, int maxDiffs, MapTile MT)
+    {
+        int temp;
+        for (int i = 0; i < BlocksInTile; i++)
+        {
+            temp = UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = middle+temp; j != middle-(int)Math.Sign(temp); j-= Math.Sign(temp))
+            {
+                MT.blocks[j][i] = ((j <= middle) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }
+    }
+    void FromCenterAndEdges(int middle, int maxDiffs, MapTile MT)
+    {
+        int temp = middle;
+        for (int i = 0; i < (BlocksInTile / 4 + 1); i++)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+            /*temp = UnityEngine.Random.Range(-maxDiffs, (maxDiffs+1));
+            for (int j = 4 + temp; j != 4- (int)Mathf.Sign(temp); j -= (int)Mathf.Sign(temp))
+            {
+                MT.blocks[j][i] = ((j < (4-(int)Mathf.Sign(temp))) ? 3 : 4);//4-empty; 3-solid without topping
+            }*/
+        }
+        temp = 4;
+        for (int i = BlocksInTile / 2; i > (BlocksInTile / 4); i--)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }
+        temp = 4;
+        for (int i = BlocksInTile / 2 + 1; i < (3 * (BlocksInTile / 4) + 1); i++)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }
+        temp = 4;
+        for (int i = BlocksInTile - 1; i > (3 * (BlocksInTile / 4)); i--)
+        {
+            temp += UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }/**/
     }
     void SetBiomeCenter(int biome_index)
 	{
@@ -230,7 +246,7 @@ public class Map
 			{
 				SetTileBiome (x, y);
                 GeneratePlatforms(x, y, B);
-                GenerateBlocks(Tiles[y][x], x, y, 1);
+                GenerateBlocks(Tiles[y][x], x, y, 2);
                 //PrintTileToFile(Tiles[y][x].blocks, x, y);
 			}
 		}

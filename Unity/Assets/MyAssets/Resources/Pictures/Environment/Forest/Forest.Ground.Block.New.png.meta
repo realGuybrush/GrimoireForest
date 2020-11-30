@@ -1,0 +1,353 @@
+fileFormatVersion: 2
+guid: bb3de599ab60c2c4689481ea12ef5ba9
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6067506673594475462
+    second: Forest.Ground.Block.New_0
+  - first:
+      213: -2026737681754465036
+    second: Forest.Ground.Block.New_1
+  - first:
+      213: -5207992218620892651
+    second: Forest.Ground.Block.New_2
+  - first:
+      213: 7295814215412271754
+    second: Forest.Ground.Block.New_3
+  - first:
+      213: -5198643464684729875
+    second: Forest.Ground.Block.New_4
+  - first:
+      213: -3047899755067767237
+    second: Forest.Ground.Block.New_5
+  - first:
+      213: 1892565800881959300
+    second: Forest.Ground.Block.New_6
+  - first:
+      213: -4879632426751436262
+    second: Forest.Ground.Block.New_7
+  - first:
+      213: -5656716563385065140
+    second: Forest.Ground.Block.New_8
+  - first:
+      213: -6990253391595702922
+    second: Forest.Ground.Block.New_9
+  - first:
+      213: -8774097910441530785
+    second: Forest.Ground.Block.New_10
+  - first:
+      213: -7025427540085429129
+    second: Forest.Ground.Block.New_11
+  - first:
+      213: 400960884469334394
+    second: Forest.Ground.Block.New_12
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_0
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 264
+        width: 167
+        height: 326
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c329ef2c2d143450800000000000000
+      internalID: 6067506673594475462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_2
+      rect:
+        serializedVersion: 2
+        x: 477
+        y: 339
+        width: 149
+        height: 219
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51a6a189bae79b7b0800000000000000
+      internalID: -5207992218620892651
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_3
+      rect:
+        serializedVersion: 2
+        x: 1143
+        y: 330
+        width: 20
+        height: 256
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8ac4e0cf50ff3560800000000000000
+      internalID: 7295814215412271754
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_4
+      rect:
+        serializedVersion: 2
+        x: 1215
+        y: 338
+        width: 39
+        height: 252
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de98f8dff45bad7b0800000000000000
+      internalID: -5198643464684729875
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_5
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 146
+        width: 162
+        height: 417
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b368f2c325fa3b5d0800000000000000
+      internalID: -3047899755067767237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_6
+      rect:
+        serializedVersion: 2
+        x: 681
+        y: 308
+        width: 166
+        height: 269
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4813f93919eb34a10800000000000000
+      internalID: 1892565800881959300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_8
+      rect:
+        serializedVersion: 2
+        x: 903
+        y: 169
+        width: 165
+        height: 405
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c416d54914e4f71b0800000000000000
+      internalID: -5656716563385065140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_9
+      rect:
+        serializedVersion: 2
+        x: 1331
+        y: 73
+        width: 146
+        height: 492
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 675f7f78391adfe90800000000000000
+      internalID: -6990253391595702922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_11
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 87
+        width: 160
+        height: 155
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77c26f5efdaa08e90800000000000000
+      internalID: -7025427540085429129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New_12
+      rect:
+        serializedVersion: 2
+        x: 655
+        y: 92
+        width: 147
+        height: 147
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a710f9fcccf709500800000000000000
+      internalID: 400960884469334394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

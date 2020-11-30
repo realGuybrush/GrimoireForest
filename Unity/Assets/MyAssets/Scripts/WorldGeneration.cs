@@ -169,7 +169,7 @@ public partial class WorldManagement : MonoBehaviour
             for (int j = 0; j < GlobalMap.BlocksInTile; j++)
             {
                 if(MT.blocks[i][j] < 4)
-                Instantiate(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs[MT.blocks[i][j]], new Vector3((j-GlobalMap.BlocksInTile/2)*1.5f+ xTileOffset*(GlobalMap.BlocksInTile*1.5f), (i-1)*-1.5f-1.0f,  0.0f), new Quaternion(), GO.transform.GetChild(6));
+                Instantiate(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs[MT.blocks[i][j]], new Vector3((j-GlobalMap.BlocksInTile/2)*1.5f+ xTileOffset*(GlobalMap.BlocksInTile*1.5f), (i)*-1.5f,  0.0f), new Quaternion(), GO.transform.GetChild(6));
             }
         }
 
