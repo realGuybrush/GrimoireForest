@@ -19,7 +19,7 @@ public class LandCheck : MonoBehaviour
     }
     public void Res()
     {
-        landed = 1;
+        landed = 0;
     }
     private void OnTriggerEnter2D(Collider2D c)
     {

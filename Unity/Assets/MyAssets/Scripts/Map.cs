@@ -245,8 +245,9 @@ public class Map
 			for (int y = 0; y < Height; y++)
 			{
 				SetTileBiome (x, y);
-                GeneratePlatforms(x, y, B);
                 GenerateBlocks(Tiles[y][x], x, y, 2);
+                GeneratePlatforms(x, y, B);
+                AdjustPlatformPositions(x, y);
                 //PrintTileToFile(Tiles[y][x].blocks, x, y);
 			}
 		}
@@ -447,6 +448,30 @@ public class Map
             }
         }
     }
+
+    void AdjustPlatformPositions(int x, int y)
+    {
+        int j = 0;
+        int k = 0;
+        for (int i=0; i<Tiles[y][x].TilePlatforms.Count; i++)
+        {
+            j = 0;
+            k = ((int)(Tiles[y][x].TilePlatforms[i].location.x / 1.5f) + Tiles[y][x].blocks[0].Count / 2);
+            if (k < 0)
+                k = 0;
+            if (k > Tiles[y][x].blocks[0].Count - 1)
+                k = Tiles[y][x].blocks[0].Count - 1;
+            for (j = 0; j < 9; j++)
+            {
+                if (Tiles[y][x].blocks[j][k] != 4)
+                    break;
+            }
+            Tiles[y][x].TilePlatforms[i].location = new SVector3(Tiles[y][x].TilePlatforms[i].location.x,
+                                                                 Tiles[y][x].TilePlatforms[i].location.y + (4-j)*1.5f,
+                                                                 Tiles[y][x].TilePlatforms[i].location.z + 0.0f);
+        }
+    }
+
     /*bool LoadTiles()
 	{
 		// 1
