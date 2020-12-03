@@ -245,7 +245,7 @@ public class Map
 			for (int y = 0; y < Height; y++)
 			{
 				SetTileBiome (x, y);
-                GenerateBlocks(Tiles[y][x], x, y, 2);
+                GenerateBlocks(Tiles[y][x], x, y, 3);
                 GeneratePlatforms(x, y, B);
                 AdjustPlatformPositions(x, y);
                 //PrintTileToFile(Tiles[y][x].blocks, x, y);
@@ -451,6 +451,7 @@ public class Map
 
     void AdjustPlatformPositions(int x, int y)
     {
+        float inclinedOffsety = 0.0f;
         int j = 0;
         int k = 0;
         for (int i=0; i<Tiles[y][x].TilePlatforms.Count; i++)
@@ -466,8 +467,39 @@ public class Map
                 if (Tiles[y][x].blocks[j][k] != 4)
                     break;
             }
-            Tiles[y][x].TilePlatforms[i].location = new SVector3(Tiles[y][x].TilePlatforms[i].location.x,
-                                                                 Tiles[y][x].TilePlatforms[i].location.y + (4-j)*1.5f,
+            if (Tiles[y][x].blocks[j][k] == 1)
+            {
+                if (k != 0)
+                {
+                    inclinedOffsety = Tiles[y][x].TilePlatforms[i].location.x % k;
+                    if (inclinedOffsety > 1.5f)
+                    {
+                        inclinedOffsety = Tiles[y][x].TilePlatforms[i].location.x % (k - 1);
+                    }
+                }
+                else
+                {
+                    inclinedOffsety = Tiles[y][x].TilePlatforms[i].location.x;
+                }
+                inclinedOffsety = 1.5f - inclinedOffsety;
+            }
+            if (Tiles[y][x].blocks[j][k] == 2)
+            {
+                if (k != 0)
+                {
+                    inclinedOffsety = Tiles[y][x].TilePlatforms[i].location.x % k;
+                    if (inclinedOffsety > 1.5f)
+                    {
+                        inclinedOffsety = Tiles[y][x].TilePlatforms[i].location.x % (k - 1);
+                    }
+                }
+                else
+                {
+                    inclinedOffsety = Tiles[y][x].TilePlatforms[i].location.x;
+                }
+            }
+                Tiles[y][x].TilePlatforms[i].location = new SVector3(Tiles[y][x].TilePlatforms[i].location.x,
+                                                                 Tiles[y][x].TilePlatforms[i].location.y + (4-j- inclinedOffsety) *1.5f,
                                                                  Tiles[y][x].TilePlatforms[i].location.z + 0.0f);
         }
     }
