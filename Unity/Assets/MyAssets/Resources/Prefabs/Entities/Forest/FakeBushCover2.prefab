@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5649166472086173465}
   - component: {fileID: 2413891848142858336}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T21
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3338454425473604870}
   - component: {fileID: 9216804133449155277}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 5301660829222520881}
   - component: {fileID: 319648652751985320}
   - component: {fileID: 709411783710105814}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -214,7 +214,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7733552214527299873}
   - component: {fileID: 7839577116655114371}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tentacle4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4040802181604757173}
   - component: {fileID: 4931520248911251319}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T311
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4753286347190592386}
   - component: {fileID: 4917019694389672700}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3819287661013204066}
   - component: {fileID: 1202954820438711934}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tentacle1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 8642832508294044245}
   - component: {fileID: 8927315020962085565}
   - component: {fileID: 5665573279884878555}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: FakeBushCover2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -477,6 +477,7 @@ MonoBehaviour:
   hidden: 1
   wakeChance: 0
   wakeTime: 100
+  tryWakeTurns: 20
 --- !u!114 &-5693305339669266315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -490,6 +491,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
+    damage: 4
+    defense: 0
+    maxHealth: 10
     attacking: 0
     name: 
 --- !u!50 &8642832508294044245
@@ -568,7 +572,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4016661697794447369}
   - component: {fileID: 4016661697794447368}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bushes_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -654,7 +658,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3837850781198999827}
   - component: {fileID: 4743718725991705888}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T211
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -701,7 +705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2978849024849920042}
   - component: {fileID: 8540711721535009053}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T111
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +753,7 @@ GameObject:
   - component: {fileID: 7523864420446564179}
   - component: {fileID: 5482654266384077979}
   - component: {fileID: 3970746461442556468}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3671394773322474187}
   - component: {fileID: 2531277361134856967}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tentacle3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -904,7 +908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 332059964256080640}
   - component: {fileID: 9036416448132768967}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T31
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -953,7 +957,7 @@ GameObject:
   - component: {fileID: 5177111271052822403}
   - component: {fileID: 6762524425475468197}
   - component: {fileID: 4319882424117741259}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1061,7 +1065,7 @@ GameObject:
   - component: {fileID: 924619811084602978}
   - component: {fileID: 1789488758610143640}
   - component: {fileID: 7238217698436721557}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1168,7 +1172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8715786229187818912}
   - component: {fileID: 3723814617747044170}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T411
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,7 +1219,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3645582548115437202}
   - component: {fileID: 8472250114975982599}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: T41
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1264,7 +1268,7 @@ GameObject:
   - component: {fileID: 7161631546696189022}
   - component: {fileID: 973648791679713201}
   - component: {fileID: 2763135856379411914}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Land Checker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1334,7 +1338,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7288325970401612666}
   - component: {fileID: 6928147985374644228}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Tentacle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

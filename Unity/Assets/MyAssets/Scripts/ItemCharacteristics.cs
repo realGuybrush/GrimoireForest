@@ -51,6 +51,8 @@ public class ItemCharacteristics
                 return atk2Buff;
             case 3:
                 return atk3Buff;
+            default:
+                break;
         }
         return new Buff();
     }
@@ -64,6 +66,8 @@ public class ItemCharacteristics
                 return atk2Projectile;
             case 3:
                 return atk3Projectile;
+            default:
+                break;
         }
         return null;
     }

@@ -8,6 +8,7 @@ using UnityEngine.Tilemaps;
 public enum PassageType : int { No, Door, Corridor, SecretDoor };
 
 public enum DirectionType : int { North, East, South, West };
+public enum BlockType : int { Top, InclLeft, InclRight, NoTop, Empty, TopBushU, TopBushD, TopBushUD, IncLeftBushU, IncLeftBushD, IncLeftBushUD, IncRightBushU, IncRightBushD, IncRightBushUD };
 
 [Serializable]
 public class EnvironmentStuffingValues
@@ -33,8 +34,8 @@ public class EntityValues
     {
         indexInPrefabs = i;
         location = new SVector3(l);
-        rotation = new SVector3(l);
-        velocity = new SVector3(l);
+        rotation = new SVector3(r);
+        velocity = new SVector3(v);
         inventory = I;
     }
 }

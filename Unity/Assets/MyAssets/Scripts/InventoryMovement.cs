@@ -89,7 +89,7 @@ public class InventoryMovement : MonoBehaviour
         }
     }
 
-    public void ShowHide(bool show = true)
+    public void ShowHide()
     {
         if (Floating())
         {

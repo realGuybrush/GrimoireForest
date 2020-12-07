@@ -56,11 +56,11 @@ public class Map
             }
 		}
 		//if(!LoadTiles ())
-		    SetTiles();
+		SetTiles();
         PrintMapToFile();
         PrintMapToFile (true);
     }
-    void GenerateBlocks(MapTile MT, int x, int y, int maxDiffs = 0)
+    void GenerateBlocks(MapTile MT, int maxDiffs = 0)
     {
         int temp=4;
         if (maxDiffs > 4)
@@ -71,46 +71,137 @@ public class Map
         {
             MT.blocks.Add(new List<int>());
             for (int j = 0; j < BlocksInTile; j++)
-                MT.blocks[i].Add(4);
+                MT.blocks[i].Add((int)BlockType.Empty);
         }
         for (int i = 4; i < 9; i++)
         {
             MT.blocks.Add(new List<int>());
             for (int j = 0; j < BlocksInTile; j++)
-                MT.blocks[i].Add(3);//BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs.Count
+                MT.blocks[i].Add((int)BlockType.NoTop);//BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs.Count
         }
         FromCenterRow(temp, maxDiffs, MT);
         //FromCenterAndEdges(temp, maxDiffs, MT);
+        //FromCenterRowWavy(temp, maxDiffs, MT);
+        //PrintTileToFile(MT.blocks, 1,1);
+        SetInclinations(MT);
+        SetBushesDoors(MT);
+    }
+
+    private void SetInclinations(MapTile MT)
+    {
         for (int i = 0; i < BlocksInTile; i++)
         {
             for (int j = 0; j < 9; j++)
             {
-                if (MT.blocks[j][i] == 3)
+                if (MT.blocks[j][i] == (int)BlockType.NoTop)
                 {
                     if (j != 8)
                     {
-                        if ((j == 0) || (MT.blocks[j - 1][i] == 4))
+                        if ((j == 0) || (MT.blocks[j - 1][i] == (int)BlockType.Empty))
                         {
-                            if ((i==0)||((MT.blocks[j + 1][i - 1] != 4) && (MT.blocks[j][i - 1] == 4)))
-                                MT.blocks[j][i] = 1;
-                            if ((i == BlocksInTile - 1)||((MT.blocks[j + 1][i + 1] != 4) && (MT.blocks[j][i + 1] == 4)))
-                                MT.blocks[j][i] = 2;
-                            if (((i == 0)||(MT.blocks[j][i - 1] == 4)) && ((i == BlocksInTile - 1)||(MT.blocks[j][i + 1] == 4)))
-                                MT.blocks[j][i] = 4;
+                            if ((i == 0) || ((MT.blocks[j + 1][i - 1] != (int)BlockType.Empty) && (MT.blocks[j][i - 1] == (int)BlockType.Empty)))
+                            {
+                                MT.blocks[j][i] = (int)BlockType.IncLeftBushUD;
+                            }
+                            if ((i == BlocksInTile - 1) || ((MT.blocks[j + 1][i + 1] != (int)BlockType.Empty) && (MT.blocks[j][i + 1] == (int)BlockType.Empty)))
+                            {
+                                MT.blocks[j][i] = (int)BlockType.IncRightBushUD;
+                            }
+                            if (((i == 0) || (MT.blocks[j][i - 1] == (int)BlockType.Empty)) && ((i == BlocksInTile - 1) || (MT.blocks[j][i + 1] == (int)BlockType.Empty)))
+                            {
+                                MT.blocks[j][i] = (int)BlockType.Empty;
+                            }
+                            if (((i == 0) || (MT.blocks[j][i - 1] != (int)BlockType.Empty)) && ((i == BlocksInTile - 1) || (MT.blocks[j][i + 1] != (int)BlockType.Empty)))
+                                MT.blocks[j][i] = (int)BlockType.TopBushUD;
                         }
                     }
                 }
             }
         }
-        for (int i = 0; i < 60; i++)
+    }
+
+    private void SetBushesDoors(MapTile MT)
+    {
+        for (int i = MT.blocks[0].Count / 2 - 5; i < MT.blocks[0].Count / 2 + 4; i++)
         {
             for (int j = 0; j < 9; j++)
             {
-                if (MT.blocks[j][i] == 3)
+                if (MT.blocks[j][i] == (int)BlockType.TopBushUD)
                 {
-                    if ((j == 0) || (MT.blocks[j - 1][i] == 4))
+                    if ((j == 0) || (MT.blocks[j - 1][i] == (int)BlockType.Empty))
                     {
-                        MT.blocks[j][i] = 0;
+                        if (MT.passages[0] == PassageType.Door)
+                        {
+                            if (MT.passages[2] == PassageType.Door)
+                            {
+                                MT.blocks[j][i] = (int)BlockType.Top;
+                            }
+                            else
+                            {
+                                MT.blocks[j][i] = (int)BlockType.TopBushD;
+                            }
+                        }
+                        else
+                        {
+                            if (MT.passages[2] == PassageType.Door)
+                            {
+                                MT.blocks[j][i] = (int)BlockType.TopBushU;
+                            }
+                            else
+                            {
+                                MT.blocks[j][i] = (int)BlockType.TopBushUD;
+                            }
+                        }
+                    }
+                }
+                if (MT.blocks[j][i] == (int)BlockType.IncLeftBushUD)
+                {
+                    if (MT.passages[0] == PassageType.Door)
+                    {
+                        if (MT.passages[2] == PassageType.Door)
+                        {
+                            MT.blocks[j][i] = (int)BlockType.InclLeft;
+                        }
+                        else
+                        {
+                            MT.blocks[j][i] = (int)BlockType.IncLeftBushD;
+                        }
+                    }
+                    else
+                    {
+                        if (MT.passages[2] == PassageType.Door)
+                        {
+                            MT.blocks[j][i] = (int)BlockType.IncLeftBushU;
+                        }
+                        else
+                        {
+                            MT.blocks[j][i] = (int)BlockType.IncLeftBushUD;
+                        }
+                    }
+                }
+                if (MT.blocks[j][i] == (int)BlockType.IncRightBushUD)
+                {
+                    if (MT.passages[0] == PassageType.Door)
+                    {
+                        if (MT.passages[2] == PassageType.Door)
+                        {
+                            MT.blocks[j][i] = (int)BlockType.InclRight;
+                        }
+                        else
+                        {
+                            MT.blocks[j][i] = (int)BlockType.IncRightBushD;
+                        }
+                    }
+                    else
+                    {
+                        if (MT.passages[2] == PassageType.Door)
+                        {
+                            MT.blocks[j][i] = (int)BlockType.IncRightBushU;
+                        }
+                        else
+                        {
+                            MT.blocks[j][i] = (int)BlockType.IncRightBushUD;
+                        }
                     }
                 }
             }
@@ -122,10 +213,65 @@ public class Map
         int temp;
         for (int i = 0; i < BlocksInTile; i++)
         {
-            temp = UnityEngine.Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = middle+temp; j != middle-(int)Math.Sign(temp); j-= Math.Sign(temp))
+            temp = UnityEngine.Random.Range(-maxDiffs, (maxDiffs));// + 1));
+            for (int j = 0; j < 9; j++)
             {
-                MT.blocks[j][i] = ((j <= middle) ? 4 : 3);//4-empty; 3-solid without topping
+                MT.blocks[j][i] = ((j < middle + temp) ? (int)BlockType.Empty : (int)BlockType.NoTop);//4-empty; 3-solid without topping
+            }
+        }
+    }
+    void FromCenterRowWavy(int middle, int maxDiffs, MapTile MT)
+    {
+        if (maxDiffs + middle > 8)
+            maxDiffs = 8 - middle;
+        if (maxDiffs > middle)
+            maxDiffs = middle;
+        int temp=0;
+        int addt = 1;
+        for (int i = BlocksInTile / 2; i < BlocksInTile; i++)
+        {
+            if ((temp < maxDiffs) &&(addt == 1))
+            {
+                temp += addt;
+            }
+            else
+            {
+                addt = -1;
+            }
+            if ((temp > -maxDiffs) &&(addt == -1))
+            {
+                temp += addt;
+            }
+            else
+            {
+                addt = 1;
+            }
+            for (int j = 0; j < 9; j++)
+            {
+                MT.blocks[j][i] = ((j < middle + temp) ? 4 : 3);//4-empty; 3-solid without topping
+            }
+        }
+        for (int i = BlocksInTile / 2 - 1; i > -1; i--)
+        {
+            if ((temp < maxDiffs) && (addt == 1))
+            {
+                temp += addt;
+            }
+            else
+            {
+                addt = -1;
+            }
+            if ((temp > -maxDiffs) && (addt == -1))
+            {
+                temp += addt;
+            }
+            else
+            {
+                addt = 1;
+            }
+            for (int j = 0; j < 9; j ++)
+            {
+                MT.blocks[j][i] = ((j < middle + temp) ? 4 : 3);//4-empty; 3-solid without topping
             }
         }
     }
@@ -240,20 +386,20 @@ public class Map
 	void SetTiles()
 	{
         List<List<BiomeTilesData>> B = GameObject.Find("WorldManager").GetComponent<WorldManagement>().BiomePrefabs;
+		GenerateHorizontalCorridors ();
+		GenerateVerticalCorridors ();
+        FixCorridors();
         for (int x = 0; x < Width; x++)
 		{
 			for (int y = 0; y < Height; y++)
 			{
 				SetTileBiome (x, y);
-                GenerateBlocks(Tiles[y][x], x, y, 3);
+                GenerateBlocks(Tiles[y][x], 1);
                 GeneratePlatforms(x, y, B);
                 AdjustPlatformPositions(x, y);
                 //PrintTileToFile(Tiles[y][x].blocks, x, y);
 			}
 		}
-		GenerateHorizontalCorridors ();
-		GenerateVerticalCorridors ();
-        FixCorridors();
 		//SaveGame();
 	}
 
@@ -451,6 +597,27 @@ public class Map
 
     void AdjustPlatformPositions(int x, int y)
     {
+        int midlevel = 4;
+        float inclinedOffsety = 0.0f;
+        int j;
+        int k;
+        for (int i = 0; i < Tiles[y][x].TilePlatforms.Count; i++)//need children of active child of BGPartNumberAsChild
+        {
+            k = (int)(Tiles[y][x].TilePlatforms[i].location.x / 1.5f) + Tiles[y][x].blocks[0].Count / 2;
+            if (k < 0)
+                k = 0;
+            if (k > Tiles[y][x].blocks[0].Count - 1)
+                k = Tiles[y][x].blocks[0].Count - 1;
+            for (j = 0; j < 9; j++)
+            {
+                if (Tiles[y][x].blocks[j][k] != 4)
+                    break;
+            }
+            Tiles[y][x].TilePlatforms[i].location = new SVector3(Tiles[y][x].TilePlatforms[i].location.x,
+                                                             Tiles[y][x].TilePlatforms[i].location.y + (midlevel - j - inclinedOffsety) * 1.5f,
+                                                             Tiles[y][x].TilePlatforms[i].location.z + 0.0f);
+        }
+    }/*
         float inclinedOffsety = 0.0f;
         int j = 0;
         int k = 0;
@@ -502,7 +669,7 @@ public class Map
                                                                  Tiles[y][x].TilePlatforms[i].location.y + (4-j- inclinedOffsety) *1.5f,
                                                                  Tiles[y][x].TilePlatforms[i].location.z + 0.0f);
         }
-    }
+    }*/
 
     /*bool LoadTiles()
 	{
@@ -573,11 +740,11 @@ public class Map
         string name;
         if (noPass)
         {
-            name = "Tiles\\TestTile"+y1.ToString()+x1.ToString()+"1.txt";
+            name = "TestTile"+y1.ToString()+x1.ToString()+"1.txt";
         }
         else
         {
-            name = "Tiles\\TestTile" + y1.ToString() + x1.ToString() + ".txt";
+            name = "TestTile" + y1.ToString() + x1.ToString() + ".txt";
         }
         var sr = File.CreateText(name);
         for (int y = 0; y < 9; y++)

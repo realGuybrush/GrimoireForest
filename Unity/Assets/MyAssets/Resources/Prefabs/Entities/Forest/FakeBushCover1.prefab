@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0000007
+  m_Length: 1.0000004
   m_ChildTransform: {fileID: 7595228742240779556}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &2203233455072026148
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0000007
+  m_Length: 1
   m_ChildTransform: {fileID: 7421683204031970436}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &2477463063710810362
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.9999997
+  m_Length: 1.0000006
   m_ChildTransform: {fileID: 3980142324890163341}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &2997312408016263285
@@ -561,7 +561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0000007
+  m_Length: 1.0000012
   m_ChildTransform: {fileID: 8324135688785934107}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &5181067798311837825
@@ -857,7 +857,7 @@ GameObject:
   - component: {fileID: -1574466978999154348}
   - component: {fileID: 2146147427000977915}
   - component: {fileID: 8660453581715285199}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: FakeBushCover1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -922,6 +922,7 @@ MonoBehaviour:
   hidden: 1
   wakeChance: 0
   wakeTime: 100
+  tryWakeTurns: 20
 --- !u!114 &-5789097261939124813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,6 +936,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
+    damage: 4
+    defense: 0
+    maxHealth: 10
     attacking: 0
     name: 
 --- !u!50 &-1574466978999154348
@@ -1119,7 +1123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1
+  m_Length: 1.0000004
   m_ChildTransform: {fileID: 7373754252897772430}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &7515900861773429113
@@ -1214,7 +1218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 1.0000006
+  m_Length: 1.0000007
   m_ChildTransform: {fileID: 4413950997002637431}
   m_AttachedIK: {fileID: 0}
 --- !u!1 &8030647937590857647

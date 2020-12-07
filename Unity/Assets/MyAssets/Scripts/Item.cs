@@ -2,17 +2,13 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    private ContactPoint2D grabPoint1;
-    private ContactPoint2D grabPoint2;
     public Vector3 projectilePosition;
     public Vector3 projectilePosition1;
     public Vector3 positionOnHand = new Vector3(1.630001f, -0.06000054f, 0.0f);
     public float projectileVelocity = 50.0f;
     public ItemCharacteristics itemValues = new ItemCharacteristics();
-    private Collider2D thisCollider;
     public Sprite InventoryImage;
     private bool set;
-    private bool setShoot;
     private int atkType;
     private string masterName;
     public int projectileIndex;
@@ -29,7 +25,6 @@ public class Item : MonoBehaviour
     // search for hp script and extract hp.
     void Start()
     {
-        thisCollider = this.gameObject.GetComponent<Collider2D>();
         //instead of this, items values should be loaded by worldmanager
         /*itemValues = new ItemCharacteristics();
         itemValues.number = 0;
@@ -90,9 +85,9 @@ public class Item : MonoBehaviour
         set = value;
         atkType = type;
     }
-    public void Shoot(Vector3 directions)
+    public void Shoot()
     {
-        float z = directions.z >= 270.0f ? directions.z - 360.0f : directions.z;
+        //float z = directions.z >= 270.0f ? directions.z - 360.0f : directions.z;
         //Vector3 newPosition = this.transform.position + new Vector3(projectilePosition.x * directions.x, projectilePosition.y * directions.y, 0.0f);
         //Start2();
         if (itemValues.GetProjectile(atkType) != null)

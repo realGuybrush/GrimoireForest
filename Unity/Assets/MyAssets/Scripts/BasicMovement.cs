@@ -40,10 +40,10 @@ public class BasicMovement : MonoBehaviour
         inventory.stacks[0] = 1;//uncomment this
         d.GetComponent<Chest>().SetInventory(inventory);
     }
-    public bool BasicCheckHold(bool setGrabValue = false)
+    public bool BasicCheckHold()
     {
         var holding = land.holding || ledge.holding || wall.holding || step.holding;
-        if (holding)// setGrabValue
+        if (holding)
         {
             anim.SetVar("Grab", holding);
         }

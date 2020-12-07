@@ -2071,7 +2071,7 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: -0.782732, y: 0.66002536}
-      - {x: -0.7929287, y: -0.57649827}
+      - {x: -0.7816863, y: -0.4303467}
       - {x: -0.5245342, y: -0.69042134}
       - {x: 0.54407454, y: -0.6904211}
       - {x: 0.78040695, y: -0.56446934}
@@ -2151,7 +2151,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!95 &7859400090961293850
 Animator:

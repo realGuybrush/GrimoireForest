@@ -16,9 +16,9 @@ public class AdjustBGY : MonoBehaviour
         
     }
 
-    public void AdjustBGPartPositions(List<List<int>> blocks, int BGPartNumberAsChild)
+    public void AdjustBGPartPositions(List<List<int>> blocks, int BGPartNumberAsChild, float yDiff = 0.0f)
     {
-        int midlevel = 5;
+        int midlevel = 4;
         float inclinedOffsety = 0.0f;
         int j = 0;
         int k = 0;
@@ -29,8 +29,8 @@ public class AdjustBGY : MonoBehaviour
             active = 1;
         for (int i = 0; i < transform.GetChild(BGPartNumberAsChild).GetChild(active).childCount; i++)//need children of active child of BGPartNumberAsChild
         {
-            j = 0;
-            k = ((int)(transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).transform.position.x / 1.5f) + blocks[0].Count / 2);
+            inclinedOffsety = 0;
+            k = ((int)(transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).transform.localPosition.x / 1.5f) + blocks[0].Count / 2);
             if (k < 0)
                 k = 0;
             if (k > blocks[0].Count - 1)
@@ -40,40 +40,48 @@ public class AdjustBGY : MonoBehaviour
                 if (blocks[j][k] != 4)
                     break;
             }
-            /*if (GlobalMap.Tiles[y][x].blocks[j][k] == 1)
+            /*if (blocks[j][k] == 1)
+            {
+                inclinedOffsety = 1.0f;
+            }
+            if (blocks[j][k] == 2)
+            {
+                inclinedOffsety = 1.0f;
+            }
+            if (blocks[j][k] == 1)
             {
                 if (k != 0)
                 {
-                    inclinedOffsety = (Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + TileWidth / 2 - TileWidth * xOffset) % k;
+                    inclinedOffsety = (transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + 1.5f* blocks[0].Count / 2) % k;
                     if (inclinedOffsety > 1.5f)
                     {
-                        inclinedOffsety = (Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x+TileWidth/2 - TileWidth * xOffset) % (k - 1);
+                        inclinedOffsety = (transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x+1.5f* blocks[0].Count / 2) % (k - 1);
                     }
                 }
                 else
                 {
-                    inclinedOffsety = Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x+TileWidth/2-TileWidth*xOffset;
+                    inclinedOffsety = transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x+1.5f* blocks[0].Count / 2;
                 }
                 inclinedOffsety = 1.5f - inclinedOffsety;
             }
-            if (GlobalMap.Tiles[y][x].blocks[j][k] == 2)
+            if (blocks[j][k] == 2)
             {
                 if (k != 0)
                 {
-                    inclinedOffsety = (Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + TileWidth / 2 - TileWidth * xOffset) % k;
+                    inclinedOffsety = (transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + 1.5f*blocks[0].Count / 2) % k;
                     if (inclinedOffsety > 1.5f)
                     {
-                        inclinedOffsety = (Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + TileWidth / 2 - TileWidth * xOffset) % (k - 1);
+                        inclinedOffsety = (transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + 1.5f* blocks[0].Count / 2) % (k - 1);
                     }
                 }
                 else
                 {
-                    inclinedOffsety = Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + TileWidth / 2 - TileWidth * xOffset;
+                    inclinedOffsety = transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x + 1.5f* blocks[0].Count / 2;
                 }
             }*/
-            transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position = new Vector3(transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.x,
-                                                             transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.y + (midlevel - j - inclinedOffsety) * 1.5f,
-                                                             transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.z + 0.0f);
+            transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).localPosition = new Vector3(transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).localPosition.x,
+                                                             transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).localPosition.y + (midlevel - j) * 1.5f - inclinedOffsety + yDiff,
+                                                             transform.GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).localPosition.z + 0.0f);
         }
     }
 }

@@ -41,7 +41,7 @@ public class Inventory
 
     public bool Remove(int itemIndex, int amount)
     {
-        if (moreThanThisLeft(itemIndex, amount))
+        if (MoreThanThisLeft(itemIndex, amount))
         {
             if (amount == 0)
                 return true;
@@ -68,7 +68,7 @@ public class Inventory
         return false;
     }
 
-    public bool moreThanThisLeft(int itemIndex, int amount)
+    public bool MoreThanThisLeft(int itemIndex, int amount)
     {
         for (int i = 0; i < Items.Count; i++)
         {

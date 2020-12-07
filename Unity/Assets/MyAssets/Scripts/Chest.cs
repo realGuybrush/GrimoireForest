@@ -13,11 +13,6 @@ public class Chest : MonoBehaviour
         inventory.stacks[0] = 1;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void SetInventory(Inventory inv)
     {
         for (int i = 0; i < inv.Items.Count && i < inventory.Items.Count; i++)

@@ -975,7 +975,7 @@ GameObject:
   - component: {fileID: 6311641312675808338}
   - component: {fileID: 1985671948954043908}
   - component: {fileID: 4523768236404388651}
-  m_Layer: 14
+  m_Layer: 8
   m_Name: FakeBushCover3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1040,6 +1040,7 @@ MonoBehaviour:
   hidden: 1
   wakeChance: 0
   wakeTime: 100
+  tryWakeTurns: 20
 --- !u!114 &-1045861637684761469
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1053,6 +1054,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   values:
+    damage: 4
+    defense: 0
+    maxHealth: 10
     attacking: 0
     name: 
 --- !u!50 &6311641312675808338

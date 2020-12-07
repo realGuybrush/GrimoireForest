@@ -32,10 +32,20 @@ public partial class WorldManagement : MonoBehaviour
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover2"));
         BiomePrefabs[0][0].PlatformPrefab.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\BushCover3"));
         BiomePrefabs[0][0].PlatformPrefab = RemoveAllNull(BiomePrefabs[0][0].PlatformPrefab);
-        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.FullTop"));
-        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.TriangleLeft"));
-        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.TriangleRight"));
-        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Forest.Ground.Full"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTop"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeft"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRight"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.Full"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.Full"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTopBushU"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTopBushD"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTopBushUD"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeftBushU"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeftBushD"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeftBushUD"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRightBushU"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRightBushD"));
+        BiomePrefabs[0][0].BlockPrefabs.Add((GameObject)Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRightBushUD"));
         BiomePrefabs[0][0].EntitiesPrefabs.Add(1);
         BiomePrefabs[0][0].EntitiesAmounts.Add(2);
         BiomePrefabs[0][0].EntitiesPrefabs.Add(2);
@@ -103,10 +113,10 @@ public partial class WorldManagement : MonoBehaviour
             //AdjustBGPartPositions(PlayerXMap + offsetTilesLeft * yCoeff, PlayerYMap + offsetTilesLeft * xCoeff, i - offsetTilesLeft + 5, 5, i - offsetTilesLeft);
             //if (i != 0)
             {
-                //Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 2);
+                //Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 2, 1.0f);
                 //Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 3);
-                //Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 4);
-                //Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 5);
+                Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 4);
+                Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 5);
             }
             if ((GlobalTalks.Count > j)&&(j!=-1))
             {
@@ -178,7 +188,7 @@ public partial class WorldManagement : MonoBehaviour
         {
             for (int j = 0; j < GlobalMap.BlocksInTile; j++)
             {
-                if(MT.blocks[i][j] < 4)
+                if(MT.blocks[i][j] != (int)BlockType.Empty)
                 Instantiate(BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs[MT.blocks[i][j]], new Vector3((j-GlobalMap.BlocksInTile/2)*1.5f+ xTileOffset*(GlobalMap.BlocksInTile*1.5f), (i)*-1.5f,  0.0f), new Quaternion(), GO.transform.GetChild(6));
             }
         }

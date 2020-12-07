@@ -21,12 +21,6 @@ public class ArmsDepiction : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void UpdateWSNumber()
     {
         FloatingTile1.transform.position = ArmsAndSpells[Player.weaponSlotNumber].transform.position;

@@ -19,9 +19,12 @@ public class EnemyMovement : BasicMovement
     public bool flyer = false;
     public int attachedTo = -1;
     public Vector3 attPos;
+    Vector3 prevPosition;
+    int immoving = 0;
 
     private void Start()
     {
+        prevPosition = transform.position;
         if (attachedTo != -1)
             attPos = this.transform.localPosition;
         anim.a = gameObject.GetComponent<Animator>();
@@ -165,11 +168,42 @@ public class EnemyMovement : BasicMovement
         anim.SetVar("Atk", false);
     }
 
+    private bool CheckMove()
+    {
+        if ((prevPosition.x == transform.position.x) && (prevPosition.y == transform.position.y) && (prevPosition.z == transform.position.z))
+        {
+            if (immoving < 15)
+            {
+                immoving++;
+                prevPosition = transform.position;
+                return true;
+            }
+            else
+            {
+                if (Random.Range(0, 3) < 2)
+                {
+                    immoving = 0;
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            prevPosition = transform.position;
+            return true;
+        }
+    }
+
     private void Follow()
     {
-        if (walker)
+        //bool checkMove = CheckMove();
+        if (walker)//&& checkMove)
             WalkFollow();
-        if (jumper)
+        if (jumper)//||!checkMove)
             JumpFollow();
         if (flyer)
             FlyFollow();
@@ -211,6 +245,7 @@ public class EnemyMovement : BasicMovement
     }
     void JumpFollow()
     {
+        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 20.0f));
     }
     void FlyFollow()
     {

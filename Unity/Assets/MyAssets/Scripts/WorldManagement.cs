@@ -32,7 +32,6 @@ public partial class WorldManagement : MonoBehaviour
     int PlayerCurrentXMapOffset = 0;
     GameObject Book;
     DirectionType CameraLookDirection = DirectionType.North;
-    bool canL = true;
     //public List<GameObject> CloneItemPrefabs = new List<GameObject>();
     //public List<int> APnum = new List<int>();
     //public List<AnimatorProperties>AP = new List<AnimatorProperties>();
@@ -77,7 +76,7 @@ public partial class WorldManagement : MonoBehaviour
     {
         //if(Pass != null)
         //Enter();
-        if (Input.GetKey(KeyCode.L))
+        /*if (Input.GetKey(KeyCode.L))
         {
             if (canL)
             {
@@ -87,7 +86,7 @@ public partial class WorldManagement : MonoBehaviour
                 Environment.transform.GetChild(5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[1][1].blocks, 5);
                 canL = false;
             }
-        }
+        }*/
     }
     public void Drop(int itemNumber, int itemCount, Vector3 coordinates)
     {
