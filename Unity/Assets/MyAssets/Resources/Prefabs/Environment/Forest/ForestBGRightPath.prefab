@@ -108,7 +108,7 @@ Transform:
   m_GameObject: {fileID: 1202970511291967094}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.62, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4566007274585589706}
   m_RootOrder: 2
@@ -271,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 3785036678827488184}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2.0300002, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4566007274585589706}
   m_RootOrder: 4
@@ -327,6 +327,77 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4856293487823623485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2030363433111468870}
+  - component: {fileID: 5871830701291399871}
+  - component: {fileID: 6317452048774827823}
+  m_Layer: 13
+  m_Name: Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2030363433111468870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856293487823623485}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.12, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4566007274585589706}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5871830701291399871
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856293487823623485}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.109554, y: 3.9310646}
+  m_EdgeRadius: 0
+--- !u!114 &6317452048774827823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856293487823623485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74eb6b881b18e441986e62435246737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalDirection: 1
 --- !u!1 &4935817378373332641
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,9 +407,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4566007274585589706}
-  - component: {fileID: 2707609758615830601}
-  - component: {fileID: 1005529695154381809}
   - component: {fileID: 1095409207987280734}
+  - component: {fileID: 6947707911060915011}
   m_Layer: 13
   m_Name: ForestBGRightPath
   m_TagString: Untagged
@@ -366,48 +436,10 @@ Transform:
   - {fileID: 3075994844284553122}
   - {fileID: 2642705953562011924}
   - {fileID: 1951001064322653077}
+  - {fileID: 2030363433111468870}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &2707609758615830601
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4935817378373332641}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 2.793642, y: 0.83422565}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.109554, y: 3.9310646}
-  m_EdgeRadius: 0
---- !u!114 &1005529695154381809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4935817378373332641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74eb6b881b18e441986e62435246737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LocalDirection: 1
 --- !u!68 &1095409207987280734
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -428,6 +460,19 @@ EdgeCollider2D:
   - {x: 3.3092673, y: 7.2447815}
   - {x: 0.47629738, y: 10.3993435}
   - {x: 0.50000024, y: 42.03858}
+--- !u!114 &6947707911060915011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935817378373332641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91349ee16de9e6b45ba27d12a03ca7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 4856293487823623485}
 --- !u!1 &5149727140449639350
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,7 +499,7 @@ Transform:
   m_GameObject: {fileID: 5149727140449639350}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.91, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4566007274585589706}
   m_RootOrder: 0
@@ -618,7 +663,7 @@ Transform:
   m_GameObject: {fileID: 6742336887255988093}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.6899999, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4566007274585589706}
   m_RootOrder: 3
@@ -782,7 +827,7 @@ Transform:
   m_GameObject: {fileID: 9149351052977262754}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.06, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4566007274585589706}
   m_RootOrder: 1

@@ -91,9 +91,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 739770087890210164}
-  - component: {fileID: 6813956313065429906}
-  - component: {fileID: 3239426270782406252}
   - component: {fileID: 1903600329062296826}
+  - component: {fileID: 4588975794425458274}
   m_Layer: 13
   m_Name: ForestBGLeftPath
   m_TagString: Untagged
@@ -121,48 +120,10 @@ Transform:
   - {fileID: 8136148909479437835}
   - {fileID: 4702056824414514048}
   - {fileID: 7115367907532852229}
+  - {fileID: 397553215204712928}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!61 &6813956313065429906
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486110218622407740}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -2.8390026, y: 0.15618944}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1.4832344, y: 3.4990396}
-  m_EdgeRadius: 0
---- !u!114 &3239426270782406252
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486110218622407740}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f74eb6b881b18e441986e62435246737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LocalDirection: 3
 --- !u!68 &1903600329062296826
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -183,6 +144,19 @@ EdgeCollider2D:
   - {x: -0.8396647, y: 9.565644}
   - {x: -3.5291326, y: 6.8799095}
   - {x: -3.493257, y: 2.0445576}
+--- !u!114 &4588975794425458274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1486110218622407740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91349ee16de9e6b45ba27d12a03ca7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  door: {fileID: 7841876142939759362}
 --- !u!1 &2301757347587618980
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 4379213368362409381}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.19, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739770087890210164}
   m_RootOrder: 1
@@ -373,7 +347,7 @@ Transform:
   m_GameObject: {fileID: 6374715474382879836}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5500002, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739770087890210164}
   m_RootOrder: 2
@@ -537,7 +511,7 @@ Transform:
   m_GameObject: {fileID: 7099967151209133499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -2.1, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739770087890210164}
   m_RootOrder: 4
@@ -619,7 +593,7 @@ Transform:
   m_GameObject: {fileID: 7193749114732912327}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 2.95, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739770087890210164}
   m_RootOrder: 0
@@ -701,7 +675,7 @@ Transform:
   m_GameObject: {fileID: 7345455447776096638}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -1.7599998, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 739770087890210164}
   m_RootOrder: 3
@@ -838,3 +812,74 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &7841876142939759362
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 397553215204712928}
+  - component: {fileID: 5520610192341739424}
+  - component: {fileID: 9061259381305993621}
+  m_Layer: 13
+  m_Name: Door
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &397553215204712928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841876142939759362}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.53, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 739770087890210164}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &5520610192341739424
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841876142939759362}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.4832344, y: 3.4990396}
+  m_EdgeRadius: 0
+--- !u!114 &9061259381305993621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841876142939759362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f74eb6b881b18e441986e62435246737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LocalDirection: 3

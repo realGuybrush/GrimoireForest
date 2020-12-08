@@ -122,7 +122,7 @@ public class Map
 
     private void SetBushesDoors(MapTile MT)
     {
-        for (int i = MT.blocks[0].Count / 2 - 5; i < MT.blocks[0].Count / 2 + 4; i++)
+        for (int i = MT.blocks[0].Count / 2 - 4; i < MT.blocks[0].Count / 2 + 3; i++)
         {
             for (int j = 0; j < 9; j++)
             {

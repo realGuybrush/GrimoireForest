@@ -33,9 +33,9 @@ public partial class PlayerControls : BasicMovement
     {
         hidden = true;
         anim.SetVar("Hide", true);
-        if (cover[chosenCoverIndex].GetComponent<FakeCoverMovement>() != null)
+        if (cover[chosenCoverIndex].transform.parent.gameObject.GetComponent<FakeCoverMovement>() != null)
         {
-            cover[chosenCoverIndex].GetComponent<FakeCoverMovement>().SetWake(25);
+            cover[chosenCoverIndex].transform.parent.gameObject.GetComponent<FakeCoverMovement>().SetWake(25);
         }
         //HideWeapons();
     }

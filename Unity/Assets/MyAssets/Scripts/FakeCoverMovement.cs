@@ -98,31 +98,4 @@ public class FakeCoverMovement : EnemyMovement
     {
         wakeChance = wake;
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<PlayerControls>() != null)
-        {
-            collision.gameObject.GetComponent<PlayerControls>().IncludeCover(this.gameObject);
-            SetWake(5);
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<PlayerControls>() != null)
-        {
-            if (!hidden)
-            {
-                collision.gameObject.GetComponent<PlayerControls>().ExcludeCover(this.gameObject);
-            }
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<PlayerControls>() != null)
-        {
-            collision.gameObject.GetComponent<PlayerControls>().ExcludeCover(this.gameObject);
-        }
-    }
 }

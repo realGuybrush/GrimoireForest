@@ -185,7 +185,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7564789142102385149}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8400054504486871161
 MonoBehaviour:
@@ -462,7 +462,7 @@ Transform:
   - {fileID: 9158650688073966427}
   - {fileID: 9142369783539321272}
   m_Father: {fileID: 7564789142102385149}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 93.151}
 --- !u!114 &1962522054100466941
 MonoBehaviour:
@@ -875,6 +875,66 @@ MonoBehaviour:
   m_Length: 1.0000006
   m_ChildTransform: {fileID: 4377546986250894802}
   m_AttachedIK: {fileID: 0}
+--- !u!1 &7540799851065054029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3431578561095290644}
+  - component: {fileID: 8826735135391760303}
+  - component: {fileID: 4315481468171699456}
+  m_Layer: 8
+  m_Name: Cover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3431578561095290644
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540799851065054029}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.07, y: -0.71, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7564789142102385149}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8826735135391760303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540799851065054029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883140e3859cf0a49bec804f435ac451, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &4315481468171699456
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7540799851065054029}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &7564789142013207005
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,7 +968,7 @@ Transform:
   - {fileID: 8218960276026790202}
   - {fileID: 345966047944597451}
   m_Father: {fileID: 7564789142102385149}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7564789142013207004
 SpriteRenderer:
@@ -975,7 +1035,7 @@ GameObject:
   - component: {fileID: 6311641312675808338}
   - component: {fileID: 1985671948954043908}
   - component: {fileID: 4523768236404388651}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: FakeBushCover3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -993,6 +1053,7 @@ Transform:
   m_LocalPosition: {x: -4.74, y: -1.038818, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3431578561095290644}
   - {fileID: 7564789142013207007}
   - {fileID: 8541916779820429042}
   - {fileID: 3255406732857404811}
