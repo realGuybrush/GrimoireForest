@@ -21,6 +21,17 @@ public class BasicFlip
             Flip();
         }
     }
+    public void CheckFlip()
+    {
+        if (facingRight && (FacingDirection() > 0))
+        {
+            Flip();
+        }
+        else if (!facingRight && (FacingDirection() < 0))
+        {
+            Flip();
+        }
+    }
 
     public void Flip()
     {

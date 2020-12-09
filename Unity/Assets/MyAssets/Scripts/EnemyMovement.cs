@@ -200,10 +200,11 @@ public class EnemyMovement : BasicMovement
 
     private void Follow()
     {
+        flip.CheckFlip();
         //bool checkMove = CheckMove();
-        if (walker)//&& checkMove)
+        if (walker||jumper&&!Near(new Vector3()))//&& checkMove)
             WalkFollow();
-        if (jumper)//||!checkMove)
+        if (jumper && land.landed && canMelee && Near(new Vector3()))//||!checkMove)
             JumpFollow();
         if (flyer)
             FlyFollow();
@@ -245,7 +246,8 @@ public class EnemyMovement : BasicMovement
     }
     void JumpFollow()
     {
-        this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 20.0f));
+        jump.Jump(move.movingDirection, move.walkSpeed * 2.0f);
+        //this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 20.0f));
     }
     void FlyFollow()
     {
@@ -253,7 +255,7 @@ public class EnemyMovement : BasicMovement
     bool IsThereFloor()
     {
         //Debug.DrawRay(transform.position, new Vector2(lookDistance * flip.FacingDirection() *  Mathf.Cos(-45*Mathf.Deg2Rad), lookDistance * Mathf.Sin(-45 * Mathf.Deg2Rad)), Color.blue, 10.0f);
-        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(flip.FacingDirection() * Mathf.Cos(-30 * Mathf.Deg2Rad), Mathf.Sin(-30 * Mathf.Deg2Rad)), meleeDistance, LayerMask.GetMask("Environment")).collider != null)
+        if (Physics2D.Raycast(ToV2(transform.position), new Vector2(flip.FacingDirection() * Mathf.Cos(-50 * Mathf.Deg2Rad), Mathf.Sin(-50 * Mathf.Deg2Rad)), meleeDistance, LayerMask.GetMask("Environment")).collider != null)
             return true;
         return false;
     }
