@@ -4,21 +4,8 @@ using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-/*public class AnimatorProperties
-{
-	public string state_name = "";
-	public List<string>BoolsNames = new List<string>();
-	public List<bool>Bools = new List<bool>();
-	public List<string>FloatsNames = new List<string>();
-	public List<float>Floats = new List<float>();
-	//public List<bool>Bools = new List<bool>();
-	//public List<bool>Bools = new List<bool>();
-}*/
-
 public partial class WorldManagement : MonoBehaviour
 {
-    //public string initial_scene_data;
-    //public List<Scene> Scenes = new List<Scene>();
     public GameObject Player;
     public GameObject Environment;
     public List<GameObject> ItemPrefabs = new List<GameObject>();
@@ -32,19 +19,12 @@ public partial class WorldManagement : MonoBehaviour
     int PlayerCurrentXMapOffset = 0;
     GameObject Book;
     DirectionType CameraLookDirection = DirectionType.North;
-    //public List<GameObject> CloneItemPrefabs = new List<GameObject>();
-    //public List<int> APnum = new List<int>();
-    //public List<AnimatorProperties>AP = new List<AnimatorProperties>();
-    //public int current_Scene;
-    //public Font font;
-    //public Passage Pass = null;
     // Use this for initialization
     void Start()
     {
         Book = GameObject.Find("Book");
         Physics2D.IgnoreLayerCollision(0, 0);
         Physics2D.IgnoreLayerCollision(0, 14);
-        //Physics2D.IgnoreLayerCollision(0, 11);
         Physics2D.IgnoreLayerCollision(8, 11);
         Physics2D.IgnoreLayerCollision(9, 11);
         Physics2D.IgnoreLayerCollision(11, 11);
@@ -52,50 +32,21 @@ public partial class WorldManagement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(13, 11);
         Physics2D.IgnoreLayerCollision(14, 14);
         Player = GameObject.Find("Player");
-        //for (int i = 0; i < ItemPrefabs.Count; i++)
-        {
-            //ItemPrefabs[i].GetComponent<Item>().Start2();
-        }
         SetBiomePrefabs();
         Drop(0, 1, new Vector3(0.0f, 0.0f, 0.0f));
         Drop(3,1,new Vector3(0.0f, 0.0f, 0.0f));
         StopTime();
-        //MapGeneration();
-        //PlayerXMap = (int)GlobalMap.Biomes[0].Center.x;
-        //PlayerYMap = (int)GlobalMap.Biomes[0].Center.y;
-        //SpawnCorridor(GlobalMap.Tiles[PlayerXMap][PlayerYMap]);
-        //current_Scene = 0;//move it in load after it is fixed
-        //LoadInitialScenesData();
-        //SaveItemsData();
-        //GameObject.Find("Player").GetComponent<Inventory>().takeall = true;
-        //LoadWHUD();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(Pass != null)
-        //Enter();
-        /*if (Input.GetKey(KeyCode.L))
-        {
-            if (canL)
-            {
-                Environment.transform.GetChild(5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[1][1].blocks, 2);
-                Environment.transform.GetChild(5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[1][1].blocks, 3);
-                Environment.transform.GetChild(5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[1][1].blocks, 4);
-                Environment.transform.GetChild(5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[1][1].blocks, 5);
-                canL = false;
-            }
-        }*/
     }
     public void Drop(int itemNumber, int itemCount, Vector3 coordinates)
     {
         for (int i = 0; i < itemCount; i++)
         {
-            //GameObject G =
             GameObject.Instantiate(ItemPrefabs[itemNumber], coordinates, new Quaternion(), GameObject.Find("Items").transform);//.GetComponent<Item>().Start2()
-            //Environment.transform.GetChild(1).transform.GetChild(Environment.transform.GetChild(1).transform.childCount - 1).gameObject.GetComponent<Item>().Start2();
-            //G.GetComponent<Item>().Start2();
         }
     }
 
@@ -129,7 +80,6 @@ public partial class WorldManagement : MonoBehaviour
             }
         }
     }
-    //5+, 2,3,4,5
     public void EnterDoor(DirectionType enterDirection)
     {
         GameObject.Find("Player").GetComponent<PlayerControls>().Res();

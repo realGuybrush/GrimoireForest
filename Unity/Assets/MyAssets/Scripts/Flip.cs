@@ -46,6 +46,5 @@ public class BasicFlip
             return (thisObject.transform.eulerAngles.y == 0.0f ? 1.0f : -1.0f);
         else
             return (thisObject.transform.eulerAngles.y == 0.0f ? -1.0f : 1.0f);
-        //return facingRight ? 1.0f : -1.0f;
     }
 }

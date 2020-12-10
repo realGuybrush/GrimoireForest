@@ -247,14 +247,12 @@ public class EnemyMovement : BasicMovement
     void JumpFollow()
     {
         jump.Jump(move.movingDirection, move.walkSpeed * 2.0f);
-        //this.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0.0f, 20.0f));
     }
     void FlyFollow()
     {
     }
     bool IsThereFloor()
     {
-        //Debug.DrawRay(transform.position, new Vector2(lookDistance * flip.FacingDirection() *  Mathf.Cos(-45*Mathf.Deg2Rad), lookDistance * Mathf.Sin(-45 * Mathf.Deg2Rad)), Color.blue, 10.0f);
         if (Physics2D.Raycast(ToV2(transform.position), new Vector2(flip.FacingDirection() * Mathf.Cos(-50 * Mathf.Deg2Rad), Mathf.Sin(-50 * Mathf.Deg2Rad)), meleeDistance, LayerMask.GetMask("Environment")).collider != null)
             return true;
         return false;

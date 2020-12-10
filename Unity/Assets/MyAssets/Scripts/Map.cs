@@ -55,7 +55,6 @@ public class Map
 				Tiles[y].Add (new MapTile ());
             }
 		}
-		//if(!LoadTiles ())
 		SetTiles();
         PrintMapToFile();
         PrintMapToFile (true);
@@ -77,7 +76,7 @@ public class Map
         {
             MT.blocks.Add(new List<int>());
             for (int j = 0; j < BlocksInTile; j++)
-                MT.blocks[i].Add((int)BlockType.NoTop);//BiomePrefabs[(int)MT.biome1][(int)MT.biome2].BlockPrefabs.Count
+                MT.blocks[i].Add((int)BlockType.NoTop);
         }
         FromCenterRow(temp, maxDiffs, MT);
         //FromCenterAndEdges(temp, maxDiffs, MT);

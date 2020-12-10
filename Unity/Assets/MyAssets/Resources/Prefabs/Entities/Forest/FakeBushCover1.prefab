@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   m_BoneTransforms:
   - {fileID: 3538451491906979746}
   - {fileID: 8743084926113301298}
@@ -188,7 +188,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -301,7 +301,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   m_BoneTransforms:
   - {fileID: 6980794001741126198}
   - {fileID: 7421683204031970436}
@@ -344,7 +344,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -457,7 +457,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   m_BoneTransforms:
   - {fileID: 2421920623370977625}
   - {fileID: 1538146808275238612}
@@ -500,7 +500,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
@@ -1271,7 +1271,7 @@ MonoBehaviour:
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_SortingLayerID: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   m_BoneTransforms:
   - {fileID: 3671323200623741835}
   - {fileID: 7373754252897772430}
@@ -1314,7 +1314,7 @@ SkinnedMeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -14
+  m_SortingOrder: -30
   serializedVersion: 2
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
