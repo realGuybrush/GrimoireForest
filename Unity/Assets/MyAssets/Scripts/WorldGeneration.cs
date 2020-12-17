@@ -98,8 +98,8 @@ public partial class WorldManagement : MonoBehaviour
         {
             SpawnTile(i, GlobalMap.Tiles[PlayerYMap +i * xCoeff][PlayerXMap+i* yCoeff], LookTurn, load);
             int j = GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions.Count - 1;
-            //Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 4);
-            //Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 5);
+            Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 4);
+            Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>().AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 5);
             if ((GlobalTalks.Count > j)&&(j!=-1))
             {
                 while (GlobalTalks[j].TileCoords.x < 0)

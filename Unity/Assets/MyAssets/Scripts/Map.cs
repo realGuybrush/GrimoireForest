@@ -78,7 +78,7 @@ public class Map
             for (int j = 0; j < BlocksInTile; j++)
                 MT.blocks[i].Add((int)BlockType.NoTop);
         }
-        FromCenterRow(temp, maxDiffs, MT);
+        //FromCenterRow(temp, maxDiffs, MT);
         //FromCenterAndEdges(temp, maxDiffs, MT);
         //FromCenterRowWavy(temp, maxDiffs, MT);
         //PrintTileToFile(MT.blocks, 1,1);
@@ -589,7 +589,7 @@ public class Map
         {
             if (!BiomePrefabs[(int)Tiles[y][x].biome1][(int)Tiles[y][x].biome2].PlatformPrefab[i].GetComponent<Platform>().sub)
             {
-                Tiles[y][x].TilePlatforms.AddRange(BiomePrefabs[(int)Tiles[y][x].biome1][(int)Tiles[y][x].biome2].PlatformPrefab[i].GetComponent<Platform>().GeneratePlatforms());
+                Tiles[y][x].TilePlatforms.AddRange(BiomePrefabs[(int)Tiles[y][x].biome1][(int)Tiles[y][x].biome2].PlatformPrefab[i].GetComponent<Platform>().GeneratePlatforms(Tiles[y][x].blocks));
             }
         }
     }

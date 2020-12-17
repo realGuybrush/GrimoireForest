@@ -432,8 +432,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xmin: -35
   xmax: 35
-  ymin: 18
-  ymax: 18
+  ymin: 18.3
+  ymax: 18.3
   subPlatforms: {fileID: 6805172976836295740, guid: 417c249f2aa648549aa703909e05fccd,
     type: 3}
   MaxAmount: 2

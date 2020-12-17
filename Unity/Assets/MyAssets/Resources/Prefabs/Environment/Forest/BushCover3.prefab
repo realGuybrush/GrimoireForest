@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xmin: -35
   xmax: 35
-  ymin: -2.2
-  ymax: -2.2
+  ymin: -2.79
+  ymax: -2.79
   subPlatforms: {fileID: 0}
   MaxAmount: 2
   numberInBiome: 4

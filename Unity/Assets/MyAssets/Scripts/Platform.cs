@@ -18,7 +18,7 @@ public class Platform : MonoBehaviour
 
     }
 
-    public List<EnvironmentStuffingValues> GeneratePlatforms(bool This = true, Vector3 offset = new Vector3())
+    public List<EnvironmentStuffingValues> GeneratePlatforms(List<List<int>> blocks, bool This = true, Vector3 offset = new Vector3())
     {
         List<EnvironmentStuffingValues> P = new List<EnvironmentStuffingValues>();
         int amount = Random.Range(0, MaxAmount);
@@ -26,18 +26,29 @@ public class Platform : MonoBehaviour
         {
             if (This)
             {
-                P.Add(new EnvironmentStuffingValues(SetRandomPlace(), numberInBiome));
+                P.Add(new EnvironmentStuffingValues(UpdateRandomPlaceWithBlocks(SetRandomPlace(), blocks), numberInBiome));
                 if (subPlatforms != null)
                 {
-                    P.AddRange(subPlatforms.GetComponent<Platform>().GeneratePlatforms(false, P[P.Count-1].location.ToV3()));
+                    P.AddRange(subPlatforms.GetComponent<Platform>().GeneratePlatforms(blocks, false, P[P.Count-1].location.ToV3()));
                 }
             }
             else
             {
-                P.Add(new EnvironmentStuffingValues(SetRandomPlace() + offset, numberInBiome));
+                P.Add(new EnvironmentStuffingValues(UpdateRandomPlaceWithBlocks(SetRandomPlace(), blocks) + offset, numberInBiome));
             }
         }
         return P;
+    }
+    public Vector3 UpdateRandomPlaceWithBlocks(Vector3 randomPlace, List<List<int>> blocks)
+    {
+        int i;
+        int k = (int)(randomPlace.x / 1.5f) + blocks[0].Count / 2 + blocks[0].Count % 2;
+        for (i = 0; i < blocks.Count; i++)
+        {
+            if (blocks[i][k] != (int)BlockType.Empty)
+                break;
+        }
+        return new Vector3(randomPlace.x, randomPlace.y+(i-4)*1.5f, randomPlace.z);
     }
     public Vector3 SetRandomPlace()
     {
