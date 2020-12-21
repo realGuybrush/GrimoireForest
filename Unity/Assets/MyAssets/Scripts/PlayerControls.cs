@@ -69,7 +69,6 @@ public partial class PlayerControls : BasicMovement
                 CheckClimbInput();
                 CheckAtkInput();
                 CheckActionInput();
-                //CheckPickUpInput();
                 CheckNumberInput();
                 BasicCheckHold();
                 FollowCursor();
@@ -81,18 +80,10 @@ public partial class PlayerControls : BasicMovement
         }
         BasicCheckHealth();
         CheckInventoryInput();
-        //CheckChestInput();
         CheckSpellInput();
-        //CheckTalkInput();
         CheckEsc();
-        //BasicCheckRoll();
-        //CheckDirections();
         if (crawlTimer > 0)
             crawlTimer--;
-        //if (Weapon != null)
-        //{
-        //Weapon.transform.position = Weapon.GetComponent<Item>().positionOnHand+this.transform.position;
-        //}
     }
 
     private void PlayerCheckMove()
@@ -135,8 +126,11 @@ public partial class PlayerControls : BasicMovement
     {
         if (!BasicCheckHold())
         {
-            flip.CheckFlip(move.movingDirection);
-            FlipParasites();
+            if ((!attacking)&&!IsFollowing())
+            {
+                flip.CheckFlip(move.movingDirection);
+                FlipParasites();
+            }
         }
     }
 

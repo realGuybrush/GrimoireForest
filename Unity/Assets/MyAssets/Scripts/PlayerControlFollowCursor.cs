@@ -20,6 +20,10 @@ public partial class PlayerControls : BasicMovement
     private bool noHands = false;
 
     public float backFireAngle = 0.0f;
+    bool IsFollowing()
+    {
+        return holdAngleFor > 0;
+    }
     float CalculateBeta()
     {
         float dX, dY;
@@ -32,7 +36,7 @@ public partial class PlayerControls : BasicMovement
         preBeta = (float)(Mathf.Rad2Deg*Mathf.Asin(dY/gipotenuza));
         if ((flip.facingRight == (dX < 0)) && !(currentNormalization < tactsToNormalizeMax))
         {
-            flip.Flip();//preBeta = Mathf.Sign(preBeta)*180 - preBeta;
+            flip.Flip();
         }
         return preBeta;
     }
@@ -91,13 +95,19 @@ public partial class PlayerControls : BasicMovement
         holdAngleFor = tactsToHoldMax;
         currentNormalization = tactsToNormalizeMax;
         noHands = spells;
+        FollowCursor();
     }
     void FollowCursor()
     {
-        //float beta = CalculateBeta();
-        //Weapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 360.0f - turnAngleRight);
         if(!anim.a.GetBool("Grab"))
-        if ((move.movementMultiplier != 0)&&(!attacking)|| anim.a.GetBool("Roll"))
+        if ((move.movementMultiplier != 0)&&(!attacking))
+        {
+            if(holdAngleFor>5)
+                holdAngleFor = 5;
+            if(currentNormalization > 4)
+                currentNormalization = 4;
+        }
+        if(anim.a.GetBool("Roll"))
         {
             holdAngleFor = 0;
             currentNormalization = -1;
@@ -130,13 +140,10 @@ public partial class PlayerControls : BasicMovement
         }
         else
         {
-            //ReturnToNormal();
             if(currentNormalization>=0)
             ReturningStep();
         }
         ReturnungStepBackFire();
-        //Quaternion.Euler(0.0f, 0.0f, );
-        //Debug.Log(Back.transform.eulerAngles.z);
     }
 
     public void SetBackFireAngle(float penalty)

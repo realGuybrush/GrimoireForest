@@ -78,7 +78,7 @@ public class Map
             for (int j = 0; j < BlocksInTile; j++)
                 MT.blocks[i].Add((int)BlockType.NoTop);
         }
-        //FromCenterRow(temp, maxDiffs, MT);
+        FromCenterRow(temp, maxDiffs, MT);
         //FromCenterAndEdges(temp, maxDiffs, MT);
         //FromCenterRowWavy(temp, maxDiffs, MT);
         //PrintTileToFile(MT.blocks, 1,1);

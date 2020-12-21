@@ -25,61 +25,9 @@ public class Item : MonoBehaviour
     // search for hp script and extract hp.
     void Start()
     {
-        //instead of this, items values should be loaded by worldmanager
-        /*itemValues = new ItemCharacteristics();
-        itemValues.number = 0;
-        itemValues.type = "Gun";
-        itemValues.atk1 = "Atk2";
-        itemValues.atk2 = "Atk7";
-        itemValues.kick = "Atk4";
-        itemValues.maxStack = 2;
-        //projectileIndex = 2;
-        projectilePerShot = 0;*/
         itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
         masterName = "Player";
-        //eve = new Events("addonlyone", true, false, ' ', 1, -1);
     }
-    /*public void Start2()
-    {
-        if (this.gameObject.transform.childCount > 1)
-        {
-            projectilePosition = this.gameObject.transform.GetChild(0).transform.position;
-            projectilePosition1 = this.gameObject.transform.GetChild(1).transform.position;
-        }
-        thisCollider = this.gameObject.GetComponent<Collider2D>();
-        //instead of this, items values should be loaded by worldmanager
-        itemValues = new ItemCharacteristics();
-        itemValues.number = 0;
-        itemValues.type = "Gun";
-        if (this.gameObject.name.Contains("Bullet"))
-        {
-            itemValues.type = "Projectile";
-            itemValues.number = 2;
-        }
-        if (this.gameObject.name.Contains("AcornSpell"))
-        {
-            itemValues.type = "Spell";
-            itemValues.number = 4;
-            this.gameObject.GetComponent<Projectile>().specialRod = 3;
-        }
-        itemValues.atk1 = "Atk2";
-        itemValues.atk2 = "Atk7";
-        itemValues.kick = "Atk4";
-        itemValues.maxStack = 3;
-        //projectileIndex = 2;
-        projectilePerShot = 0;
-        itemValues.SetBuffs(new Buff(1, 10), new Buff(1, 3), new Buff(1, 1));
-        itemValues.SetProjectiles("Prefabs\\Projectiles\\Bullet", "", "");
-        if (this.gameObject.name.Contains("AcornStaff"))
-        {
-            itemValues.type = "Rod";
-            itemValues.atk1 = "Atk5";
-            itemValues.atk2 = "Atk1";
-            itemValues.number = 3;
-            eve = new Events("addonlyone", true, false, ' ', 4, -1);
-            itemValues.SetProjectiles("Prefabs\\Projectiles\\AcornSpell", "", "");
-        }
-    }*/
     public void Attack(bool value, int type)
     {
         set = value;
@@ -87,12 +35,8 @@ public class Item : MonoBehaviour
     }
     public void Shoot()
     {
-        //float z = directions.z >= 270.0f ? directions.z - 360.0f : directions.z;
-        //Vector3 newPosition = this.transform.position + new Vector3(projectilePosition.x * directions.x, projectilePosition.y * directions.y, 0.0f);
-        //Start2();
         if (itemValues.GetProjectile(atkType) != null)
         {
-            //Debug.Log(z.ToString() + " " + Mathf.Abs(Mathf.Cos(z)).ToString() + " " + Mathf.Abs(Mathf.Sin(z)).ToString());
             set = false;
             if (this.gameObject.transform.childCount > 1)
             {
@@ -103,9 +47,6 @@ public class Item : MonoBehaviour
             bullet.GetComponent<Projectile>().ignore = GameObject.Find(masterName);
             bullet.transform.right = new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x - projectilePosition1.x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y - projectilePosition1.y);
             bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right*projectileVelocity;
-            //Debug.DrawRay(projectilePosition, bullet.transform.right* projectileVelocity, Color.red,5);
-            //bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(projectileVelocity.x, 0.0f);//projectileVelocity.x*directions.x*Mathf.Abs(Mathf.Cos(z)), projectileVelocity.y * directions.y * Mathf.Abs(Mathf.Sin(z)));// make it normal
-            //set any gun buffs for bullet.GetComponent<Projectile>().debuff
         }
     }
 

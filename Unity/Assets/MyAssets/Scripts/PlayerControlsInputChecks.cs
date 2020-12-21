@@ -69,7 +69,6 @@ public partial class PlayerControls : BasicMovement
 
     private void CheckClimbInput()
     {
-        //if((Input.GetAxisRaw("Vertical") == 1.0f))
         if (BasicCheckHold() && Input.GetButton("Jump"))
         {
             BasicCheckClimb();
@@ -129,7 +128,6 @@ public partial class PlayerControls : BasicMovement
             {
                 StartTalk();
                 return true;
-                //dGameObject.Find("WorldManager").GetComponent<WorldManagement>().StartTalk(talks.GetComponent<NPCBehaviour>().talk);
             }
         }
         return false;
@@ -171,19 +169,6 @@ public partial class PlayerControls : BasicMovement
 
     public void CheckCrawlInput()
     {
-        /*if(Input.GetKeyDown(KeyCode.C) || Input.GetKey(KeyCode.C))
-		{
-			if(!move.run.running)
-			{
-				anim.SetVar("Crawl", true);
-				move.crawl.Crawl();
-			}
-		}
-		if(Input.GetKeyUp(KeyCode.C))
-		{
-			anim.SetVar("Crawl", false);
-			move.crawl.UnCrawl();
-		}*/
         if (Input.GetKeyDown(KeyCode.C))
         {
             if (!hidden)
@@ -272,7 +257,6 @@ public partial class PlayerControls : BasicMovement
             if (Input.GetButtonDown("Fire3"))
             {
                 BasicAtk1(true, "Atk4", new Buff());
-                //thisHealth.AddBuff(-1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             }
 
             if (Input.GetButtonUp("Fire3"))
