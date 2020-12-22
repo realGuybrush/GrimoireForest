@@ -14,6 +14,12 @@ public class MenusTrigger : MonoBehaviour
     {
         return Menus.activeSelf;
     }
+    public void InitAll()
+    {
+        Inventory.GetComponent<MunitionsMovement>().Initialize();
+        Spells.GetComponent<SpellMovement>().Initialize();
+        Trade.GetComponent<InventoryMovement>().Initialize();
+    }
     public void SetInv(Inventory inv1, Inventory inv2)
     {
         Inventory.GetComponent<MunitionsMovement>().SetInv(inv1, inv2);

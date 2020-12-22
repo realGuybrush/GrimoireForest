@@ -22,7 +22,7 @@ public partial class WorldManagement : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        Book = GameObject.Find("Book");
+        EnableUI();
         Physics2D.IgnoreLayerCollision(0, 0);
         Physics2D.IgnoreLayerCollision(0, 11);
         Physics2D.IgnoreLayerCollision(0, 14);
@@ -43,6 +43,16 @@ public partial class WorldManagement : MonoBehaviour
     void Update()
     {
     }
+
+    public void EnableUI()
+    {
+        Book = GameObject.Find("Book");
+        Book.GetComponent<MenusTrigger>().InitAll();
+        Book.GetComponent<MenusTrigger>().ShowInv(false);
+        Book.GetComponent<MenusTrigger>().ShowSpell(false);
+        Book.GetComponent<MenusTrigger>().ShowTrade(false);
+    }
+
     public void Drop(int itemNumber, int itemCount, Vector3 coordinates)
     {
         for (int i = 0; i < itemCount; i++)

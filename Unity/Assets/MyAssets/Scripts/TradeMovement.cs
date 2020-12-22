@@ -62,4 +62,34 @@ public class TradeMovement : InventoryMovement
             SecondaryMenuItems[i].transform.position = SecondaryMenuLocations[i];
         }
     }
+    public override void CheckInputs()
+    {
+        if(Input.GetKeyDown(KeyCode.Space))
+            TakeAll();
+    }
+    public void TakeAll()
+    {
+        for (int i = 0; i < otherInventory.Items.Count; i++)
+        {
+            if (otherInventory.stacks[i] != 0)
+            {
+                for (int j = 0; j < playerInventory.Items.Count; j++)
+                {
+                    if (otherInventory.Items[i] != -1)
+                    {
+                        if ((otherInventory.Items[i] == playerInventory.Items[j]) || (playerInventory.Items[j] == -1))
+                        {
+                            clicked = 0;
+                            ItemSwap(i, otherInventory, SecondaryMenuItems, true);
+                            ItemSwap(j, playerInventory, itemDepiction, false);
+                            if (Floating())
+                                ItemSwap(i, otherInventory, SecondaryMenuItems, false);
+                        }
+                        if (otherInventory.stacks[i] == 0)
+                            break;
+                    }
+                }
+            }
+        }
+    }
 }

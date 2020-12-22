@@ -38,6 +38,10 @@ public class InventoryMovement : MonoBehaviour
 
     private void Start()
     {
+        Initialize();
+    }
+    public void Initialize()
+    {
         GameObject Book = GameObject.Find("Book");
         bookWidth = Book.GetComponent<RectTransform>().rect.width;
         bookHeight = Book.GetComponent<RectTransform>().rect.height;
@@ -69,8 +73,13 @@ public class InventoryMovement : MonoBehaviour
         }
         return false;
     }
+    public virtual void CheckInputs()
+    {
+
+    }
     private void Update()
     {
+        CheckInputs();
         if (GetMouseButtonDown())
         {
             Clicked(Input.mousePosition.x, Input.mousePosition.y);
@@ -262,7 +271,6 @@ public class InventoryMovement : MonoBehaviour
             {
                 I = GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[floatingItem].GetComponent<Item>();
             }
-            //I.Start2();
             maxStack = I.itemValues.maxStack;
         }
         if (!setget)
@@ -481,7 +489,7 @@ public class InventoryMovement : MonoBehaviour
                 {
                     if (playerInventory.Items[clicked2] != -1)
                     {
-                        GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[floatingItem].GetComponent<Item>().eve.DoEvent();
+                        GameObject.Find("WorldManager").GetComponent<WorldManagement>().ItemPrefabs[clicked2].GetComponent<Item>().eve.DoEvent();
                         ItemSwap(clicked2, playerInventory, itemDepiction, true);
                         clickedPrevLocation = new Vector3(itemDepiction[clicked2].transform.position.x, itemDepiction[clicked2].transform.position.y, clicked2);
                         prevprimary = primary;
