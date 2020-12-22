@@ -69,6 +69,8 @@ public class Item : MonoBehaviour
             {
                 if (collision.gameObject.name.Contains(masterName))
                 { return; }
+                if (Forbidden())
+                { return; }
                 if (collision.gameObject.GetComponent<Health>() != null)
                 {
                     collision.gameObject.GetComponent<Health>().Substract((int)((this.transform.parent.parent.parent.parent.parent.parent.gameObject.GetComponent<PlayerControls>().ArmsStrength.value + itemValues.GetBuff(atkType).atk) * strPenalty));
@@ -79,6 +81,27 @@ public class Item : MonoBehaviour
                 }
             }
         }
+    }
+    private bool Forbidden()
+    {
+        switch (atkType)
+        {
+            case 1:
+                if ((itemValues.atk1 == "Atk2") || (itemValues.atk1 == "Atk5"))
+                    return true;
+                break;
+            case 2:
+                if ((itemValues.atk2 == "Atk2") || (itemValues.atk2 == "Atk5"))
+                    return true;
+                break;
+            case 3:
+                if ((itemValues.kick == "Atk2") || (itemValues.kick == "Atk5"))
+                    return true;
+                break;
+            default:
+                break;
+        }
+        return false;
     }
 
     private void OnTriggerExit2D(Collider2D collision)

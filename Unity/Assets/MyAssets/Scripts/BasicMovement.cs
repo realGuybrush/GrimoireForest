@@ -145,18 +145,6 @@ public class BasicMovement : MonoBehaviour
         //thisHealth.values.AddBuff(buff);
     }
 
-    /*public void BasicAtk2(bool atk)
-    {
-        anim.SetVar("Atk2", atk);
-        thisHealth.values.attacking = true;
-    }
-
-    public void BasicAtk3(bool atk)
-    {
-        anim.SetVar("Atk3", atk);
-        thisHealth.values.attacking = true;
-    }*/
-
     public bool BasicCheckMidAir()
     {
         if (landChecker.FirstJumpSuccessfull())
