@@ -30,6 +30,7 @@ public class BasicLand
     public void Land()
     {
         jump.successfulJumps = 0;
+        jump.stoppedJumps = 0;
         landed = true;
         holding = false;
     }
@@ -55,7 +56,6 @@ public class BasicLand
 
     public bool UpdateHold()
     {
-        //var zeroSpeed = new Vector2(xSpeedPreHold * 1.5f, 0.195f); //0.195f - y speed needed to prevent falling
         if (holding)
         {
             if (landTimer == 0)
@@ -65,7 +65,6 @@ public class BasicLand
             }
 
             landTimer--;
-            //thisObject.velocity = zeroSpeed;
             thisObject.transform.position = PosPreHold;
         }
         else
@@ -80,15 +79,11 @@ public class BasicLand
     public void Hold()
     {
         jump.successfulJumps = 0;
+        jump.stoppedJumps = 0;
         landTimer = holdingMaximumTime;
         holding = true;
-        //xSpeedPreHold = thisObject.velocity.x;
         PosPreHold = thisObject.transform.position;
         thisObject.velocity = new Vector2(0.0f, 0.0f);
-        //if (thisObject.GetComponent<PlayerControls>() != null)
-        //{
-        //    thisObject.GetComponent<PlayerControls>().HideWeapons(-19);
-        //}
     }
 
     public void Unhold()

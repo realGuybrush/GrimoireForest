@@ -65,6 +65,10 @@ public partial class PlayerControls : BasicMovement
         {
             anim.SetVar("Jump", false);
         }
+        if (Input.GetButtonUp("Jump"))
+        {
+            jump.StopJump(move.movingDirection);
+        }
     }
 
     private void CheckClimbInput()

@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 public class BasicJump
 {
@@ -6,6 +6,7 @@ public class BasicJump
     public float jumpSpeedX = 3.0f;
     public float jumpSpeedY = 10.0f;
     public int successfulJumps;
+    public int stoppedJumps;
     private Rigidbody2D thisObject;
 
     public void SetThisObject(Rigidbody2D newThisObject)
@@ -32,13 +33,18 @@ public class BasicJump
 
     public void Jump(float localMovingDirection, float jumpSpeedX = 0.0f)
     {
-        /*if(wallLanded && canWallJump)
-        {
-            dontMoveX += localMovingDirection*walkSpeed;
-            UnholdWall();
-        }*/
         var jumpVector = new Vector2(jumpSpeedX * localMovingDirection, jumpSpeedY);
         thisObject.velocity = jumpVector;
         successfulJumps++;
+    }
+
+    public void StopJump(float localMovingDirection, float jumpSpeedX = 0.0f)
+    {
+        if (stoppedJumps < successfulJumps)
+        {
+            var jumpVector = new Vector2(jumpSpeedX * localMovingDirection, thisObject.velocity.y/3);
+            thisObject.velocity = jumpVector;
+            stoppedJumps++;
+        }
     }
 }
