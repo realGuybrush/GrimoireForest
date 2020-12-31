@@ -45,10 +45,11 @@ public class Platform : MonoBehaviour
         int k = (int)(randomPlace.x / 1.5f) + blocks[0].Count / 2 + blocks[0].Count % 2;
         for (i = 0; i < blocks.Count; i++)
         {
-            if (blocks[i][k] != (int)BlockType.Empty)
+            if ((blocks[i][k] == (int)BlockType.NoTop) || (blocks[i][k] == (int)BlockType.Top)|| (blocks[i][k] == (int)BlockType.TopBushD)||
+                (blocks[i][k] == (int)BlockType.TopBushU) || (blocks[i][k] == (int)BlockType.TopBushUD))
                 break;
         }
-        return new Vector3(randomPlace.x, randomPlace.y+(i-4)*1.5f, randomPlace.z);
+        return new Vector3(randomPlace.x, randomPlace.y+(4-i), randomPlace.z);
     }
     public Vector3 SetRandomPlace()
     {

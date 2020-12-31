@@ -21,6 +21,8 @@ public partial class PlayerControls : BasicMovement
     public GameObject Book;
     public GameObject Talks;
 
+    bool fallingFromPlatform = false;
+
 
     // Use this for initialization
     private void Start()
@@ -61,12 +63,14 @@ public partial class PlayerControls : BasicMovement
                 PlayerCheckMove();
                 CheckHide();
                 CheckPass();
-                CheckJumpInput();
+                if (!CheckFallingFromPlatform())
+                {
+                    CheckAllJumpInput();
+                }
                 wall.UpdateHold();
                 ledge.UpdateHold();
                 move.crawl.UpdateRoll(anim.a.GetBool("Roll"));
                 CheckFlip();
-                CheckClimbInput();
                 CheckAtkInput();
                 CheckActionInput();
                 CheckNumberInput();
@@ -142,6 +146,29 @@ public partial class PlayerControls : BasicMovement
             {
                 transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<BasicMovement>().flip.facingRight = !transform.GetChild(0).GetChild(0).GetChild(i).GetComponent<BasicMovement>().flip.facingRight;
             }
+        }
+    }
+
+    public IEnumerator FallFromPlatform()
+    {
+        fallingFromPlatform = true;
+        Physics2D.IgnoreLayerCollision(0, 12, true);
+        yield return new WaitForSeconds(0.5f);
+        Physics2D.IgnoreLayerCollision(0, 12, false);
+        fallingFromPlatform = false;
+    }
+
+    public bool CheckFallingFromPlatform()
+    {
+        if (fallingFromPlatform)
+        {
+            Physics2D.IgnoreLayerCollision(0, 12, true);
+            return true;
+        }
+        else
+        {
+            Physics2D.IgnoreLayerCollision(0, 12, false);
+            return false;
         }
     }
 

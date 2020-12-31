@@ -44,8 +44,13 @@ public partial class PlayerControls : BasicMovement
             }
         }
     }
-
-    private void CheckJumpInput()
+    public void CheckAllJumpInput()
+    {
+        if(!CheckFallPlatformInput())
+            if(!CheckClimbInput())
+                CheckJumpInput();
+    }
+    private bool CheckJumpInput()
     {
         if (Input.GetButton("Jump"))
         {
@@ -59,6 +64,7 @@ public partial class PlayerControls : BasicMovement
                 {
                     BasicCheckJump();
                 }
+                return true;
             }
         }
         else
@@ -69,14 +75,28 @@ public partial class PlayerControls : BasicMovement
         {
             jump.StopJump(move.movingDirection);
         }
+        return false;
     }
 
-    private void CheckClimbInput()
+    private bool CheckClimbInput()
     {
         if (BasicCheckHold() && Input.GetButton("Jump"))
         {
             BasicCheckClimb();
+            return true;
         }
+        return false;
+    }
+
+    public bool CheckFallPlatformInput()
+    {
+        if (Input.GetButtonDown("Jump") && (Input.GetKey(KeyCode.S)|| Input.GetKey(KeyCode.DownArrow)))
+        {
+            bool b = Physics2D.GetIgnoreLayerCollision(0, 12);
+            StartCoroutine("FallFromPlatform");
+            return true;
+        }
+        return false;
     }
 
     public void CheckRunInput()

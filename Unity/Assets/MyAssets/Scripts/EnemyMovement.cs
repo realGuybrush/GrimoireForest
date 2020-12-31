@@ -73,7 +73,7 @@ public class EnemyMovement : BasicMovement
         if (attachedTo != -2)
         {
             attachedTo = -1;
-            this.transform.parent = this.transform.parent.parent.parent.parent;
+            this.transform.parent = this.transform.parent.parent.parent.parent.GetChild(2);
             this.transform.eulerAngles = new Vector3(0.0f, this.transform.eulerAngles.y, 0.0f);
         }
     }

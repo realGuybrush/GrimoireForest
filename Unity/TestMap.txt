@@ -1,6 +1,200 @@
-      
- T=T=T
-      
- T=T-T
-     H
- T=T-T
+                                                                                                                                                                                                        
+ T-T=T-T-T T T-T-T-T=T=T=T=T=T-T-T T=T=T=T T T-T=T=T=T=T-T-T T-T=T=T=T-T-T-T-T-T-T-T=T=T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T=T=T=T T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T T-T-T-T=T-T-T-T-T-T-T-T=T=T T=T-T-T-T=T
+ |     | H | | | H | |     | | H |       | | H   | |   | H | H | | | | H | H | H H | | | H | H |   H H | H | H | | H H   | | | H H | H H H   H | H H | H | | H | H | H |   H | | H H H | | | | | | H | |
+ T=T=T=T-T-T-T-T-T-T=T=T=T T T T-T-T-T=T=T-T-T-T-T-T=T=T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T T T T-T=T-T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T=T-T-T-T-T-T-T-T-T=T-T-T T-T-T T
+ |   | | | | | | | | |       | | H H   |   H     H |   | | H | | | H | | H | H | | H | | | | | H   | | H   | | | | | |   | H | | | | |   | | | H | | H | | H | |   | | | | | | | | | | H   | H   | | | |
+ T=T=T-T-T=T-T-T-T=T=T=T=T=T-T-T T-T-T=T=T-T-T T-T-T-T=T=T-T-T=T=T-T-T=T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T T-T-T-T-T=T=T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T=T=T-T-T-T-T-T-T-T-T-T=T-T-T=T
+ |   | H |   H | | | |   |   H | | | | | | | | H | H     | | | | | | | |   | | | H | | H H | H | | | | | H | | | |   H | H | H H H | | | H H H | H | | H H | H |   | H | | | | | H H H | | H     | H |  
+ T T=T-T-T=T-T-T T T T-T-T-T-T-T-T=T=T=T-T-T-T T T T T T-T-T=T=T=T-T-T-T-T=T=T-T-T-T T T-T-T-T-T-T-T-T=T-T-T-T-T=T=T-T T-T-T-T-T-T-T-T-T-T-T T-T-T-T=T-T-T-T-T-T-T T-T-T-T=T-T T-T-T-T-T=T-T-T=T=T-T-T-T
+ | | | | |   | | | | H   H | | H |   | | | H |   | |     | | | | | | H H   | | H | | |   | H | H H | | | | H | | |   | H | H | | |   H H   | | H | | |   | H | H | H | H | | H H | | | | | |     | | H  
+ T-T=T T-T=T-T-T=T=T-T T-T-T-T-T-T-T=T=T=T-T T-T=T=T=T=T T T T-T-T-T-T-T-T-T-T-T-T-T-T=T T T-T-T-T-T-T-T=T-T-T=T=T T=T-T-T-T-T-T=T=T-T-T-T=T-T-T-T=T=T=T-T T T T-T-T-T-T T T-T T T T T T=T-T-T-T-T=T-T-T
+ H | |   |   H   | | |   | H H | H   | | | | H | | |   | | | H H | | | | | H |   | H | | | | | |   H H | | | | | |   | | | | H | |   | |   | H | |   | | H | | | | | | | | H | | | | | | | H | H | | | |
+ T-T-T-T-T-T-T-T=T=T-T-T=T-T-T-T-T-T=T=T T-T-T-T-T-T=T-T-T=T-T-T-T-T-T=T T T-T=T-T-T-T-T-T T-T-T-T-T-T-T=T-T-T-T-T=T-T-T-T=T-T-T T=T=T=T=T-T T T-T-T-T-T-T-T-T=T=T-T T T=T-T-T T T T-T-T-T-T-T-T-T-T-T=T
+ | | H   H   | | | | H   | | | | |   | | H |   H H | | H | | | | | H   | | | |   H | | H | H H H   | |   | H | H     H H | | | |       |   H | |   H H | | H |   | H | |   |   | | H H H | | | |   H | |
+ T-T-T-T-T-T-T-T=T-T-T-T=T=T-T-T-T-T-T-T-T-T=T-T-T-T=T-T-T T T-T=T-T-T-T=T=T-T T T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T=T-T-T-T-T-T-T=T-T-T=T-T-T-T-T-T-T-T T-T-T-T=T-T-T-T=T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T
+ | H | | | | H | | H |   | | H H | | H H | | | | | | |   | | H   | |   | | | H   | | | | H   | | | |   | H | | |     | | H   H |   H   | | | | H H |   | H | | | H | | |   |   H | | | | H | | H   | H |
+ T-T-T-T=T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T T T T T T T-T-T=T=T-T-T=T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T T T-T=T=T T-T-T-T-T-T-T-T T T-T-T-T-T-T=T=T-T-T=T=T-T-T-T-T-T=T=T-T-T-T=T T T T T T T-T-T-T
+ | | H | | H | | H | | | | | | | | H   | |   | | | H H | | | |   | H   H | H | H | H H | | | H H | H   | | | | |     | |     | | H |   | | | | | | |   | | |   | | H | H |     | H | | | | | | |   H | |
+ T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T T T T T=T=T=T=T=T=T=T-T-T T T-T-T-T=T=T=T-T-T-T-T-T-T-T-T=T=T=T=T-T-T-T-T=T T T-T-T-T-T-T-T-T=T-T-T T T
+ | | | | H | H | | | H | H H H H   |   | H H | | | | | H H H |   | |       | | | | | | H | | | | | | | | |   | | | | | H | |   | | |   | | | | H H | | H |   | | | | | | |   | | | | H | H H |   H |   |
+ T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T-T=T=T=T=T T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T=T T T=T=T=T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T T T-T-T-T=T-T-T=T=T=T=T=T-T-T-T=T=T-T=T-T-T-T-T-T T-T-T-T T-T
+ | | H | |   | H | | | | | | | |   | H H | | | | | | | | | | H | H H |   | H | | | | H | H H   | | | | | | H   | | | H | | H   H | | | H | | | | | | | |     | | | | H | | | | | | H |   | | H | | |   |
+ T=T-T-T=T=T-T-T-T-T=T-T T-T-T-T T T T-T-T-T-T-T T T-T-T-T-T-T T T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T-T-T-T=T-T T-T-T-T-T-T=T=T T T-T-T-T-T-T-T=T-T-T-T T-T-T-T-T-T=T-T
+   | | | | | H |   | | H | | H | |   | | H | H | | | H H | H | | | | | | H | H H | | | | | |   H H | H H | |   | | | | H H | H   | H | | H | | H | H | H H   | | |   | | H H H | | | H   | | | H | |   H
+ T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T=T-T=T=T=T=T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T T
+   H | | H H | | | H H | | | | H H | H | | | | | | | | | | |   | |   | H | |   | | | H H H |   | | | | |   H | | H | | | | | |   H | H H | | | | H | H | |   | | | | | |   |   | H   |   | | | | | H   |
+ T T T-T-T-T T T=T-T-T-T-T T-T-T-T-T-T-T-T=T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T=T-T-T=T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T=T-T-T-T=T=T=T-T-T-T T T T T T T T-T-T-T
+   | | H   | | | | | | H | | | | | H | H | | H H H H | | | | H | | | | | H |   H | | | | | |   | H H H H   | H | | | | H H | |   | H | | | | | | | | | H | | |   | H | |   | | H | | | | | | | | | | | H
+ T-T-T-T-T-T T-T T-T=T-T-T=T=T=T-T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T=T-T-T-T=T=T T T T T T-T-T-T-T-T T T T T T T T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T=T-T-T-T=T-T-T-T-T=T-T-T-T-T T-T-T=T-T-T
+ | H H     H H | H | | |     | | H | | | H H |   | | H | H   | H | H | | | |   | H | | | | | | | |   |     H |   | | | | | | H H | | | H | | | | H H | | H | H   | | H   | H H | | | H H H | | H | | H |
+ T-T-T T T-T-T-T-T-T=T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T T T T-T-T-T-T-T-T-T-T-T-T T=T-T-T-T T T T T T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T=T-T-T T-T-T-T-T-T-T-T-T-T T T T-T-T-T
+ | | |   |   | | | | | | | | | H | H |   | | H   H H | H | | | | | | | | H H | | | H | H H | | | H H |   | | |   H | | | H | | | H H H | H H | | | | H | | | | | | | |   |     | | | | | |     | | | | |
+ T-T-T-T-T-T=T-T-T-T T T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T=T T=T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T T T T T T-T-T-T-T-T=T-T-T-T-T-T T T T T T-T=T=T-T-T-T=T=T
+ H H H H H | | H H | | | | | | | H | H | H |   | | | H | H | H | H H | H | | | H | | |   | H | | | | H   | | | | | | | H | H | H | | | H | |   | | | | | H H | H | | H H H H   | | | | |       H | | | |
+ T-T-T-T-T-T=T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T=T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T=T-T-T-T T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T=T=T-T-T-T-T T
+ | |   | | | | | | | H | | | | | | | | | | |     H | | H   H | H | | | | H H | | H | | | | | H | H | | | | H H | | | H | | | | |   | | | H H   H | H | | | | | | | H   | | |   H | H | | | | | | | H | |
+ T-T-T-T=T-T-T-T T-T-T-T T-T-T=T-T-T-T-T T-T-T-T-T-T T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T-T-T=T-T-T-T-T=T=T=T-T-T-T T-T T T T T-T-T-T-T-T=T-T-T-T-T-T T-T-T-T=T=T-T-T-T-T=T=T=T=T-T-T-T-T-T-T T T T T-T-T=T
+ H H H | | H H | | H | | | H | | H | H | | | H   | | H | H | | |   | | | | | | H | H H H | | | H | |   | | | | | | H | | | | H | H | |   | |   | | | H H | | | H   |   | | |   | H |   H | | | | H | | |
+ T-T-T T T T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T=T-T-T-T T-T=T-T T-T=T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T=T-T T-T-T-T-T-T-T-T
+ | | | | | | | H | |   H | | | | | | | | H H | | H H | H | | H H   H H H | | H | | | | | H | H |   H   | | | H   H   H H | | | | | H   | H |   | H H | | | H H |   H H | H H H H |       H H   H | | H |
+ T-T-T-T=T=T=T-T-T-T-T-T-T-T-T-T=T-T T T T-T-T=T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T T T T-T-T-T-T-T-T-T-T-T-T T T-T-T-T=T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T-T
+ | | H | | | | |   H   | | H H | | H | | | | | | | | H | | | | |   | | | H | | | H H | | | |   |   |   H | H | | |   | | H H H | | | | | | | H H   | |   H | | H   | | | | | | | | | |   | |   | | H | |
+ T=T-T-T-T-T-T=T T-T-T=T-T T-T-T-T-T-T-T=T=T-T-T-T-T T T=T-T-T-T=T-T-T-T-T-T-T-T-T-T-T=T-T-T=T=T=T-T-T-T-T-T-T-T-T=T-T T-T-T-T-T-T=T=T T-T=T-T-T-T=T-T-T-T-T-T-T-T T T-T=T=T-T=T-T-T-T-T-T-T=T T T T T=T
+   | | H | H | | | |   | H     | | | H | | | H H H   | | | H | |   H | | | H | | | | | | H |   | | H   |   | | H | | H H | | | H | | | H | | | | | | |   | H H | | | | |   | | | H H H | | |   | |   | |
+ T=T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T T T T-T-T-T=T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T=T-T-T=T-T-T-T-T-T-T=T=T-T-T=T-T-T-T-T-T T T=T-T-T-T-T T T T T-T-T-T-T-T-T-T=T-T-T=T-T-T-T-T-T-T-T-T T T T-T=T-T-T
+ | | | | | | | | H | | H | H   H | H |     |   | | |   H H | H | | | | |   | H H H H | | | | | H | |   H   |   | | | | |   H | | |   H | | H   | | | |   H | | H | | H |   H | H | | | | | |   H | | H  
+ T-T-T-T=T T-T-T-T T T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T=T-T-T-T-T-T-T-T=T=T=T-T T T T-T-T=T=T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T T T T T T T T T T T=T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T
+ H | H |   | H   | | H | H |   | H | H H   |   H H |       H | H | | | |   H | | | | |   | H | | | | | |     | H | H | H   | | H |   | |   |   | | | | | | | | | | | | |   | H | H H | H | H   | | | | |
+ T-T-T-T-T=T-T-T=T-T-T-T-T-T-T=T-T-T-T T T T T T-T-T-T=T-T-T-T-T-T-T=T=T=T-T-T-T-T=T T-T=T-T-T T T T T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T-T-T=T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T
+ | H | H   | | | | | | H | H     | | | |   | | | | H | | H | |   |   |     | H |   |       | |   | | | H     H | H | | |   H   | |   H | | H   H | | | | H | | H H H H H | H | H | |   | | |   H | | | |
+ T-T-T-T-T T-T-T-T-T-T-T-T-T-T=T-T-T-T=T=T-T-T-T=T T T-T-T-T=T-T-T-T=T=T=T-T-T-T-T-T-T=T=T-T-T-T-T=T T-T-T=T-T-T T T-T-T=T-T-T-T-T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T=T-T T T-T-T-T-T-T
+ H | H |   | H | H H | | | |     H H | | | H H | | | | | |   | H H   |   | H | | H |   |   H | H | | | |     | | | | H | | | | H     | | | | | | H | H H | | | | | | |   H | | | H |   | H | | | | | H |
+ T-T-T-T-T=T-T-T-T-T-T-T-T=T=T=T-T-T-T-T T T-T-T-T-T-T-T T T T T-T-T-T-T-T-T-T-T-T-T-T-T T T T-T-T-T-T=T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T T T-T-T=T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T
+   |   H   | | | |   | H | |   | | | H | | | | | H H | H |   | | | | | H H |   | | H | H | | | | | H | | H H H | | H | H | H H | H | H | | H H H | H | | H | | | H | | H |   H H | H | H |     H H | | |
+ T=T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T T-T-T-T-T=T T T-T-T-T-T-T-T-T-T-T T T T-T-T-T-T=T-T-T=T=T T T-T-T-T=T-T-T-T-T-T-T T-T=T-T-T-T-T-T
+ | | | | H | H | |   H   | H   H H |   | H H H | |   H | |   | H | H | | | |   H | | | | H H H H | |   | | | | | | |   |   | | H | | |   | | | | | | | | | | | | | H H | |   | | H | H   |     | | H | |
+ T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T=T-T-T-T-T=T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T T-T-T=T=T=T-T-T=T=T=T-T-T-T-T=T=T=T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T=T-T-T-T=T-T-T-T
+ H H | H | H | H | H | | |     | | H |   | | | |     | H | H | | H | | H | H   | H | H | | |   |   H   H H | | | | | H | |   | | | | |   H | H   |   | H   | H | H | | | | | H H | | | | | H H | | | H |
+ T-T-T-T-T-T-T-T-T-T-T-T-T=T-T=T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T T T T T T T T T-T-T-T-T-T T-T-T-T-T-T T-T=T=T=T=T T T=T-T-T-T-T=T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T
+ | | H | | | | | | | | H |   | | | | | H H H | H   | H | | | H | | | | | |     H | | | | |   | | | | | | | | H H | H | H | | | | | | |   | | | | |   H | H   | | | |   H | H | | H | | H H | | H H | | |
+ T-T-T-T=T=T=T-T-T=T=T-T-T=T=T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T T-T-T-T=T-T-T-T-T-T-T=T-T-T-T=T-T-T-T-T-T-T-T T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T
+ H | | | | | | H | | | | |   | H | | | | | | | | | | | | H H   | H | H |   |   | H | H   | H H | | | H | H   | | | | H | | | H H H H H | |   H | | H | H | | H | H |   | | | H H | H | | | | H | | H | |
+ T-T-T T=T=T-T-T-T-T=T-T T-T=T-T-T-T=T-T-T-T=T=T-T-T-T-T-T-T-T=T-T-T-T-T=T-T-T T T T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T T T T-T-T-T-T-T=T-T-T-T-T=T=T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T=T
+ | H | |     H | H | | H |   | | H | | H H | | | H | | H | |       | | | | H   | | H | | H | | H | | | | |   H H H H | H H H | | | | | | | |   | | | | | | | | H | |       H | | H | | | H | | | H | | |
+ T-T-T-T=T=T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T=T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T T T T-T=T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T
+ | | H |   | | | |   | | | H H H | | |   | H   | | H | | | |   H H H | H H |   H | | H H | | |   H | H | | | | | | | H   | | | | | | | H H H   H H H | | | | H | | H | | H | | H | H H   | | | H | H H |
+ T-T-T-T T=T-T-T=T=T-T-T-T-T-T-T-T=T=T=T=T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T=T-T T=T T T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T
+ | H |     | H | |   H H | | | | | | | | | | | | H | | H | H   | | | | | | H   | H   | | | | |   |   | | | H | |   H     H | H H | | | | | |   | | | H | H | | H H | |   | | H | H | | | | | H | H   | |
+ T-T-T=T-T-T-T-T-T=T-T-T T T=T-T-T-T-T-T-T=T=T-T T-T-T-T-T-T-T=T-T-T-T=T=T-T-T-T-T-T T-T-T-T=T=T=T=T=T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T=T-T T-T=T T=T T T-T-T-T-T-T=T-T-T-T-T-T=T-T
+ | | | | H H | H |   |   | |     H H | H |   | H | | H | | |   | H | | | | |   H |   | | H | | | | | | H | | H H | | H   | H | | | | H | H | | | H H | H | | | | | | | | | | | H | H H | | H | | |   | |
+ T-T-T-T-T-T-T-T-T-T=T=T T T T-T T-T-T-T T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T=T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T T T T-T-T=T-T-T-T-T-T-T-T T T T=T-T-T-T=T=T-T-T-T-T-T-T-T-T-T=T=T-T-T
+ H H | H | | H | |   |   | | H | |   | | |   H | H | | | H |   | | | H H | H | |   | H | | H H H H H |   | H | | | H |   | | H | H | | |     | H | | H   | H | | | | H H | | | | | | | | H | H   |   H |
+ T-T-T-T-T T T T T-T-T-T-T-T-T-T-T-T T-T-T=T-T-T-T-T-T-T-T-T=T=T=T=T-T-T-T-T-T-T-T T T-T T-T-T-T-T-T-T=T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T=T=T-T-T-T-T-T-T-T-T
+ | | | | | | | | |   H H |   | H | H | | | | | | | H H | |     | | | | | | | | H   | | |   |   | | | | | H | | | | | H | H H | | |   | |   | H | | | |   | | H | H | | | | H | | H | | | | |   H H   | |
+ T-T=T-T-T-T-T-T=T=T-T-T T T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T=T=T T-T-T=T-T-T-T-T-T T T T=T=T=T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T T T-T-T=T-T T T-T=T=T=T-T-T-T-T-T
+ | |   H H   H | |   | | |   | | | | H | | | H   H | | H |   | H H | | | H | H |   | | |   |   H | | H | | | | | | | | H | | H H H   | H   | | | H | H   | H   H |   H | | | | | | | | | | |   | |   H |
+ T-T-T-T-T-T T-T=T=T=T-T-T=T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T T T-T-T-T=T=T-T-T-T-T-T
+ | H   | | | | | |   | H |   H H | | | H   H | | | H H | |   H | | | H | | H | H | H H H   |   | | H | | | H | H H | H | H | | | |   H |   | H   | | | H |   | | H   | | |   H | | | | H | |   | H | | |
+ T-T T T-T-T-T-T-T-T=T-T-T-T-T T T T T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T=T-T-T T T T-T-T=T-T-T-T-T-T-T=T-T-T-T=T=T T T-T-T-T
+ H |   | H H H H H   | | H | | | | | | |   | H H | | | | H   | | H | | H | | H | H | | | H H   H H | H H H | | | | H | H | | H | H | | H H | | | | | | | |   | H | | | H H | | | | | H | | |   | | |   |
+ T-T-T-T-T-T-T-T-T-T=T=T-T T T T T T T T T-T-T T T-T-T-T-T-T T=T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T T T-T-T=T=T-T
+ | | H H | | | | | | | | | | | | | | | |   | | |   H | H | | | | | | H | H H | | | | |   | |   | | | | | | | | H | | H | | H | H | | H |   | | | H H H H |   H | H H | | | H   | | | | H | |   H | |   H
+ T T-T-T-T=T-T-T T-T-T-T-T-T-T-T T-T-T-T-T=T-T-T-T-T-T-T-T=T=T-T-T T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T=T T T-T=T=T-T-T-T-T-T-T-T-T T-T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T=T=T-T-T-T-T-T T-T-T-T=T-T
+ | | | | | | H | H | H H H   H | | H | H   | H H   | | |   | | H | | | H | | | H | | H | H H   | |   | H | | | | | | | H | | |   | | | |   H H | | |   | | H | H | | H |   |   | | | H | H | H | H | |  
+ T-T=T=T-T-T-T-T-T-T-T-T-T-T-T T=T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T T T T T-T-T-T-T-T-T-T T-T=T-T-T-T-T-T-T-T-T=T-T-T=T T T=T=T=T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T T T T-T-T-T-T-T
+ H | | | H | | H | | | | |   | | | | H |   H   |     | H | | H | | | | | | | | | | H | | | |   | | | H | H | H | H   | | | | | | | |   H | | | | H H   H | | H | | H   H | |   H | H | |   | | | | H H |
+ T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T=T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T=T=T=T=T-T-T-T T-T-T=T=T=T-T-T-T-T-T-T-T-T-T T-T-T-T=T=T=T-T-T=T=T-T-T-T-T-T-T-T-T-T-T=T T T T T-T-T-T-T-T-T-T-T-T=T=T T T=T-T-T-T-T
+ | H   H | H H | | H H | |   H | | | | H   | | |   | H | | H | H | |   | | | H H | | H | | | | H | H | | | | | | |   H | | | | H | |   | H | H   | |   | | | | | | | H | H | H | H | |     | | | H | |  
+ T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T=T=T-T-T-T-T T-T T T T=T-T-T-T-T=T T T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T
+ H | | | | | | |   |   H | |     H H |     H H H H H | | | | H | | H   H | H | | H | | H | H | | | | | H | H | | |   | H | H H | | | | | | H     | |   | | H | | | H | | | | | | | H H   | H H | | H | H
+ T-T-T-T-T-T-T=T=T-T-T-T-T-T-T=T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T T T-T-T T-T-T-T-T T T T T-T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T=T=T-T-T-T-T-T-T-T=T=T-T-T=T-T-T-T-T T T T-T-T-T T-T
+ | H | H H H   | | H | | | | | | |   | |   | | | | | H | H H | | | | | | H | H | | | | | H | | H   | | | H |   H | | H | | | | H H | H | H |     H |   | | |   H | | | | | | | | H | |   | | | H | | H |
+ T-T-T-T-T-T-T=T-T-T-T-T-T T T T-T-T-T-T=T T T-T=T-T-T-T-T-T T-T-T=T=T=T-T-T T T=T=T=T=T-T-T-T-T T T T T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T=T-T-T T-T-T-T-T=T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T
+ | | H | | |   | H | | H | | | H H   H | | | H | | H   H | | | H | | | | | | | | |   | | | | H |   | | | | |   | H | |   H H | | | H | | | H   | | |   H |     | H | | H | | | | | H H   | H | | H   |  
+ T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T=T=T-T T T-T-T-T-T-T=T=T-T-T T T-T-T-T=T=T-T-T T-T-T-T-T-T-T=T-T-T T T T-T-T-T-T-T T T-T-T-T-T-T-T-T-T=T-T-T-T=T
+ H | | H | H | H   H |   | | | | |   | H H H | | |   | | H H H |     H | H | H | H | H | | | | | | H H | H | |     | |   |   | | | | | H | | | | H | |   |     | | H H | | | | H | | |   H | | | | | |  
+ T-T-T-T-T-T-T-T-T T T T T T T T-T=T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T=T-T-T-T-T-T-T T-T-T-T-T-T=T-T-T T-T-T-T-T-T-T-T T-T-T-T=T T-T-T-T=T-T-T-T T-T-T-T-T-T=T=T T-T T T T T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T
+ | | H   | | H |   | | | | | | H | | H | | | | H | H | H | | | H |   | | | | | | | H   | H | | H | |   |   | H H | | H H |   | H H |   | | | H | | | H   | | | H | | | | H H H | H H H | |   H | | H H |
+ T-T-T-T=T=T-T-T-T-T-T=T=T=T T T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T T-T-T=T-T T=T-T-T-T-T-T-T-T=T-T T T T T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T
+ H | |   | | | | | H | | | | | | | | | H H H |   H | H | H H | | H   H | | H   H H |   | | H | | H |   |   | | | | H | | | | | | |     | H | | | H H |   H H H | | | H   | | | | | | | | H | | | | | | |
+ T-T-T=T-T-T-T-T-T-T-T-T-T T-T=T-T-T=T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T=T T-T-T-T-T-T-T=T=T=T-T-T=T-T-T-T-T-T-T-T-T-T-T=T=T-T-T=T=T-T-T-T-T-T-T-T T-T-T-T-T T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T
+ | | | | H | H H | | | H | H | | | | | | |   | | | | |   | |   H | | | | | |   | | |   | H | H | |     |   H | | H | H H H H | | H |   | | | | | | | H   | | | | H H   | H H H   | | H | | |   H | H H |
+ T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T T=T-T-T-T-T-T-T-T-T-T=T=T=T=T=T-T T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T T-T=T=T-T-T-T=T-T-T-T-T=T=T-T-T=T=T=T-T T-T-T-T
+ | | | H | H | | H H H | | | H | | | H | H H   H | H |   | | | | | | H H | | | H | H H H | H | | |   |     | | H | H | |   | H H | | | | H | H H H | | | H | | | | |   | | | |   |   | | | | | | H | | |
+ T=T-T-T-T-T-T=T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T=T-T-T-T T-T=T=T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T=T=T=T=T-T-T T-T-T-T-T=T=T=T=T-T-T-T-T=T T
+ | | | | | | |   | | |   | | | H | H | | | | | | |   H | H H | | | | | | | | | | H | | | | | | | H | H   H H H | H   | H | | | | | H H H | | | | | |   | | H | | | | | H | | H   H   | | | | | H | | | |
+ T=T=T=T-T-T-T-T-T=T=T-T-T-T-T T T T T-T-T-T-T T T T-T-T-T-T-T-T-T-T=T-T-T-T=T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T=T=T-T-T-T-T-T-T-T=T=T=T-T-T=T T-T-T-T=T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T
+   | |   H H | H | | | H H H | | | | H H | H | | |   | H | | | | H | | H H | | | | | H | | | H | | | |   | | | | | | | | | |   H | | | | | |   |   H   |   | H | | H | | | | | | |   | | | H | | | H H |
+ T=T=T=T-T T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T T-T-T=T=T-T T-T=T-T-T-T=T=T T=T-T-T T T T-T=T-T-T T-T-T=T-T-T-T-T=T-T-T-T-T-T-T-T=T-T T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T=T-T-T-T=T=T-T-T-T-T-T-T-T-T-T
+ | | |   | | | | | | H | | | | |   H | | H | | | |   H | | | | | | | |   | | | | |   | | | | | | | H |   | | | | | H | | | | H | H H |   H H | H   | | H H | | | | | | H   | H | | | | H | | H H | | | |
+ T-T-T-T=T=T-T-T-T T-T-T-T=T-T-T-T T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T=T T T-T-T=T-T T T T T-T-T-T-T-T-T-T T T-T-T-T-T-T=T=T=T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T
+ | H H |   | H | H | | H | | H | H | | | | H H H H | | | | H | H H | H   H | H | |   | H H | | H H | H H | | | | H | | | H | | | | | H   | | H | | | H | | H | | | | H |   | | | | H H | H | | | | | | |
+ T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T-T-T T T T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T=T=T=T-T T=T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T
+ | | |   | | | | | | H | H H | | | | H | H | | | | H   | | | | | | H     | H | | | |   | | | H | | | | | | | | | | H H H | H H | H H |   | |   | | | | | H | | | | |       H | | H | | |   H | | H | H |
+ T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T=T-T-T-T-T T T T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T=T-T-T-T-T-T-T=T-T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T
+ | | H   H H H | | H | | | | | | H | | | | | | | H | | | | | H | | | H H H | |   H H   H | H | | H | |   H | H H H | | | H | | H | | H | | | H H H H | | | | H | H     | | | | | | H H | | | H H | H | |
+ T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T=T=T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T=T=T T T-T-T T=T-T-T-T-T-T-T-T
+ H | | | | | | | | | | H H H H | | | H | H H H | | H H | H | | | H | | |   H | | | | | | | | H |     |   | | | |   H H H | H H |   |   | |   |   | | | | H H | | | H | H | | |   | | | | | H | | | | H |
+ T-T=T-T-T-T-T-T T-T-T-T-T-T-T T T-T-T-T-T T-T T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T=T=T-T-T-T-T-T-T-T=T=T-T-T=T=T-T T-T-T-T-T-T=T=T=T-T=T=T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T=T=T=T=T-T=T-T-T-T-T=T-T=T-T-T
+ | | | | H   H | | H | | | | | | H   | |   | | | | | | H | | H | | H H H | | H | | | | | H H | | H   |   | H | |   | | | H | | | | |   | |   H   H | | | | | | H | | | | | | | |   | | H | | | | | | | |
+ T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T T-T=T=T=T-T-T=T=T-T-T-T T=T=T-T-T-T-T-T-T-T=T=T-T-T=T=T-T-T=T=T=T=T=T=T-T-T-T=T-T-T-T=T-T
+ | H | H |   | | H | H | H | H | | H | | | | | | H H | | | H | H | | | | H H | | H | H | | | | H |   |   | | | | | | | | | | | | H H | | | | | | | | H | | | | | | | | H | | | |   |   | H | | H | |   |
+ T-T-T-T-T T T-T-T-T-T-T-T-T-T T T-T-T=T-T-T=T-T-T-T-T-T=T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T=T=T=T=T-T-T T=T=T-T-T=T-T-T-T-T-T=T=T=T-T=T-T-T-T-T-T-T-T=T=T-T-T-T-T=T=T-T-T-T-T-T=T T-T T T T
+ | | | |   | | H | | | | |   | | | | | | H | | H | | H | | | | |   | H   | | H | | H | H | H | | H | | | | | | | H | | | | H | | | |   H | | | | | | | | H | H H | | | | | H |     H   | | | | | | | | |
+ T T T-T=T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T T T-T-T-T-T-T-T T-T-T-T-T-T=T-T-T-T T T-T-T-T-T T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T=T=T-T-T-T-T=T-T=T=T-T-T T
+ | | H | | H | | | H H H | |     H | H | | | | | H | | H H | | H | H |   | H | |   | | | H | | | | H | H H H | | | | H | | | H | H | | | | H | | H H H H | H | | H | | H |   |     | | H | | | | | H | |
+ T T T-T-T-T-T=T=T-T-T-T-T T T-T-T-T-T-T=T-T-T T-T-T-T-T-T-T=T-T-T-T-T-T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T T T-T-T=T=T=T=T-T-T-T-T-T-T-T-T-T-T T
+ | | | | H | | | | | | |   |   H | H | | | H | | | H H | | | | | | | H     | H H | H | | | | | H | | H | | | | | | H | H H | | H | H | H H |   H | | | | | | H |   | | |   | |     H H | H | | H H | | |
+ T T T T T-T=T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T=T=T-T-T-T-T=T=T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T T-T-T-T-T-T T-T-T-T-T-T-T-T-T T-T T T-T-T-T=T-T-T-T=T T T T-T=T=T T T-T-T-T-T-T-T-T T-T-T
+ | | | | | | | H H | H H   | |   H | H | H   | | | |   H | |   H | H |   | H | | | | | H H | H | | H | H H | | H H | | | | | H   H | H   | |   | | |   H | | | H   | | | | | | |   | |   | | | | | | H |
+ T-T-T=T-T T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T=T-T-T=T=T-T T-T-T-T-T-T-T-T=T-T-T T-T=T-T-T-T-T-T-T=T-T T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T T-T-T-T T-T-T T T T-T-T=T=T=T=T-T-T-T-T-T-T-T
+ H H |   H | | | |   | |   | | | | H   | | | | H | | | | | H | | | | H   | | | | | | H |   H | | | |       | H | | H H | | | |   | | | | H H | H | H | | | | H |   | H | | | | H | | |   | H H H | H | |
+ T-T-T=T-T-T-T-T-T T T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T=T=T-T-T-T-T-T-T-T-T T=T=T-T-T=T T-T=T-T-T-T-T=T=T T-T-T-T-T-T T T T-T-T-T-T=T-T-T-T-T T T T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T T T-T=T-T-T-T-T-T-T-T-T
+ | | |   | H H   H   H H | | H | | | | H | | H | H | | | H | | H H H |   | |   H | | | |   | H H | | |   H | | H       H H | H   | H | H   | | | | | | H H | | |   | | | H | H | | | | | H | | | | | | |
+ T-T-T=T=T-T-T-T-T T T T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T T T T T T T-T-T-T-T-T=T-T-T-T T T T T-T-T-T=T=T=T-T-T-T-T-T=T=T-T-T-T T-T-T-T-T-T-T-T T T T=T=T-T-T-T-T-T=T-T-T=T-T-T-T-T-T-T=T-T-T-T-T-T-T=T-T-T
+   H | | | | | | | | | | H | | H | H H | | H | H | | H | | | | | | | H   H |   | H | | |   | | | | | |   | H H |       |   | | H | | |   H | | | | | | | | | H |   H   | | | | | H | | H | H | H | | H |
+ T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T=T-T-T T T-T-T-T-T-T=T-T-T-T-T-T-T-T-T=T T=T=T-T-T-T-T=T=T=T T T T=T-T-T-T-T=T-T-T=T-T=T=T-T-T=T=T-T-T=T-T-T=T=T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T
+ |   H H |   H | | | | H | H | | | | | H | |   |     | H | | H | | H |   | H | | |   H | H H H |   |   | H | | | | |   | | | | | | H | | |   | |   | H   | | | |   |   | | |   H | H | | H | H | | H | |
+ T=T-T-T-T=T-T T T-T-T-T-T-T-T-T-T-T=T-T-T-T T-T=T=T=T-T T-T-T-T=T-T-T-T=T-T T=T=T=T-T-T-T-T-T-T=T T T T T T T-T=T=T=T=T=T=T-T=T T-T-T-T-T-T=T-T-T-T-T T=T=T=T-T-T-T-T-T-T-T=T-T T-T-T-T-T-T-T-T=T-T-T T
+ |     |     | | | H   | H | | H | | |   | H H | |   | | | | | | | | H   | | | | |   | H |   | |   |   |   | | | | | | | | |   | |   H | H   | H   H |   | |   H H H   H | | | | H | H | | H | | | | |  
+ T=T=T=T-T=T=T-T-T-T-T-T-T-T-T-T-T T=T=T=T-T-T-T-T-T-T-T-T-T=T=T-T T T T T-T=T-T T T T-T-T=T-T-T-T=T=T-T-T=T T T T-T-T=T=T-T-T=T=T=T-T-T-T-T-T-T T-T-T=T=T-T-T-T-T-T-T-T T T=T=T-T-T-T-T T T T-T-T=T-T-T
+ |     | |   | | | |   H |   H | | | |     | | H |   H | H | | | H | | | H | | H | | | | |   H H   | | H | | | | | H | |   H     |   | H | | H |   | |   | H | | | | |   | | | | | H | | | | | H | | H |
+ T-T=T-T=T=T-T-T=T-T-T-T-T-T-T T-T-T-T=T=T=T=T-T-T-T-T-T T-T=T-T-T T T-T-T-T=T-T-T-T-T=T=T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T=T-T-T=T T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T T-T-T-T
+ H   |   |   H   | H H | | H | | H H |   | | | | | | | | | | | H | | | H | | | | | H |   |   | | | H | | |   H H | | H |   |   H H   H | | | | |   | H | | | H H | H H H H H | | | | | | H | H | | | | |
+ T-T=T T T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T T T T T-T-T=T-T-T=T-T-T=T-T-T-T=T-T-T-T-T-T-T=T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T=T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T=T-T-T-T
+ | | |   |   | | | | | H |   H | | | | H | | | | | H | | H | |   | | | | | | H | | | H   | | | | | | H H H | | | | H | |   | H | | H | | H | | H | | | H   | |   |   | | | | H | H H | | | | | | | H | H
+ T-T=T-T-T-T=T-T-T-T-T-T T=T-T-T-T-T-T-T-T-T-T-T T T-T-T-T T T-T-T-T-T=T-T-T-T-T T T-T-T-T-T-T=T=T T T T-T-T=T=T=T-T-T-T=T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T=T-T T-T-T-T-T-T-T-T T T T T-T-T-T-T-T
+ | | | H H   | H H | H | | | | | H H | | H | H | | | | H | | H   H H | | H   | |   H | | H H | |   | | |   |   | | | H |   | | | H | | | |   |   | H | |   | H   | | H | H H | | | | |   | | H | H | | |
+ T T T T T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T T T T T-T-T-T-T T T T-T=T-T-T-T-T=T-T-T-T-T=T-T-T-T-T=T=T=T=T-T-T-T=T T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T=T-T-T-T=T=T=T-T-T-T-T=T=T
+ | | | | | | | | | H | | H | H | | | | H | H | | | | | | | | |   | | | | |   | H | | | | | | H     H | H   | | | | H | |   | | H | | H |   | | H | |   H   | | | H H | H | |   | H H | |       | | | |  
+ T-T-T-T-T-T-T=T=T-T-T T-T-T-T-T-T-T-T-T-T-T-T=T T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T T T-T-T-T=T-T-T-T-T=T-T-T=T-T-T T T-T-T-T-T-T-T-T T=T=T-T-T-T=T-T-T-T-T T T-T-T-T-T-T-T=T-T-T-T=T=T T T T T T-T-T
+ H | H | H H | | | | | H | | | H | H | | |   | | | | H H H H H   H H | | H   H | | H | | | H |   | | H | | | H | |   | | | H | | | H | |   | | | H     |   H | |   | | | H H   | |   | | |   | | | H H  
+ T-T-T-T-T-T-T T-T-T=T-T-T=T-T-T-T-T-T-T-T=T-T-T=T=T-T-T-T-T-T-T-T-T-T=T-T-T-T-T=T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T T T-T-T=T-T-T=T-T T T-T=T=T=T=T=T-T-T-T=T=T-T-T T-T-T=T=T=T-T-T-T
+ | | | | | | | | | |   | | | H | |   | |     H   | | | | | | |   | | | | |   | | | | | | | | |   H | | H | H | H | | |   H | | H H | | |   H | | |     H | | | |     | | | |   | | H | H H   | | | | |  
+ T-T-T=T-T-T-T-T-T T=T=T=T-T-T-T-T-T-T-T-T=T-T-T T-T-T-T-T-T-T=T-T-T-T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T T T-T-T-T-T-T=T-T-T-T-T=T=T-T-T-T-T T-T-T-T-T T T T T-T=T-T-T T T
+ | H   | H | H H | |   | | H   H H   H |     | | | H H | H H |   | H | | |   H H H | H H H H H   | | | | H | H | | H H   | H | | | | | | | | |   H | | | H H | | | H | H | | H H H | | | | | | | H | | |
+ T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T T-T-T-T-T=T-T-T-T-T-T-T-T-T=T-T-T T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T=T=T-T-T-T-T
+ | |   H | | |   | | | | |     | |   | H | | | H | | | | | | |   H | | H H   | | | H   | | | |   H H | | | | | | H | |   H | | H H | H H | H H   | H H | |   H | H | | | H | | |   H | | | |   | | | H |
+ T-T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T T T-T-T=T=T-T-T=T=T T T-T-T=T-T-T=T=T=T-T-T
+ H |   | | | H | H H | | | H | H |   | |   H | |   | | H H H H   | | | | | | H H | |   | H | H   | | H H | H | | | | H   | | |   | H | | | |     | | | | | | | H | | | | | | | |   | H | | H   | | | | |
+ T-T-T=T=T=T-T-T-T T T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T=T-T T T T T-T-T=T=T=T-T-T T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T=T=T-T-T T-T-T-T-T-T=T=T-T-T T-T-T-T=T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T=T-T-T-T-T
+ | H   | | | | H | | | | | | H | |   | H   | | H H | | | | | |   H | | | | H |   H   | | | H   | H |   | H |   H | | |   | | H | H | H H H |     | | | H | | | | H H H | H | H |   H | H | |     H   H |
+ T-T-T=T=T-T-T-T-T-T-T-T-T=T-T-T T T T T T-T=T-T-T-T=T-T T=T-T-T-T-T T T T-T-T-T-T-T-T-T T T T T-T-T T-T-T-T=T-T-T-T=T T-T-T-T-T-T-T-T-T-T-T=T=T-T-T T T-T-T=T=T-T-T-T-T-T-T-T-T=T-T T T T-T=T=T-T-T-T-T
+ | | | | | H   | H | H H | | | | | | | | H | | | | | | H   | H H | | |     | H | | H H   | |   | | |   H | |   | H |   | | |   | | H | | | |   | H | | | H   | | | | | H | H | |   | | | H |   | |   | |
+ T=T-T-T=T-T-T-T-T-T-T T T-T=T-T-T-T-T-T-T-T=T-T-T-T T T T T T T-T-T-T-T-T=T-T-T T T T-T-T=T=T-T=T=T T-T-T-T=T-T-T-T=T-T-T-T T T=T-T-T=T=T=T=T=T-T-T=T=T-T T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T=T=T-T=T=T
+ | | H | |     H | | | | H | | H | H H | | | | H H | | |   | | | H | H H   | | | | | | H | |   | | |   | H | | H | | | H | |   | | | | | |     | | | |   | | H | | H H | H | | |   H | | | H   | |   |  
+ T=T-T-T-T=T T T-T-T-T-T-T T-T-T-T-T-T-T-T=T-T-T-T-T-T=T=T-T-T=T T T T-T-T=T-T T-T-T=T-T-T=T=T-T-T=T=T=T-T-T-T-T-T-T-T-T-T=T T T T T-T-T-T=T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T T-T=T-T-T-T
+ | | | H | | | | | H H H | | | | | | | H |   | | | H   |   H | | | | | | | | H | H | | | | |   H | | | | | | | | H H H | | |   | | H | H | |   | | H H H H | | | | | | | | | | |   | H | H | H | | H H  
+ T-T T-T-T-T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T=T=T=T T-T-T=T=T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T=T T-T-T-T-T-T-T-T-T-T-T-T-T=T T T T
+ H | | | H | | H H | | |   | H | H H | | |   | | | |   | | | | H | | H H | | | H | | H | |     | H H | | | | H | | | | H H |   | |   | | H H   H | | | | | | | H H   | | | H | H   | | H   H | |   | |  
+ T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T=T-T-T-T-T T-T=T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T T T T T-T-T-T T T=T-T-T-T-T=T-T-T-T-T-T T-T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T T=T=T=T=T
+ | H   H | H | | | | H |   | | | |   | | H   H | H |   H | H | |   | | | H | H | H   | | | |   | | | |   | | |   H | | | | | H |     | H | |   | | | | H | H | | |   | H | | | | | | | |   | | |   | |  
+ T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T=T-T-T=T T T T T T T=T=T-T-T T-T=T=T=T=T T-T-T-T-T-T=T-T T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T=T
+ H |   | H | H H H H | H   H H | H | | H |   |   |     | H | | H H H | | | H | H   H H H H | | | H H   H | H |   | | | | | | | |     | | | H |   | | | | H | H H | | H | H H H | H H | H   H H     H | |
+ T-T=T=T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T T T-T-T-T-T=T-T-T=T=T=T T-T-T-T-T-T-T=T-T-T-T-T-T=T-T T-T-T-T-T-T-T-T-T-T T-T-T=T-T-T-T
+ | | |   | | | | | | H     | | H | H | | H |     H | H | | H | | | | H | H | | | | | | | | H H | | | H | H | H   | | H | H | | H   | | |   | | H H | | | | | | | | | | H |   | | | | H |   | | | | | H  
+ T=T-T=T T=T-T=T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T=T-T-T-T-T=T T T-T-T-T T T-T-T-T-T=T=T-T-T-T-T T T-T-T=T-T-T=T=T=T-T-T=T-T-T
+ | | | | | |   | H | |   H H H | | | | | | H H   | | | H | | | | | | | | | H H H H   H H | | | H | H | H | | | H H | | H | | | |   H | | | | H | | | | H | H | |   H H | | | | | | | | | | | | H | | | |
+ T-T-T-T T-T-T-T-T-T T-T-T-T-T-T=T-T-T-T-T-T-T-T=T-T-T-T-T=T=T=T-T-T-T-T-T-T-T-T-T-T-T-T T T T T T T T-T-T=T-T-T-T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T T T T-T-T-T-T-T=T-T-T-T=T=T=T=T-T T T=T=T-T T T T T=T=T
+ H   H | | H | | | | |   | |     | H | H H | |     H H   | | | | H | H H H | | | |   | |   | | | |   | | | | | | | H | | | H | H | | | H | H | | | | H | | | H | | | | | | | |   H |   | | H | | | | | |
+ T-T T-T-T-T-T-T=T-T-T-T-T-T-T=T=T-T-T T T T T-T-T-T-T-T T-T-T=T T T T-T-T-T-T-T=T T T-T=T=T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T T-T-T-T-T-T-T-T=T-T-T T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T T T-T=T-T-T
+ | | | | H   | | | H | | H H   | |   | | |   | H | | | | | H | | | | | | | | H | | | |   | | H H | | H H | H H H | | H | H | H | | H H | | |   H | | | | | | | | H | H H | | H | | H   H H | | H | | H |
+ T T-T-T-T-T T T-T-T-T-T-T-T-T-T-T T-T-T-T=T-T-T T T T-T=T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T T-T-T=T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T
+ | | H |     | H | | | H |   H | H | H | | | H | | | H | | | |   H H H | H | | H H | |   | | | | H H | | H | | | | | | H | | | H   | |   | | H | H | H |     H | | | | | H | | | | |   | | |   | | | | |
+ T-T-T T T T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T T T-T=T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T-T=T-T-T-T-T=T=T-T-T=T=T-T-T T-T-T-T-T-T
+ | H | |     H |   | H | H     H | | | | H | | |   | | H H | H   | | | | | H | | | H | | | H | H | | H H | | H | | | | | H | H | | H | H H H | H | H | | | | | H   | H H | | | | | | | | H | | | | | H |
+ T-T-T=T=T=T-T-T-T-T-T-T-T-T=T-T-T=T=T-T-T T T-T-T=T-T-T-T T T-T-T-T-T-T-T-T-T-T-T-T T T T T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T=T=T-T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T
+ | | | |   | | | H   | H | |   |   | | | | | H H   | H | |   | H H H | H | | H H H | | | | | H | H H | | | |   | H | H | | H | | | |   | | | | | | | | H | | | | | H | | | | | H H | H | | | H | H H | |
+ T-T-T-T-T=T-T-T-T-T=T T-T=T=T T-T=T=T-T-T=T-T T-T-T-T-T=T=T-T-T-T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T-T-T-T-T-T-T=T=T=T=T=T-T-T T-T-T-T-T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T
+ H | H H   | H H |     | | |   | |   | H | | | |   H | |     H | | | | | | | | | | H   H H H | H | | H | | |   H |   | | H | | | |     | H | H | H H | | | | | | H | H H | | H | | H | H H | | H | | | H
+ T-T-T-T-T-T-T-T-T-T=T-T-T-T-T=T-T-T=T-T T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T T T T T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T-T
+ | | | | H |     H     H H |   | H   | | | H | |     H | |     | | H H | H H | H H | H | | | | | | | | |   |     | | H | | H H H H   H | | | |   | | | | | | | H | | | | H | | H H | | | | | H | | H   |
+ T-T-T-T-T-T=T=T-T-T-T-T-T-T=T-T-T-T-T-T=T-T-T-T T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T=T=T-T-T=T=T-T-T-T-T T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T=T
+ H | H H | | | | |     | | |   H |   H | | | H |   | | | H | H | | | | | | | H | | | | H H | H H | | H H H | H H | | | | H | | | |   | H | H H | | | | | | | | | | H | H | | | | | H H H H | | | H |   |
+ T-T-T-T-T-T-T-T=T=T-T=T-T-T=T-T T T T T-T=T-T T-T=T=T=T-T-T-T-T-T-T=T=T-T-T-T-T-T-T=T-T-T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T T-T-T-T-T-T=T-T-T-T T T-T-T-T-T-T-T-T=T-T
+ | |   | | H H | | |   | H |   |   | | | | | | | | | | | | H | H H   | | H | | | H   | | | | | | | H | | | | | | | H | H | | | | H   | | | | | | H H | H H H   | | | H   | | H | H   | | | H | H |   | |
+ T=T=T=T T-T-T-T-T-T-T-T-T T T-T=T=T=T-T-T-T-T=T-T T T T=T-T-T T T T-T=T-T-T=T-T-T-T=T=T-T-T-T-T-T T-T-T-T-T=T-T T-T-T-T-T-T-T-T-T-T=T-T=T=T=T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T T T-T=T T T T-T-T-T-T-T-T
+ | | | | | | | H | H   H | |     | | | | H H | | H |   | | | | | | | | | | | | H | | | | H H H H | | H   H | | H | | | | | | |   | | | | | | | H | | H | | |   | H H | H H | | |     | | | | | | H   H |
+ T=T-T-T-T-T-T-T-T-T-T-T-T-T=T=T-T-T-T-T-T-T T-T-T-T-T-T-T-T=T-T-T-T-T-T-T=T T T T-T-T-T-T-T-T-T-T-T-T T T-T-T-T-T-T-T-T-T-T=T-T-T-T-T-T-T-T-T-T-T-T-T-T=T T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T-T T T
+   | H | H H H | | |   | H |     H | H H | |   H | | | H H | | H | H H   | | |   | H | | | | |   | H | | | | H | | H H H H | | | | | H | H | H | | H | | | | H | | |   | | H H | H   H H   H H | |   | |
+ T=T-T T-T-T-T T T-T=T=T-T-T=T=T-T-T-T-T-T=T-T-T-T=T=T-T-T-T-T-T-T-T-T-T=T=T=T-T=T-T-T=T=T=T=T=T=T-T-T=T=T=T-T-T=T-T-T-T-T-T=T-T-T=T-T-T-T-T T T-T-T-T=T=T-T-T-T=T=T=T=T=T-T-T-T T-T-T-T-T-T-T-T T-T=T=T

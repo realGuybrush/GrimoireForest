@@ -2930,7 +2930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 171ff2153b5f07941b6214fc74e0ea1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xEdge: 22
+  xEdge: 26.5
   yEdge: 30
   xOffset: 0
   yOffset: 32
@@ -3853,7 +3853,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807dd47469a928141b9d56bdfee5c081, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TileWidth: 75
+  TileWidth: 80.5
   Player: {fileID: 0}
   Environment: {fileID: 1600380947}
   ItemPrefabs:
@@ -3871,8 +3871,8 @@ MonoBehaviour:
   GlobalEntities: 
   GlobalTalks: []
   GlobalMap:
-    Width: 3
-    Height: 3
+    Width: 100
+    Height: 100
     BlocksInTile: 60
     GlobalEntitiesLocalIndexes: 
     GlobalEntitiesTileLocations: []
