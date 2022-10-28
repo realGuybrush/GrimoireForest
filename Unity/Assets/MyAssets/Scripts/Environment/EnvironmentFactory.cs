@@ -7,7 +7,7 @@ namespace MyAssets.Scripts.Environment {
         [SerializeField]
         private string _directory;
 
-        public List<List<BiomeData>> BiomeDTOs = new List<List<BiomeData>>();
+        public List<List<BiomeData>> BiomeDTOs;
 
         public static EnvironmentFactory GetInstance;
 
@@ -18,73 +18,7 @@ namespace MyAssets.Scripts.Environment {
                 return;
             }
             DontDestroyOnLoad(gameObject);
-            //todo: make it load sprites and other stuff using _directory; fix this crap
-            _directory = "Pictures\\Environment\\Forest\\";
-            for (int i = 0; i < BiomeData.BiomesAmount; i++) {
-                BiomeDTOs.Add(new List<BiomeData>());
-                for (int j = 0; j < BiomeData.BiomesAmount; j++) {
-                    BiomeDTOs[i].Add(new BiomeData());
-                }
-            }
-            BiomeDTOs[0][0].aggressive = false;
-            BiomeDTOs[0][0].immortal = false;
-            BiomeDTOs[0][0].maxPercentSize = MaxBiomeSizeInPercents.Enormous;
-            BiomeDTOs[0][0].Sky = (Sprite) Resources.Load(_directory + "stars.png"); //don't + strings this way
-            BiomeDTOs[0][0].Moon = (Sprite) Resources.Load("Pictures\\Environment\\Forest\\moon.png");
-            BiomeDTOs[0][0].TilePrefab = (GameObject) Resources.Load("Prefabs\\Environment\\Forest\\ForestTile");
-            BiomeDTOs[0][0].PlatformPrefab.Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\BigTree"));
-            BiomeDTOs[0][0].PlatformPrefab
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\TreeBranch"));
-            BiomeDTOs[0][0].PlatformPrefab
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\BushCover1"));
-            BiomeDTOs[0][0].PlatformPrefab
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\BushCover2"));
-            BiomeDTOs[0][0].PlatformPrefab
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\BushCover3"));
-            BiomeDTOs[0][0].PlatformPrefab = RemoveAllNull(BiomeDTOs[0][0].PlatformPrefab);
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTop"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeft"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRight"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.Full"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.Full"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTopBushU"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTopBushD"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load("Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.FullTopBushUD"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load(
-                    "Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeftBushU"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load(
-                    "Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeftBushD"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load(
-                    "Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleLeftBushUD"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load(
-                    "Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRightBushU"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load(
-                    "Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRightBushD"));
-            BiomeDTOs[0][0].BlockPrefabs
-                .Add((GameObject) Resources.Load(
-                    "Prefabs\\Environment\\Forest\\Blocks\\Forest.Ground.TriangleRightBushUD"));
-            /*BiomePrefabs[0][0].EntitiesPrefabs.Add(1);
-            BiomePrefabs[0][0].EntitiesAmounts.Add(2);
-            BiomePrefabs[0][0].EntitiesPrefabs.Add(2);
-            BiomePrefabs[0][0].EntitiesAmounts.Add(2);
-            BiomePrefabs[0][0].EntitiesPrefabs.Add(3);
-            BiomePrefabs[0][0].EntitiesAmounts.Add(2);
-            BiomePrefabs[0][0].EntitiesPrefabs.Add(4);
-            BiomePrefabs[0][0].EntitiesAmounts.Add(2);*/
-            //fix add somewhere predefinition of tile monster spawn pattern
+            //WARNING! BIOMES MUST BE PUT IN List<List<BiomesData>> MANUALLY, BECAUSE IT IS A SQUARE MATRIX!
         }
 
         public List<GameObject> RemoveAllNull(List<GameObject> L) {

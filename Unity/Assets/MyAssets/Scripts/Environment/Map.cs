@@ -9,8 +9,8 @@ using Random = UnityEngine.Random;
 public class Map : MonoBehaviour {
     private (bool, bool) tileGrowthResult;
 
-    private int Width = 100;
-    private int Height = 100;
+    private int width = 100;
+    private int height = 100;
     private int MaximumCorridorLength = 10;
     private int MinimumCorridorLength = 0;
 
@@ -24,8 +24,8 @@ public class Map : MonoBehaviour {
     public List<List<MapTile>> Tiles = new List<List<MapTile>>();
 
     public void Init(int W, int H, int MxCL, int MnCL) {
-        Width = W;
-        Height = H;
+        width = W;
+        height = H;
         MaximumCorridorLength = MxCL;
         MinimumCorridorLength = MnCL;
     }
@@ -54,18 +54,18 @@ public class Map : MonoBehaviour {
     }
 
     //it might be better to make this bool and make some checks in case, that generation fails, so we could restart it
-    public void Generate_Map()
-    {
+    public void Generate_Map() {
         //generate tile's parts and put them in save, then create savegame file, after generation in finished
         //biome creation might be changed further on, for River, for example
         int biomesCount = Enum.GetNames(typeof(BiomeType)).Length;
         //int min_radius = 5; //min_radius should be initialized from options or in biomes, decide
         for (int i = 1; i < biomesCount; i++) {
-            Biomes.Add(new Biome((BiomeType) i, SetBiomeCenter(), environmentFactory.GetBiomeRadius((BiomeType) i, Width)));
+            Biomes.Add(new Biome((BiomeType) i, SetBiomeCenter(),
+                environmentFactory.GetBiomeRadius((BiomeType) i, width)));
         }
-        for (int y = 0; y < Height; y++) {
+        for (int y = 0; y < height; y++) {
             Tiles.Add(new List<MapTile>());
-            for (int x = 0; x < Width; x++) {
+            for (int x = 0; x < width; x++) {
                 Tiles[y].Add(new MapTile());
             }
         }
@@ -75,8 +75,8 @@ public class Map : MonoBehaviour {
     }
 
     void SetTiles() {
-        for (int x = 0; x < Width; x++) {
-            for (int y = 0; y < Height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 SetTileBiome(x, y);
                 //todo: move these three in Tile
                 //PrintTileToFile(Tiles[y][x].blocks, x, y);
@@ -90,8 +90,8 @@ public class Map : MonoBehaviour {
 
     void SetTileBiome(int x, int y) {
         for (int i = 1; i < environmentFactory.BiomeAmount; i++) {
-            if (Vector3.Distance(new Vector3(x,y,0), Biomes[i].Center) <= Biomes[i].Radius) {
-                Tiles[y][x].TryChangeToBiome((BiomeType)i);
+            if (Vector3.Distance(new Vector3(x, y, 0), Biomes[i].Center) <= Biomes[i].Radius) {
+                Tiles[y][x].TryChangeToBiome((BiomeType) i);
             }
         }
     }
@@ -100,8 +100,8 @@ public class Map : MonoBehaviour {
         int x = 0, y = 0;
         bool centerNotChosen = true;
         while (centerNotChosen) {
-            x = Random.Range(0, Width);
-            y = Random.Range(0, Height);
+            x = Random.Range(0, width);
+            y = Random.Range(0, height);
             centerNotChosen = false;
             foreach (var biome in Biomes) {
                 if (biome.X == x && biome.Y == y)
@@ -113,8 +113,8 @@ public class Map : MonoBehaviour {
 
     void GenerateHorizontalCorridors() {
         int corridor_length = 0;
-        for (int y = 0; y < Height; y++) {
-            for (int x = 0; x < Width; x++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 if (corridor_length == 0) {
                     if (UnityEngine.Random.Range(0, 2) == 1) {
                         corridor_length = UnityEngine.Random.Range(MinimumCorridorLength, MaximumCorridorLength) + 1;
@@ -127,7 +127,7 @@ public class Map : MonoBehaviour {
                     }
                 }
                 if (corridor_length != 0) {
-                    if ((x + 1) < Width) {
+                    if ((x + 1) < width) {
                         Tiles[y][x].passages[1] = PassageType.Corridor;
                         Tiles[y][x + 1].passages[3] = PassageType.Corridor;
                     }
@@ -139,8 +139,8 @@ public class Map : MonoBehaviour {
 
     void GenerateVerticalCorridors() {
         int corridor_length = 0;
-        for (int x = 0; x < Width; x++) {
-            for (int y = 0; y < Height; y++) {
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
                 if (corridor_length == 0) {
                     if (UnityEngine.Random.Range(0, 2) == 1) {
                         corridor_length = UnityEngine.Random.Range(MinimumCorridorLength, MaximumCorridorLength) + 1;
@@ -153,7 +153,7 @@ public class Map : MonoBehaviour {
                     }
                 }
                 if (corridor_length != 0) {
-                    if ((y + 1) < Height) {
+                    if ((y + 1) < height) {
                         if ((Tiles[y][x].passages[1] == PassageType.Corridor) ||
                             (Tiles[y][x].passages[3] == PassageType.Corridor)) {
                             if (UnityEngine.Random.Range(0, 2) == 1) {
@@ -191,8 +191,8 @@ public class Map : MonoBehaviour {
     }
 
     void FixCorridors() {
-        for (int y = 0; y < Height - 1; y++) {
-            for (int x = 0; x < Width - 1; x++) {
+        for (int y = 0; y < height - 1; y++) {
+            for (int x = 0; x < width - 1; x++) {
                 if (Tiles[y][x].passages[2] != Tiles[y + 1][x].passages[0]) {
                     Tiles[y][x].passages[2] = FixConnection(Tiles[y][x].passages[2], Tiles[y + 1][x].passages[0]);
                     Tiles[y + 1][x].passages[0] = FixConnection(Tiles[y][x].passages[2], Tiles[y + 1][x].passages[0]);
@@ -203,16 +203,16 @@ public class Map : MonoBehaviour {
                 }
             }
         }
-        for (int x = 0; x < Width; x++) {
+        for (int x = 0; x < width; x++) {
             Tiles[0][x].passages[0] = PassageType.No;
         }
-        for (int y = 0; y < Height; y++) {
-            Tiles[y][Width - 1].passages[1] = PassageType.No;
+        for (int y = 0; y < height; y++) {
+            Tiles[y][width - 1].passages[1] = PassageType.No;
         }
-        for (int x = 0; x < Width; x++) {
-            Tiles[Height - 1][x].passages[2] = PassageType.No;
+        for (int x = 0; x < width; x++) {
+            Tiles[height - 1][x].passages[2] = PassageType.No;
         }
-        for (int y = 0; y < Height; y++) {
+        for (int y = 0; y < height; y++) {
             Tiles[y][0].passages[3] = PassageType.No;
         }
     }
@@ -229,6 +229,7 @@ public class Map : MonoBehaviour {
         }
         return PassageType.Corridor;
     }
+
     void PrintTileToFile(List<List<int>> Tiles, int x1, int y1, bool noPass = false) {
         string name;
         if (noPass) {
@@ -269,9 +270,9 @@ public class Map : MonoBehaviour {
             name = "TestMap.txt";
         }
         var sr = File.CreateText(name);
-        for (int y = 0; y < Height; y++) {
+        for (int y = 0; y < height; y++) {
             if (!noPass) {
-                for (int x = 0; x < Width; x++) {
+                for (int x = 0; x < width; x++) {
                     switch (Tiles[y][x].passages[0]) {
                         case PassageType.No:
                             sr.Write("  "); //
@@ -291,7 +292,7 @@ public class Map : MonoBehaviour {
                 }
                 sr.WriteLine();
             }
-            for (int x = 0; x < Width; x++) {
+            for (int x = 0; x < width; x++) {
                 if (!noPass) {
                     switch (Tiles[y][x].passages[3]) {
                         case PassageType.No:
@@ -469,4 +470,8 @@ public class Map : MonoBehaviour {
         }
         sr.Close();
     }
+
+    public Vector3 MapCenter => Biomes.Count > 0 ? Biomes[0].Center : new Vector3(width / 2, height / 2, 0);
+    public int Width => width;
+    public int Height => height;
 }

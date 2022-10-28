@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -7,7 +6,7 @@ using MyAssets.Scripts.Environment;
 
 public partial class WorldManagement : MonoBehaviour
 {
-    public GameObject Player;
+    public PlayerControls Player;
     public GameObject Environment;
     public List<GameObject> ItemPrefabs = new List<GameObject>();
     public List<GameObject> EntityPrefabs = new List<GameObject>();
@@ -36,15 +35,10 @@ public partial class WorldManagement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(12, 11);
         Physics2D.IgnoreLayerCollision(13, 11);
         Physics2D.IgnoreLayerCollision(14, 14);
-        Player = GameObject.Find("Player");
+        Player = GameObject.Find("Player").GetComponent<PlayerControls>();
         Drop(0, 1, new Vector3(0.0f, 0.0f, 0.0f));
         Drop(3,1,new Vector3(0.0f, 0.0f, 0.0f));
         StopTime();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     public void EnableUI()
@@ -96,7 +90,7 @@ public partial class WorldManagement : MonoBehaviour
     }
     public void EnterDoor(DirectionType enterDirection)
     {
-        GameObject.Find("Player").GetComponent<PlayerControls>().Res();
+        Player.Res();
         CalculatePlayerCorridorOffset((int)Player.transform.position.x);
         UpdateCorridor();
         DeleteCorridor();
