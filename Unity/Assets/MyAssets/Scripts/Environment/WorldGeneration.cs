@@ -29,21 +29,21 @@ public partial class WorldManagement : MonoBehaviour {
         int yCoeff = -calculateYDirectionCoeff(LookTurn);
         int offsetTilesLeft = 0;
         int offsetTilesRight = 0;
-        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesLeft * yCoeff]
+        while (globalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesLeft * yCoeff]
             .passages[3] == PassageType.Corridor) {
             offsetTilesLeft--;
         }
-        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesRight * yCoeff]
+        while (globalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesRight * yCoeff]
             .passages[1] == PassageType.Corridor) {
             offsetTilesRight++;
         }
         for (int i = offsetTilesLeft; i <= offsetTilesRight; i++) {
-            SpawnTile(i, GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff], LookTurn, load);
-            int j = GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions.Count - 1;
+            SpawnTile(i, globalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff], LookTurn, load);
+            int j = globalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions.Count - 1;
             Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>()
-                .AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 4);
+                .AdjustBGPartPositions(globalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 4);
             Environment.transform.GetChild(i - offsetTilesLeft + 5).gameObject.GetComponent<AdjustBGY>()
-                .AdjustBGPartPositions(GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 5);
+                .AdjustBGPartPositions(globalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].blocks, 5);
             if ((GlobalTalks.Count > j) && (j != -1)) {
                 while (GlobalTalks[j].TileCoords.x < 0) {
                     GlobalTalks[j].TileCoords.x = PlayerXMap + i * yCoeff;
@@ -64,8 +64,8 @@ public partial class WorldManagement : MonoBehaviour {
     }
 
     public bool CoordsInBiomeCenters(int x, int y) {
-        for (int i = 0; i < GlobalMap.Biomes.Count; i++) {
-            if ((GlobalMap.Biomes[i].Center.x == x) && (GlobalMap.Biomes[i].Center.y == y)) {
+        for (int i = 0; i < globalMap.Biomes.Count; i++) {
+            if ((globalMap.Biomes[i].Center.x == x) && (globalMap.Biomes[i].Center.y == y)) {
                 return true;
             }
         }
@@ -75,13 +75,13 @@ public partial class WorldManagement : MonoBehaviour {
     public void SetGlobalEntities() {
         int x, y;
         for (int i = 0; i < GlobalEntities.Count; i++) {
-            x = Random.Range(0, GlobalMap.Width);
-            y = Random.Range(0, GlobalMap.Height);
+            x = Random.Range(0, globalMap.Width);
+            y = Random.Range(0, globalMap.Height);
             while (CoordsInBiomeCenters(x, y)) {
-                x = Random.Range(0, GlobalMap.Width);
-                y = Random.Range(0, GlobalMap.Height);
+                x = Random.Range(0, globalMap.Width);
+                y = Random.Range(0, globalMap.Height);
             }
-            GlobalMap.Tiles[y][x].TileEntitiesPositions.Add(new EntityValues(GlobalEntities[i],
+            globalMap.Tiles[y][x].TileEntitiesPositions.Add(new EntityValues(GlobalEntities[i],
                 new Vector3(Random.Range(-TileWidth / 2, TileWidth / 2), 0.0f, 0.0f),
                 new Vector3(0.0f, 0.0f, 0.0f),
                 new Vector3(0.0f, 0.0f, 0.0f),
@@ -99,9 +99,9 @@ public partial class WorldManagement : MonoBehaviour {
     }
 
     public void MapGeneration() {
-        GlobalMap.Generate_Map();
-        PlayerXMap = (int) GlobalMap.Biomes[0].Center.x;
-        PlayerYMap = (int) GlobalMap.Biomes[0].Center.y;
+        globalMap.Generate_Map();
+        PlayerXMap = (int) globalMap.MapCenter.x;
+        PlayerYMap = (int) globalMap.MapCenter.y;
         SetGlobalEntities();
         SpawnCorridor(DirectionType.North);
         Player.GetComponent<PlayerControls>().ShowHideMenu();

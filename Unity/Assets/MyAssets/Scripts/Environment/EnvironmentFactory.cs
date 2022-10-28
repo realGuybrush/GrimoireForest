@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using MyAssets.Scripts.Entities;
 using UnityEngine;
 
 namespace MyAssets.Scripts.Environment {
@@ -74,7 +73,7 @@ namespace MyAssets.Scripts.Environment {
             return BiomeDTOs[(int) biome1].list[(int) biome2].PlatformPrefab;
         }
 
-        public List<AbstractEntity> GetBiomeEntitiesPrefabs(BiomeType biome1, BiomeType biome2) {
+        public List<EnemyMovement> GetBiomeEntitiesPrefabs(BiomeType biome1, BiomeType biome2) {
             return BiomeDTOs[(int) biome1].list[(int) biome2].EntitiesPrefabs;
         }
 

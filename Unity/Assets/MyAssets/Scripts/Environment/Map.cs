@@ -57,9 +57,8 @@ public class Map : MonoBehaviour {
     public void Generate_Map() {
         //generate tile's parts and put them in save, then create savegame file, after generation in finished
         //biome creation might be changed further on, for River, for example
-        int biomesCount = Enum.GetNames(typeof(BiomeType)).Length;
         //int min_radius = 5; //min_radius should be initialized from options or in biomes, decide
-        for (int i = 1; i < biomesCount; i++) {
+        for (int i = 1; i < environmentFactory.BiomeAmount; i++) {
             Biomes.Add(new Biome((BiomeType) i, SetBiomeCenter(),
                 environmentFactory.GetBiomeRadius((BiomeType) i, width)));
         }

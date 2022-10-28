@@ -8,7 +8,7 @@ public enum BiomeType { Forest, Dump, Waterfall, Shroom, River, Caves, Swamp, Mi
 
 public enum MaxBiomeSizeInPercents { Enormous = 100, Large = 50, Medium = 30, Small = 10, Tiny = 2 };//todo: maybe replace with float
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/SpawnManagerScriptableObject", order = 1)]
+[CreateAssetMenu(fileName = "Biome", menuName = "ScriptableObjects/BiomeDTO", order = 1)]
 public class BiomeData: ScriptableObject
 {
     public bool aggressive;
@@ -22,10 +22,9 @@ public class BiomeData: ScriptableObject
     public MaxBiomeSizeInPercents maxPercentSize;
     public Sprite Sky;
     public Sprite Moon;
-    public GameObject TilePrefab;
     public List<GameObject> PlatformPrefab;
     public List<Cover> CoverPrefabs;
-    public List<AbstractEntity> EntitiesPrefabs;
+    public List<EnemyMovement> EntitiesPrefabs;
     public List<int> EntitiesAmounts;
     public Chest ChestPrefab;
     public List<GameObject> BlockPrefabs;

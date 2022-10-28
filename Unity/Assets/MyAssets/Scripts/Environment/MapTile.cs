@@ -107,6 +107,7 @@ public class MapTile {
 
     public MapTile() {
         environmentFactory = EnvironmentFactory.GetInstance;
+        GenerateTileStructure();
     }
 
     public void GenerateTileStructure() {

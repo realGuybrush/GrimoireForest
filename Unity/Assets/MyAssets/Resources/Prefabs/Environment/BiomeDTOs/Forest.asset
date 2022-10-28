@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46c0998dd1540e64bbe71c66f2708747, type: 3}
+  m_Name: Forest
+  m_EditorClassIdentifier: 
+  aggressive: 0
+  immortal: 0
+  growthPower: 0
+  resistancePower: 0
+  minPercentSize: 100
+  maxPercentSize: 100
+  Sky: {fileID: 21300000, guid: 6c3cb02f5e41e5c479b16ea17357e659, type: 3}
+  Moon: {fileID: 21300000, guid: 73e2f743aeae62340a31e225e5e5127a, type: 3}
+  PlatformPrefab:
+  - {fileID: 2985418728440682928, guid: b11834304b1662b41b109dec56b677fd, type: 3}
+  CoverPrefabs:
+  - {fileID: -174043433912534373, guid: 3f1f78c435524cc4bb8814b21ee6b5d0, type: 3}
+  - {fileID: 4419334469786920622, guid: 7c3a92bc3076c2c4e8a9d82560017c15, type: 3}
+  - {fileID: -8610168114286987181, guid: 91a8352aaa1beb540af3d3482142fbfc, type: 3}
+  EntitiesPrefabs:
+  - {fileID: -960953726859311072, guid: 83cd97a2462fecf4a93d31bb71a12070, type: 3}
+  - {fileID: -4815357283467637542, guid: 664e66eb1bb839c498a7fce9ca366350, type: 3}
+  - {fileID: -2789864756860152519, guid: a3d620e402500b247b77bcac44b8841c, type: 3}
+  - {fileID: 7859400090961293848, guid: 72526336faab1014cac3ff9fc05bb8fa, type: 3}
+  EntitiesAmounts: 01000000010000000100000003000000
+  ChestPrefab: {fileID: 7883461189459879511, guid: 9376d4b183702ea44886021e836d2d8c,
+    type: 3}
+  BlockPrefabs:
+  - {fileID: 2300647659135352677, guid: 3c9490384d0f3dc42aec76cfc2a7adf9, type: 3}
+  - {fileID: 4189118229569921100, guid: fc5d39bd25a95d34d99377cb16e72730, type: 3}
+  - {fileID: 4189118229569921100, guid: 50df195d0278bdd4b9ba5adb58b6c265, type: 3}
+  - {fileID: 4189118229569921100, guid: 652eeeb3b991880418a3f15170749237, type: 3}
+  - {fileID: 4189118229569921100, guid: 900613c2d8bcef54aa6ddb0da97df0a2, type: 3}
+  - {fileID: 1730961439360563868, guid: 7f6a3774e02330040bfe3c27b5d6bef2, type: 3}
+  - {fileID: 1730961439360563868, guid: b489f6758c729fd44addd210626c389e, type: 3}
+  - {fileID: 1730961439360563868, guid: e3ba0cafb5725c44786353769b9ade72, type: 3}
+  - {fileID: 1730961439360563868, guid: d86ced76e0718694abe4adc705832b31, type: 3}
+  - {fileID: 5509673856978091849, guid: 224935db8d97a664a8efa80c35e05cfb, type: 3}
+  - {fileID: 5509673856978091849, guid: 2a75f7129de9cf549917ed396b410079, type: 3}
+  - {fileID: 5509673856978091849, guid: 59682760d2400b349a621952adaff2d3, type: 3}
+  - {fileID: 5509673856978091849, guid: 0e2fb90364af58449a0d11d275bbca97, type: 3}

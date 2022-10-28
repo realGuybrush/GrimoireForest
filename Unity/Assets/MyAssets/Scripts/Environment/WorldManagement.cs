@@ -12,10 +12,13 @@ public partial class WorldManagement : MonoBehaviour
     public List<GameObject> EntityPrefabs = new List<GameObject>();
     public List<int> GlobalEntities = new List<int>();
     public List<TalkData> GlobalTalks = new List<TalkData>();
-    public Map GlobalMap = new Map();
     public GameObject DropPrefab;
     public GameObject TalkCloudPrefab;
     public int PlayerXMap, PlayerYMap;
+
+    [SerializeField]
+    private Map globalMap;
+
     int PlayerCurrentXMapOffset = 0;
     GameObject Book;
     DirectionType CameraLookDirection = DirectionType.North;
@@ -139,25 +142,25 @@ public partial class WorldManagement : MonoBehaviour
         int offsetTilesRight = 0;
         Vector2 newCoords;
         Transform chI;
-        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft* xCoeff][PlayerXMap + offsetTilesLeft* yCoeff].passages[3] == PassageType.Corridor)
+        while (globalMap.Tiles[PlayerYMap + offsetTilesLeft* xCoeff][PlayerXMap + offsetTilesLeft* yCoeff].passages[3] == PassageType.Corridor)
         {
             offsetTilesLeft--;
         }
-        while (GlobalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesRight * yCoeff].passages[1] == PassageType.Corridor)
+        while (globalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesRight * yCoeff].passages[1] == PassageType.Corridor)
         {
             offsetTilesRight++;
         }
         for (int i = offsetTilesLeft; i <= offsetTilesRight; i++)
         {
-            GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileChests = new List<EnvironmentStuffingValues>();
-            GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileChestsInventry = new List<Inventory>();
-            GlobalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions = new List<EntityValues>();
+            globalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileChests = new List<EnvironmentStuffingValues>();
+            globalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileChestsInventry = new List<Inventory>();
+            globalMap.Tiles[PlayerYMap + i * xCoeff][PlayerXMap + i * yCoeff].TileEntitiesPositions = new List<EntityValues>();
         }
         for (int i = 0; i < Environment.transform.GetChild(1).childCount; i++)
         {
             chI = Environment.transform.GetChild(1).GetChild(i);
             newCoords = calculateMapCoordsForThis(chI.position, LookTurn);
-            GlobalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileItems.Add(new EnvironmentStuffingValues(ShrinkPosition(chI.position), ItemNumberByName(chI.gameObject.name)));
+            globalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileItems.Add(new EnvironmentStuffingValues(ShrinkPosition(chI.position), ItemNumberByName(chI.gameObject.name)));
         }
         for (int i = 0; i < Environment.transform.GetChild(2).childCount; i++)
         {
@@ -165,15 +168,15 @@ public partial class WorldManagement : MonoBehaviour
             newCoords = calculateMapCoordsForThis(chI.position, LookTurn);
             if (EntityNumberByName(chI.gameObject.name) != -1)
             {
-                GlobalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileEntitiesPositions.Add(new EntityValues(EntityNumberByName(chI.gameObject.name), ShrinkPosition(chI.position), chI.eulerAngles, chI.gameObject.GetComponent<Rigidbody2D>().velocity, chI.gameObject.GetComponent<BasicMovement>().inventory, chI.gameObject.GetComponent<BasicMovement>().thisHealth.values));
+                globalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileEntitiesPositions.Add(new EntityValues(EntityNumberByName(chI.gameObject.name), ShrinkPosition(chI.position), chI.eulerAngles, chI.gameObject.GetComponent<Rigidbody2D>().velocity, chI.gameObject.GetComponent<BasicMovement>().inventory, chI.gameObject.GetComponent<BasicMovement>().thisHealth.values));
             }
         }
         for (int i = 0; i < Environment.transform.GetChild(3).childCount; i++)
         {
             chI = Environment.transform.GetChild(3).GetChild(i);
             newCoords = calculateMapCoordsForThis(chI.position, LookTurn);
-            GlobalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileChests.Add(new EnvironmentStuffingValues(ShrinkPosition(chI.position), chI.gameObject.GetComponent<Chest>().realChest?1:0));
-            GlobalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileChestsInventry.Add(chI.gameObject.GetComponent<Chest>().inventory);
+            globalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileChests.Add(new EnvironmentStuffingValues(ShrinkPosition(chI.position), chI.gameObject.GetComponent<Chest>().realChest?1:0));
+            globalMap.Tiles[(int)newCoords.y][(int)newCoords.x].TileChestsInventry.Add(chI.gameObject.GetComponent<Chest>().inventory);
         }
     }
 
@@ -187,10 +190,10 @@ public partial class WorldManagement : MonoBehaviour
             X = 0;
         if (Y < 0)
             Y = 0;
-        if (X > GlobalMap.Width - 1)
-            X = GlobalMap.Width - 1;
-        if (Y > GlobalMap.Height - 1)
-            Y = GlobalMap.Height - 1;
+        if (X > globalMap.Width - 1)
+            X = globalMap.Width - 1;
+        if (Y > globalMap.Height - 1)
+            Y = globalMap.Height - 1;
         return new Vector2(X, Y);
     }
     Vector3 ShrinkPosition(Vector3 position)
@@ -248,20 +251,20 @@ public partial class WorldManagement : MonoBehaviour
         for (int i = 0; i < Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).childCount; i++)//need children of active child of BGPartNumberAsChild
         {
             j = 0;
-            k = ((int)(Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).transform.position.x / 1.5f) + GlobalMap.Tiles[y][x].blocks[0].Count / 2);
+            k = ((int)(Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).transform.position.x / 1.5f) + globalMap.Tiles[y][x].blocks[0].Count / 2);
             if (k < 0)
                 k = 0;
-            if (k > GlobalMap.Tiles[y][x].blocks[0].Count - 1)
-                k = GlobalMap.Tiles[y][x].blocks[0].Count - 1;
+            if (k > globalMap.Tiles[y][x].blocks[0].Count - 1)
+                k = globalMap.Tiles[y][x].blocks[0].Count - 1;
             for (j = 0; j < 9; j++)
             {
-                if (GlobalMap.Tiles[y][x].blocks[j][k] != 4)
+                if (globalMap.Tiles[y][x].blocks[j][k] != 4)
                     break;
             }
-            if ((GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.InclLeft)|| (GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushD)||
-                (GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushU) || (GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushUD)||
-                (GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.InclRight) || (GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushD) ||
-                (GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushU) || (GlobalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushUD))
+            if ((globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.InclLeft)|| (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushD)||
+                (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushU) || (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushUD)||
+                (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.InclRight) || (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushD) ||
+                (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushU) || (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushUD))
             {
                 inclinedOffsety = 0.5f;
             }
@@ -269,5 +272,10 @@ public partial class WorldManagement : MonoBehaviour
                                                              Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.y + (4 - j - inclinedOffsety) * 1.5f,
                                                              Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.z + 0.0f);
         }
+    }
+
+    public Map GlobalMap {
+        get => globalMap;
+        set => globalMap = value;
     }
 }
