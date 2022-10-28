@@ -1,23 +1,21 @@
 ﻿using System;
+using UnityEngine;
 
 [Serializable]
 public class Biome
 {
-    private BiomeData _type;
-    private SVector3 Center = new SVector3();
+    private BiomeType type;
+    private SVector3 center;
     private int radius;
-
-    public Action OnGrow = delegate { };
-    public Biome(BiomeData type)
+    public Biome(BiomeType Type, Vector3 Center, int Radius)
     {
-        _type = type;
+        type = Type;
+        center = new SVector3(Center);
+        radius = Radius;
     }
 
-    public void TryGrow() {
-        bool grow;
-        //todo: make growing logic here
-        grow = false;
-        if(grow)
-            OnGrow?.Invoke();
-    }
+    public int X => (int)center.x;
+    public int Y => (int)center.y;
+    public Vector3 Center => center.ToV3();
+    public int Radius => radius;
 }
