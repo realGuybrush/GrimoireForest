@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace MyAssets.Scripts.Environment {
 
@@ -53,8 +54,7 @@ namespace MyAssets.Scripts.Environment {
                 for (int j = 0; j < MT.BlocksInTile; j++) {
                     if (MT.blocks[i][j] != (int) BlockType.Empty)
                         Instantiate(
-                            environmentFactory.BiomeDTOs[(int) MT.biome1][(int) MT.biome2]
-                                .BlockPrefabs[MT.blocks[i][j]],
+                            environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.blocks[i][j]],
                             new Vector3(
                                 (j - MT.BlocksInTile / 2) * 1.5f + xTileOffset * (MT.BlocksInTile * 1.5f),
                                 (i) * -1.5f, 0.0f), new Quaternion(), transform.GetChild(6));
@@ -62,7 +62,7 @@ namespace MyAssets.Scripts.Environment {
             }
 
             for (int i = 0; i < MT.TilePlatforms.Count; i++) {
-                Instantiate(environmentFactory.BiomeDTOs[(int) MT.biome1][(int) MT.biome2], MT.TilePlatforms[i],
+                Instantiate(environmentFactory.GetBiomePlatformPrefabs(MT.biome1, MT.biome2), MT.TilePlatforms[i],
                     transform);
             }
             for (int i = 0; i < MT.TileChests.Count; i++) {
@@ -84,10 +84,8 @@ namespace MyAssets.Scripts.Environment {
             int newAmount;
             //fix create here array of entities in tile to spawn them
             for (int i = 0;
-                i < environmentFactory.BiomeDTOs[(int) MT.biome1][(int) MT.biome2].EntitiesPrefabs.Count;
-                i++) {
-                newAmount = Random.Range(0,
-                    environmentFactory.BiomeDTOs[(int) MT.biome1][(int) MT.biome2].EntitiesAmounts[i]);
+                i < environmentFactory.GetBiomeEntitiesPrefabs(MT.biome1, MT.biome2).Count; i++) {
+                newAmount = Random.Range(0, environmentFactory.GetBiomeEntitiesAmounts(MT.biome1, MT.biome2)[i]);
                 /*if (EntityPrefabs[environmentFactory.BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<NPCBehaviour>() != null)
                 {
                     newAmount = 1;
@@ -106,9 +104,9 @@ namespace MyAssets.Scripts.Environment {
             }
         }
 
-        void Instantiate(BiomeData BTD, EnvironmentStuffingValues ESV, Transform parent) {
+        void Instantiate(List<GameObject> PlatformPrefab, EnvironmentStuffingValues ESV, Transform parent) {
             try {
-                GameObject.Instantiate(BTD.PlatformPrefab[ESV.indexInPrefabs], ESV.location.ToV3(), new Quaternion(),
+                GameObject.Instantiate(PlatformPrefab[ESV.indexInPrefabs], ESV.location.ToV3(), new Quaternion(),
                     parent);
             } catch {
                 Debug.Log(ESV.indexInPrefabs);

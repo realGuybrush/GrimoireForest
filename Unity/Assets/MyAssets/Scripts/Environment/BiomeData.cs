@@ -30,3 +30,8 @@ public class BiomeData: ScriptableObject
     public Chest ChestPrefab;
     public List<GameObject> BlockPrefabs;
 }
+
+[Serializable]
+public class ListBiomeData {
+    public List<BiomeData> list = new List<BiomeData>();
+}

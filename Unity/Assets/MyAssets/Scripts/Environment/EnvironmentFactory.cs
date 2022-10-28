@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
+using MyAssets.Scripts.Entities;
 using UnityEngine;
 
 namespace MyAssets.Scripts.Environment {
 
     public class EnvironmentFactory : MonoBehaviour {
-        [SerializeField]
-        private string _directory;
 
-        public List<List<BiomeData>> BiomeDTOs;
+        [SerializeField]
+        private List<ListBiomeData> BiomeDTOs = new List<ListBiomeData>();
 
         public static EnvironmentFactory GetInstance;
 
@@ -34,7 +34,7 @@ namespace MyAssets.Scripts.Environment {
         public int GetBiomeRadius(BiomeType biomeType, int maxSize) {
             int biomeIndex = (int) biomeType;
             if (biomeIndex < BiomeDTOs.Count) {
-                var biome = BiomeDTOs[biomeIndex][biomeIndex];
+                var biome = BiomeDTOs[biomeIndex].list[biomeIndex];
                 return Random.Range((int) biome.minPercentSize, maxSize * (int) biome.maxPercentSize / 100);
             }
             return maxSize;
@@ -42,12 +42,12 @@ namespace MyAssets.Scripts.Environment {
 
         public int GetBiomeGrowth(BiomeType biomeType) {
             int type = (int) biomeType;
-            return BiomeDTOs[type][type].growthPower;
+            return BiomeDTOs[type].list[type].growthPower;
         }
 
         public int GetBiomeResist(BiomeType biomeType) {
             int type = (int) biomeType;
-            return BiomeDTOs[type][type].resistancePower;
+            return BiomeDTOs[type].list[type].resistancePower;
         }
 
         public Sprite GetTileSpriteByBiome() {
@@ -66,8 +66,24 @@ namespace MyAssets.Scripts.Environment {
             return null;
         }
 
+        public List<GameObject> GetBiomeBlockPrefabs(BiomeType biome1, BiomeType biome2) {
+            return BiomeDTOs[(int) biome1].list[(int) biome2].BlockPrefabs;
+        }
+
+        public List<GameObject> GetBiomePlatformPrefabs(BiomeType biome1, BiomeType biome2) {
+            return BiomeDTOs[(int) biome1].list[(int) biome2].PlatformPrefab;
+        }
+
+        public List<AbstractEntity> GetBiomeEntitiesPrefabs(BiomeType biome1, BiomeType biome2) {
+            return BiomeDTOs[(int) biome1].list[(int) biome2].EntitiesPrefabs;
+        }
+
+        public List<int> GetBiomeEntitiesAmounts(BiomeType biome1, BiomeType biome2) {
+            return BiomeDTOs[(int) biome1].list[(int) biome2].EntitiesAmounts;
+        }
+
         public int GetBiomePlatformCount(BiomeType biome1, BiomeType biome2) {
-            return BiomeDTOs[(int) biome1][(int) biome2].PlatformPrefab.Count;
+            return BiomeDTOs[(int) biome1].list[(int) biome2].PlatformPrefab.Count;
         }
 
         public int BiomeAmount => BiomeDTOs.Count;
