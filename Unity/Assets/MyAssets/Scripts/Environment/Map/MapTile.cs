@@ -90,7 +90,7 @@ public class MapTile {
     public InhabitationPattern spawnPattern = new InhabitationPattern();
 
     //todo: replace with grid
-    public List<List<int>> blocks = new List<List<int>>();
+    public List<List<BlockType>> blocks = new List<List<BlockType>>();
     public List<EntityValues> TileEntitiesPositions = new List<EntityValues>();
     public List<EnvironmentStuffingValues> TileChests = new List<EnvironmentStuffingValues>();
     public List<Inventory> TileChestsInventry = new List<Inventory>();
@@ -103,10 +103,13 @@ public class MapTile {
     public List<PassageType> passages = new List<PassageType>()
         {PassageType.No, PassageType.No, PassageType.No, PassageType.No};
 
-    public int BlocksInTile = 43;
+    private int gridHeight;
+    private int gridWidth;
 
-    public MapTile() {
+    public MapTile(int GridWidth = 43, int GridHeight = 9) {
         environmentFactory = EnvironmentFactory.GetInstance;
+        gridWidth = GridWidth;
+        gridHeight = GridHeight;
         GenerateTileStructure();
     }
 
@@ -117,50 +120,53 @@ public class MapTile {
     }
 
     void GenerateBlocks(int maxDiffs = 0) {
-        int temp = 4;
+        // /int temp = 4;
         if (maxDiffs > 4)
             maxDiffs = 4;
         if (maxDiffs < -4)
             maxDiffs = -4;
-        for (int i = 0; i < 4; i++) {
-            blocks.Add(new List<int>());
-            for (int j = 0; j < BlocksInTile; j++)
-                blocks[i].Add((int) BlockType.Empty);
+        for (int i = 0; i < gridHeight / 2; i++) {
+            blocks.Add(new List<BlockType>());
+            for (int j = 0; j < gridWidth; j++)
+                blocks[i].Add(BlockType.NoTop);
         }
-        for (int i = 4; i < 9; i++) {
-            blocks.Add(new List<int>());
-            for (int j = 0; j < BlocksInTile; j++)
-                blocks[i].Add((int) BlockType.NoTop);
+        blocks.Add(new List<BlockType>());
+        for (int j = 0; j < gridWidth; j++)
+            blocks[gridHeight / 2].Add( BlockType.Top);
+        for (int i = gridHeight / 2 + 1; i < gridHeight; i++) {
+            blocks.Add(new List<BlockType>());
+            for (int j = 0; j < gridWidth; j++)
+                blocks[i].Add(BlockType.Empty);
         }
-        FromCenterRow(temp, maxDiffs);
+        // /FromCenterRow(temp, maxDiffs);
         //FromCenterAndEdges(temp, maxDiffs, MT);
         //FromCenterRowWavy(temp, maxDiffs, MT);
         //PrintTileToFile(MT.blocks, 1,1);
-        SetInclinations();
-        SetBushesDoors();
+        // /SetInclinations();
+        // /SetBushesDoors();
     }
 
     private void SetInclinations() {
-        for (int i = 0; i < BlocksInTile; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (blocks[j][i] == (int) BlockType.NoTop) {
-                    if (j != 8) {
-                        if ((j == 0) || (blocks[j - 1][i] == (int) BlockType.Empty)) {
-                            if ((i == 0) || ((blocks[j + 1][i - 1] != (int) BlockType.Empty) &&
-                                             (blocks[j][i - 1] == (int) BlockType.Empty))) {
-                                blocks[j][i] = (int) BlockType.IncLeftBushUD;
+        for (int i = 0; i < gridWidth; i++) {
+            for (int j = 0; j < gridHeight; j++) {
+                if (blocks[j][i] == BlockType.NoTop) {
+                    if (j != gridHeight - 1) {
+                        if ((j == 0) || (blocks[j - 1][i] == BlockType.Empty)) {
+                            if ((i == 0) || ((blocks[j + 1][i - 1] != BlockType.Empty) &&
+                                             (blocks[j][i - 1] == BlockType.Empty))) {
+                                blocks[j][i] = BlockType.IncLeftBushUD;
                             }
-                            if ((i == BlocksInTile - 1) || ((blocks[j + 1][i + 1] != (int) BlockType.Empty) &&
-                                                            (blocks[j][i + 1] == (int) BlockType.Empty))) {
-                                blocks[j][i] = (int) BlockType.IncRightBushUD;
+                            if ((i == gridWidth - 1) || ((blocks[j + 1][i + 1] != BlockType.Empty) &&
+                                                            (blocks[j][i + 1] == BlockType.Empty))) {
+                                blocks[j][i] = BlockType.IncRightBushUD;
                             }
-                            if (((i == 0) || (blocks[j][i - 1] == (int) BlockType.Empty)) &&
-                                ((i == BlocksInTile - 1) || (blocks[j][i + 1] == (int) BlockType.Empty))) {
-                                blocks[j][i] = (int) BlockType.Empty;
+                            if (((i == 0) || (blocks[j][i - 1] == BlockType.Empty)) &&
+                                ((i == gridWidth - 1) || (blocks[j][i + 1] == BlockType.Empty))) {
+                                blocks[j][i] = BlockType.Empty;
                             }
-                            if (((i == 0) || (blocks[j][i - 1] != (int) BlockType.Empty)) &&
-                                ((i == BlocksInTile - 1) || (blocks[j][i + 1] != (int) BlockType.Empty)))
-                                blocks[j][i] = (int) BlockType.TopBushUD;
+                            if (((i == 0) || (blocks[j][i - 1] != BlockType.Empty)) &&
+                                ((i == gridWidth - 1) || (blocks[j][i + 1] != BlockType.Empty)))
+                                blocks[j][i] = BlockType.TopBushUD;
                         }
                     }
                 }
@@ -170,51 +176,51 @@ public class MapTile {
 
     private void SetBushesDoors() {
         for (int i = blocks[0].Count / 2 - 4; i < blocks[0].Count / 2 + 3; i++) {
-            for (int j = 0; j < 9; j++) {
-                if (blocks[j][i] == (int) BlockType.TopBushUD) {
-                    if ((j == 0) || (blocks[j - 1][i] == (int) BlockType.Empty)) {
+            for (int j = 0; j < gridHeight; j++) {
+                if (blocks[j][i] ==  BlockType.TopBushUD) {
+                    if ((j == 0) || (blocks[j - 1][i] == BlockType.Empty)) {
                         if (passages[0] == PassageType.Door) {
                             if (passages[2] == PassageType.Door) {
-                                blocks[j][i] = (int) BlockType.Top;
+                                blocks[j][i] = BlockType.Top;
                             } else {
-                                blocks[j][i] = (int) BlockType.TopBushD;
+                                blocks[j][i] = BlockType.TopBushD;
                             }
                         } else {
                             if (passages[2] == PassageType.Door) {
-                                blocks[j][i] = (int) BlockType.TopBushU;
+                                blocks[j][i] = BlockType.TopBushU;
                             } else {
-                                blocks[j][i] = (int) BlockType.TopBushUD;
+                                blocks[j][i] = BlockType.TopBushUD;
                             }
                         }
                     }
                 }
-                if (blocks[j][i] == (int) BlockType.IncLeftBushUD) {
+                if (blocks[j][i] == BlockType.IncLeftBushUD) {
                     if (passages[0] == PassageType.Door) {
                         if (passages[2] == PassageType.Door) {
-                            blocks[j][i] = (int) BlockType.InclLeft;
+                            blocks[j][i] = BlockType.InclLeft;
                         } else {
-                            blocks[j][i] = (int) BlockType.IncLeftBushD;
+                            blocks[j][i] = BlockType.IncLeftBushD;
                         }
                     } else {
                         if (passages[2] == PassageType.Door) {
-                            blocks[j][i] = (int) BlockType.IncLeftBushU;
+                            blocks[j][i] = BlockType.IncLeftBushU;
                         } else {
-                            blocks[j][i] = (int) BlockType.IncLeftBushUD;
+                            blocks[j][i] = BlockType.IncLeftBushUD;
                         }
                     }
                 }
-                if (blocks[j][i] == (int) BlockType.IncRightBushUD) {
+                if (blocks[j][i] == BlockType.IncRightBushUD) {
                     if (passages[0] == PassageType.Door) {
                         if (passages[2] == PassageType.Door) {
-                            blocks[j][i] = (int) BlockType.InclRight;
+                            blocks[j][i] = BlockType.InclRight;
                         } else {
-                            blocks[j][i] = (int) BlockType.IncRightBushD;
+                            blocks[j][i] = BlockType.IncRightBushD;
                         }
                     } else {
                         if (passages[2] == PassageType.Door) {
-                            blocks[j][i] = (int) BlockType.IncRightBushU;
+                            blocks[j][i] = BlockType.IncRightBushU;
                         } else {
-                            blocks[j][i] = (int) BlockType.IncRightBushUD;
+                            blocks[j][i] = BlockType.IncRightBushUD;
                         }
                     }
                 }
@@ -224,10 +230,10 @@ public class MapTile {
 
     void FromCenterRow(int middle, int maxDiffs) {
         int temp;
-        for (int i = 0; i < BlocksInTile; i++) {
+        for (int i = 0; i < gridWidth; i++) {
             temp = Random.Range(-maxDiffs, (maxDiffs));
-            for (int j = 0; j < 9; j++) {
-                blocks[j][i] = j < middle + temp ? (int) BlockType.Empty : (int) BlockType.NoTop;
+            for (int j = 0; j < gridHeight; j++) {
+                blocks[j][i] = j < middle + temp ? BlockType.Empty : BlockType.NoTop;
                 //4-empty; 3-solid without topping
             }
         }
@@ -240,7 +246,7 @@ public class MapTile {
             maxDiffs = middle;
         int temp = 0;
         int addt = 1;
-        for (int i = BlocksInTile / 2; i < BlocksInTile; i++) {
+        for (int i = gridWidth / 2; i < gridWidth; i++) {
             if ((temp < maxDiffs) && (addt == 1)) {
                 temp += addt;
             } else {
@@ -251,11 +257,11 @@ public class MapTile {
             } else {
                 addt = 1;
             }
-            for (int j = 0; j < 9; j++) {
-                blocks[j][i] = ((j < middle + temp) ? 4 : 3); //4-empty; 3-solid without topping
+            for (int j = 0; j < gridHeight; j++) {
+                blocks[j][i] = ((j < middle + temp) ? BlockType.Empty : BlockType.NoTop);
             }
         }
-        for (int i = BlocksInTile / 2 - 1; i > -1; i--) {
+        for (int i = gridWidth / 2 - 1; i > -1; i--) {
             if ((temp < maxDiffs) && (addt == 1)) {
                 temp += addt;
             } else {
@@ -266,18 +272,18 @@ public class MapTile {
             } else {
                 addt = 1;
             }
-            for (int j = 0; j < 9; j++) {
-                blocks[j][i] = ((j < middle + temp) ? 4 : 3); //4-empty; 3-solid without topping
+            for (int j = 0; j < gridHeight; j++) {
+                blocks[j][i] = ((j < middle + temp) ? BlockType.Empty : BlockType.NoTop);
             }
         }
     }
 
     void FromCenterAndEdges(int middle, int maxDiffs) {
         int temp = middle;
-        for (int i = 0; i < (BlocksInTile / 4 + 1); i++) {
+        for (int i = 0; i < (gridWidth / 4 + 1); i++) {
             temp += Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = 0; j < 9; j++) {
-                blocks[j][i] = ((j < temp) ? 4 : 3); //4-empty; 3-solid without topping
+            for (int j = 0; j < gridHeight; j++) {
+                blocks[j][i] = ((j < temp) ? BlockType.Empty : BlockType.NoTop);
             }
             /*temp = UnityEngine.Random.Range(-maxDiffs, (maxDiffs+1));
             for (int j = 4 + temp; j != 4- (int)Mathf.Sign(temp); j -= (int)Mathf.Sign(temp))
@@ -286,24 +292,24 @@ public class MapTile {
             }*/
         }
         temp = 4;
-        for (int i = BlocksInTile / 2; i > (BlocksInTile / 4); i--) {
+        for (int i = gridWidth / 2; i > (gridWidth / 4); i--) {
             temp += Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = 0; j < 9; j++) {
-                blocks[j][i] = ((j < temp) ? 4 : 3); //4-empty; 3-solid without topping
+            for (int j = 0; j < gridHeight; j++) {
+                blocks[j][i] = ((j < temp) ? BlockType.Empty : BlockType.NoTop);
             }
         }
         temp = 4;
-        for (int i = BlocksInTile / 2 + 1; i < (3 * (BlocksInTile / 4) + 1); i++) {
+        for (int i = gridWidth / 2 + 1; i < (3 * (gridWidth / 4) + 1); i++) {
             temp += Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = 0; j < 9; j++) {
-                blocks[j][i] = ((j < temp) ? 4 : 3); //4-empty; 3-solid without topping
+            for (int j = 0; j < gridHeight; j++) {
+                blocks[j][i] = ((j < temp) ? BlockType.Empty : BlockType.NoTop);
             }
         }
         temp = 4;
-        for (int i = BlocksInTile - 1; i > (3 * (BlocksInTile / 4)); i--) {
+        for (int i = gridWidth - 1; i > (3 * (gridWidth / 4)); i--) {
             temp += Random.Range(-maxDiffs, (maxDiffs + 1));
-            for (int j = 0; j < 9; j++) {
-                blocks[j][i] = ((j < temp) ? 4 : 3); //4-empty; 3-solid without topping
+            for (int j = 0; j < gridHeight; j++) {
+                blocks[j][i] = ((j < temp) ? BlockType.Empty : BlockType.NoTop);
             }
         }
     }
@@ -346,7 +352,7 @@ public class MapTile {
     }
 
     void AdjustPlatformPositions() {
-        int midlevel = 4;
+        int midlevel = gridHeight/2;
         float inclinedOffsety = 0.0f;
         int j;
         int k;
@@ -357,8 +363,8 @@ public class MapTile {
                 k = 0;
             if (k > blocks[0].Count - 1)
                 k = blocks[0].Count - 1;
-            for (j = 0; j < 9; j++) {
-                if (blocks[j][k] != 4)
+            for (j = 0; j < gridHeight; j++) {
+                if (blocks[j][k] != BlockType.Empty)
                     break;
             }
             TilePlatforms[i].location = new SVector3(TilePlatforms[i].location.x,
@@ -510,4 +516,8 @@ public class MapTile {
                 biome1 = newBiomeType;
         }
     }
+
+    public int GridHeight => gridHeight;
+    public int GridWidth => gridWidth;
+
 }

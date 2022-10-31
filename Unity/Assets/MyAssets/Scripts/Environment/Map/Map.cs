@@ -16,6 +16,9 @@ public class Map : MonoBehaviour {
 
     private EnvironmentFactory environmentFactory;
 
+    [SerializeField]
+    private int gridWidth, gridHeight;
+
     //[NonSerialized]
     //public List<GameObject> GlobalEntities = new List<GameObject>();
     public List<int> GlobalEntitiesLocalIndexes = new List<int>();
@@ -65,7 +68,7 @@ public class Map : MonoBehaviour {
         for (int y = 0; y < height; y++) {
             Tiles.Add(new List<MapTile>());
             for (int x = 0; x < width; x++) {
-                Tiles[y].Add(new MapTile());
+                Tiles[y].Add(new MapTile(gridWidth, gridHeight));
             }
         }
         SetTiles();

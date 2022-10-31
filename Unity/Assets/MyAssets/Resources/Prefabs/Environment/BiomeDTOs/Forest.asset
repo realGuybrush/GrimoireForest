@@ -35,16 +35,35 @@ MonoBehaviour:
   ChestPrefab: {fileID: 7883461189459879511, guid: 9376d4b183702ea44886021e836d2d8c,
     type: 3}
   BlockPrefabs:
-  - {fileID: 2300647659135352677, guid: 3c9490384d0f3dc42aec76cfc2a7adf9, type: 3}
-  - {fileID: 4189118229569921100, guid: fc5d39bd25a95d34d99377cb16e72730, type: 3}
-  - {fileID: 4189118229569921100, guid: 50df195d0278bdd4b9ba5adb58b6c265, type: 3}
-  - {fileID: 4189118229569921100, guid: 652eeeb3b991880418a3f15170749237, type: 3}
-  - {fileID: 4189118229569921100, guid: 900613c2d8bcef54aa6ddb0da97df0a2, type: 3}
-  - {fileID: 1730961439360563868, guid: 7f6a3774e02330040bfe3c27b5d6bef2, type: 3}
-  - {fileID: 1730961439360563868, guid: b489f6758c729fd44addd210626c389e, type: 3}
-  - {fileID: 1730961439360563868, guid: e3ba0cafb5725c44786353769b9ade72, type: 3}
-  - {fileID: 1730961439360563868, guid: d86ced76e0718694abe4adc705832b31, type: 3}
-  - {fileID: 5509673856978091849, guid: 224935db8d97a664a8efa80c35e05cfb, type: 3}
-  - {fileID: 5509673856978091849, guid: 2a75f7129de9cf549917ed396b410079, type: 3}
-  - {fileID: 5509673856978091849, guid: 59682760d2400b349a621952adaff2d3, type: 3}
-  - {fileID: 5509673856978091849, guid: 0e2fb90364af58449a0d11d275bbca97, type: 3}
+    reorderableList:
+      canAdd: 1
+      canRemove: 1
+      draggable: 1
+      expandable: 1
+      multipleSelection: 1
+      isExpanded: 1
+      label:
+        m_Text: Keys
+        m_Image: {fileID: 0}
+        m_Tooltip: 
+      headerHeight: 18
+      footerHeight: 13
+      slideEasing: 0.15
+      verticalSpacing: 2
+      showDefaultBackground: 1
+      elementDisplayType: 0
+      elementNameProperty: 
+      elementNameOverride: 
+      elementIcon: {fileID: 0}
+    reqReferences: {fileID: 0}
+    isExpanded: 1
+    _keyValues: 03000000010000000200000004000000000000000a0000000d000000
+    _keys: 03000000010000000200000004000000000000000a0000000d000000
+    _values:
+    - {fileID: 11400000, guid: 78c14e7def0a4a544bff6647af9d1e9e, type: 2}
+    - {fileID: 11400000, guid: 47a3c528e8bf2434dbd83c35f6b43348, type: 2}
+    - {fileID: 11400000, guid: 6cacbec0cd7ed434bb16861ff5fc5396, type: 2}
+    - {fileID: 0}
+    - {fileID: 11400000, guid: a0e0feedde08bbe488475d1d8b01c682, type: 2}
+    - {fileID: 11400000, guid: 78f016ac50435594f8f6142872813b20, type: 2}
+    - {fileID: 11400000, guid: 38fee9393f1480541baa49f05e5f53c6, type: 2}

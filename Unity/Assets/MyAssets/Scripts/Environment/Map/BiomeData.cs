@@ -2,7 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using MyAssets.Scripts.Entities;
+using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
+using UnityEngine.Tilemaps;
+
 [Serializable]
 public enum BiomeType { Forest, Dump, Waterfall, Shroom, River, Caves, Swamp, Mill, Maze };//{ Forest, Dump, DumpWaterfall, DumpShroom, DumpRiver, DumpCaves, DumpSwamp, DumpMill, DumpMaze, Waterfall, WaterfallShroom, WaterfallRiver, WaterfallCaves, WaterfallSwamp, WaterfallMill, WaterfallMaze, Shroom, ShroomRiver, ShroomCaves, ShroomSwamp, ShroomMill, ShroomMaze, River, RiverCaves, RiverSwamp, RiverMill, RiverMaze, Caves, CavesSwamp, CavesMill, CavesMaze, Swamp, SwampMill, SwampMaze, Mill, MillMaze, Maze };
 
@@ -27,7 +30,7 @@ public class BiomeData: ScriptableObject
     public List<EnemyMovement> EntitiesPrefabs;
     public List<int> EntitiesAmounts;
     public Chest ChestPrefab;
-    public List<GameObject> BlockPrefabs;
+    public SerializableDictionaryBase<BlockType, TileBase> BlockPrefabs;
 }
 
 [Serializable]

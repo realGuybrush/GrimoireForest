@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AdjustBGY : MonoBehaviour
 {
-    public void AdjustBGPartPositions(List<List<int>> blocks, int BGPartNumberAsChild, float yDiff = 0.0f)
+    public void AdjustBGPartPositions(List<List<BlockType>> blocks, int BGPartNumberAsChild, float yDiff = 0.0f)
     {
         int midlevel = 4;
         float inclinedOffsety = 0.0f;
@@ -25,7 +25,7 @@ public class AdjustBGY : MonoBehaviour
                 k = blocks[0].Count - 1;
             for (j = 0; j < 9; j++)
             {
-                if (blocks[j][k] != 4)
+                if (blocks[j][k] != BlockType.Empty)
                     break;
             }
             /*if (blocks[j][k] == 1)

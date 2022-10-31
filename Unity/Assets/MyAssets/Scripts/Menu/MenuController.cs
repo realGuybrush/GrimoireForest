@@ -1,9 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MenuController : MonoBehaviour
-{
+public class MenuController : MonoBehaviour {
+    [SerializeField]
+    private Button newGame, resume, quit, exit;
+
     public GameObject NewGameSheet;
     public GameObject SaveLoadSheet;
     public GameObject OptionsSheet;
@@ -11,64 +13,50 @@ public class MenuController : MonoBehaviour
     public bool inGame = false;
     private string continueAction = "";
     private int SlotIndex = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Action OnGameGenerationLaunch = delegate { };
 
-    void ShowMessage(string message)
-    {
+    void ShowMessage(string message) {
         Messager.SetActive(true);
         Messager.transform.GetChild(0).gameObject.GetComponent<UnityEngine.UI.Text>().text = message;
     }
-    public void NewGame()
-    {
+
+    public void NewGame() {
         NewGameSheet.SetActive(true);
     }
 
-    public void LaunchNewGame()
-    {
+    public void LaunchNewGame() {
         Escape();
         FlipMenu(false);
         inGame = true;
-        GameObject.Find("WorldManager").GetComponent<WorldManagement>().MapGeneration();
+        OnGameGenerationLaunch?.Invoke();
     }
-    public void Resume()
-    {
+
+    public void Resume() {
         CloseAll();
         GameObject.Find("Player").GetComponent<PlayerControls>().ShowHideMenu(true, false);
     }
-    public void CloseAll()
-    {
+
+    public void CloseAll() {
         NewGameSheet.SetActive(false);
         SaveLoadSheet.SetActive(false);
         OptionsSheet.SetActive(false);
         continueAction = "";
     }
-    public void Load(int slotIndex = 0)
-    {
+
+    public void Load(int slotIndex = 0) {
         SlotIndex = slotIndex;
         SaveLoadSheet.SetActive(true);
         continueAction = "Load";
-        if (inGame)
-        {
+        if (inGame) {
             ShowMessage("Do you really want to load?\nAll current progress will be lost.");
-        }
-        else
-        {
+        } else {
             ContinueAction(true);
             Resume();
         }
     }
-    public void Save(int slotIndex = 0)
-    {
+
+    public void Save(int slotIndex = 0) {
         //SlotIndex = slotIndex;
         SaveLoadSheet.SetActive(true);
         continueAction = "Save";
@@ -79,35 +67,30 @@ public class MenuController : MonoBehaviour
         //}
         //else
         //{
-           ContinueAction(true);
+        ContinueAction(true);
         //}
     }
-    public void Options()
-    {
+
+    public void Options() {
         OptionsSheet.SetActive(true);
     }
-    public void Quit()
-    {
+
+    public void Quit() {
         ShowMessage("Quit to Title Screen?");
         continueAction = "Quit";
     }
-    public void Exit()
-    {
+
+    public void Exit() {
         ShowMessage("Exit The Game?");
         continueAction = "Exit";
     }
 
-    public void ContinueAction(bool answer)
-    {
+    public void ContinueAction(bool answer) {
         Messager.SetActive(false);
-        if (!answer)
-        {
+        if (!answer) {
             continueAction = "";
-        }
-        else
-        {
-            switch (continueAction)
-            {
+        } else {
+            switch (continueAction) {
                 case "Load":
                     //WM.Load(SlotIndex);
                     FlipMenu(false);
@@ -117,7 +100,7 @@ public class MenuController : MonoBehaviour
                     Resume();
                     break;
                 case "Save":
-                    GameObject.Find("WorldManager").GetComponent<WorldManagement>().SaveGame();//SlotIndex
+                    GameObject.Find("WorldManager").GetComponent<WorldManagement>().SaveGame(); //SlotIndex
                     Debug.Log("Saved.");
                     break;
                 case "Quit":
@@ -133,62 +116,25 @@ public class MenuController : MonoBehaviour
             }
         }
     }
-    public void FlipMenu(bool mainmenu)
-    {
-        GameObject G, F;
-        if (mainmenu)
-        {
-            G = GameObject.Find("Resume");
-            if (G != null)
-            {
-                G.name = "NewGame";
-                G.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "New Game";
-            }
-            F = GameObject.Find("Quit");
-            if (F != null)
-            {
-                F.name = "Exit";
-                F.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Exit";
-            }
-        }
-        else
-        {
-            G = GameObject.Find("NewGame");
-            if (G != null)
-            {
-                G.name = "Resume";
-                G.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Resume";
-            }
-            F = GameObject.Find("Exit");
-            if (F != null)
-            {
-                F.name = "Quit";
-                F.transform.GetChild(0).GetComponent<UnityEngine.UI.Text>().text = "Quit";
-            }
-        }
+
+    private void FlipMenu(bool mainMenu) {
+        newGame.gameObject.SetActive(mainMenu);
+        resume.gameObject.SetActive(!mainMenu);
+        quit.gameObject.SetActive(!mainMenu);
+        exit.gameObject.SetActive(mainMenu);
     }
 
-    public bool Escape()
-    {
-        if (Messager.activeSelf)
-        {
+    public bool Escape() {
+        if (Messager.activeSelf) {
             Messager.SetActive(false);
             ContinueAction(false);
-        }
-        else
-        {
-            if (NewGameSheet.activeSelf || SaveLoadSheet.activeSelf || OptionsSheet.activeSelf)
-            {
+        } else {
+            if (NewGameSheet.activeSelf || SaveLoadSheet.activeSelf || OptionsSheet.activeSelf) {
                 CloseAll();
-            }
-            else
-            {
-                if (inGame)
-                {
+            } else {
+                if (inGame) {
                     return true;
-                }
-                else
-                {
+                } else {
                     Exit();
                 }
             }

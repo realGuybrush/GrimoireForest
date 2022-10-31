@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MyAssets.Scripts.Environment;
 
-public partial class WorldManagement : MonoBehaviour {
+public partial class WorldManagement {
 
     [SerializeField]
     private Tile tilePrefab;
@@ -13,15 +13,14 @@ public partial class WorldManagement : MonoBehaviour {
 
     public EnvironmentFactory environmentFactory; //todo: make private
 
-    public void DeleteCorridor() {
-        for (int j = 0; j < 5; j++)
-        for (int i = Environment.transform.GetChild(j).transform.childCount - 1; i > -1; i--) {
-            Destroy(Environment.transform.GetChild(j).transform.GetChild(i).gameObject);
-        }
-        for (int i = Environment.transform.childCount - 1; i > 4; i--) {
-            Destroy(Environment.transform.GetChild(i).gameObject);
-        }
-        Player.GetComponent<PlayerControls>().RemoveDoors();
+    public void MapGeneration() {
+        globalMap.Generate_Map();
+        PlayerXMap = (int) globalMap.MapCenter.x;
+        PlayerYMap = (int) globalMap.MapCenter.y;
+        SetGlobalEntities();
+        SpawnCorridor(DirectionType.North);
+        Player.GetComponent<PlayerControls>().ShowHideMenu();
+        Player.transform.position = new Vector3(0.0f, 0.0f, Player.transform.position.z);
     }
 
     public void SpawnCorridor(DirectionType LookTurn = DirectionType.North, bool load = false) {
@@ -52,8 +51,7 @@ public partial class WorldManagement : MonoBehaviour {
                 }
             }
         }
-        GameObject.Find("Main Camera").GetComponent<Camera_Movement>()
-            .SetCameraBoundaries(offsetTilesLeft, offsetTilesRight);
+        mainCamera.SetCameraBoundaries(offsetTilesLeft, offsetTilesRight);
     }
 
     private void SpawnTile(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North,
@@ -61,6 +59,17 @@ public partial class WorldManagement : MonoBehaviour {
             currentlySpawnedTiles.Add(Instantiate(tilePrefab,
                 new Vector3(xTileOffset * TileWidth, 0.0f, 0.0f), new Quaternion(), Environment.transform));
             currentlySpawnedTiles[currentlySpawnedTiles.Count-1].Init(xTileOffset, MT, LookTurn, load);
+    }
+
+    public void DeleteCorridor() {
+        for (int j = 0; j < 5; j++)
+        for (int i = Environment.transform.GetChild(j).transform.childCount - 1; i > -1; i--) {
+            Destroy(Environment.transform.GetChild(j).transform.GetChild(i).gameObject);
+        }
+        for (int i = Environment.transform.childCount - 1; i > 4; i--) {
+            Destroy(Environment.transform.GetChild(i).gameObject);
+        }
+        Player.GetComponent<PlayerControls>().RemoveDoors();
     }
 
     public bool CoordsInBiomeCenters(int x, int y) {
@@ -96,15 +105,5 @@ public partial class WorldManagement : MonoBehaviour {
                 GlobalTalks[i].talk = talk;
             }
         }
-    }
-
-    public void MapGeneration() {
-        globalMap.Generate_Map();
-        PlayerXMap = (int) globalMap.MapCenter.x;
-        PlayerYMap = (int) globalMap.MapCenter.y;
-        SetGlobalEntities();
-        SpawnCorridor(DirectionType.North);
-        Player.GetComponent<PlayerControls>().ShowHideMenu();
-        Player.transform.position = new Vector3(0.0f, 0.0f, Player.transform.position.z);
     }
 }

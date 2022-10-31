@@ -17,18 +17,26 @@ public partial class WorldManagement : MonoBehaviour
     public int PlayerXMap, PlayerYMap;
 
     [SerializeField]
+    private Camera_Movement mainCamera;
+
+    [SerializeField]
     private Map globalMap;
 
+    [SerializeField]
+    private MenusTrigger menusTrigger;
+
     int PlayerCurrentXMapOffset = 0;
-    GameObject Book;
     DirectionType CameraLookDirection = DirectionType.North;
     // Use this for initialization
+//todo: hic sunt dracones v
     void Start()
     {
         //todo: get rid of partial class
 
         environmentFactory = EnvironmentFactory.GetInstance;
-        EnableUI();
+        if (mainCamera == null)
+            mainCamera = Camera.main.gameObject.GetComponent<Camera_Movement>();
+        menusTrigger.InitAll();
         Physics2D.IgnoreLayerCollision(0, 0);
         Physics2D.IgnoreLayerCollision(0, 11);
         Physics2D.IgnoreLayerCollision(0, 14);
@@ -41,23 +49,16 @@ public partial class WorldManagement : MonoBehaviour
         Player = GameObject.Find("Player").GetComponent<PlayerControls>();
         Drop(0, 1, new Vector3(0.0f, 0.0f, 0.0f));
         Drop(3,1,new Vector3(0.0f, 0.0f, 0.0f));
+        menusTrigger.OnCloseMenu += UnStopTime;
+        menusTrigger.Menus.OnGameGenerationLaunch += MapGeneration;
         StopTime();
-    }
-
-    public void EnableUI()
-    {
-        Book = GameObject.Find("Book");
-        Book.GetComponent<MenusTrigger>().InitAll();
-        Book.GetComponent<MenusTrigger>().ShowInv(false);
-        Book.GetComponent<MenusTrigger>().ShowSpell(false);
-        Book.GetComponent<MenusTrigger>().ShowTrade(false);
     }
 
     public void Drop(int itemNumber, int itemCount, Vector3 coordinates)
     {
         for (int i = 0; i < itemCount; i++)
         {
-            GameObject.Instantiate(ItemPrefabs[itemNumber], coordinates, new Quaternion(), GameObject.Find("Items").transform);//.GetComponent<Item>().Start2()
+            Instantiate(ItemPrefabs[itemNumber], coordinates, new Quaternion(), GameObject.Find("Items").transform);//.GetComponent<Item>().Start2()
         }
     }
 
@@ -258,13 +259,13 @@ public partial class WorldManagement : MonoBehaviour
                 k = globalMap.Tiles[y][x].blocks[0].Count - 1;
             for (j = 0; j < 9; j++)
             {
-                if (globalMap.Tiles[y][x].blocks[j][k] != 4)
+                if (globalMap.Tiles[y][x].blocks[j][k] != BlockType.Empty)
                     break;
             }
-            if ((globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.InclLeft)|| (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushD)||
-                (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushU) || (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncLeftBushUD)||
-                (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.InclRight) || (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushD) ||
-                (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushU) || (globalMap.Tiles[y][x].blocks[j][k] == (int)BlockType.IncRightBushUD))
+            if (globalMap.Tiles[y][x].blocks[j][k] == BlockType.InclLeft|| globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftBushD||
+                globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftBushU || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftBushUD||
+                globalMap.Tiles[y][x].blocks[j][k] == BlockType.InclRight || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightBushD ||
+                globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightBushU || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightBushUD)
             {
                 inclinedOffsety = 0.5f;
             }
@@ -272,6 +273,11 @@ public partial class WorldManagement : MonoBehaviour
                                                              Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.y + (4 - j - inclinedOffsety) * 1.5f,
                                                              Environment.transform.GetChild(tileIndexAsChildOfEnv).GetChild(BGPartNumberAsChild).GetChild(active).GetChild(i).position.z + 0.0f);
         }
+    }
+//hic sunt dracones ^
+    private void OnDestroy() {
+        menusTrigger.OnCloseMenu -= UnStopTime;
+        menusTrigger.Menus.OnGameGenerationLaunch -= MapGeneration;
     }
 
     public Map GlobalMap {

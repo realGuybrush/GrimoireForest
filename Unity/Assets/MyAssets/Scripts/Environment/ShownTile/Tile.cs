@@ -1,10 +1,31 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace MyAssets.Scripts.Environment {
 
     public class Tile : MonoBehaviour {
+
+        [SerializeField]
+        private BackGroundMovement farBackground;
+
+        [SerializeField]
+        private BackGroundMovement middleBackground;
+
+        [SerializeField]
+        private BackGroundMovement nearBackground;
+
+        [SerializeField]
+        private BackGroundMovement nearPassageBackground; //todo: maybe merge this with bush line
+
+        [SerializeField]
+        private List<GameObject> borders, borderPassages;
+
+        [SerializeField]
+        private Tilemap ground;
+
         private EnvironmentFactory environmentFactory;
+
         public void Init(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North,
             bool load = false) {
             environmentFactory = EnvironmentFactory.GetInstance;
@@ -12,58 +33,38 @@ namespace MyAssets.Scripts.Environment {
             //make sky and moon placemens as part of Update and put it on movement through various biomes
             //-3 -2 -1 1 R L G
             //wall path
-            transform.GetChild(0).transform.GetChild(0).gameObject.GetComponent<BackGroundMovement>().tileOffset =
-                xTileOffset;
-            transform.GetChild(0).transform.GetChild(0).transform.GetChild(1).gameObject
-                .GetComponent<BackGroundMovement>().tileOffset = xTileOffset;
-            transform.GetChild(1).transform.GetChild(0).gameObject.GetComponent<BackGroundMovement>().tileOffset =
-                xTileOffset;
-            transform.GetChild(1).transform.GetChild(1).gameObject.GetComponent<BackGroundMovement>().tileOffset =
-                xTileOffset;
-            if (MT.passages[(0 + (int) LookTurn) % 4] == PassageType.Door) {
-                transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
-                transform.GetChild(2).transform.GetChild(0).gameObject.SetActive(false);
-            } else {
-                transform.GetChild(1).transform.GetChild(1).gameObject.SetActive(false);
-                transform.GetChild(2).transform.GetChild(1).gameObject.SetActive(false);
+            farBackground.tileOffset = xTileOffset;
+            middleBackground.tileOffset = xTileOffset;
+            nearBackground.tileOffset = xTileOffset;
+            nearPassageBackground.tileOffset = xTileOffset;
+            for (int i = 0; i < 4; i++) {
+                if (MT.passages[(i + (int) LookTurn) % 4] == PassageType.Door) {
+                    borders[i].SetActive(false);
+                } else {
+                    borderPassages[i].SetActive(false);
+                }
             }
-
-            if ((MT.passages[(1 + (int) LookTurn) % 4] != PassageType.No) &&
-                (MT.passages[(1 + (int) LookTurn) % 4] != PassageType.SecretDoor)) {
-                transform.GetChild(4).transform.GetChild(0).gameObject.SetActive(false);
-            }
-            if (MT.passages[(1 + (int) LookTurn) % 4] != PassageType.Door) {
-                transform.GetChild(4).transform.GetChild(1).gameObject.SetActive(false);
-            }
-
-            if (MT.passages[(2 + (int) LookTurn) % 4] == PassageType.Door) {
-                transform.GetChild(3).transform.GetChild(0).gameObject.SetActive(false);
-            } else {
-                transform.GetChild(3).transform.GetChild(1).gameObject.SetActive(false);
-            }
-
-            if ((MT.passages[(3 + (int) LookTurn) % 4] != PassageType.No) &&
-                (MT.passages[(3 + (int) LookTurn) % 4] != PassageType.SecretDoor)) {
-                transform.GetChild(5).transform.GetChild(0).gameObject.SetActive(false);
-            }
-            if (MT.passages[(3 + (int) LookTurn) % 4] != PassageType.Door) {
-                transform.GetChild(5).transform.GetChild(1).gameObject.SetActive(false);
-            }
-
-            for (int i = 0; i < 9; i++) {
-                for (int j = 0; j < MT.BlocksInTile; j++) {
-                    if (MT.blocks[i][j] != (int) BlockType.Empty)
+            int halfHeight = MT.blocks.Count / 2;
+            int halfWidth = MT.GridWidth / 2;
+            int currentBlockY;
+            for (int y = 0; y < MT.blocks.Count; y++) {
+                currentBlockY = y - halfHeight;
+                for (int x = 0; x < MT.GridWidth; x++) {
+                    ground.SetTile(new Vector3Int(x - halfWidth, currentBlockY, 0),
+                        environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.blocks[y][x]]);
+                    /*if (MT.blocks[i][j] != (int) BlockType.Empty)
                         Instantiate(
                             environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.blocks[i][j]],
                             new Vector3(
-                                (j - MT.BlocksInTile / 2) * 1.5f + xTileOffset * (MT.BlocksInTile * 1.5f),
-                                (i) * -1.5f, 0.0f), new Quaternion(), transform.GetChild(6));
+                                (j - MT.GridWidth / 2) * 1.5f + xTileOffset * (MT.GridWidth * 1.5f),
+                                (i) * -1.5f, 0.0f), new Quaternion(), transform.GetChild(6));*/
                 }
             }
 
+            /*todo: fix stuffing spawning
             for (int i = 0; i < MT.TilePlatforms.Count; i++) {
-                Instantiate(environmentFactory.GetBiomePlatformPrefabs(MT.biome1, MT.biome2), MT.TilePlatforms[i],
-                    transform);
+                Instantiate(environmentFactory.GetBiomePlatformPrefabs(MT.biome1, MT.biome2)[MT.TilePlatforms[i].indexInPrefabs],
+                    MT.TilePlatforms[i].location.ToV3(), new Quaternion(), transform);
             }
             for (int i = 0; i < MT.TileChests.Count; i++) {
                 SpawnChest(MT, i);
@@ -76,7 +77,7 @@ namespace MyAssets.Scripts.Environment {
             }
             for (int i = 0; i < MT.TileEntitiesPositions.Count; i++) {
                 SpawnEntity(MT.TileEntitiesPositions[i], i);
-            }
+            }*/
         }
 
         void SetTileEntities(MapTile MT) {
@@ -84,7 +85,8 @@ namespace MyAssets.Scripts.Environment {
             int newAmount;
             //fix create here array of entities in tile to spawn them
             for (int i = 0;
-                i < environmentFactory.GetBiomeEntitiesPrefabs(MT.biome1, MT.biome2).Count; i++) {
+                i < environmentFactory.GetBiomeEntitiesPrefabs(MT.biome1, MT.biome2).Count;
+                i++) {
                 newAmount = Random.Range(0, environmentFactory.GetBiomeEntitiesAmounts(MT.biome1, MT.biome2)[i]);
                 /*if (EntityPrefabs[environmentFactory.BiomePrefabs[(int)MT.biome1][(int)MT.biome2].EntitiesPrefabs[i]].GetComponent<NPCBehaviour>() != null)
                 {
@@ -104,15 +106,6 @@ namespace MyAssets.Scripts.Environment {
             }
         }
 
-        void Instantiate(List<GameObject> PlatformPrefab, EnvironmentStuffingValues ESV, Transform parent) {
-            try {
-                GameObject.Instantiate(PlatformPrefab[ESV.indexInPrefabs], ESV.location.ToV3(), new Quaternion(),
-                    parent);
-            } catch {
-                Debug.Log(ESV.indexInPrefabs);
-            }
-        }
-
         public GameObject SpawnEntity(EntityValues EV, int parentIndex = -1) {
             /*GameObject entity =
                 GameObject.Instantiate(EntityPrefabs[EV.indexInPrefabs], GameObject.Find("Entities").transform);
@@ -127,7 +120,7 @@ namespace MyAssets.Scripts.Environment {
                         .attachedTo = parentIndex;
                 }
             }
-            return entity;*///todo: fix
+            return entity;*/ //todo: fix
             return null;
         }
 

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
+using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace MyAssets.Scripts.Environment {
 
@@ -65,7 +67,7 @@ namespace MyAssets.Scripts.Environment {
             return null;
         }
 
-        public List<GameObject> GetBiomeBlockPrefabs(BiomeType biome1, BiomeType biome2) {
+        public SerializableDictionaryBase<BlockType, TileBase> GetBiomeBlockPrefabs(BiomeType biome1, BiomeType biome2) {
             return BiomeDTOs[(int) biome1].list[(int) biome2].BlockPrefabs;
         }
 
