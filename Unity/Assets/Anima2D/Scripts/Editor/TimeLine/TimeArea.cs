@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using UnityEditor;
+#pragma warning disable 414
 
 namespace Anima2D
 {

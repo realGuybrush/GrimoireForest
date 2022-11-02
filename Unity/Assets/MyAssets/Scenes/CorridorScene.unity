@@ -3999,7 +3999,7 @@ MonoBehaviour:
     type: 3}
   PlayerXMap: 0
   PlayerYMap: 0
-  mainCamera: {fileID: 0}
+  mainCamera: {fileID: 519420030}
   globalMap: {fileID: 668901896}
   menusTrigger: {fileID: 7545799}
 --- !u!4 &668901895
@@ -5896,7 +5896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BiomeDTOs:
   - list:
-    - {fileID: 11400000, guid: f7e8791b343754e42856524267bd2ef8, type: 2}
+    - {fileID: 11400000, guid: 932ad41588286ea43808610889aa955d, type: 2}
 --- !u!4 &916860865
 Transform:
   m_ObjectHideFlags: 0

@@ -22,16 +22,6 @@ namespace MyAssets.Scripts.Environment {
             //WARNING! BIOMES MUST BE PUT IN List<List<BiomesData>> MANUALLY, BECAUSE IT IS A SQUARE MATRIX!
         }
 
-        public List<GameObject> RemoveAllNull(List<GameObject> L) {
-            for (int i = 0; i < L.Count; i++) {
-                if (L[i] == null) {
-                    L.RemoveAt(i);
-                    i--;
-                }
-            }
-            return L;
-        }
-
         public int GetBiomeRadius(BiomeType biomeType, int maxSize) {
             int biomeIndex = (int) biomeType;
             if (biomeIndex < BiomeDTOs.Count) {
@@ -85,6 +75,11 @@ namespace MyAssets.Scripts.Environment {
 
         public int GetBiomePlatformCount(BiomeType biome1, BiomeType biome2) {
             return BiomeDTOs[(int) biome1].list[(int) biome2].PlatformPrefab.Count;
+        }
+
+        public void GenerateGroundByBiome(BiomeType biome1, BiomeType biome2, List<List<BlockType>>blocks,
+            int gridWidth, int gridHeight) {
+                BiomeDTOs[(int) biome1].list[(int) biome2].GenerateGround(blocks, gridWidth, gridHeight);
         }
 
         public int BiomeAmount => BiomeDTOs.Count;

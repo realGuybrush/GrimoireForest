@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46c0998dd1540e64bbe71c66f2708747, type: 3}
+  m_Script: {fileID: 11500000, guid: 92d145ae7e7c4e39b20ac66c808a610b, type: 3}
   m_Name: Forest
   m_EditorClassIdentifier: 
   aggressive: 0
@@ -61,9 +61,12 @@ MonoBehaviour:
     _keys: 03000000010000000200000004000000000000000a0000000d000000
     _values:
     - {fileID: 11400000, guid: 78c14e7def0a4a544bff6647af9d1e9e, type: 2}
-    - {fileID: 11400000, guid: 47a3c528e8bf2434dbd83c35f6b43348, type: 2}
     - {fileID: 11400000, guid: 6cacbec0cd7ed434bb16861ff5fc5396, type: 2}
+    - {fileID: 11400000, guid: 47a3c528e8bf2434dbd83c35f6b43348, type: 2}
     - {fileID: 0}
     - {fileID: 11400000, guid: a0e0feedde08bbe488475d1d8b01c682, type: 2}
-    - {fileID: 11400000, guid: 78f016ac50435594f8f6142872813b20, type: 2}
     - {fileID: 11400000, guid: 38fee9393f1480541baa49f05e5f53c6, type: 2}
+    - {fileID: 11400000, guid: 78f016ac50435594f8f6142872813b20, type: 2}
+  maxWaveHeight: 1
+  maxWaveInstantChange: 1
+  defaultWaveChance: 50
