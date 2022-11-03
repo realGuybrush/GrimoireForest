@@ -24,13 +24,16 @@ namespace MyAssets.Scripts.Environment {
         [SerializeField]
         private Tilemap ground;
 
+        [SerializeField]
+        private Tilemap frontBushes;
+
         private EnvironmentFactory environmentFactory;
 
         public void Init(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North,
             bool load = false) {
             environmentFactory = EnvironmentFactory.GetInstance;
             //GameObject GO2 = GameObject.Instantiate(BiomePrefabs[(int)type1][(int)type2].PlatformPrefab);//print them all, probably set on first spawn
-            //make sky and moon placemens as part of Update and put it on movement through various biomes
+            //make sky and moon placements as part of Update and put it on movement through various biomes
             //-3 -2 -1 1 R L G
             //wall path
             farBackground.tileOffset = xTileOffset;
@@ -52,6 +55,8 @@ namespace MyAssets.Scripts.Environment {
                 for (int x = 0; x < MT.GridWidth; x++) {
                     ground.SetTile(new Vector3Int(x - halfWidth, currentBlockY, 0),
                         environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.blocks[y][x]]);
+                    frontBushes.SetTile(new Vector3Int(x - halfWidth, currentBlockY, 0),
+                        environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.bushes[y][x]]);
                 }
             }
 

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using MyAssets.Scripts;
 using MyAssets.Scripts.Environment;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -91,6 +92,7 @@ public class MapTile {
 
     //todo: replace with grid
     public List<List<BlockType>> blocks = new List<List<BlockType>>();
+    public List<List<BlockType>> bushes = new List<List<BlockType>>();
     public List<EntityValues> TileEntitiesPositions = new List<EntityValues>();
     public List<EnvironmentStuffingValues> TileChests = new List<EnvironmentStuffingValues>();
     public List<Inventory> TileChestsInventry = new List<Inventory>();
@@ -105,16 +107,62 @@ public class MapTile {
 
     private int gridHeight;
     private int gridWidth;
+    private int doorWidth;
 
-    public MapTile(int GridWidth = 43, int GridHeight = 9) {
+    public void Init(int GridWidth = 43, int GridHeight = 9, int DoorWidth = 6) {
         environmentFactory = EnvironmentFactory.GetInstance;
         gridWidth = GridWidth;
         gridHeight = GridHeight;
+        doorWidth = DoorWidth;
         GenerateTileStructure();
     }
 
     public void GenerateTileStructure() {
         environmentFactory.GenerateGroundByBiome(biome1, biome2, blocks, gridWidth, gridHeight);
+        if (gridWidth != blocks[0].Count) gridWidth = blocks[0].Count;
+        if (gridHeight != blocks.Count) gridHeight = blocks.Count;
+        SetBushes();
+        SetDoors();
+    }
+
+    private void SetBushes() {
+        VASUtilities<BlockType>.SetDefaultValuesSquareList(bushes, gridWidth, gridHeight, BlockType.Empty);
+        for (int y = 1; y < gridHeight; y++)
+        for (int x = 0; x < gridWidth; x++) {
+            if (blocks[y][x] == BlockType.TopBushU)
+                bushes[y - 1][x] = BlockType.TopBushD;
+            else if (blocks[y][x] == BlockType.IncLeftBushU)
+                bushes[y - 1][x] = BlockType.IncLeftBushD;
+            else if (blocks[y][x] == BlockType.IncRightBushU)
+                bushes[y - 1][x] = BlockType.IncRightBushD;
+        }
+    }
+
+    private void SetDoors() {
+        //todo: I'm almost totally sure there is a better way to do this
+        if (passages[(int) DirectionType.North] != PassageType.No ||
+            passages[(int) DirectionType.South] != PassageType.No) {
+            for (int x = (gridWidth - doorWidth) / 2; x < (gridWidth + doorWidth) / 2; x++) {
+                for (int y = 1; y < gridHeight; y++) {
+                    if (blocks[y][x] == BlockType.TopBushU) {
+                        if (passages[(int) DirectionType.North] == PassageType.Door)
+                            blocks[y][x] = BlockType.Top;
+                        if (passages[(int) DirectionType.South] == PassageType.Door)
+                            bushes[y - 1][x] = BlockType.Empty;
+                    } else if (blocks[y][x] == BlockType.IncLeftBushU) {
+                        if (passages[(int) DirectionType.North] == PassageType.Door)
+                            blocks[y][x] = BlockType.IncLeftGrassOnly;
+                        if (passages[(int) DirectionType.South] == PassageType.Door)
+                            bushes[y - 1][x] = BlockType.Empty;
+                    } else if (blocks[y][x] == BlockType.IncRightBushU) {
+                        if (passages[(int) DirectionType.North] == PassageType.Door)
+                            blocks[y][x] = BlockType.IncRightGrassOnly;
+                        if (passages[(int) DirectionType.South] == PassageType.Door)
+                            bushes[y - 1][x] = BlockType.Empty;
+                    }
+                }
+            }
+        }
     }
 
     public (bool, bool) TryGrow(float deltaTime) {

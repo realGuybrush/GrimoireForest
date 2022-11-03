@@ -25,26 +25,22 @@ namespace MyAssets.Scripts.Environment.Map.Biomes {
                 heightsList.Add(currentY);
             }
             //defining empty tile grid
-            for (int i = 0; i < gridHeight; i++) {
-                blocks.Add(new List<BlockType>());
-                for (int j = 0; j < gridWidth; j++)
-                    blocks[i].Add(BlockType.Empty);
-            }
+            VASUtilities<BlockType>.SetDefaultValuesSquareList(blocks, gridWidth, gridHeight, BlockType.Empty);
             //filling grid with ground
             for (int x = 0; x < gridWidth; x++) {
                 //simple dirt blocks
                 for (int y = 0; y <= heightsList[x]; y++) {
                     blocks[y][x] = BlockType.NoTop;
-                    blocks[y + 1][x] = BlockType.Top;
+                    blocks[y + 1][x] = BlockType.TopBushU;
                 }
                 //inclined dirt blocks
                 if (x > 0 && heightsList[x - 1] - heightsList[x] == 1) {
                     blocks[heightsList[x] + 1][x] = BlockType.InclLeft;
-                    blocks[heightsList[x] + 2][x] = BlockType.IncLeftGrassOnly;
+                    blocks[heightsList[x] + 2][x] = BlockType.IncLeftBushU;
                 } else {
                     if (x < gridWidth - 1 && heightsList[x + 1] - heightsList[x] == 1) {
                         blocks[heightsList[x] + 1][x] = BlockType.InclRight;
-                        blocks[heightsList[x] + 2][x] = BlockType.IncRightGrassOnly;
+                        blocks[heightsList[x] + 2][x] = BlockType.IncRightBushU;
                     }
                 }
             }

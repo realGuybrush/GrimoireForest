@@ -68,7 +68,7 @@ public class Map : MonoBehaviour {
         for (int y = 0; y < height; y++) {
             Tiles.Add(new List<MapTile>());
             for (int x = 0; x < width; x++) {
-                Tiles[y].Add(new MapTile(gridWidth, gridHeight));
+                Tiles[y].Add(new MapTile());
             }
         }
         SetTiles();
@@ -77,16 +77,17 @@ public class Map : MonoBehaviour {
     }
 
     void SetTiles() {
+        GenerateHorizontalCorridors();
+        GenerateVerticalCorridors();
+        FixCorridors();
         for (int x = 0; x < width; x++) {
             for (int y = 0; y < height; y++) {
                 SetTileBiome(x, y);
+                Tiles[y][x].Init(gridWidth, gridHeight);
                 //todo: move these three in Tile
                 //PrintTileToFile(Tiles[y][x].blocks, x, y);
             }
         }
-        GenerateHorizontalCorridors();
-        GenerateVerticalCorridors();
-        FixCorridors();
         //SaveGame();
     }
 
