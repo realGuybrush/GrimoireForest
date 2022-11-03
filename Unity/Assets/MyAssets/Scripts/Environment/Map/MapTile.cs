@@ -33,10 +33,10 @@ public enum BlockType {
     TopBushUD,
     IncLeftBushU,
     IncLeftBushD,
-    IncLeftBushUD,
+    IncLeftGrassOnly,
     IncRightBushU,
     IncRightBushD,
-    IncRightBushUD
+    IncRightGrassOnly
 };
 
 //todo:move outside

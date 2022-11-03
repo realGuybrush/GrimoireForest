@@ -52,12 +52,6 @@ namespace MyAssets.Scripts.Environment {
                 for (int x = 0; x < MT.GridWidth; x++) {
                     ground.SetTile(new Vector3Int(x - halfWidth, currentBlockY, 0),
                         environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.blocks[y][x]]);
-                    /*if (MT.blocks[i][j] != (int) BlockType.Empty)
-                        Instantiate(
-                            environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.blocks[i][j]],
-                            new Vector3(
-                                (j - MT.GridWidth / 2) * 1.5f + xTileOffset * (MT.GridWidth * 1.5f),
-                                (i) * -1.5f, 0.0f), new Quaternion(), transform.GetChild(6));*/
                 }
             }
 

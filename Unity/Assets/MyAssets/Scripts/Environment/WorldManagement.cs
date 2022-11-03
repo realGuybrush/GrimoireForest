@@ -263,9 +263,9 @@ public partial class WorldManagement : MonoBehaviour
                     break;
             }
             if (globalMap.Tiles[y][x].blocks[j][k] == BlockType.InclLeft|| globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftBushD||
-                globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftBushU || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftBushUD||
+                globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftBushU || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncLeftGrassOnly||
                 globalMap.Tiles[y][x].blocks[j][k] == BlockType.InclRight || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightBushD ||
-                globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightBushU || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightBushUD)
+                globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightBushU || globalMap.Tiles[y][x].blocks[j][k] == BlockType.IncRightGrassOnly)
             {
                 inclinedOffsety = 0.5f;
             }
