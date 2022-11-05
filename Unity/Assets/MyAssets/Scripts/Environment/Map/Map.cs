@@ -475,6 +475,7 @@ public class Map : MonoBehaviour {
     }
 
     public Vector3 MapCenter => Biomes.Count > 0 ? Biomes[0].Center : new Vector3(width / 2, height / 2, 0);
+    public int GridWidth => gridWidth;
     public int Width => width;
     public int Height => height;
 }

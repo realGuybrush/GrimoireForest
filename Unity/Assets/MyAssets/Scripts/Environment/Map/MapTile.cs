@@ -37,7 +37,12 @@ public enum BlockType {
     IncLeftGrassOnly,
     IncRightBushU,
     IncRightBushD,
-    IncRightGrassOnly
+    IncRightGrassOnly,
+    DoorD,
+    DoorULeftOpen,
+    DoorULeftClosed,
+    DoorURightOpen,
+    DoorURightClosed
 };
 
 //todo:move outside
@@ -84,6 +89,7 @@ public class MapTile {
     private float growthTimerDelta = 600000f; //10 min
     private float growthTimer = 600000f;
     private EnvironmentFactory environmentFactory;
+    private int distanceFromSideDoorToEdge = 2;
 
     public BiomeType biome1 = BiomeType.Forest;
     public BiomeType biome2 = BiomeType.Forest;
@@ -140,29 +146,63 @@ public class MapTile {
 
     private void SetDoors() {
         //todo: I'm almost totally sure there is a better way to do this
-        if (passages[(int) DirectionType.North] != PassageType.No ||
-            passages[(int) DirectionType.South] != PassageType.No) {
-            for (int x = (gridWidth - doorWidth) / 2; x < (gridWidth + doorWidth) / 2; x++) {
-                for (int y = 1; y < gridHeight; y++) {
-                    if (blocks[y][x] == BlockType.TopBushU) {
-                        if (passages[(int) DirectionType.North] == PassageType.Door)
-                            blocks[y][x] = BlockType.Top;
-                        if (passages[(int) DirectionType.South] == PassageType.Door)
-                            bushes[y - 1][x] = BlockType.Empty;
-                    } else if (blocks[y][x] == BlockType.IncLeftBushU) {
-                        if (passages[(int) DirectionType.North] == PassageType.Door)
-                            blocks[y][x] = BlockType.IncLeftGrassOnly;
-                        if (passages[(int) DirectionType.South] == PassageType.Door)
-                            bushes[y - 1][x] = BlockType.Empty;
-                    } else if (blocks[y][x] == BlockType.IncRightBushU) {
-                        if (passages[(int) DirectionType.North] == PassageType.Door)
-                            blocks[y][x] = BlockType.IncRightGrassOnly;
-                        if (passages[(int) DirectionType.South] == PassageType.Door)
-                            bushes[y - 1][x] = BlockType.Empty;
-                    }
+        int y;
+        if (gridWidth > distanceFromSideDoorToEdge + 1) {
+            if (passages[(int) DirectionType.East] == PassageType.Door) {
+                y = GetColumnTopPosition(gridWidth - distanceFromSideDoorToEdge - 1);
+                blocks[y][gridWidth - distanceFromSideDoorToEdge - 1] = BlockType.DoorURightOpen;
+                blocks[y - 1][gridWidth - distanceFromSideDoorToEdge - 1] = BlockType.NoTop;
+                bushes[y - 1][gridWidth - distanceFromSideDoorToEdge - 1] = BlockType.DoorD;
+            } else {
+                if (passages[(int) DirectionType.East] == PassageType.No) {
+                    y = GetColumnTopPosition(gridWidth - distanceFromSideDoorToEdge - 1);
+                    blocks[y][gridWidth - distanceFromSideDoorToEdge - 1] = BlockType.DoorURightClosed;
+                    blocks[y - 1][gridWidth - distanceFromSideDoorToEdge - 1] = BlockType.NoTop;
+                    bushes[y - 1][gridWidth - distanceFromSideDoorToEdge - 1] = BlockType.DoorD;
+                }
+            }
+            if (passages[(int) DirectionType.West] == PassageType.Door) {
+                y = GetColumnTopPosition(distanceFromSideDoorToEdge);
+                blocks[y][distanceFromSideDoorToEdge] = BlockType.DoorULeftOpen;
+                blocks[y - 1][distanceFromSideDoorToEdge] = BlockType.NoTop;
+                bushes[y - 1][distanceFromSideDoorToEdge] = BlockType.DoorD;
+            } else {
+                if (passages[(int) DirectionType.West] == PassageType.No) {
+                    y = GetColumnTopPosition(distanceFromSideDoorToEdge);
+                    blocks[y][distanceFromSideDoorToEdge] = BlockType.DoorULeftClosed;
+                    blocks[y - 1][distanceFromSideDoorToEdge] = BlockType.NoTop;
+                    bushes[y - 1][distanceFromSideDoorToEdge] = BlockType.DoorD;
                 }
             }
         }
+        if (passages[(int) DirectionType.North] != PassageType.No ||
+            passages[(int) DirectionType.South] != PassageType.No) {
+            for (int x = (gridWidth - doorWidth) / 2; x < (gridWidth + doorWidth) / 2; x++) {
+                y = GetColumnTopPosition(x);
+                if (y > 0) {
+                    if (passages[(int) DirectionType.South] == PassageType.Door)
+                        bushes[y - 1][x] = BlockType.Empty;
+                    if (passages[(int) DirectionType.North] == PassageType.Door)
+                        if (blocks[y][x] == BlockType.TopBushU) {
+                            blocks[y][x] = BlockType.Top;
+                        } else if (blocks[y][x] == BlockType.IncLeftBushU) {
+                            blocks[y][x] = BlockType.IncLeftGrassOnly;
+                        } else if (blocks[y][x] == BlockType.IncRightBushU) {
+                            blocks[y][x] = BlockType.IncRightGrassOnly;
+                        }
+                }
+            }
+        }
+    }
+
+    public int GetColumnTopPosition(int x) {
+        for (int y = 0; y < blocks.Count; y++) {
+            if (blocks[y][x] == BlockType.Top || blocks[y][x] == BlockType.TopBushU ||
+                blocks[y][x] == BlockType.IncLeftGrassOnly || blocks[y][x] == BlockType.IncLeftBushU ||
+                blocks[y][x] == BlockType.IncRightGrassOnly || blocks[y][x] == BlockType.IncRightBushU)
+                return y;
+        }
+        return blocks.Count;
     }
 
     public (bool, bool) TryGrow(float deltaTime) {

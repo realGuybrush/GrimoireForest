@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using RotaryHeart.Lib.SerializableDictionary;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,19 +8,19 @@ namespace MyAssets.Scripts.Environment {
     public class Tile : MonoBehaviour {
 
         [SerializeField]
-        private BackGroundMovement farBackground;
+        private BackgroundMovement farBackground;
 
         [SerializeField]
-        private BackGroundMovement middleBackground;
+        private BackgroundMovement middleBackground;
 
         [SerializeField]
-        private BackGroundMovement nearBackground;
+        private BackgroundMovement nearBackground;
 
         [SerializeField]
-        private BackGroundMovement nearPassageBackground; //todo: maybe merge this with bush line
+        private BackgroundMovement nearPassageBackground; //todo: maybe merge this with bush line
 
         [SerializeField]
-        private List<GameObject> borders, borderPassages;
+        private SerializableDictionaryBase<DirectionType, GameObject> borders, borderPassages;
 
         [SerializeField]
         private Tilemap ground;
@@ -32,19 +33,22 @@ namespace MyAssets.Scripts.Environment {
         public void Init(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North,
             bool load = false) {
             environmentFactory = EnvironmentFactory.GetInstance;
-            //GameObject GO2 = GameObject.Instantiate(BiomePrefabs[(int)type1][(int)type2].PlatformPrefab);//print them all, probably set on first spawn
+            //print them all, probably set on first spawn
             //make sky and moon placements as part of Update and put it on movement through various biomes
             //-3 -2 -1 1 R L G
             //wall path
-            farBackground.tileOffset = xTileOffset;
-            middleBackground.tileOffset = xTileOffset;
-            nearBackground.tileOffset = xTileOffset;
-            nearPassageBackground.tileOffset = xTileOffset;
+            //farBackground.tileOffset = xTileOffset;
+            //middleBackground.tileOffset = xTileOffset;
+            //nearBackground.tileOffset = xTileOffset;
+            //nearPassageBackground.tileOffset = xTileOffset;
+            Vector3 gridOffset = new Vector3(xTileOffset * MT.GridWidth * ground.cellSize.x, 0, 0);
+            ground.transform.position += gridOffset;
+            frontBushes.transform.position += gridOffset;
             for (int i = 0; i < 4; i++) {
                 if (MT.passages[(i + (int) LookTurn) % 4] == PassageType.Door) {
-                    borders[i].SetActive(false);
+                    borders[(DirectionType)i].SetActive(false);
                 } else {
-                    borderPassages[i].SetActive(false);
+                    borderPassages[(DirectionType)i].SetActive(false);
                 }
             }
             int halfHeight = MT.blocks.Count / 2;
@@ -59,6 +63,13 @@ namespace MyAssets.Scripts.Environment {
                         environmentFactory.GetBiomeBlockPrefabs(MT.biome1, MT.biome2)[MT.bushes[y][x]]);
                 }
             }
+            //todo: get rid of magic numbers and move positioning in some script on borders
+            Vector3 newPosition = NewBorderPosition(MT, MT.GridWidth - 3);
+            borders[DirectionType.East].transform.position = newPosition;
+            borderPassages[DirectionType.East].transform.position = newPosition;
+            newPosition = NewBorderPosition(MT, 2);
+            borders[DirectionType.West].transform.position = newPosition;
+            borderPassages[DirectionType.West].transform.position = newPosition;
 
             /*todo: fix stuffing spawning
             for (int i = 0; i < MT.TilePlatforms.Count; i++) {
@@ -77,6 +88,12 @@ namespace MyAssets.Scripts.Environment {
             for (int i = 0; i < MT.TileEntitiesPositions.Count; i++) {
                 SpawnEntity(MT.TileEntitiesPositions[i], i);
             }*/
+        }
+
+        private Vector3 NewBorderPosition(MapTile MT, int x) {
+            Vector3 newPosition = ground.layoutGrid.GetCellCenterWorld(new Vector3Int(x, MT.GetColumnTopPosition(x), 0));
+            newPosition -= new Vector3(ground.cellSize.x * ground.size.x / 2, ground.cellSize.y * ground.size.y / 2, 0);
+            return newPosition;
         }
 
         void SetTileEntities(MapTile MT) {

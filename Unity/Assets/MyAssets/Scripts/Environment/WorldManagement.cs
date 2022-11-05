@@ -4,8 +4,9 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using MyAssets.Scripts.Environment;
 
-public partial class WorldManagement : MonoBehaviour
-{
+public partial class WorldManagement : MonoBehaviour {
+    private float TileWidth;
+
     public PlayerControls Player;
     public GameObject Environment;
     public List<GameObject> ItemPrefabs = new List<GameObject>();
@@ -51,6 +52,7 @@ public partial class WorldManagement : MonoBehaviour
         Drop(3,1,new Vector3(0.0f, 0.0f, 0.0f));
         menusTrigger.OnCloseMenu += UnStopTime;
         menusTrigger.Menus.OnGameGenerationLaunch += MapGeneration;
+        TileWidth = globalMap.GridWidth * tileBlockWidth;
         StopTime();
     }
 

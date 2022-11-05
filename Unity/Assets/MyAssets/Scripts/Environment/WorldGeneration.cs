@@ -7,9 +7,10 @@ public partial class WorldManagement {
     [SerializeField]
     private Tile tilePrefab;
 
-    private List<Tile> currentlySpawnedTiles = new List<Tile>();
+    [SerializeField]
+    private float tileBlockWidth = 1.5f;
 
-    public float TileWidth = 80.5f;
+    private List<Tile> currentlySpawnedTiles = new List<Tile>();
 
     public EnvironmentFactory environmentFactory; //todo: make private
 
@@ -57,7 +58,7 @@ public partial class WorldManagement {
     private void SpawnTile(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North,
         bool load = false) {
             currentlySpawnedTiles.Add(Instantiate(tilePrefab,
-                new Vector3(xTileOffset * TileWidth, 0.0f, 0.0f), new Quaternion(), Environment.transform));
+                new Vector3(xTileOffset, 0.0f, 0.0f), new Quaternion(), Environment.transform));
             currentlySpawnedTiles[currentlySpawnedTiles.Count-1].Init(xTileOffset, MT, LookTurn, load);
     }
 

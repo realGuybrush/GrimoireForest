@@ -606,6 +606,111 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New2_3
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 1659
+        width: 1185
+        height: 2786
+      alignment: 9
+      pivot: {x: 0.5069549, y: 0.0651384}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 96cceada7ab32b720800000000000000
+      internalID: 2860414304693177449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New2_6
+      rect:
+        serializedVersion: 2
+        x: 1597
+        y: 1768
+        width: 1031
+        height: 2447
+      alignment: 9
+      pivot: {x: 0.5302713, y: 0.083892584}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 69b04c5697e787e30800000000000000
+      internalID: 4501486887420300182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New2_7
+      rect:
+        serializedVersion: 2
+        x: 2718
+        y: 1735
+        width: 981
+        height: 2489
+      alignment: 9
+      pivot: {x: 0.5212594, y: 0.086631425}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa013eb059ceeba40800000000000000
+      internalID: 5386002329275404463
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New2_8
+      rect:
+        serializedVersion: 2
+        x: 3806
+        y: 1743
+        width: 989
+        height: 2481
+      alignment: 9
+      pivot: {x: 0.51269233, y: 0.08174229}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aae9d4c62d4045ee0800000000000000
+      internalID: -1273387492832338262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Forest.Ground.Block.New2_10
+      rect:
+        serializedVersion: 2
+        x: 4952
+        y: 1751
+        width: 1005
+        height: 2481
+      alignment: 9
+      pivot: {x: 0.5287945, y: 0.07490975}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b9c361bd36f3c700800000000000000
+      internalID: 559561523553618354
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
