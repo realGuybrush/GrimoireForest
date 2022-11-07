@@ -57,9 +57,10 @@ public partial class WorldManagement {
 
     private void SpawnTile(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North,
         bool load = false) {
+        float fullXOffset = xTileOffset * MT.GridWidth * tileBlockWidth;
             currentlySpawnedTiles.Add(Instantiate(tilePrefab,
-                new Vector3(xTileOffset, 0.0f, 0.0f), new Quaternion(), Environment.transform));
-            currentlySpawnedTiles[currentlySpawnedTiles.Count-1].Init(xTileOffset, MT, LookTurn, load);
+                new Vector3(fullXOffset, 0.0f, 0.0f), new Quaternion(), Environment.transform));
+            currentlySpawnedTiles[currentlySpawnedTiles.Count-1].Init(MT, LookTurn, load);
     }
 
     public void DeleteCorridor() {

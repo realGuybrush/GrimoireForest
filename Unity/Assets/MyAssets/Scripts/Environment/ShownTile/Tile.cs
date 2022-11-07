@@ -30,7 +30,7 @@ namespace MyAssets.Scripts.Environment {
 
         private EnvironmentFactory environmentFactory;
 
-        public void Init(int xTileOffset, MapTile MT, DirectionType LookTurn = DirectionType.North,
+        public void Init(MapTile MT, DirectionType LookTurn = DirectionType.North,
             bool load = false) {
             environmentFactory = EnvironmentFactory.GetInstance;
             //print them all, probably set on first spawn
@@ -41,9 +41,6 @@ namespace MyAssets.Scripts.Environment {
             //middleBackground.tileOffset = xTileOffset;
             //nearBackground.tileOffset = xTileOffset;
             //nearPassageBackground.tileOffset = xTileOffset;
-            Vector3 gridOffset = new Vector3(xTileOffset * MT.GridWidth * ground.cellSize.x, 0, 0);
-            ground.transform.position += gridOffset;
-            frontBushes.transform.position += gridOffset;
             for (int i = 0; i < 4; i++) {
                 if (MT.passages[(i + (int) LookTurn) % 4] == PassageType.Door) {
                     borders[(DirectionType)i].SetActive(false);
