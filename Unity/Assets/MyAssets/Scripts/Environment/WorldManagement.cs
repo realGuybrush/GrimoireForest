@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -26,10 +27,13 @@ public partial class WorldManagement : MonoBehaviour {
     [SerializeField]
     private MenusTrigger menusTrigger;
 
+    [SerializeField]
+    private BackgroundController backgroundController;
+
     int PlayerCurrentXMapOffset = 0;
     DirectionType CameraLookDirection = DirectionType.North;
     // Use this for initialization
-//todo: hic sunt dracones v
+    //todo: hic sunt dracones v
     void Start()
     {
         //todo: get rid of partial class

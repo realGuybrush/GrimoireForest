@@ -25,6 +25,7 @@ public class BiomeData: ScriptableObject
     public MaxBiomeSizeInPercents maxPercentSize;
     public Sprite Sky;
     public Sprite Moon;
+    public List<BackgroundMovement> BackgroundPrefab;
     public List<GameObject> PlatformPrefab;
     public List<Cover> CoverPrefabs;
     public List<EnemyMovement> EntitiesPrefabs;

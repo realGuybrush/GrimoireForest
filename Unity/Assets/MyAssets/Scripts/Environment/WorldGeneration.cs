@@ -33,7 +33,7 @@ public partial class WorldManagement {
             .passages[3] == PassageType.Corridor) {
             offsetTilesLeft--;
         }
-        while (globalMap.Tiles[PlayerYMap + offsetTilesLeft * xCoeff][PlayerXMap + offsetTilesRight * yCoeff]
+        while (globalMap.Tiles[PlayerYMap + offsetTilesRight * xCoeff][PlayerXMap + offsetTilesRight * yCoeff]
             .passages[1] == PassageType.Corridor) {
             offsetTilesRight++;
         }
@@ -52,6 +52,8 @@ public partial class WorldManagement {
                 }
             }
         }
+        var playerTile = globalMap.Tiles[PlayerYMap][PlayerXMap];
+        backgroundController.Init(environmentFactory.GetBGListByBiome(playerTile.biome1, playerTile.biome2));
         mainCamera.SetCameraBoundaries(offsetTilesLeft, offsetTilesRight);
     }
 

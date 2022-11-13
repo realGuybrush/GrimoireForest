@@ -41,20 +41,8 @@ namespace MyAssets.Scripts.Environment {
             return BiomeDTOs[type].list[type].resistancePower;
         }
 
-        public Sprite GetTileSpriteByBiome() {
-            return null;
-        }
-
-        public Sprite GetBG1SpriteByBiome() {
-            return null;
-        }
-
-        public Sprite GetBG2SpriteByBiome() {
-            return null;
-        }
-
-        public Sprite GetBG3SpriteByBiome() {
-            return null;
+        public List<BackgroundMovement> GetBGListByBiome(BiomeType type1, BiomeType type2) {
+            return BiomeDTOs[(int)type1].list[(int)type2].BackgroundPrefab;
         }
 
         public SerializableDictionaryBase<BlockType, TileBase> GetBiomeBlockPrefabs(BiomeType biome1, BiomeType biome2) {

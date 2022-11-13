@@ -20,6 +20,14 @@ MonoBehaviour:
   maxPercentSize: 100
   Sky: {fileID: 21300000, guid: 6c3cb02f5e41e5c479b16ea17357e659, type: 3}
   Moon: {fileID: 21300000, guid: 73e2f743aeae62340a31e225e5e5127a, type: 3}
+  BackgroundPrefab:
+  - {fileID: 3691035585252945267, guid: d7725988d3dd41748bafba7e10530240, type: 3}
+  - {fileID: 6992169294588320924, guid: d6b5326553df8714f9041ccefac00718, type: 3}
+  - {fileID: 4321972066784289431, guid: 847e3e99158e7db459d4f581711e8c47, type: 3}
+  - {fileID: 6959053305877925453, guid: 5f4d9eaf8acb6ed4891ff7e22d2c0522, type: 3}
+  - {fileID: 262918463298437447, guid: 9e94570062b8f424aa3e55be7998e66e, type: 3}
+  - {fileID: 1455550086269071738, guid: d17fb97d23aa55849b48852fc6c439ee, type: 3}
+  - {fileID: 3828949391275083881, guid: ebc34e81846e04a45812e16ae7e8d04f, type: 3}
   PlatformPrefab:
   - {fileID: 2985418728440682928, guid: b11834304b1662b41b109dec56b677fd, type: 3}
   CoverPrefabs:
@@ -41,7 +49,7 @@ MonoBehaviour:
       draggable: 1
       expandable: 1
       multipleSelection: 1
-      isExpanded: 1
+      isExpanded: 0
       label:
         m_Text: Keys
         m_Image: {fileID: 0}
@@ -56,7 +64,7 @@ MonoBehaviour:
       elementNameOverride: 
       elementIcon: {fileID: 0}
     reqReferences: {fileID: 0}
-    isExpanded: 1
+    isExpanded: 0
     _keyValues: 03000000010000000200000004000000000000000a0000000d00000005000000080000000b00000006000000090000000c0000000e0000000f000000100000001100000012000000
     _keys: 03000000010000000200000004000000000000000a0000000d00000005000000080000000b00000006000000090000000c0000000e0000000f000000100000001100000012000000
     _values:
